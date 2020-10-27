@@ -11,22 +11,11 @@ const githubConfig = {
 
 const githubLoginVerify = async (accessToken, refreshToken, profile, done) => {
   try {
-    console.log('profile2 :', profile);
     const {
       _json: { id, login, node_id },
     } = profile;
     const userInfo = { id, login, node_id };
-    /*
-    const [user] = await UserApi.findUser(id);
-    if (user) {
-      return done(null, user);
-    }
-    const [insertErr, [addNewUser]] = await UserApi.insertUser({
-      userId: id,
-      name: login,
-      hashPW: node_id,
-    });
-    */
+    // todo : user DB 조회
     console.log('userInfo :', userInfo);
     return done(null, userInfo);
   } catch (err) {
@@ -34,12 +23,13 @@ const githubLoginVerify = async (accessToken, refreshToken, profile, done) => {
   }
 };
 
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
-passport.deserializeUser((user, done) => {
-  done(null, user);
-});
+// session 방식을 통한 유저인증
+// passport.serializeUser((user, done) => {
+//   done(null, user);
+// });
+// passport.deserializeUser((user, done) => {
+//   done(null, user);
+// });
 
 module.exports = () => {
   passport.use('github', new GithubStrategy(githubConfig, githubLoginVerify));
