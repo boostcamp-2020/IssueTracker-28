@@ -22,5 +22,7 @@ export default {
     HeaderItemWrapper : styled.div`
     display : flex;
     border: 1px solid #e0e0e0;
+    overflow : hidden;
+    border-radius : 4px;
     `
 };
