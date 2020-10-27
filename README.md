@@ -15,13 +15,12 @@
 ## 🗂 Directory
 <details>
 <summary>frontend</summary>
-```
+![client](https://i.imgur.com/AhU4Ilx.png)
 </details>
 
 <details>
 <summary>backend</summary>
-```
-
+![server](https://i.imgur.com/tqDboZC.png)
 </details>
 
 
