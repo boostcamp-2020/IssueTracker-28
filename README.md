@@ -26,8 +26,10 @@
 
 
 ## 👩‍👩‍👧‍👦Members
-
-
+- [J032_김동현](https://github.com/dooking)
+- [J046_김예진](https://github.com/johnyejin)
+- [J139_이상경](https://github.com/sang-gyeong)
+- [J216_한예지](https://github.com/yeji9175)
 
 
 ## Show your support
