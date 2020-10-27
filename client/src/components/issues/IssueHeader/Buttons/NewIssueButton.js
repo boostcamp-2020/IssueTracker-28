@@ -4,7 +4,7 @@ import S from './style';
 function NewIssueButton() {
     return (
         <S.NewIssueButton>
-            New Issue
+            New issue
         </S.NewIssueButton>
     );
 };
