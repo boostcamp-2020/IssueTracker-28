@@ -9,7 +9,7 @@
 ## 📹 Demo Video
 
 ## 📊 DB Model
-<img width="800" alt="스크린샷 2020-10-27 오후 1 11 59" src="https://user-images.githubusercontent.com/60839959/97256301-07ad8b00-1856-11eb-9819-0372a97de24c.png">
+<img width="800" alt="스크린샷 2020-10-27 오후 1 11 59" src="https://user-images.githubusercontent.com/39231606/97297555-8a096f80-1895-11eb-82da-8d159dbb04df.png">
 
 
 ## 🗂 Directory
