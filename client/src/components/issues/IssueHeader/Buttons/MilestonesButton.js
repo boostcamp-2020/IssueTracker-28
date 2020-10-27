@@ -5,8 +5,9 @@ import {MilestoneIcon} from '@primer/octicons-react'
 function MilestonesButton (){
     return (
         <S.MilestonesButton>
-            <MilestoneIcon />
-            Milestones
+          <MilestoneIcon />
+          Milestones
+          <S.ShowTotalNum>0</S.ShowTotalNum>
         </S.MilestonesButton>
     );
 };

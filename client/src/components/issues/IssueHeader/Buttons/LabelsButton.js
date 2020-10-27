@@ -7,7 +7,8 @@ function LabelsButton (){
     return (
         <S.LabelsButton>
           <TagIcon size={14}/>
-            Labels
+          Labels
+          <S.ShowTotalNum>0</S.ShowTotalNum>
         </S.LabelsButton>
     );
 };
