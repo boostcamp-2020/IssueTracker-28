@@ -34,9 +34,15 @@ export default {
     background: linear-gradient( to bottom, #32CD56, #27A844 );
     color: #ffffff;
   `,
-  ShowTotalNum: styled.span`
-  padding : 3px 6px;
-  background : #f2f2f2;
-  border-radius : 50px;
-`
+    FiltersButton: styled(CommonHeaderButton)
+    `
+    border-color : #329246;
+    background: linear-gradient( to bottom, #32CD56, #27A844 );
+    color: #ffffff;
+    `,
+    ShowTotalNum: styled.span`
+    padding : 3px 6px;
+    background : #f2f2f2;
+    border-radius : 50px;
+    `
 };
