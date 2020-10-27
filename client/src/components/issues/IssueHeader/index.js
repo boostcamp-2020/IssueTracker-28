@@ -1,8 +1,13 @@
 import React from 'react';
+import {LabelsButton, MilestonesButton, NewIssueButton} from './Buttons'
 
 function IssueHeader() {
   return (
-    <div>Issue Header</div>
+    <>
+        <LabelsButton />
+        <MilestonesButton />
+        <NewIssueButton />
+    </>
   );
 }
 

@@ -16,4 +16,20 @@ const CommonHeaderButton = styled.button`
 `;
 
 export default {
+    MilestonesButton: styled(CommonHeaderButton)
+    `
+    background: #ffffff;
+    color: #404040;
+  `,
+    NewIssueButton: styled(CommonHeaderButton)
+    `
+    background: #ffffff;
+    color: #404040;
+  `,
+    LabelsButton: styled(CommonHeaderButton)
+    `
+    border-color : #329246;
+    background: linear-gradient( to bottom, #32CD56, #27A844 );
+    color: #ffffff;
+  `
 };
