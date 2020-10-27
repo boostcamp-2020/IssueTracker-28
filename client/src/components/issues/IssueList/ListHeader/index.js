@@ -9,7 +9,7 @@ function ListHeader() {
       <ListFilters>
         <FilterDropdown>
           <Dropdown className='author-dropdown' text='Author'>
-            <Dropdown.Menu>
+            <Dropdown.Menu direction='left'>
               <Dropdown.Header icon='tags' content='Filter by author' />
               <Dropdown.Item text='johnyejin' />
             </Dropdown.Menu>
@@ -17,7 +17,7 @@ function ListHeader() {
         </FilterDropdown>
         <FilterDropdown>
           <Dropdown className='label-dropdown' text='Label'>
-            <Dropdown.Menu>
+            <Dropdown.Menu direction='left'>
               <Dropdown.Header icon='tags' content='Filter by label' />
               <Dropdown.Item text='frontend' />
             </Dropdown.Menu>
@@ -25,7 +25,7 @@ function ListHeader() {
         </FilterDropdown>
         <FilterDropdown>
           <Dropdown className='milestons-dropdown' text='Milestons'>
-            <Dropdown.Menu>
+            <Dropdown.Menu direction='left'>
               <Dropdown.Header icon='tags' content='Filter by milestons' />
               <Dropdown.Item text='스프린트1' />
             </Dropdown.Menu>
@@ -33,7 +33,7 @@ function ListHeader() {
         </FilterDropdown>
         <FilterDropdown>
           <Dropdown className='assignee-dropdown' text='Assignee'>
-            <Dropdown.Menu>
+            <Dropdown.Menu direction='left'>
               <Dropdown.Header icon='tags' content='Filter by assignee' />
               <Dropdown.Item text='johnyejin' />
             </Dropdown.Menu>
