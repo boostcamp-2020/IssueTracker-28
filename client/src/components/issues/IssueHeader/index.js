@@ -6,11 +6,17 @@ import S from './style';
 function IssueHeader() {
   return (
     <>
-        <FiltersButton />
-        <SearchBar />
-        <LabelsButton />
-        <MilestonesButton />
-        <NewIssueButton />
+        <S.IssueHeader>
+            <S.HeaderItemWrapper>
+                <FiltersButton />
+                <SearchBar />
+            </S.HeaderItemWrapper>
+            <S.HeaderItemWrapper>
+                <LabelsButton />
+                <MilestonesButton />
+            </S.HeaderItemWrapper>
+            <NewIssueButton />
+        </S.IssueHeader>
     </>
   );
 }

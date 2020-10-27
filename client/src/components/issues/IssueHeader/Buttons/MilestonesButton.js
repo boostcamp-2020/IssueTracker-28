@@ -6,7 +6,7 @@ function MilestonesButton (){
     return (
         <S.MilestonesButton>
           <MilestoneIcon />
-          Milestones
+            <S.ButtonText>Milestones</S.ButtonText>
           <S.ShowTotalNum>0</S.ShowTotalNum>
         </S.MilestonesButton>
     );

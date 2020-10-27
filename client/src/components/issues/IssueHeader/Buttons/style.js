@@ -6,18 +6,20 @@ const CommonHeaderButton = styled.button`
   box-sizing: border-box;
   min-width: 80px;
   height: 35px;
-  border: 1px solid #f0f0f0;
-  border-radius: 3px;
+  border : none;
   align-items : center;
   justify-content : center;
   font-size: 13px;
   font-weight : 600;
-  padding : 0px 15px;
+  padding : 0px 13px;
   cursor: pointer;
   outline : none;
 `;
 
 export default {
+    ButtonText : styled.p`
+    margin : 0 5px;
+    `,
     MilestonesButton: styled(CommonHeaderButton)
     `
     background: #ffffff;
@@ -27,17 +29,21 @@ export default {
     `
     background: #ffffff;
     color: #606060;
+    border-right : 1px solid #e0e0e0;
   `,
     NewIssueButton: styled(CommonHeaderButton)
     `
-    border-color : #329246;
+    border: 1px solid #329246;
     background: linear-gradient( to bottom, #32CD56, #27A844 );
     color: #ffffff;
+    border-radius : 4px;
+
   `,
     FiltersButton: styled(CommonHeaderButton)
     `
     background: linear-gradient( to bottom, #fff, #e9e9e9 );
     color: #606060;
+    border-right : 1px solid #e0e0e0;
     `,
     ShowTotalNum: styled.span`
     padding : 3px 6px;

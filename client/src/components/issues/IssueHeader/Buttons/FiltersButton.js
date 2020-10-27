@@ -6,7 +6,7 @@ import {TriangleDownIcon} from '@primer/octicons-react'
 function FiltersButton (){
     return (
         <S.FiltersButton>
-          Filters
+          <S.ButtonText>Filters</S.ButtonText>
           <TriangleDownIcon/>
         </S.FiltersButton>
     );
