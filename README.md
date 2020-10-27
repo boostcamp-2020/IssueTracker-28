@@ -12,10 +12,21 @@
 ## 📊 DB Model
 
 ## 🗂 Directory
-> frontend
-> backend
+<details>
+<summary>frontend</summary>
+```
+</details>
+
+<details>
+<summary>backend</summary>
+```
+
+</details>
+
 
 ## 👩‍👩‍👧‍👦Members
+
+
 
 
 ## Show your support
