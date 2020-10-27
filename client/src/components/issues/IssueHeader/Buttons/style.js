@@ -14,6 +14,9 @@ const CommonHeaderButton = styled.button`
   padding : 0px 13px;
   cursor: pointer;
   outline : none;
+  &:hover {
+    filter: brightness(95%);
+  }
 `;
 
 export default {
