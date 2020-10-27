@@ -15,12 +15,12 @@
 ## 🗂 Directory
 <details>
 <summary>frontend</summary>
-![client](https://i.imgur.com/AhU4Ilx.png)
+<img width="339" alt="스크린샷 2020-10-27 오후 8 25 59" src="https://user-images.githubusercontent.com/60839959/97295537-c2f41500-1892-11eb-9fc2-f366ae011e1e.png">
 </details>
 
 <details>
 <summary>backend</summary>
-![server](https://i.imgur.com/tqDboZC.png)
+<img width="340" alt="스크린샷 2020-10-27 오후 8 26 19" src="https://user-images.githubusercontent.com/60839959/97295524-be2f6100-1892-11eb-9ecc-2ac9de7f8f0e.png">
 </details>
 
 
