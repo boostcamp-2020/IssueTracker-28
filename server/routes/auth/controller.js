@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+
 const githubLogin = async (req, res, next) => {
   try {
     req.login(req.user, { session: false }, (loginError) => {

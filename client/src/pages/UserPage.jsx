@@ -1,9 +1,7 @@
 import React from 'react';
 
 function UserPage() {
-  return (
-    <div>hi</div>
-  );
+  return <div>hi</div>;
 }
 
 export default UserPage;

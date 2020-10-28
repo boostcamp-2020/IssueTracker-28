@@ -5,7 +5,7 @@ import IssuePage from './pages/IssuePage';
 const App = () => {
   return (
     <Switch>
-      <Route path='/' component={IssuePage} />
+      <Route path="/" component={IssuePage} />
       <Route
         render={({ location }) => (
           <div>

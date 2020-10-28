@@ -54,3 +54,4 @@ export const MilestoneContainer = styled.div`
     vertical-align: bottom;
   }
 `;
+

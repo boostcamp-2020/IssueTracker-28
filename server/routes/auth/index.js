@@ -4,7 +4,6 @@ const controller = require('./controller');
 const passport = require('passport');
 require('dotenv').config();
 
-/* Github Login page. */
 router.get('/github', passport.authenticate('github', { session: false }));
 router.get(
   '/github/callback',

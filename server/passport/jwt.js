@@ -1,6 +1,7 @@
 const passport = require('passport');
 const { ExtractJwt, Strategy: JWTStrategy } = require('passport-jwt');
 const UserServices = require('../services/user');
+
 require('dotenv').config();
 
 const JWTConfig = {
@@ -9,6 +10,7 @@ const JWTConfig = {
 };
 const JWTVerify = async (jwtPayload, done) => {
   const { userId } = jwtPayload;
+
   const user = await UserServices.findUser(userId);
   console.log(user);
   if (!user) {

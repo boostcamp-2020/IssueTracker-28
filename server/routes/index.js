@@ -1,3 +1,14 @@
+
+const auth = require('./auth');
+const issue = require('./issue');
+const label = require('./label');
+const milestone = require('./milestone');
+
+router.use('/auth', auth);
+router.use('/issue', issue);
+router.use('/label', label);
+router.use('/milestone', milestone);
+
 const express = require('express');
 const passport = require('passport');
 

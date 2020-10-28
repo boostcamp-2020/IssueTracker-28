@@ -2,6 +2,7 @@ import React from 'react';
 import { IssueOpenedIcon, MilestoneIcon } from '@primer/octicons-react';
 import { IssueWrapper, IssueContainer, LabelList, OtherContainer, MilestoneContainer } from './style';
 
+
 function Issue({ issue }) {
   return (
     <IssueWrapper>
