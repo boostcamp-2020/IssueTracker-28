@@ -1,5 +1,6 @@
 const passport = require('passport');
 const { ExtractJwt, Strategy: JWTStrategy } = require('passport-jwt');
+const UserServices = require('../services/user');
 
 require('dotenv').config();
 
@@ -9,13 +10,13 @@ const JWTConfig = {
 };
 const JWTVerify = async (jwtPayload, done) => {
   const { userId } = jwtPayload;
-  console.log(jwtPayload, userId);
-  const user = 'dong';
-  //const user = await UserApi.findUser(userId);
+
+  const user = await UserServices.findUser(userId);
+  console.log(user);
   if (!user) {
-    return done(null, false, { reason: '올바르지 않은 인증정보 입니다.' });
+    return done(null, false, { message: '올바르지 않은 인증정보 입니다.' });
   }
-  done(null, user.name);
+  done(null, user);
 };
 module.exports = () => {
   passport.use('jwt', new JWTStrategy(JWTConfig, JWTVerify));
