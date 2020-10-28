@@ -28,3 +28,4 @@ function Issue({ issue }) {
 }
 
 export default Issue;
+

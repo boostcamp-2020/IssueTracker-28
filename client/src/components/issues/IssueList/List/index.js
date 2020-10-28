@@ -29,6 +29,7 @@ function List() {
         <Issue key={issue.id} issue={issue} />
       ))}
     </div>
+
   );
 }
 

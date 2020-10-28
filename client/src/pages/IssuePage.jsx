@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   IssueHeader,
-  IssueList,
+  IssueList
 } from '../components/issues';
 import 'semantic-ui-css/semantic.min.css';
 
