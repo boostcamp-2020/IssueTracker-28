@@ -19,4 +19,20 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.use('/api', apiRouter);
 
+app.use((req, res, next) => {
+  const err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+app.use((err, req, res) => {
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  console.log(err);
+  res.status(err.status || 500).json({
+    code: err.status,
+    message: '에러 발생',
+  });
+});
+
 module.exports = app;
