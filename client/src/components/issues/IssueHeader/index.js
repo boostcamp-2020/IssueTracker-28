@@ -1,22 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { LabelsButton, MilestonesButton, NewIssueButton } from './Buttons';
 import SearchBar from './SearchBar';
 import Filters from './Filters';
 import S from './style';
-const FILTERS_MENU = [
-  'Open issues and pull requests',
-  'Your issues',
-  'Your pull requests',
-  'Everything assigned to you',
-  'Everything mention you',
-];
+
 function IssueHeader() {
+  let [filterValue, setFilterValue] = useState('');
   return (
     <>
       <S.IssueHeader>
         <S.HeaderItemWrapper>
-          <Filters />
-          <SearchBar />
+          <Filters filterValue={filterValue} setFilterValue={setFilterValue} />
+          <SearchBar filterValue={filterValue} />
         </S.HeaderItemWrapper>
         <S.HeaderItemWrapper>
           <LabelsButton />

@@ -9,6 +9,9 @@ const FILTERS_MENU = [
   'Everything mention you',
 ];
 function Filters(props) {
+  const selectHandler = (item) => {
+    props.setFilterValue(item);
+  };
   return (
     <S.FiltersWrapper>
       <S.FiltersButton></S.FiltersButton>
@@ -18,7 +21,13 @@ function Filters(props) {
           <Dropdown.Divider />
           {FILTERS_MENU.map((item, index) => (
             <Fragment>
-              <Dropdown.Item text={item} />
+              <Dropdown.Item
+                text={item}
+                key={index}
+                onClick={() => {
+                  selectHandler(item);
+                }}
+              />
               <Dropdown.Divider />
             </Fragment>
           ))}
