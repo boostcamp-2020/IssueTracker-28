@@ -1,6 +1,7 @@
 import React from 'react';
-import {FiltersButton, LabelsButton, MilestonesButton, NewIssueButton} from './Buttons'
+import {LabelsButton, MilestonesButton, NewIssueButton} from './Buttons'
 import SearchBar from './SearchBar'
+import Filters from './Filters'
 import S from './style';
 
 function IssueHeader() {
@@ -8,7 +9,7 @@ function IssueHeader() {
     <>
         <S.IssueHeader>
             <S.HeaderItemWrapper>
-                <FiltersButton />
+                <Filters />
                 <SearchBar />
             </S.HeaderItemWrapper>
             <S.HeaderItemWrapper>

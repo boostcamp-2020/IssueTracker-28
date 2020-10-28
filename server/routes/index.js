@@ -5,7 +5,7 @@ const authRouter = require('./auth/index');
 
 router.use('/auth', authRouter);
 /* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/', function(req, res, next) {
+    res.render('index', { title: 'Express' });
 });
-ports = router;
+module.exports = router;
