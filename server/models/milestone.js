@@ -20,14 +20,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
         allowNull: true,
       },
-      openIssueCount: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-      },
-      closeIssueCount: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-      },
     },
     {
       timestamps: false,

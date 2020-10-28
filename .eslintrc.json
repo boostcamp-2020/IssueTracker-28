@@ -20,6 +20,8 @@
         "no-undef": "off",
         "no-alert": "off",
         "func-names": "off",
-        "node/no-missing-import": "off"
+        "node/no-missing-import": "off",
+        "no-restricted-syntax": "off",
+        "no-await-in-loop": "off"
     }
 }

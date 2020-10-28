@@ -6,12 +6,10 @@ const issueServices = require('../../services/issue');
 */
 exports.getIssues = async (req, res, next) => {
   try {
-    const userId = req.user.id;
-
-    const issues = await issueServices.getIssues(userId);
+    const issues = await issueServices.getIssues();
 
     res.json({
-      message: '전체 이슈 목록 조회',
+      message: '전체 이슈 목록 조회 성공',
       data: issues,
     });
   } catch (error) {
