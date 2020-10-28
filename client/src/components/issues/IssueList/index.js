@@ -1,11 +1,15 @@
 import React from 'react';
+import ListHeader from './ListHeader';
+import List from './List';
 
-function IssueList({ children }) {
+function ListContainer({ children }) {
   return (
     <div>
-      {children}
+      <ListHeader />
+      <List />
     </div>
   );
 }
 
-export default IssueList;
+
+export default ListContainer;
