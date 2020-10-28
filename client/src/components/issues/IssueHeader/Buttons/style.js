@@ -42,17 +42,10 @@ export default {
     border-radius : 4px;
 
   `,
-    FiltersButton: styled(CommonHeaderButton)
-    `
-    background: linear-gradient( to bottom, #fff, #e9e9e9 );
-    color: #606060;
-    border-right : 1px solid #e0e0e0;
-    `,
     ShowTotalNum: styled.span`
     padding : 3px 6px;
     background : #f2f2f2;
     border-radius : 50px;
-    `,
-    CommonHeaderButton : styled(CommonHeaderButton)``
+    `
 };
 
