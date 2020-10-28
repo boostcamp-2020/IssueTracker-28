@@ -1,6 +1,6 @@
 const passport = require('passport');
 const { Strategy: GithubStrategy } = require('passport-github');
-
+const UserServices = require('../services/user');
 require('dotenv').config();
 
 const githubConfig = {
@@ -12,13 +12,14 @@ const githubConfig = {
 const githubLoginVerify = async (accessToken, refreshToken, profile, done) => {
   try {
     const {
-      _json: { id, login, node_id },
+      _json: { login },
     } = profile;
-    console.log('profile: ', profile);
-    const userInfo = { id, login, node_id };
-    // todo : user DB 조회
-    console.log('userInfo :', userInfo);
-    return done(null, userInfo);
+    const user = await UserServices.findUser(login);
+    if (user) {
+      return done(null, user);
+    }
+    const addUser = await UserServices.insertUser(login);
+    return done(null, addUser.dataValues);
   } catch (err) {
     return done(null, false, { msg: '올바르지 않은 인증정보 입니다.' });
   }
