@@ -1,19 +1,15 @@
 import React from 'react';
 import {
   IssueHeader,
-  ListContainer,
-  ListHeader,
-  List
+  IssueList
 } from '../components/issues';
+import 'semantic-ui-css/semantic.min.css';
 
 function IssuePage() {
   return (
     <>
       <IssueHeader />
-      <ListContainer>
-        <ListHeader />
-        <List />
-      </ListContainer>
+      <IssueList />
     </>
   );
 }
