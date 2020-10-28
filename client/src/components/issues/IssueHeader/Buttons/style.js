@@ -52,5 +52,7 @@ export default {
     padding : 3px 6px;
     background : #f2f2f2;
     border-radius : 50px;
-    `
+    `,
+    CommonHeaderButton : styled(CommonHeaderButton)``
 };
+
