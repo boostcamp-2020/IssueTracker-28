@@ -9,13 +9,14 @@ const JWTConfig = {
 };
 const JWTVerify = async (jwtPayload, done) => {
   const { userId } = jwtPayload;
-  console.log(jwtPayload, userId);
   const user = 'dong';
+  console.log('jwtpayload: ', jwtPayload);
+  // Todo : user DB
   //const user = await UserApi.findUser(userId);
   if (!user) {
     return done(null, false, { reason: '올바르지 않은 인증정보 입니다.' });
   }
-  done(null, user.name);
+  done(null, user);
 };
 module.exports = () => {
   passport.use('jwt', new JWTStrategy(JWTConfig, JWTVerify));

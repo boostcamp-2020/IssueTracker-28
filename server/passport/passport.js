@@ -6,7 +6,7 @@ require('dotenv').config();
 const githubConfig = {
   clientID: process.env.GITHUB_CLIENT_ID,
   clientSecret: process.env.GITHUB_CLIENT_SECRET,
-  callbackURL: 'http://127.0.0.1:3000/auth/github/callback',
+  callbackURL: 'http://127.0.0.1:3000/api/auth/github/callback',
 };
 
 const githubLoginVerify = async (accessToken, refreshToken, profile, done) => {
@@ -14,6 +14,7 @@ const githubLoginVerify = async (accessToken, refreshToken, profile, done) => {
     const {
       _json: { id, login, node_id },
     } = profile;
+    console.log('profile: ', profile);
     const userInfo = { id, login, node_id };
     // todo : user DB 조회
     console.log('userInfo :', userInfo);
