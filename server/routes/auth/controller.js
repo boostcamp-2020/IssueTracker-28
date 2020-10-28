@@ -5,8 +5,8 @@ const githubLogin = async (req, res, next) => {
       if (loginError) {
         return res.status(400).json({ message: loginError });
       }
-      const { id, login } = req.user;
-      const token = jwt.sign({ id, login }, process.env.JWT_SECRET, {
+      const { id, userID } = req.user;
+      const token = jwt.sign({ id, userID }, process.env.JWT_SECRET, {
         expiresIn: '1d',
       });
       req.token = token;
