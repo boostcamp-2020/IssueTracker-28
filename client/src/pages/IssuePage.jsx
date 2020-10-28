@@ -1,19 +1,14 @@
 import React from 'react';
 import {
   IssueHeader,
-  ListContainer,
-  ListHeader,
-  List
+  IssueList
 } from '../components/issues';
 
 function IssuePage() {
   return (
     <>
       <IssueHeader />
-      <ListContainer>
-        <ListHeader />
-        <List />
-      </ListContainer>
+      <IssueList />
     </>
   );
 }

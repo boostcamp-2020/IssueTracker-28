@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ListContainer({ children }) {
+function IssueList({ children }) {
   return (
     <div>
       {children}
@@ -8,4 +8,4 @@ function ListContainer({ children }) {
   );
 }
 
-export default ListContainer;
+export default IssueList;
