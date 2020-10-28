@@ -23,14 +23,6 @@ const githubLoginVerify = async (accessToken, refreshToken, profile, done) => {
   }
 };
 
-// session 방식을 통한 유저인증
-// passport.serializeUser((user, done) => {
-//   done(null, user);
-// });
-// passport.deserializeUser((user, done) => {
-//   done(null, user);
-// });
-
 module.exports = () => {
   passport.use('github', new GithubStrategy(githubConfig, githubLoginVerify));
 };
