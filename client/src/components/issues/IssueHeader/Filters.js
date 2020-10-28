@@ -31,7 +31,12 @@ function Filters(props) {
               <Dropdown.Divider />
             </Fragment>
           ))}
-          <Dropdown.Item icon="tags" text="View advanced search syntax" />
+          <Dropdown.Item>
+            <a href="https://docs.github.com/articles/searching-issues" target="_blank">
+              <Icon name="tags" />
+              View advanced search syntax
+            </a>
+          </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
     </S.FiltersWrapper>
