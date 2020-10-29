@@ -1,7 +1,8 @@
 const express = require('express');
+
 const router = express.Router();
-const controller = require('./controller');
 const passport = require('passport');
+const controller = require('./controller');
 require('dotenv').config();
 
 router.get('/github', passport.authenticate('github', { session: false }));
