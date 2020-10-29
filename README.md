@@ -5,7 +5,7 @@
 
 
 ## 🍎 Service URL
-http://49.50.160.37:3000/
+http://www.issue-tracker28.kro.kr
 
 ## 📹 Demo Video
 
