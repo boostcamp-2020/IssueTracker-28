@@ -9,7 +9,7 @@ const App = () => {
     authenticated : false
   })
   useEffect(()=>{
-    console.log("리다이렉트",document.cookie)
+    console.log("리다이렉트", document.cookie)
     axios
     .get('http://localhost:3000/api/auth/test', {
     })

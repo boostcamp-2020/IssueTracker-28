@@ -12,7 +12,7 @@ router.get('/success', (req, res) => {
     });
     req.session.logined = true;
     req.session.save(() => {
-        res.send('<script>alert("이동");  window.location.href = "http://127.0.0.1:8080";</script>');
+        res.send('<script>window.location.href = "http://127.0.0.1:8080";</script>');
     });
 });
 router.get('/test', (req, res) => {
