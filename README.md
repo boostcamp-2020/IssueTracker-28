@@ -5,6 +5,7 @@
 
 
 ## 🍎 Service URL
+http://49.50.160.37:3000/
 
 ## 📹 Demo Video
 
