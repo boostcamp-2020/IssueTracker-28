@@ -5,12 +5,10 @@ const logger = require('morgan');
 const passport = require('passport');
 const passportConfig = require('./passport/passport');
 const jwtConfig = require('./passport/jwt');
-require('dotenv').config();
 const { sequelize } = require('./models');
 const apiRouter = require('./routes/index');
 
 const app = express();
-
 
 sequelize.sync();
 passportConfig();
@@ -22,10 +20,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(passport.initialize());
-
-passportConfig();
-jwtConfig();
-
 
 app.use('/api', apiRouter);
 
