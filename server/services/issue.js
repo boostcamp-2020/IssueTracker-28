@@ -38,7 +38,7 @@ exports.getIssues = async () => {
     issue.author = result.user.dataValues.user_id;
     if (result.milestone) issue.milestone = result.milestone.dataValues.title;
     else issue.milestone = null;
-    if (result.status === 0) issue.status = 'open';
+    if (result.status === 0) issue.status = 'opened';
     else issue.status = 'closed';
     issue.labels = await getLabels(result);
     issue.assignees = await getAssignees(result);

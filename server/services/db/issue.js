@@ -1,4 +1,4 @@
-const { User, Issue, Milestone } = require('../../models');
+const { User, Issue, Milestone, sequelize } = require('../../models');
 
 exports.selectIssue = async () => {
   const issues = await Issue.findAll({
@@ -13,6 +13,7 @@ exports.selectIssue = async () => {
         attributes: ['id', 'title'],
       },
     ],
+    order: sequelize.literal('id DESC'),
   });
 
   return issues;
