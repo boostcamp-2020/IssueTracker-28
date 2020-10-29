@@ -1,11 +1,27 @@
-import React from 'react';
+import React,{useEffect, useState} from 'react';
 import { Switch, Route } from 'react-router-dom';
 import IssuePage from './pages/IssuePage';
-
+import UserPage from './pages/UserPage';
+import axios from 'axios';
 const App = () => {
+  let [userState, setUserState] = useState({
+    user : '',
+    authenticated : false
+  })
+  useEffect(()=>{
+    console.log("리다이렉트",document.cookie)
+    axios
+    .get('http://localhost:3000/api/auth/test', {
+    })
+    .then((result) => console.log(result))
+    .catch((error) => {
+      console.log(error);
+    });
+  })
   return (
     <Switch>
-      <Route path="/" component={IssuePage} />
+      <Route exact path="/" component={IssuePage} />
+      <Route path="/login" component={UserPage}/>
       <Route
         render={({ location }) => (
           <div>
@@ -17,5 +33,4 @@ const App = () => {
     </Switch>
   );
 };
-
 export default App;
