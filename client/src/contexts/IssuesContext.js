@@ -1,9 +1,5 @@
 import React, { createContext, useReducer, useContext } from 'react';
-import {
-  createAsyncDispatcher,
-  createAsyncHandler,
-  initialAsyncState
-} from './asyncActionUtils';
+import { createAsyncDispatcher, createAsyncHandler, initialAsyncState } from './asyncActionUtils';
 import * as api from '../api/issue';
 
 // IssuesContext 에서 사용 할 기본 상태
@@ -35,9 +31,7 @@ export function IssuesProvider({ children }) {
 
   return (
     <IssuesStateContext.Provider value={state}>
-      <IssuesDispatchContext.Provider value={dispatch}>
-        {children}
-      </IssuesDispatchContext.Provider>
+      <IssuesDispatchContext.Provider value={dispatch}>{children}</IssuesDispatchContext.Provider>
     </IssuesStateContext.Provider>
   );
 }
