@@ -1,10 +1,7 @@
 # IssueTracker-28
-![react](https://img.shields.io/badge/react-17.0.1-9cf?logo=react)
-![NodeJS](https://img.shields.io/badge/node.js-v14.13.1-green?logo=node.js)
 
 ## Issue Tracker
 ![ISSUE TRACKER-logo](https://user-images.githubusercontent.com/60839959/97255855-e009f300-1854-11eb-8e96-6cbe833314ee.png)
-
 
 ## 🍎 Service URL
 http://www.issue-tracker28.kro.kr
