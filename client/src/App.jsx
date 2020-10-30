@@ -8,20 +8,33 @@ const App = () => {
     user : '',
     authenticated : false
   })
+
   useEffect(()=>{
-    console.log("리다이렉트", document.cookie)
-    axios
-    .get('http://localhost:3000/api/auth/test', {
+       // axios
+        // .get('http://localhost:3000/api/auth/test', {
+        // })
+        // .then((result) => console.log(result))
+        // .catch((error) => {
+        //   console.log(error);
+        // });
+      let cookie = document.cookie;
+      console.log('cookie : ', cookie)
+      if (typeof(cookie)!=='undefined' && cookie !== null){
+        const cookies = cookie.split(';');
+        const token = cookies[0].split('=')[1]
+        const user = cookies[1].split('=')[1];
+        //  token -> localStorage에 저장 
+        setUserState({
+            user : user,
+            authenticated : true
+        })
+      }
     })
-    .then((result) => console.log(result))
-    .catch((error) => {
-      console.log(error);
-    });
-  })
+    
   return (
     <Switch>
       <Route exact path="/" component={IssuePage} />
-      <Route path="/login" component={UserPage}/>
+      <Route path="/login" component={UserPage} />
       <Route
         render={({ location }) => (
           <div>
