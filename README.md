@@ -2,8 +2,8 @@
 
 ## Issue Tracker
 ![ISSUE TRACKER-logo](https://user-images.githubusercontent.com/60839959/97255855-e009f300-1854-11eb-8e96-6cbe833314ee.png)
-<p align="center"><img  src="https://img.shields.io/badge/react-17.0.1-9cf?logo=react"></img></p>
-<p align="center"><img align="center" src="https://img.shields.io/badge/node.js-v14.13.1-green?logo=node.js"></img></p>
+<p align="center"><img  src="https://img.shields.io/badge/react-17.0.1-9cf?logo=react"></img>
+<img align="center" src="https://img.shields.io/badge/node.js-v14.13.1-green?logo=node.js"></img></p>
 
 
 ## 🍎 Service URL
