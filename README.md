@@ -6,6 +6,7 @@
   <img src="https://img.shields.io/badge/react-17.0.1-9cf?logo=react" />
   <img src="https://img.shields.io/badge/node.js-v12.19.0-green?logo=node.js" />
   <img src="https://img.shields.io/badge/javascript-ES6+-yellow?logo=javascript" />
+  <img src="https://img.shields.io/badge/mysql-v5.7.32-blue?logo=mysql" />
 </p>
 
 
