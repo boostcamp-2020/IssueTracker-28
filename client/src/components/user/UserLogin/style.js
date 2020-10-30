@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export default {
     LoginWrapper: styled.div`
-    width : 360px;
+    width : 380px;
     height : 330px;
     background : white;
     border : 1px solid #d9d9d9;
@@ -11,7 +11,7 @@ export default {
     align-items : center;
     justify-content : space-around;
     flex-direction : column;
-    padding : 15px 0;
+    padding : 20px 0;
     box-sizing : border-box;
     margin-bottom : 120px;
     `,
@@ -23,7 +23,7 @@ export default {
     background : #333333;
     color : white;
     border : none;
-    width : 300px;
+    width : 320px;
     height : 45px;
     border-radius : 4px;
     font-size : 16px;
@@ -36,7 +36,7 @@ export default {
     justify-content : center;
     align-items : center;
     cursor : pointer;
-    width : 300px;
+    width : 320px;
     color : black;
     height : 45px;
     border-radius : 4px;
