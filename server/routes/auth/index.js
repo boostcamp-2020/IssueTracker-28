@@ -1,8 +1,9 @@
 const express = require('express');
+
 const router = express.Router();
-const controller = require('./controller');
 const passport = require('passport');
 const CLIENT_HOME_PAGE_URL = 'http://localhost:8080';
+
 require('dotenv').config();
 router.get('/success', (req, res) => {
     console.log(req.user);
