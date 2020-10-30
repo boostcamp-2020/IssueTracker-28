@@ -2,9 +2,8 @@ import React,{useEffect, useState} from 'react';
 import { Switch, Route } from 'react-router-dom';
 import IssuePage from './pages/IssuePage';
 import UserPage from './pages/UserPage';
-import {getToken} from './util/getToken'
-import localStorage from './util/localStorage'
-
+import Cookie from './util/cookie'
+import LocalStorage from './util/localStorage'
 const App = () => {
   let [userState, setUserState] = useState({
     user : '',
@@ -12,21 +11,24 @@ const App = () => {
     authenticated : false
   })
 
-  useEffect(()=>{
+  const isAuthenticated = () =>{
+    let userObj = {
+      user,
+      token,
+      authenticated : true
+    };
+    const user = LocalStorage.getItem('user') || undefined
+    const token = LocalStorage.getItem('token') || undefined
+    if(typeof user==="undefined"){
       let cookie = document.cookie;
-      if (typeof(cookie)!=='undefined' && cookie !==''){
-        const token = getToken('token');
-        const user = getToken('user');
-        localStorage.setItem('token', token)
-        localStorage.setItem('user', user)
-        setUserState({
-            user,
-            token,
-            authenticated : true
-        })
-      }
-    }, [])
-    
+      userObj = Cookie.hasCookie(userObj,cookie)
+    }
+
+    // Todo : userState 관리
+    //setUserState(userObj)
+  }
+
+  isAuthenticated()
   return (
     <Switch>
       <Route exact path="/" component={IssuePage} />
