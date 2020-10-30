@@ -1,11 +1,40 @@
-import React from 'react';
+import React,{useEffect, useState} from 'react';
 import { Switch, Route } from 'react-router-dom';
 import IssuePage from './pages/IssuePage';
+import UserPage from './pages/UserPage';
+import axios from 'axios';
+import {getToken} from './util/getToken'
 
 const App = () => {
+  let [userState, setUserState] = useState({
+    user : '',
+    authenticated : false
+  })
+
+  useEffect(()=>{
+       // axios
+        // .get('http://localhost:3000/api/auth/test', {
+        // })
+        // .then((result) => console.log(result))
+        // .catch((error) => {
+        //   console.log(error);
+        // });
+      let cookie = document.cookie;
+      if (typeof(cookie)!=='undefined' && cookie !==''){
+        const token = getToken('csrftoken');
+        const user = getToken('user');
+        //  token -> jwt토큰으로 바꾼뒤, localStorage에 저장 
+        setUserState({
+            user : user,
+            authenticated : true
+        })
+      }
+    }, [])
+    
   return (
     <Switch>
-      <Route path="/" component={IssuePage} />
+      <Route exact path="/" component={IssuePage} />
+      <Route path="/login" component={UserPage} />
       <Route
         render={({ location }) => (
           <div>
@@ -17,5 +46,4 @@ const App = () => {
     </Switch>
   );
 };
-
 export default App;

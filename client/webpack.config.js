@@ -39,6 +39,8 @@ module.exports = {
       '/api/': 'http://localhost:3000',
     },
     open: true,
+    historyApiFallback: true
   },
   plugins: [new HtmlWebpackPlugin({ template: 'public/index.html' })],
 };
+
