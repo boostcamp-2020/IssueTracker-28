@@ -19,7 +19,7 @@ const App = () => {
         // });
       let cookie = document.cookie;
       console.log('cookie : ', cookie)
-      if (typeof(cookie)!=='undefined' && cookie !== null){
+      if (typeof(cookie)!=='undefined' && cookie !==''){
         const cookies = cookie.split(';');
         const token = cookies[0].split('=')[1]
         const user = cookies[1].split('=')[1];
