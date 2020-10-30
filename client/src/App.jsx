@@ -3,6 +3,8 @@ import { Switch, Route } from 'react-router-dom';
 import IssuePage from './pages/IssuePage';
 import UserPage from './pages/UserPage';
 import axios from 'axios';
+import {getToken} from './util/getToken'
+
 const App = () => {
   let [userState, setUserState] = useState({
     user : '',
@@ -18,12 +20,10 @@ const App = () => {
         //   console.log(error);
         // });
       let cookie = document.cookie;
-      console.log('cookie : ', cookie)
       if (typeof(cookie)!=='undefined' && cookie !==''){
-        const cookies = cookie.split(';');
-        const token = cookies[0].split('=')[1]
-        const user = cookies[1].split('=')[1];
-        //  token -> localStorage에 저장 
+        const token = getToken('csrftoken');
+        const user = getToken('user');
+        //  token -> jwt토큰으로 바꾼뒤, localStorage에 저장 
         setUserState({
             user : user,
             authenticated : true

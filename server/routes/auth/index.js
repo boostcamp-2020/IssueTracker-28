@@ -7,7 +7,7 @@ require('dotenv').config();
 router.get('/success', (req, res) => {
     console.log(req.user);
     res.cookie('user', req.user.userId, {
-        maxAge: 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 1,
         httpOnly: false,
     });
     req.session.logined = true;
