@@ -2,8 +2,8 @@ import React,{useEffect, useState} from 'react';
 import { Switch, Route } from 'react-router-dom';
 import IssuePage from './pages/IssuePage';
 import UserPage from './pages/UserPage';
-import axios from 'axios';
 import {getToken} from './util/getToken'
+import localStorage from './util/localStorage'
 
 const App = () => {
   let [userState, setUserState] = useState({
@@ -17,6 +17,8 @@ const App = () => {
       if (typeof(cookie)!=='undefined' && cookie !==''){
         const token = getToken('token');
         const user = getToken('user');
+        localStorage.setItem('token', token)
+        localStorage.setItem('user', user)
         setUserState({
             user,
             token,
