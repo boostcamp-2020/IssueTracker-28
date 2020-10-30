@@ -1,24 +1,28 @@
 const jwt = require('jsonwebtoken');
 
-const githubLogin = async(req, res, next) => {
-    try {
-        req.login(req.user, { session: false }, (loginError) => {
-            if (loginError) {
-                return res.status(400).json({ message: loginError });
-            }
-            const { id, userId } = req.user;
-            const token = jwt.sign({ id, userId }, process.env.JWT_SECRET, {
-                expiresIn: '1d',
-            });
-            req.token = token;
-            next();
-        });
-    } catch (error) {
-        next.log(error);
-    }
+const githubLogin = async (req, res, next) => {
+  try {
+    const { id, userId } = req.user;
+    const token = jwt.sign({ id, userId }, process.env.JWT_SECRET, {
+      expiresIn: '1d',
+    });
+    res.cookie('token', token, {
+      maxAge: 1000 * 60 * 60 * 24 * 1,
+      httpOnly: false,
+    });
+    res.cookie('user', req.user.userId, {
+      maxAge: 1000 * 60 * 60 * 24 * 1,
+      httpOnly: false,
+    });
+    next();
+  } catch (error) {
+    next.log(error);
+  }
 };
 const githubLoginRedirect = (req, res) => {
-    console.log(req)
-    return res.json({ token: req.token });
+  return res.send('<script>window.location.href="http://127.0.0.1:8080"</script>');
+  // Todo : 배포와 버젼환경에서 코드 나누기
+  // return redirect('/')
 };
+
 module.exports = { githubLogin, githubLoginRedirect };
