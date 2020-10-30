@@ -11,8 +11,7 @@ http://www.issue-tracker28.kro.kr
 ## 📹 Demo Video
 
 ## 📊 DB Model
-<img width="800" alt="스크린샷 2020-10-27 오후 1 11 59" src="https://user-images.githubusercontent.com/39231606/97301707-72cd8080-189b-11eb-86fa-aee9babf906f.png">
-
+<img width="800" alt="스크린샷 2020-10-27 오후 1 11 59" src="https://user-images.githubusercontent.com/39231606/97652541-f658be80-1aa1-11eb-8427-35950cfd07ef.png">
 
 ## 🗂 Directory
 <details>
