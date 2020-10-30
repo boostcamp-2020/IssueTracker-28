@@ -8,24 +8,18 @@ import {getToken} from './util/getToken'
 const App = () => {
   let [userState, setUserState] = useState({
     user : '',
+    token : '',
     authenticated : false
   })
 
   useEffect(()=>{
-       // axios
-        // .get('http://localhost:3000/api/auth/test', {
-        // })
-        // .then((result) => console.log(result))
-        // .catch((error) => {
-        //   console.log(error);
-        // });
       let cookie = document.cookie;
       if (typeof(cookie)!=='undefined' && cookie !==''){
-        const token = getToken('csrftoken');
+        const token = getToken('token');
         const user = getToken('user');
-        //  token -> jwt토큰으로 바꾼뒤, localStorage에 저장 
         setUserState({
-            user : user,
+            user,
+            token,
             authenticated : true
         })
       }
