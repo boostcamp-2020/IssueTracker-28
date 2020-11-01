@@ -2,11 +2,11 @@ import React, { Fragment } from 'react';
 import S from './style';
 import { Dropdown, Icon } from 'semantic-ui-react';
 const FILTERS_MENU = [
-  'Open issues and pull requests',
+  'Open issues',
   'Your issues',
-  'Your pull requests',
   'Everything assigned to you',
-  'Everything mention you',
+  'Everything mentioning you',
+  'Closed issues',
 ];
 function Filters(props) {
   const selectHandler = (item) => {
