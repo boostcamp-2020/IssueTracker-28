@@ -45,30 +45,30 @@ const items = [
 ];
 function SearchBar(props) {
   const InitialMessage = 'ᑫ Search all issues';
-  const [searchValue, setSerachValue] = useState(['is:open is:issue']);
+  const [searchValue, setSearchValue] = useState(['is:open is:issue']);
   useEffect(() => {
     let filterMessage = '';
     switch (props.filterValue) {
-      case 'Open issues and pull requests':
+      case 'Open issues':
         filterMessage = 'is:open';
         break;
       case 'Your issues':
         filterMessage = 'is:open is:issue author:@me';
         break;
-      case 'Your pull requests':
-        filterMessage = 'is:open is:pr author:@me';
-        break;
       case 'Everything assigned to you':
         filterMessage = 'is:open assignee:@me';
         break;
-      case 'Everything mention you':
+      case 'Everything mentioning you':
         filterMessage = 'is:open mentions:@me';
         break;
+      case 'Closed issues':
+        filterMessage = 'is:closed';
+        break;
     }
-    setSerachValue(filterMessage);
+    setSearchValue(filterMessage);
   }, [props.filterValue]);
   const serachHandler = (e) => {
-    setSerachValue(e.target.value);
+    setSearchValue(e.target.value);
   };
   const enterHandler = (e) => {
     if (e.key == 'Enter') {
