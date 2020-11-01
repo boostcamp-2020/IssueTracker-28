@@ -16,12 +16,12 @@ function Filters(props) {
     <S.FiltersWrapper>
       <S.FiltersButton></S.FiltersButton>
       <Dropdown className="filters-dropdown" text="Filters">
-        <Dropdown.Menu className="filters-menu" direction="right">
-          <Dropdown.Header className="filters-header" content="Filter Issues" />
+        <Dropdown.Menu className="dropdown-menu" direction="right">
+          <Dropdown.Header className="dropdown-header" content="Filter Issues" />
           {FILTERS_MENU.map((item, index) => (
             <Fragment>
-              <hr className="filters-divider"/>
-              <Dropdown.Item className="filters-item"
+              <hr className="dropdown-divider"/>
+              <Dropdown.Item className="dropdown-item"
                 text={item}
                 key={index}
                 onClick={() => {
