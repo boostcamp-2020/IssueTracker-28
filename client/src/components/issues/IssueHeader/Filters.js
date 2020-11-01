@@ -16,19 +16,18 @@ function Filters(props) {
     <S.FiltersWrapper>
       <S.FiltersButton></S.FiltersButton>
       <Dropdown className="filters-dropdown" text="Filters">
-        <Dropdown.Menu direction="right">
-          <Dropdown.Header content="Filter Issues" icon="close" />
-          <Dropdown.Divider />
+        <Dropdown.Menu className="filters-menu" direction="right">
+          <Dropdown.Header className="filters-header" content="Filter Issues" />
           {FILTERS_MENU.map((item, index) => (
             <Fragment>
-              <Dropdown.Item
+              <hr className="filters-divider"/>
+              <Dropdown.Item className="filters-item"
                 text={item}
                 key={index}
                 onClick={() => {
                   selectHandler(item);
                 }}
               />
-              <Dropdown.Divider />
             </Fragment>
           ))}
         </Dropdown.Menu>

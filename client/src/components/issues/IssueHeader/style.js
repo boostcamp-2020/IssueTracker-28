@@ -55,6 +55,24 @@ export default {
       justify-content: center;
       align-items: center;
       margin-bottom: 5px;
+      .filters-item{
+        font-weight : 500;
+        font-size : 13.5px;
+        background : white;
+        border: 5px solid #F7F8FA;
+        height : 300px;
+      }
+      .filters-menu{
+        font-weight : 800;
+        font-size : 15px;
+        background : #F7F8FA;
+      }
+      .filters-divider{
+        display: block;
+        margin: 0;
+        border: none;
+        border-top : 1px solid #E7E8EA;
+      }
     }
   `,
 };
