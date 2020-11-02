@@ -1,9 +1,9 @@
 import React, { useReducer, createContext, useContext } from 'react';
-import * as api from '../api/issue';
+import * as api from '../api/milestone';
 
-// IssuesContext에서 사용할 기본 상태
+// MilestonesContext에서 사용할 기본 상태
 const initialState = {
-  issues: {
+  milestones: {
     loading: false,
     data: null,
     size: 0,
@@ -15,7 +15,7 @@ const initialState = {
 const loadingState = {
   loading: true,
   data: null,
-  size: data.length,
+  size: 0,
   error: null,
 };
 
@@ -40,17 +40,17 @@ function milestoneReducer(state, action) {
     case 'GET_MILESTONES':
       return {
         ...state,
-        issues: loadingState,
+        milestones: loadingState,
       };
     case 'GET_MILESTONES_SUCCESS':
       return {
         ...state,
-        issues: success(action.data),
+        milestones: success(action.data),
       };
     case 'GET_MILESTONES_ERROR':
       return {
         ...state,
-        issues: error(action.error),
+        milestones: error(action.error),
       };
     default:
       return state;
