@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import IssuePage from './pages/IssuePage';
 import UserPage from './pages/UserPage';
@@ -6,22 +6,22 @@ import Cookie from './util/cookie'
 import LocalStorage from './util/localStorage'
 const App = () => {
   let [userState, setUserState] = useState({
-    user : '',
-    token : '',
-    authenticated : false
+    user: '',
+    token: '',
+    authenticated: false
   })
 
-  const isAuthenticated = () =>{
+  const isAuthenticated = () => {
     let userObj = {
       user,
       token,
-      authenticated : true
+      authenticated: true
     };
     const user = LocalStorage.getItem('user') || undefined
     const token = LocalStorage.getItem('token') || undefined
-    if(typeof user==="undefined"){
+    if (typeof user === "undefined") {
       let cookie = document.cookie;
-      userObj = Cookie.hasCookie(userObj,cookie)
+      userObj = Cookie.hasCookie(userObj, cookie)
     }
 
     // Todo : userState 관리

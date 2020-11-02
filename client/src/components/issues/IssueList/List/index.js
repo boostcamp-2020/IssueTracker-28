@@ -7,7 +7,8 @@ function List() {
   const state = useIssuesState();
   const dispatch = useIssuesDispatch();
 
-  const { data: issues, loading, error } = state.issues;
+  const { data: issues, loading, error} = state.issues;
+
   const fetchData = () => {
     getIssues(dispatch);
   };

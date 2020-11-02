@@ -46,6 +46,8 @@ const items = [
 function SearchBar(props) {
   const InitialMessage = 'ᑫ Search all issues';
   const [searchValue, setSearchValue] = useState(['is:open is:issue']);
+  
+  
   useEffect(() => {
     let filterMessage = '';
     switch (props.filterValue) {
@@ -65,9 +67,10 @@ function SearchBar(props) {
         filterMessage = 'is:closed';
         break;
     }
+
     setSearchValue(filterMessage);
   }, [props.filterValue]);
-  const serachHandler = (e) => {
+  const searchHandler = (e) => {
     setSearchValue(e.target.value);
   };
   const enterHandler = (e) => {
@@ -82,7 +85,7 @@ function SearchBar(props) {
   return (
     <S.SearchBar
       placeholder={InitialMessage}
-      onChange={serachHandler}
+      onChange={searchHandler}
       onKeyPress={enterHandler}
       value={searchValue}
     />
