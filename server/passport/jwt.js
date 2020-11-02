@@ -10,9 +10,7 @@ const JWTConfig = {
 };
 const JWTVerify = async (jwtPayload, done) => {
   const { userId } = jwtPayload;
-
   const user = await UserServices.findUser(userId);
-  console.log(user);
   if (!user) {
     return done(null, false, { message: '올바르지 않은 인증정보 입니다.' });
   }

@@ -11,9 +11,6 @@ const cors = require('cors');
 const app = express();
 
 app.use(cors());
-const session = require('express-session');
-app.use(session({ secret: 'SECRET_CODE', resave: true, saveUninitialized: false }));
-
 sequelize.sync();
 
 app.use(logger('dev'));
@@ -29,17 +26,17 @@ app.use(passport.session());
 
 app.use('/api', apiRouter);
 app.use((req, res, next) => {
-    const err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+  const err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 app.use((err, req, res) => {
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
-    console.log(err);
-    res.status(err.status || 500).json({
-        code: err.status,
-        message: '에러 발생',
-    });
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  console.log(err);
+  res.status(err.status || 500).json({
+    code: err.status,
+    message: '에러 발생',
+  });
 });
 module.exports = app;
