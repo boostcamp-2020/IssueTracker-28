@@ -1,7 +1,7 @@
 const labelServices = require('../../services/label');
 
 /*
-    GET /api/issue/label
+    GET /api/label/list
     * 전체 라벨 목록 조회 API
 */
 exports.getLabels = async (req, res, next) => {
