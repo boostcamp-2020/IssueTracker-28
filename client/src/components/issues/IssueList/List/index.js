@@ -2,12 +2,15 @@ import React, { useEffect } from 'react';
 import Issue from './Issue';
 // import { useIssuesState, useIssuesDispatch, getIssues } from '../../../../contexts/IssuesContext';
 import { useIssuesState, useIssuesDispatch, getIssues } from '../../../../contexts/IssuesContext';
+import {filterIssue} from '../../../../util/filterIssue'
 
 function List() {
   const state = useIssuesState();
   const dispatch = useIssuesDispatch();
 
   const { data: issues, loading, error} = state.issues;
+  const filter = state.filters;
+  console.log('현재 적용중인 필터 : ', filter)
 
   const fetchData = () => {
     getIssues(dispatch);
@@ -23,7 +26,9 @@ function List() {
 
   return (
     <div className="list-wrapper">
-      {issues.map((issue) => (
+      {issues.filter((issue)=>{
+        return filterIssue(issue, filter)
+      }).map((issue) => (
         <Issue key={issue.id} issue={issue} />
       ))}
     </div>
