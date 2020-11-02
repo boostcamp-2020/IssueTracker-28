@@ -1,8 +1,8 @@
 const express = require('express');
+
 const router = express.Router();
-const controller = require('./controller');
 const passport = require('passport');
-require('dotenv').config();
+const controller = require('./controller');
 
 router.get('/github', passport.authenticate('github', { session: false }));
 router.get(
@@ -11,4 +11,5 @@ router.get(
   controller.githubLogin,
   controller.githubLoginRedirect
 );
+
 module.exports = router;

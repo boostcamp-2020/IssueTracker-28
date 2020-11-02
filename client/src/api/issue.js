@@ -1,6 +1,6 @@
-import axios from 'axios';
+import API from './common';
 
 export async function getIssues() {
-  const response = await axios.get('/api/issue/list');
+  const response = await API.get('/issue/list');
   return response.data;
 }
