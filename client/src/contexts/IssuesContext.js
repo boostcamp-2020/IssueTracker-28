@@ -70,7 +70,6 @@ export function IssuesProvider({ children }) {
 
 export function useIssuesState() {
   const state = useContext(IssuesStateContext);
-  console.log('state: ', IssuesStateContext);
 
   if (!state) {
     throw new Error('Cannot find IssuesProvider!');
