@@ -28,6 +28,7 @@ function Milestone() {
       {milestones.map((milestone, index) => (
         <div key={index}>
           <p>ID : {milestone.id}</p>
+          <p>상태 : {milestone.status}</p>
           <p>제목 : {milestone.title}</p>
           <p>마감기한 : {milestone.due_date}</p>
           <p>설명 : {milestone.desc}</p>
