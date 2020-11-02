@@ -1,7 +1,7 @@
 import React, { useReducer, createContext, useContext } from 'react';
 import * as api from '../api/issue';
 
-const initialFilters = {
+export const initialFilters = {
   status : 'opened',
   author : '*', // ""
   labels : '*', // []

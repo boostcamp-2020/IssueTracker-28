@@ -42,6 +42,18 @@ export default {
     cursor: pointer;
     outline: none;
   `,
+  ResetButton : styled.div`
+  cursor : pointer;
+  color : gray;
+  font-weight : 600;
+  margin-top : 12.5px;
+  :hover{
+    color : #0266D6;
+  }
+  .x-icon{
+    margin-right : 4px;
+  }
+  `,
   FiltersWrapper: styled.div`
     position: relative;
     color: #606060;
