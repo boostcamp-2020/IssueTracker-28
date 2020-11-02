@@ -6,11 +6,12 @@ const milestoneServices = require('../../services/milestone');
 */
 exports.getMilestones = async (req, res, next) => {
   try {
-    const milestones = await milestoneServices.getMilestones();
-
+    const { data, openMilestone, closedMilestone } = await milestoneServices.getMilestones();
     res.json({
       message: '전체 마일스톤 목록 조회 성공',
-      data: milestones,
+      data,
+      openMilestone,
+      closedMilestone,
     });
   } catch (error) {
     next(error);

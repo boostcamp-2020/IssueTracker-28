@@ -9,7 +9,7 @@ function Milestone() {
   const state = useMilestonesState();
   const dispatch = useMilestonesDispatch();
 
-  const { data: milestones, loading, size, error } = state.milestones;
+  const { data: milestones, loading, size, open, closed, error } = state.milestones;
   const fetchData = () => {
     getMilestones(dispatch);
   };
@@ -25,6 +25,8 @@ function Milestone() {
   return (
     <div className="list-wrapper">
       <h2>전체 크기 : {size}</h2>
+      <h4>OPEN : {open}</h4>
+      <h4>CLOSED : {closed}</h4>
       {milestones.map((milestone, index) => (
         <div key={index}>
           <p>ID : {milestone.id}</p>

@@ -7,6 +7,8 @@ const initialState = {
     loading: false,
     data: null,
     size: 0,
+    open: 0,
+    closed: 0,
     error: null,
   },
 };
@@ -16,14 +18,18 @@ const loadingState = {
   loading: true,
   data: null,
   size: 0,
+  open: 0,
+  closed: 0,
   error: null,
 };
 
 // 성공했을 때의 상태를 만들어주는 함수
-const success = (data) => ({
+const success = (data, open, closed) => ({
   loading: false,
   data,
   size: data.length,
+  open,
+  closed,
   error: null,
 });
 
@@ -32,6 +38,8 @@ const error = (err) => ({
   loading: true,
   data: null,
   size: 0,
+  open: 0,
+  closed: 0,
   err,
 });
 
@@ -45,7 +53,7 @@ function milestoneReducer(state, action) {
     case 'GET_MILESTONES_SUCCESS':
       return {
         ...state,
-        milestones: success(action.data),
+        milestones: success(action.data, action.open, action.closed),
       };
     case 'GET_MILESTONES_ERROR':
       return {
@@ -95,7 +103,12 @@ export async function getMilestones(dispatch) {
   dispatch({ type: 'GET_MILESTONES' });
   try {
     const response = await api.getMilestones();
-    dispatch({ type: 'GET_MILESTONES_SUCCESS', data: response.data });
+    dispatch({
+      type: 'GET_MILESTONES_SUCCESS',
+      data: response.data,
+      open: response.openMilestone,
+      closed: response.closedMilestone,
+    });
   } catch (e) {
     dispatch({ type: 'GET_MILESTONES_ERROR', error: e });
   }
