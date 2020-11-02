@@ -1,9 +1,10 @@
 import React from 'react';
 import S from './style';
 import { MarkGithubIcon } from '@primer/octicons-react';
-import Logo from '../../../../public/images/issuelogo.png';
-import LocalStorage from '../../../util/localStorage';
-import Cookie from '../../../util/cookie';
+import Logo from '@images/issuelogo.png';
+import LocalStorage from '@util/localStorage';
+import Cookie from '@util/cookie';
+
 function UserLogin() {
   const logoutHandler = () => {
     LocalStorage.clear();

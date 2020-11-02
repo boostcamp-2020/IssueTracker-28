@@ -9,7 +9,6 @@ import {
 } from './style';
 
 function Issue({ issue }) {
-  console.log('issue :>> ', issue);
   return (
     <IssueWrapper>
       <input className="issue-checkbox" type="checkbox" />

@@ -1,5 +1,5 @@
 import React, { useReducer, createContext, useContext } from 'react';
-import * as api from '../api/issue';
+import * as api from '@api/issue';
 
 // IssuesContext에서 사용할 기본 상태
 const initialState = {

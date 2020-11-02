@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useLabelState, useLabelDispatch, getLabels } from '../../contexts/LabelContext';
+import { useLabelState, useLabelDispatch, getLabels } from '@contexts/LabelContext';
 
 function Label() {
   const state = useLabelState();

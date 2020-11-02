@@ -1,5 +1,5 @@
 import React, { useReducer, createContext, useContext } from 'react';
-import * as api from '../api/label';
+import * as api from '@api/label';
 
 const initialState = {
   labels: {
