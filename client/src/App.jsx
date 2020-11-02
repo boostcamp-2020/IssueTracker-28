@@ -2,35 +2,33 @@ import React,{useEffect, useState} from 'react';
 import { Switch, Route } from 'react-router-dom';
 import IssuePage from './pages/IssuePage';
 import UserPage from './pages/UserPage';
-import axios from 'axios';
-import {getToken} from './util/getToken'
-
+import Cookie from './util/cookie'
+import LocalStorage from './util/localStorage'
 const App = () => {
   let [userState, setUserState] = useState({
     user : '',
+    token : '',
     authenticated : false
   })
 
-  useEffect(()=>{
-       // axios
-        // .get('http://localhost:3000/api/auth/test', {
-        // })
-        // .then((result) => console.log(result))
-        // .catch((error) => {
-        //   console.log(error);
-        // });
+  const isAuthenticated = () =>{
+    let userObj = {
+      user,
+      token,
+      authenticated : true
+    };
+    const user = LocalStorage.getItem('user') || undefined
+    const token = LocalStorage.getItem('token') || undefined
+    if(typeof user==="undefined"){
       let cookie = document.cookie;
-      if (typeof(cookie)!=='undefined' && cookie !==''){
-        const token = getToken('csrftoken');
-        const user = getToken('user');
-        //  token -> jwt토큰으로 바꾼뒤, localStorage에 저장 
-        setUserState({
-            user : user,
-            authenticated : true
-        })
-      }
-    }, [])
-    
+      userObj = Cookie.hasCookie(userObj,cookie)
+    }
+
+    // Todo : userState 관리
+    //setUserState(userObj)
+  }
+
+  isAuthenticated()
   return (
     <Switch>
       <Route exact path="/" component={IssuePage} />
