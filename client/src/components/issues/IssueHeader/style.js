@@ -55,6 +55,27 @@ export default {
       justify-content: center;
       align-items: center;
       margin-bottom: 5px;
+      .dropdown-item{
+        font-weight : 500;
+        font-size : 13.5px;
+        background : white;
+      }
+      .dropdown-menu{
+        font-weight : 800;
+        font-size : 16px;
+        background : #F7F8FA;
+      }
+      .dropdown-divider{
+        margin: 0;
+        border: none;
+        border-top : 1px solid #E7E8EA;
+      }
+      .dropdown-header{
+        height : 10px;
+        display : flex;
+        position : relative;
+        bottom : 5px;
+      }
     }
   `,
 };
