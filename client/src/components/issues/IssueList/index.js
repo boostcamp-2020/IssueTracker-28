@@ -4,7 +4,7 @@ import List from './List';
 
 import { ListWrapper } from './style';
 
-function ListContainer({ children }) {
+function IssueList() {
   return (
     <ListWrapper>
       <ListHeader />
@@ -13,5 +13,4 @@ function ListContainer({ children }) {
   );
 }
 
-
-export default ListContainer;
+export default IssueList;

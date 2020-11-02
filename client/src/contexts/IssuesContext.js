@@ -1,23 +1,55 @@
-import React, { createContext, useReducer, useContext } from 'react';
-import { createAsyncDispatcher, createAsyncHandler, initialAsyncState } from './asyncActionUtils';
+import React, { useReducer, createContext, useContext } from 'react';
 import * as api from '../api/issue';
 
-// IssuesContext 에서 사용 할 기본 상태
+// IssuesContext에서 사용할 기본 상태
 const initialState = {
-  issues: initialAsyncState,
+  issues: {
+    loading: false,
+    data: null,
+    error: null,
+  },
 };
 
-const issuesHandler = createAsyncHandler('GET_ISSUES', 'issues');
+// 로딩중일 때 바뀔 상태 객체
+const loadingState = {
+  loading: true,
+  data: null,
+  error: null,
+};
 
-// 위에서 만든 객체, 유틸 함수들을 사용해 리듀서 작성
+// 성공했을 때의 상태를 만들어주는 함수
+const success = (data) => ({
+  loading: false,
+  data,
+  error: null,
+});
+
+// 실패했을 때의 상태를 만들어주는 함수
+const error = (err) => ({
+  loading: true,
+  data: null,
+  err,
+});
+
 function issuesReducer(state, action) {
   switch (action.type) {
     case 'GET_ISSUES':
+      return {
+        ...state,
+        issues: loadingState,
+      };
     case 'GET_ISSUES_SUCCESS':
+      return {
+        ...state,
+        issues: success(action.data),
+      };
     case 'GET_ISSUES_ERROR':
-      return issuesHandler(state, action);
+      return {
+        ...state,
+        issues: error(action.error),
+      };
     default:
-      throw new Error(`Unhanded action type: ${action.type}`);
+      return state;
   }
 }
 
@@ -31,12 +63,11 @@ export function IssuesProvider({ children }) {
 
   return (
     <IssuesStateContext.Provider value={state}>
-      <IssuesDispatchContext.Provider value={dispatch}>{children}</IssuesDispatchContext.Provider>
+      <IssuesDispatchContext.Provider value={dispatch}> {children}</IssuesDispatchContext.Provider>
     </IssuesStateContext.Provider>
   );
 }
 
-// state를 쉽게 조회할 수 있게 해주는 커스텀 hook
 export function useIssuesState() {
   const state = useContext(IssuesStateContext);
   if (!state) {
@@ -45,7 +76,6 @@ export function useIssuesState() {
   return state;
 }
 
-// Dispatch 를 쉽게 사용 할 수 있게 해주는 커스텀 Hook
 export function useIssuesDispatch() {
   const dispatch = useContext(IssuesDispatchContext);
   if (!dispatch) {
@@ -54,4 +84,12 @@ export function useIssuesDispatch() {
   return dispatch;
 }
 
-export const getIssues = createAsyncDispatcher('GET_ISSUES', api.getIssues);
+export async function getIssues(dispatch) {
+  dispatch({ type: 'GET_ISSUES' });
+  try {
+    const response = await api.getIssues();
+    dispatch({ type: 'GET_ISSUES_SUCCESS', data: response.data });
+  } catch (e) {
+    dispatch({ type: 'GET_ISSUES_ERROR', error: e });
+  }
+}

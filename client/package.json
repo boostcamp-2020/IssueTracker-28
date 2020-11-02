@@ -27,6 +27,7 @@
   "dependencies": {
     "@primer/octicons-react": "^11.0.0",
     "axios": "^0.21.0",
+    "module-alias": "^2.2.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",

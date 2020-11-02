@@ -23,7 +23,12 @@ module.exports = {
       },
     ],
   },
-  resolve: { extensions: ['*', '.js', '.jsx'] },
+  resolve: {
+    alias: {
+      '@contexts': path.resolve(__dirname, 'src/contexts'),
+    },
+    extensions: ['*', '.js', '.jsx'],
+  },
   output: {
     path: path.resolve(__dirname, 'dist/'),
     filename: 'bundle.js',
@@ -39,8 +44,7 @@ module.exports = {
       '/api/': 'http://localhost:3000',
     },
     open: true,
-    historyApiFallback: true
+    historyApiFallback: true,
   },
   plugins: [new HtmlWebpackPlugin({ template: 'public/index.html' })],
 };
-
