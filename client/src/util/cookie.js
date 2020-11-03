@@ -1,4 +1,3 @@
-import LocalStorage from './localStorage';
 const getToken = (token) => {
     return document.cookie
         .split('; ')
@@ -13,8 +12,8 @@ const hasCookie = (userObj, cookie) => {
     if (typeof cookie !== 'undefined' && cookie.includes('user') && cookie.includes('token')) {
         const token = getToken('token');
         const user = getToken('user');
-        LocalStorage.setItem('token', token);
-        LocalStorage.setItem('user', user);
+        localStorage.setItem('token', token);
+        localStorage.setItem('user', user);
         userObj = {
             user,
             token,
