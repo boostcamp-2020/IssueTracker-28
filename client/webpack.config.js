@@ -26,6 +26,10 @@ module.exports = {
   resolve: {
     alias: {
       '@contexts': path.resolve(__dirname, 'src/contexts'),
+      '@api': path.resolve(__dirname, 'src/api'),
+      '@util': path.resolve(__dirname, 'src/util'),
+      '@pages': path.resolve(__dirname, 'src/pages'),
+      '@images': path.resolve(__dirname, 'public/images'),
     },
     extensions: ['*', '.js', '.jsx'],
   },

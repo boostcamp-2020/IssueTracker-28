@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { MarkGithubIcon } from '@primer/octicons-react';
 import S from './style';
-import Logo from '../../../../public/images/issuelogo.png';
-import Cookie from '../../../utils/cookie';
 import { useUserState, useUserDispatch } from '../../../contexts/UserContext';
+import Logo from '@images/issuelogo.png';
+import LocalStorage from '@util/localStorage';
+import Cookie from '@util/cookie';
 
 function UserLogin() {
   const state = useUserState();

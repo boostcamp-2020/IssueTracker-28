@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import IssuePage from './pages/IssuePage';
-import UserPage from './pages/UserPage';
-import Cookie from './utils/cookie';
 import { UserProvider } from './contexts/UserContext';
+import IssuePage from '@pages/IssuePage';
+import NewIssuePage from '@pages/NewIssuePage';
+import UserPage from '@pages/UserPage';
+import Cookie from '@util/cookie';
+import LocalStorage from '@util/localStorage';
+
 
 const App = () => {
   // const [userState, setUserState] = useState({
@@ -41,6 +44,8 @@ const App = () => {
             return <UserPage />;
           }}
         />
+        <Route path="/new" component={NewIssuePage} />
+        <Route path="/milestone" component={MilestonePage} />
         {/* <Route exact path="/" component={IssuePage} /> */}
         {/* <Route path="/login" component={UserPage} /> */}
         <Route
