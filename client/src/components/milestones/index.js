@@ -9,7 +9,6 @@ function Milestone() {
   const state = useMilestonesState();
   const dispatch = useMilestonesDispatch();
   const { data, loading, error } = state.milestones;
-
   const fetchData = () => {
     getMilestones(dispatch);
   };
@@ -22,8 +21,8 @@ function Milestone() {
   if (error) return <div> 에러가 발생했습니다 </div>;
   if (!data) return <button onClick={fetchData}> 불러오기 </button>;
 
-  const [openCnt, closedCnt] = data?.milestoneCnt;
-  const milestones = data?.milestones;
+  const { milestoneCnt, milestones } = data;
+  const [openCnt, closedCnt] = milestoneCnt;
 
   return (
     <div className="list-wrapper">
