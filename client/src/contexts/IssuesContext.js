@@ -1,6 +1,14 @@
 import React, { useReducer, createContext, useContext } from 'react';
 import * as api from '@api/issue';
 
+export const initialFilters = {
+  status : 'opened',
+  author : '*', // ""
+  labels : '*', // []
+  milestone : '*', // ""
+  assignees : '*' // []
+}
+
 // IssuesContext에서 사용할 기본 상태
 const initialState = {
   issues: {
@@ -8,6 +16,7 @@ const initialState = {
     data: null,
     error: null,
   },
+  filters:initialFilters
 };
 
 // 로딩중일 때 바뀔 상태 객체
@@ -33,6 +42,11 @@ const error = (err) => ({
 
 function issuesReducer(state, action) {
   switch (action.type) {
+    case 'UPDATE_FILTER':
+      return {
+        ...state,
+        filters : action.filters
+      }
     case 'GET_ISSUES':
       return {
         ...state,
@@ -94,3 +108,4 @@ export async function getIssues(dispatch) {
     dispatch({ type: 'GET_ISSUES_ERROR', error: e });
   }
 }
+
