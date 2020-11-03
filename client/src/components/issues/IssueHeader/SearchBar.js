@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import S from './style';
-import { useIssuesState, useIssuesDispatch, initialFilters } from '../../../contexts/IssuesContext';
+import { useIssuesState, useIssuesDispatch, initialFilters } from '@contexts/IssuesContext';
 
 function SearchBar(props) {
   const state = useIssuesState();

@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import { Dropdown } from 'semantic-ui-react';
 import { ListWrapper, ListFilters, FilterDropdown } from './style';
-import { useIssuesState, useIssuesDispatch, initialFilters } from '../../../../contexts/IssuesContext';
+import { useIssuesState, useIssuesDispatch } from '@contexts/IssuesContext';
 
 
 const AUTHOR_MENU = [
@@ -41,10 +41,9 @@ const NO_FILTER_ITEM = [
 function ListHeader() {
   const state = useIssuesState();
   const dispatch = useIssuesDispatch();
-  const {filters, filterMessage} = state;
+  const {filters} = state;
 
   const filterHandler=(item, type)=>{
-    console.log('item :',item, ' / type : ', type)
     switch(type){
       case 'author':
         return dispatch({type:'UPDATE_FILTER', filters : {...filters, author : item}});

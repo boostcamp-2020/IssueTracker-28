@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { LabelsButton, MilestonesButton, NewIssueButton } from './Buttons';
-import { useIssuesState, useIssuesDispatch, initialFilters } from '../../../contexts/IssuesContext';
+import { useIssuesState, useIssuesDispatch, initialFilters } from '@contexts/IssuesContext';
 import {XCircleFillIcon} from '@primer/octicons-react';
 import SearchBar from './SearchBar';
 import Filters from './Filters';

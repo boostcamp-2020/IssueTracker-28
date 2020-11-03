@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
-import { Dropdown, Icon } from 'semantic-ui-react';
-import { useIssuesState, useIssuesDispatch, getIssues } from '../../../contexts/IssuesContext';
+import React from 'react';
+import { Dropdown } from 'semantic-ui-react';
+import { useIssuesState, useIssuesDispatch } from '@contexts/IssuesContext';
 import S from './style';
 
 const filterItems = [

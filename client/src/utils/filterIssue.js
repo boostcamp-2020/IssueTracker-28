@@ -1,6 +1,5 @@
 export function filterIssue(issue, filters) {
     const { author, milestone, status, assignees, labels } = filters;
-    console.log("#### assigness : ", issue.assignees)
     if ((author === '*' || issue.author === author) &&
         (milestone === '*' || issue.milestone === milestone) &&
         (status === '*' || issue.status === status) &&

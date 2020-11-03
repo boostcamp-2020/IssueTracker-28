@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { MarkGithubIcon } from '@primer/octicons-react';
 import S from './style';
-import { useUserState, useUserDispatch } from '../../../contexts/UserContext';
+import { useUserState, useUserDispatch } from '@contexts/UserContext';
 import Logo from '@images/issuelogo.png';
 // import LocalStorage from '@util/localStorage';
 import Cookie from '@util/cookie';

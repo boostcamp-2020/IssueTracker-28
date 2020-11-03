@@ -1,23 +1,13 @@
 import React, { useReducer, createContext, useContext } from 'react';
 import * as api from '@api/issue';
+import {getFilterMessage} from '@utils/getFilterMessage'
 
 export const initialFilters = {
   status : 'opened',
   author : '*', // null
   labels : '*', // []
   milestone : '*', // null
-  assignees : '*' // null
-}
-
-const getFilterMsg = (filter) =>{
-  const {status, author, labels, milestone, assignees} = filter;
-  let result = '';
-  result += `${status==='*' ? "is:issue" : ` is:${status} is:issue`}`
-  result += `${author==='*' ? "" : ` author:${author}`}`
-  result += `${labels==='*' ? "" : labels.length === 0 ? ' no:label' :` label:[${labels.map(l=>l)}]`}`
-  result += `${milestone==='*' ? "" : milestone === null ? ' no:milestone' :` milestone:"${milestone}"`}`
-  result += `${assignees==='*' ? "" : assignees.length === 0 ? ' no:assignee' :` assignee:${assignees[assignees.length -1]}`}`
-  return result;
+  assignees : '*' // []
 }
 
 // IssuesContext에서 사용할 기본 상태
@@ -28,7 +18,7 @@ const initialState = {
     error: null,
   },
   filters:initialFilters,
-  filterMessage : getFilterMsg(initialFilters)
+  filterMessage : getFilterMessage(initialFilters)
 };
 
 // 로딩중일 때 바뀔 상태 객체
@@ -58,7 +48,7 @@ function issuesReducer(state, action) {
       return {
         ...state,
         filters : action.filters,
-        filterMessage : getFilterMsg(action.filters)
+        filterMessage : getFilterMessage(action.filters)
       }
     case 'GET_ISSUES':
       return {

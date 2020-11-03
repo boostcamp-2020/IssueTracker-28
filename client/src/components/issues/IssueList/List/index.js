@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Issue from './Issue';
 import { useIssuesState, useIssuesDispatch, getIssues } from '@contexts/IssuesContext';
-import {filterIssue} from '../../../../util/filterIssue'
+import {filterIssue} from '@utils/filterIssue'
 import { test_items } from './testItems'
 import {IssueOpenedIcon} from '@primer/octicons-react'
 import {NoResultsBox} from './style.js';
