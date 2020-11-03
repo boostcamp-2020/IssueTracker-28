@@ -8,6 +8,7 @@ import UserPage from '@pages/UserPage';
 import MilestonePage from '@pages/MilestonePage';
 import Cookie from '@util/cookie';
 import { LabelProvider } from '@contexts/LabelContext';
+import { MilestonesProvider } from '@contexts/milestonesContext';
 
 const App = () => {
   // const [userState, setUserState] = useState({
@@ -36,31 +37,33 @@ const App = () => {
   // isAuthenticated();
   return (
     <LabelProvider>
-      <UserProvider>
-        <Header />
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={() => {
-              if (localStorage.getItem('auth_token') || Cookie.hasCookie({}, document.cookie)) return <IssuePage />;
-              return <UserPage />;
-            }}
-          />
-          <Route path="/new" component={NewIssuePage} />
-          <Route path="/milestone" component={MilestonePage} />
-          {/* <Route exact path="/" component={IssuePage} /> */}
-          {/* <Route path="/login" component={UserPage} /> */}
-          <Route
-            render={({ location }) => (
-              <div>
-                <h2>이 페이지는 존재하지 않습니다</h2>
-                <p>{location.pathname}</p>
-              </div>
-            )}
-          />
-        </Switch>
-      </UserProvider>
+      <MilestonesProvider>
+        <UserProvider>
+          <Header />
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => {
+                if (localStorage.getItem('auth_token') || Cookie.hasCookie({}, document.cookie)) return <IssuePage />;
+                return <UserPage />;
+              }}
+            />
+            <Route path="/new" component={NewIssuePage} />
+            <Route path="/milestone" component={MilestonePage} />
+            {/* <Route exact path="/" component={IssuePage} /> */}
+            {/* <Route path="/login" component={UserPage} /> */}
+            <Route
+              render={({ location }) => (
+                <div>
+                  <h2>이 페이지는 존재하지 않습니다</h2>
+                  <p>{location.pathname}</p>
+                </div>
+              )}
+            />
+          </Switch>
+        </UserProvider>
+      </MilestonesProvider>
     </LabelProvider>
   );
 };
