@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
 import S from '@components/issues/IssueHeader/Buttons/style';
 import {
   InputWrapper,
@@ -14,6 +15,7 @@ import {
 } from './style';
 
 function Input() {
+  const history = useHistory();
   return (
     <InputWrapper>
       <InputTitle placeholder='Title' />
@@ -24,10 +26,10 @@ function Input() {
         <InputPicture>Attach files by selecting here</InputPicture>
       </WriteWrapper>
       <ButtonWrapper>
-        <CancelButton>Cancel</CancelButton>
+        <CancelButton onClick={() => history.push('/')}>Cancel</CancelButton>
         <S.NewIssueButton>Submit new issue</S.NewIssueButton>
       </ButtonWrapper>
-    </InputWrapper>
+    </InputWrapper >
   );
 }
 
