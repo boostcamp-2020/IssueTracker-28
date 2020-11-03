@@ -10,7 +10,7 @@ import {
 
 function Issue({ issue, isAllChecked, checkedItemHandler }) {
   const [beChecked, setChecked] = useState(false);
-  
+
   const checkHandler = ({target})=>{
     setChecked(!beChecked);
     checkedItemHandler(issue.id, target.checked);
@@ -18,6 +18,7 @@ function Issue({ issue, isAllChecked, checkedItemHandler }) {
   const allCheckHandler = () => setChecked(isAllChecked);
 
   useEffect(() => allCheckHandler(), [isAllChecked]);
+
 
   return (
     <IssueWrapper>

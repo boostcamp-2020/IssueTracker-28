@@ -66,10 +66,6 @@ function ListHeader({allCheckedHandler, checkedItems, isAllChecked, setIsAllChec
   };
 
   useEffect(()=>{
-console.log('+++++++', checkedItems)
-  },[checkedItems])
-
-  useEffect(()=>{
     setIsAllChecked(false);
     allCheckedHandler(false);
   },[filters]);
