@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { IssueOpenedIcon, MilestoneIcon, IssueClosedIcon} from '@primer/octicons-react';
 import {
   IssueWrapper,
@@ -8,10 +8,20 @@ import {
   MilestoneContainer,
 } from './style';
 
-function Issue({ issue }) {
+function Issue({ issue, isAllChecked, checkedItemHandler }) {
+  const [beChecked, setChecked] = useState(false);
+  
+  const checkHandler = ({target})=>{
+    setChecked(!beChecked);
+    checkedItemHandler(issue.id, target.checked);
+  };
+  const allCheckHandler = () => setChecked(isAllChecked);
+
+  useEffect(() => allCheckHandler(), [isAllChecked]);
+
   return (
     <IssueWrapper>
-      <input className="issue-checkbox" type="checkbox" />
+      <input type="checkbox" checked={beChecked} onChange={(e)=>checkHandler(e)} className="issue-checkbox"  />
       {issue.status === 'opened' ?
       <IssueOpenedIcon className="issue-open-icon" size={16} /> 
       : <IssueClosedIcon className="issue-closed-icon" size={15} />

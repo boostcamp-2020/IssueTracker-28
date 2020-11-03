@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState} from 'react';
 import { Dropdown } from 'semantic-ui-react';
 import { ListWrapper, ListFilters, FilterDropdown } from './style';
 import { useIssuesState, useIssuesDispatch } from '@contexts/IssuesContext';
@@ -38,7 +38,8 @@ const NO_FILTER_ITEM = [
 ]
 
 
-function ListHeader() {
+function ListHeader({allCheckedHandler}) {
+  const [beChecked, setChecked] = useState(false);
   const state = useIssuesState();
   const dispatch = useIssuesDispatch();
   const {filters} = state;
@@ -57,13 +58,16 @@ function ListHeader() {
         if (item===null) return dispatch({type:'UPDATE_FILTER', filters : {...filters,assignees : []}})
         return dispatch({type:'UPDATE_FILTER', filters : {...filters, assignees : [item]}})
     }
-     
   }
 
+  const checkHandler = ({ target }) => {
+    setChecked(!beChecked);
+    allCheckedHandler(target.checked);
+  };
 
   return (
     <ListWrapper>
-      <input className='all-checkbox' type='checkbox' />
+      <input type='checkbox' checked={beChecked} onChange={(e) => checkHandler(e)} className='all-checkbox'  />
       <ListFilters>
         <FilterDropdown>
           <Dropdown className='author-dropdown dropdown' text='Author'>
