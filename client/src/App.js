@@ -4,9 +4,7 @@ import { UserProvider } from './contexts/UserContext';
 import IssuePage from '@pages/IssuePage';
 import NewIssuePage from '@pages/NewIssuePage';
 import UserPage from '@pages/UserPage';
-import Cookie from '@util/cookie';
-import LocalStorage from '@util/localStorage';
-
+import MilestonePage from '@pages/MilestonePage';
 
 const App = () => {
   // const [userState, setUserState] = useState({

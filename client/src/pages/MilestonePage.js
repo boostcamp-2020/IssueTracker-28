@@ -2,7 +2,7 @@ import React from 'react';
 import Milestones from '../components/milestones';
 import 'semantic-ui-css/semantic.min.css';
 import { MilestonesProvider } from '../contexts/MilestonesContext';
-function IssuePage() {
+function MilestonePage() {
   return (
     <MilestonesProvider>
       <Milestones />
@@ -10,4 +10,4 @@ function IssuePage() {
   );
 }
 
-export default IssuePage;
+export default MilestonePage;
