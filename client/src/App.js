@@ -29,15 +29,16 @@ const App = () => {
 
     // Todo : userState 관리
     //setUserState(userObj)
-  }
+  };
 
   isAuthenticated();
-
+  
   return (
     <Switch>
       <Route exact path="/" component={IssuePage} />
       <Route path="/login" component={UserPage} />
       <Route path="/new" component={NewIssuePage} />
+      <Route path="/milestone" component={MilestonePage} />
       <Route
         render={({ location }) => (
           <div>
