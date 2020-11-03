@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Issue from './Issue';
-import { useIssuesState, useIssuesDispatch, getIssues } from '../../../../contexts/IssuesContext';
+import { useIssuesState, useIssuesDispatch, getIssues } from '@contexts/IssuesContext';
 
 function List() {
   const state = useIssuesState();
