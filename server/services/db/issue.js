@@ -18,3 +18,15 @@ exports.selectIssue = async () => {
 
   return issues;
 };
+exports.insertIssue = async (params) => {
+  const issues = await Issue.create({
+    raw: true,
+    title: params.title,
+    content: params.content,
+    milestoneId: params.milestone_id,
+    userId: params.user_id,
+    status: params.status,
+  });
+
+  return issues;
+};
