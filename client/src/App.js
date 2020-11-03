@@ -5,7 +5,7 @@ import IssuePage from '@pages/IssuePage';
 import NewIssuePage from '@pages/NewIssuePage';
 import UserPage from '@pages/UserPage';
 import MilestonePage from '@pages/MilestonePage';
-
+import TestPage from '@pages/TestPage';
 const App = () => {
   // const [userState, setUserState] = useState({
   //   user: '',
@@ -44,6 +44,7 @@ const App = () => {
         />
         <Route path="/new" component={NewIssuePage} />
         <Route path="/milestone" component={MilestonePage} />
+        <Route path="/test" component={TestPage} />
         {/* <Route exact path="/" component={IssuePage} /> */}
         {/* <Route path="/login" component={UserPage} /> */}
         <Route
