@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useState, useEffect} from 'react';
 import { Dropdown } from 'semantic-ui-react';
 import { ListWrapper, ListFilters, FilterDropdown } from './style';
 import { useIssuesState, useIssuesDispatch } from '@contexts/IssuesContext';
@@ -64,6 +64,11 @@ function ListHeader({allCheckedHandler}) {
     setChecked(!beChecked);
     allCheckedHandler(target.checked);
   };
+
+  useEffect(()=>{
+    allCheckedHandler(false);
+    setChecked(false)
+  },[filters])
 
   return (
     <ListWrapper>

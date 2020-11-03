@@ -13,6 +13,7 @@ function IssueList() {
   const state = useIssuesState();
   const {filters} = state;
   const filteredIssues = test_items.filter((issue)=>{return filterIssue(issue, filters)})
+  console.log('checkedItems : ', checkedItems)
   console.log('현재 적용중인 필터 : ', filters)
 
   const allCheckedHandler = (isChecked) => {
