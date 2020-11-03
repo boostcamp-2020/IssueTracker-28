@@ -38,8 +38,8 @@ const NO_FILTER_ITEM = [
 ]
 
 
-function ListHeader({allCheckedHandler}) {
-  const [beChecked, setChecked] = useState(false);
+function ListHeader({allCheckedHandler, checkedItems, isAllChecked, setIsAllChecked}) {
+  // const [beChecked, setChecked] = useState(false);
   const state = useIssuesState();
   const dispatch = useIssuesDispatch();
   const {filters} = state;
@@ -61,18 +61,23 @@ function ListHeader({allCheckedHandler}) {
   }
 
   const checkHandler = ({ target }) => {
-    setChecked(!beChecked);
+    setIsAllChecked(!isAllChecked);
     allCheckedHandler(target.checked);
   };
 
   useEffect(()=>{
+console.log('+++++++', checkedItems)
+  },[checkedItems])
+
+  useEffect(()=>{
+    setIsAllChecked(false);
     allCheckedHandler(false);
-    setChecked(false)
-  },[filters])
+  },[filters]);
 
   return (
     <ListWrapper>
-      <input type='checkbox' checked={beChecked} onChange={(e) => checkHandler(e)} className='all-checkbox'  />
+      <input type='checkbox' checked={isAllChecked} onChange={(e) => checkHandler(e)} className='all-checkbox'  />
+  {checkedItems.size === 0 ? null : <span className="checked-item-count">{checkedItems.size} selected</span>}
       <ListFilters>
         <FilterDropdown>
           <Dropdown className='author-dropdown dropdown' text='Author'>

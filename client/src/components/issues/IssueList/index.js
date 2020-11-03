@@ -27,17 +27,18 @@ function IssueList() {
   };
   const checkedItemHandler = (id, isChecked) => {
     if (isChecked) {
-      checkedItems.add(id);
-      setCheckedItems(checkedItems);
+      // checkedItems.add(id)
+      setCheckedItems(new Set([...checkedItems, id]));
     } else if (!isChecked && checkedItems.has(id)) {
-      checkedItems.delete(id);
-      setCheckedItems(checkedItems);
+      checkedItems.delete(id)
+      setCheckedItems(new Set([...checkedItems]));
     }
   };
+  console.log('******checkedItems : ', checkedItems)
 
   return (
     <ListWrapper>
-      <ListHeader allCheckedHandler={allCheckedHandler} />
+      <ListHeader isAllChecked={isAllChecked} setIsAllChecked={setIsAllChecked} checkedItems={checkedItems} allCheckedHandler={allCheckedHandler} />
       <List filteredIssues={filteredIssues} isAllChecked={isAllChecked} checkedItemHandler={checkedItemHandler}/>
     </ListWrapper>
   );

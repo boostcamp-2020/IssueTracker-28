@@ -9,6 +9,13 @@ export const ListWrapper = styled.div`
   border-top-right-radius: 6px;
   background-color: #f6f8fa;
   padding: 16px;
+  position : relative;
+  .checked-item-count{
+    position : absolute;
+    left : 40px;
+    font-size : 13px;
+    color : #616e75;
+  }
 `;
 
 export const ListFilters = styled.div`
