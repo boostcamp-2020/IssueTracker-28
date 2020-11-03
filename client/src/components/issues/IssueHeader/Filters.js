@@ -11,7 +11,7 @@ const filterItems = [
   ['Everything mentioning you', {author : localStorage.getItem('user_id')}],
   ['Closed issues', {status : 'closed'}],
 ];
-function Filters({setFilterValue}) {
+function Filters() {
 
   const state = useIssuesState();
   const dispatch = useIssuesDispatch();

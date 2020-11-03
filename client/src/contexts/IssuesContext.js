@@ -15,9 +15,9 @@ const getFilterMsg = (filter) =>{
   if (status === '*') return result; //모든 결과 보여주는 경우
   result = `is:${status} is:issue`
   result += `${author==='*' ? "" : ` author:${author}`}`
-  result += `${labels==='*' ? "" : labels === [] ? ' no:label' :` label:${labels.map(label=>label.name)}`}`
-  result += `${milestone==='*' ? "" : milestone === null ? ' no:milestone' :` author:${author}`}`
-  result += `${assignees==='*' ? "" : assignees === [] ? ' no:assignee' :` assignee:${assignees[0]}`}`
+  result += `${labels==='*' ? "" : labels.length === 0 ? ' no:label' :` label:[${labels.map(l=>l)}]`}`
+  result += `${milestone==='*' ? "" : milestone === null ? ' no:milestone' :` milestone:"${milestone}"`}`
+  result += `${assignees==='*' ? "" : assignees.length === 0 ? ' no:assignee' :` assignee:${assignees[assignees.length -1]}`}`
   return result;
 }
 

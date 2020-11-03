@@ -17,7 +17,7 @@ function Issue({ issue }) {
         <div className="title-container">
           <div className="title">{issue.title}</div>
           <LabelList>
-            {issue.labels && issue.labels.map((label) => <div className="label">{label.name}</div>)}
+            {issue.labels && issue.labels.map((label) => <div style={{background : label.color}} className="label">{label.name}</div>)}
           </LabelList>
         </div>
         <OtherContainer>

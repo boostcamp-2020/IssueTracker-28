@@ -1,31 +1,67 @@
 import React, {Fragment} from 'react';
 import { Dropdown } from 'semantic-ui-react';
 import { ListWrapper, ListFilters, FilterDropdown } from './style';
+import { useIssuesState, useIssuesDispatch, initialFilters } from '../../../../contexts/IssuesContext';
+
+
 const AUTHOR_MENU = [
-  'Peter Kim',
-  'Crong Go',
-  'johnyejin'
+  'yeji9175',
+  'sang-gyeong',
+  'dooking',
+  'johnyejin',
+  'a'
 ];
 const LABEL_MENU = [
-  'Unlabeled',
+  'Bug',
   'front-end',
   'back-end',
-  'Bug',
   'High-priority',
+  'feature'
 ];
 const MILESTONE_MENU = [
-  'Issues with no milestone',
-  '스프린트 1',
-  '스프린트 2',
+  '스프린트1',
+  '스프린트2',
+  '스프린트3'
 ];
 const ASSIGNEE_MENU = [
-  'Assigned to nobody',
-  'Peter Kim',
-  'johnyejin'
+  'yeji9175',
+  'sang-gyeong',
+  'dooking',
+  'johnyejin',
+  'a'
 ];
+
+const NO_FILTER_ITEM = [
+  'Unlabeled',
+  'Issues with no milestone',
+  'Assigend to nobody'
+]
 
 
 function ListHeader() {
+  const state = useIssuesState();
+  const dispatch = useIssuesDispatch();
+  const {filters, filterMessage} = state;
+
+  const filterHandler=(item, type)=>{
+    console.log('item :',item, ' / type : ', type)
+    switch(type){
+      case 'author':
+        return dispatch({type:'UPDATE_FILTER', filters : {...filters, status : 'opened', author : item}});
+      case 'label':
+        if (item===null) return dispatch({type:'UPDATE_FILTER', filters : {...filters, status : 'opened', labels : []}})
+        if (filters.labels === '*') return dispatch({type:'UPDATE_FILTER', filters : {...filters, status : 'opened', labels : [item]}})
+        return dispatch({type:'UPDATE_FILTER', filters : {...filters, status : 'opened', labels : [...filters.labels, item]}})
+      case 'milestone':
+        return dispatch({type:'UPDATE_FILTER', filters : {...filters, status : 'opened', milestone : item}})
+      case 'assignees':
+        if (item===null) return dispatch({type:'UPDATE_FILTER', filters : {...filters, status : 'opened', assignees : []}})
+        return dispatch({type:'UPDATE_FILTER', filters : {...filters, status : 'opened', assignees : [item]}})
+    }
+     
+  }
+
+
   return (
     <ListWrapper>
       <input className='all-checkbox' type='checkbox' />
@@ -37,7 +73,7 @@ function ListHeader() {
                 {AUTHOR_MENU.map((item, index) => (
                   <Fragment>
                     <hr className="dropdown-divider"/>
-                    <Dropdown.Item className="dropdown-item" text={item} key={index} />
+                    <Dropdown.Item className="dropdown-item" onClick={()=>{filterHandler(item, 'author')}} text={item} key={index} />
                   </Fragment>
                 ))}
             </Dropdown.Menu>
@@ -47,10 +83,12 @@ function ListHeader() {
           <Dropdown className='label-dropdown dropdown' text='Label'>
             <Dropdown.Menu className="dropdown-menu" direction='left'>
               <Dropdown.Header className="dropdown-header" content='Filter by label' />
+              <hr className="dropdown-divider"/>
+              <Dropdown.Item className="dropdown-item" onClick={()=>{filterHandler(null, 'label')}} text={NO_FILTER_ITEM[0]} />
               {LABEL_MENU.map((item, index) => (
                   <Fragment>
                     <hr className="dropdown-divider"/>
-                    <Dropdown.Item className="dropdown-item" text={item} key={index} />
+                    <Dropdown.Item className="dropdown-item"  onClick={()=>{filterHandler(item, 'label')}} text={item} key={index} />
                   </Fragment>
                 ))}
             </Dropdown.Menu>
@@ -60,10 +98,12 @@ function ListHeader() {
           <Dropdown className='milestons-dropdown dropdown' text='Milestons'>
             <Dropdown.Menu className="dropdown-menu" direction='left'>
               <Dropdown.Header className="dropdown-header" content='Filter by milestons' />
+              <hr className="dropdown-divider"/>
+              <Dropdown.Item className="dropdown-item" onClick={()=>{filterHandler(null, 'milestone')}} text={NO_FILTER_ITEM[1]} />
               {MILESTONE_MENU.map((item, index) => (
                   <Fragment>
                     <hr className="dropdown-divider"/>
-                    <Dropdown.Item className="dropdown-item" text={item} key={index} />
+                    <Dropdown.Item className="dropdown-item" onClick={()=>{filterHandler(item, 'milestone')}} text={item} key={index} />
                   </Fragment>
                 ))}
             </Dropdown.Menu>
@@ -73,10 +113,12 @@ function ListHeader() {
           <Dropdown className='assignee-dropdown dropdown' text='Assignee'>
             <Dropdown.Menu className="dropdown-menu" direction='left'>
               <Dropdown.Header className="dropdown-header" content='Filter by assignee' />
+              <hr className="dropdown-divider"/>
+              <Dropdown.Item className="dropdown-item" onClick={()=>{filterHandler(null, 'assignees')}} text={NO_FILTER_ITEM[2]} />
               {ASSIGNEE_MENU.map((item, index) => (
                   <Fragment>
                     <hr className="dropdown-divider"/>
-                    <Dropdown.Item className="dropdown-item" text={item} key={index} />
+                    <Dropdown.Item className="dropdown-item" onClick={()=>{filterHandler(item, 'assignees')}} text={item} key={index} />
                   </Fragment>
                 ))}
             </Dropdown.Menu>

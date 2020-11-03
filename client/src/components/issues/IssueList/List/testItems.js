@@ -7,11 +7,13 @@ export const test_items = [{
         status: 'opened',
         labels: [{
                 name: 'Bug',
-                color: '#bfd4f2',
+                color: 'steelblue',
+                desc: 'something isnt working'
             },
             {
                 name: 'front-end',
-                color: '#e3a5aa',
+                color: 'purple',
+                desc: 'for user interface'
             },
         ],
         assignees: ['a'],
@@ -26,11 +28,13 @@ export const test_items = [{
         status: 'opened',
         labels: [{
                 name: 'Bug',
-                color: '#bfd4f2',
+                color: 'steelblue',
+                desc: 'something isnt working'
             },
             {
-                name: 'high-priority',
-                color: '#e3a5aa',
+                name: 'High-priority',
+                color: 'gold',
+                desc: 'do it, just do it!'
             },
         ],
         assignees: ['sang-gyeong'],
@@ -38,7 +42,7 @@ export const test_items = [{
     },
     {
         id: 3,
-        title: '스프린트3 이슈2',
+        title: '라벨 X assignees X',
         content: '내용2',
         author: 'b',
         milestone: '스프린트3',
@@ -56,11 +60,13 @@ export const test_items = [{
         status: 'closed',
         labels: [{
                 name: 'back-end',
-                color: '#bfd4f2',
+                color: 'black',
+                desc: 'lets make efficient server structure'
             },
             {
                 name: 'feature',
-                color: '#e3a5aa',
+                color: 'tomato',
+                desc: 'new feature or request'
             },
         ],
         assignees: ['sang-gyeong', 'a'],
@@ -68,18 +74,20 @@ export const test_items = [{
     },
     {
         id: 5,
-        title: '이슈10',
+        title: '마일스톤X, assignees X',
         content: '내용2',
         author: 'sang-gyeong',
         milestone: null,
         status: 'closed',
         labels: [{
-                name: 'bug',
-                color: '#bfd4f2',
+                name: 'Bug',
+                color: 'steelblue',
+                desc: 'something isnt working'
             },
             {
                 name: 'front-end',
-                color: '#e3a5aa',
+                color: 'purple',
+                desc: 'for user interface'
             },
         ],
         assignees: [],
@@ -87,7 +95,7 @@ export const test_items = [{
     },
     {
         id: 6,
-        title: '이슈12 입니다',
+        title: '마일스톤 X, 라벨 X',
         content: '내용2',
         author: 'sang-gyeong',
         milestone: null,

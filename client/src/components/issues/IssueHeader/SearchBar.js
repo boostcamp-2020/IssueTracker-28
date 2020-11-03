@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect } from 'react';
 import S from './style';
 import { useIssuesState, useIssuesDispatch, initialFilters } from '../../../contexts/IssuesContext';
 
@@ -21,7 +21,7 @@ function SearchBar(props) {
 
   const enterHandler = (e) => {
     if (e.key == 'Enter' && searchValue=="") {
-      dispatch({type : 'UPDATE_FILTER', filters : {...filters, status : '*'}})
+      dispatch({type : 'UPDATE_FILTER', filters : {...initialFilters, status : '*'}})
     }
   };
 
