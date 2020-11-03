@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import S from './style';
 import { useIssuesState, useIssuesDispatch, initialFilters } from '@contexts/IssuesContext';
 
-function SearchBar(props) {
+function SearchBar() {
   const state = useIssuesState();
   const dispatch = useIssuesDispatch();
   const {filters, filterMessage} = state;

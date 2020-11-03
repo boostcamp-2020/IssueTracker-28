@@ -7,7 +7,6 @@ import Filters from './Filters';
 import S from './style';
 
 function IssueHeader() {
-  let [filterValue, setFilterValue] = useState('');
   const state = useIssuesState();
   const dispatch = useIssuesDispatch();
   const filters = state.filters;
@@ -19,8 +18,8 @@ function IssueHeader() {
     <>
       <S.IssueHeader>
         <S.HeaderItemWrapper>
-          <Filters filterValue={filterValue} setFilterValue={setFilterValue} />
-          <SearchBar filterValue={filterValue} />
+          <Filters />
+          <SearchBar />
         </S.HeaderItemWrapper>
         <S.HeaderItemWrapper>
           <LabelsButton />

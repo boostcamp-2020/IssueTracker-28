@@ -29,8 +29,8 @@ function List() {
   if (!issues) return <button onClick={fetchData}> 불러오기 </button>;
 
   const filteredIssues = test_items.filter((issue)=>{
-    return filterIssue(issue, filters)
-    }).map((issue) => (
+    return filterIssue(issue, filters)})
+    .map((issue) => (
     <Issue key={issue.id} issue={issue} />
   ))
 

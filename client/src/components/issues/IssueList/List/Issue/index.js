@@ -1,5 +1,5 @@
 import React from 'react';
-import { IssueOpenedIcon, MilestoneIcon } from '@primer/octicons-react';
+import { IssueOpenedIcon, MilestoneIcon, IssueClosedIcon} from '@primer/octicons-react';
 import {
   IssueWrapper,
   IssueContainer,
@@ -12,7 +12,10 @@ function Issue({ issue }) {
   return (
     <IssueWrapper>
       <input className="issue-checkbox" type="checkbox" />
-      <IssueOpenedIcon className="issue-open-icon" size={16} />
+      {issue.status === 'opened' ?
+      <IssueOpenedIcon className="issue-open-icon" size={16} /> 
+      : <IssueClosedIcon className="issue-closed-icon" size={15} />
+      }
       <IssueContainer>
         <div className="title-container">
           <div className="title">{issue.title}</div>

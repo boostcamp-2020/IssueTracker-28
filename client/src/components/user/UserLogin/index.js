@@ -4,7 +4,7 @@ import S from './style';
 import { useUserState, useUserDispatch } from '@contexts/UserContext';
 import Logo from '@images/issuelogo.png';
 // import LocalStorage from '@util/localStorage';
-import Cookie from '@util/cookie';
+import Cookie from '@utils/cookie';
 
 function UserLogin() {
   const state = useUserState();
