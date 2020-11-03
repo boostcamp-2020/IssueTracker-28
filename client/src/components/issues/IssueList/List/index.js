@@ -9,8 +9,9 @@ function List() {
   const dispatch = useIssuesDispatch();
 
   const { data: issues, loading, error} = state.issues;
-  const filter = state.filters;
-  console.log('현재 적용중인 필터 : ', filter)
+  const {filters, filterMessage} = state;
+  console.log('현재 적용중인 필터 : ', filters)
+  console.log('현재 적용중인 필터메세지 : ', filterMessage)
 
   const fetchData = () => {
     getIssues(dispatch);
@@ -27,7 +28,7 @@ function List() {
   return (
     <div className="list-wrapper">
       {issues.filter((issue)=>{
-        return filterIssue(issue, filter)
+        return filterIssue(issue, filters)
       }).map((issue) => (
         <Issue key={issue.id} issue={issue} />
       ))}

@@ -1,9 +1,10 @@
 export function filterIssue(issue, filters) {
-    if ((filters.author === '*' || issue.author === filters.author) &&
-        (filters.milestone === '*' || issue.milestone === filters.milestone) &&
-        (filters.status === '*' || issue.status === filters.status) &&
-        (filters.assignees === '*' || checkFilterItem(filters.assignees, issue.assignees)) &&
-        (filters.labels === '*' || checkFilterItem(filters.labels, issue.labels))) {
+    const { author, milestone, status, assignee, labels } = filters;
+    if ((author === '*' || issue.author === author) &&
+        (milestone === '*' || issue.milestone === milestone) &&
+        (status === '*' || issue.status === status) &&
+        (assignee === '*' || issue.assignee.includes(assignee)) &&
+        (labels === '*' || checkFilterItem(labels, issue.labels))) {
         return true;
     }
     return false;
@@ -18,11 +19,3 @@ const checkFilterItem = (filterArr, IssueArr) => {
     }
     return true;
 }
-
-// const initialFilters = {
-//     status: 'opened',
-//     author: '*', // ""
-//     labels: ['*'], // []
-//     milestone: '*', // ""
-//     assignees: ['*'] // []
-// }

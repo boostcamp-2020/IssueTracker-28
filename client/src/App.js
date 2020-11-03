@@ -3,36 +3,36 @@ import { Switch, Route } from 'react-router-dom';
 import { UserProvider } from './contexts/UserContext';
 import IssuePage from '@pages/IssuePage';
 import NewIssuePage from '@pages/NewIssuePage';
+import MilestonePage from '@pages/MilestonePage';
 import UserPage from '@pages/UserPage';
-import Cookie from '@util/cookie';
-import LocalStorage from '@util/localStorage';
+import Cookie from '@utils/cookie';
+// import LocalStorage from '@util/localStorage';
 
 
 const App = () => {
-  // const [userState, setUserState] = useState({
-  //   user: '',
-  //   token: '',
-  //   authenticated: false,
-  // });
+  const [userState, setUserState] = useState({
+    user: '',
+    token: '',
+    authenticated: false,
+  });
 
-  // const isAuthenticated = () => {
-  //   const user = localStorage.getItem('user_id') || undefined;
-  //   const token = localStorage.getItem('auth_token') || undefined;
-  //   let userObj = {
-  //     user,
-  //     token,
-  //     authenticated: true,
-  //   };
-  //   if (typeof user === 'undefined') {
-  //     const { cookie } = document;
-  //     userObj = Cookie.hasCookie(userObj, cookie);
-  //   }
+  const isAuthenticated = () => {
+    const user = localStorage.getItem('user_id') || undefined;
+    const token = localStorage.getItem('auth_token') || undefined;
+    let userObj = {
+      user,
+      token,
+      authenticated: true,
+    };
+    if (typeof user === 'undefined') {
+      const { cookie } = document;
+      userObj = Cookie.splitCookie(userObj, cookie);
+    }
+    // Todo : userState 관리
+    // setUserState(userObj)
+  };
 
-  //   // Todo : userState 관리
-  //   // setUserState(userObj)
-  // };
-
-  // isAuthenticated();
+  isAuthenticated();
   return (
     <UserProvider>
       <Switch>

@@ -3,10 +3,21 @@ import * as api from '@api/issue';
 
 export const initialFilters = {
   status : 'opened',
-  author : '*', // ""
+  author : '*', // null
   labels : '*', // []
-  milestone : '*', // ""
-  assignees : '*' // []
+  milestone : '*', // null
+  assignee : '*' // null
+}
+
+const getFilterMsg = (filter) =>{
+  const {status, author, labels, milestone, assignee} = filter;
+  let result = '';
+  result = `is:${status} is:issue`
+  result += `${author==='*' ? "" : `author:${author}`}`
+  result += `${labels==='*' ? "" : labels === "" ? ' no:label' :` label:${labels.map(label=>label.name)}`}`
+  result += `${milestone==='*' ? "" : milestone === "" ? ' no:milestone' :` author:${author}`}`
+  result += `${assignee==='*' ? "" : assignee === "" ? ' no:assignee' :` assignee:${assignee}`}`
+  return result;
 }
 
 // IssuesContext에서 사용할 기본 상태
@@ -16,7 +27,8 @@ const initialState = {
     data: null,
     error: null,
   },
-  filters:initialFilters
+  filters:initialFilters,
+  filterMessage : getFilterMsg(initialFilters)
 };
 
 // 로딩중일 때 바뀔 상태 객체
@@ -45,7 +57,8 @@ function issuesReducer(state, action) {
     case 'UPDATE_FILTER':
       return {
         ...state,
-        filters : action.filters
+        filters : action.filters,
+        filterMessage : getFilterMsg(action.filters)
       }
     case 'GET_ISSUES':
       return {

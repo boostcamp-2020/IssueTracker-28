@@ -50,13 +50,13 @@ function SearchBar(props) {
   
   const state = useIssuesState();
   const dispatch = useIssuesDispatch();
-  const filters = state.filters;
+  const {filters} = state;
   
   useEffect(() => {
     let filterMessage = '';
     switch (props.filterValue) {
       case 'Open issues':
-        filterMessage = 'is:open';
+        filterMessage = 'is:open is:issue';
         dispatch({type : 'UPDATE_FILTER', filters : {...filters, status : 'opened'}})
         break;
       case 'Your issues':
@@ -69,7 +69,7 @@ function SearchBar(props) {
         filterMessage = 'is:open mentions:@me';
         break;
       case 'Closed issues':
-        filterMessage = 'is:closed';
+        filterMessage = 'is:closed is:issue';
         dispatch({type : 'UPDATE_FILTER', filters : {...filters, status : 'closed'}})
         break;
       default :

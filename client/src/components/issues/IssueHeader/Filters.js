@@ -1,30 +1,39 @@
 import React, { Fragment } from 'react';
 import { Dropdown, Icon } from 'semantic-ui-react';
+import { useIssuesState, useIssuesDispatch, getIssues } from '../../../contexts/IssuesContext';
+
 import S from './style';
 
-const FILTERS_MENU = [
-  'Open issues',
-  'Your issues',
-  'Everything assigned to you',
-  'Everything mentioning you',
-  'Closed issues',
+const filterItems = [
+  {title : 'Open issues', filter : {status : 'opened'}},
+  {title : 'Your issues', filter : {author : localStorage.getItem('user_id')}},
+  {title : 'Everything assigned to you', filter : {assignee : [localStorage.getItem('user_id')]}},
+  {title : 'Everything mentioning you', filter : {author : localStorage.getItem('user_id')}},
+  {title : 'Closed issues', filter : {status : 'closed'}},
 ];
-function Filters(props) {
+function Filters({setFilterValue}) {
+
+  const state = useIssuesState();
+  const dispatch = useIssuesDispatch();
+  const {filters} = state;
+
+
   const selectHandler = (item) => {
-    props.setFilterValue(item);
+    setFilterValue(item);
   };
+
   return (
     <S.FiltersWrapper>
       <S.FiltersButton />
       <Dropdown className="filters-dropdown" text="Filters">
         <Dropdown.Menu className="dropdown-menu" direction="right">
           <Dropdown.Header className="dropdown-header" content="Filter Issues" />
-          {FILTERS_MENU.map((item, index) => (
+          {filterItems.map((item, index) => (
             <>
               <hr className="dropdown-divider" />
               <Dropdown.Item
                 className="dropdown-item"
-                text={item}
+                text={item.title}
                 key={index}
                 onClick={() => {
                   selectHandler(item);

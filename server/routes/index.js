@@ -8,7 +8,8 @@ const milestone = require('./milestone');
 const passportJWT = passport.authenticate('jwt', { session: false });
 
 router.use('/auth', auth);
-router.use('/issue', passportJWT, issue);
+// router.use('/issue', passportJWT, issue);
+router.use('/issue', issue);
 router.use('/label', label);
 router.use('/milestone', milestone);
 
