@@ -47,16 +47,16 @@ function ListHeader() {
     console.log('item :',item, ' / type : ', type)
     switch(type){
       case 'author':
-        return dispatch({type:'UPDATE_FILTER', filters : {...filters, status : 'opened', author : item}});
+        return dispatch({type:'UPDATE_FILTER', filters : {...filters, author : item}});
       case 'label':
-        if (item===null) return dispatch({type:'UPDATE_FILTER', filters : {...filters, status : 'opened', labels : []}})
-        if (filters.labels === '*') return dispatch({type:'UPDATE_FILTER', filters : {...filters, status : 'opened', labels : [item]}})
-        return dispatch({type:'UPDATE_FILTER', filters : {...filters, status : 'opened', labels : [...filters.labels, item]}})
+        if (item===null) return dispatch({type:'UPDATE_FILTER', filters : {...filters,  labels : []}})
+        if (filters.labels === '*') return dispatch({type:'UPDATE_FILTER', filters : {...filters,  labels : [item]}})
+        return dispatch({type:'UPDATE_FILTER', filters : {...filters,  labels : [...filters.labels, item]}})
       case 'milestone':
-        return dispatch({type:'UPDATE_FILTER', filters : {...filters, status : 'opened', milestone : item}})
+        return dispatch({type:'UPDATE_FILTER', filters : {...filters, milestone : item}})
       case 'assignees':
-        if (item===null) return dispatch({type:'UPDATE_FILTER', filters : {...filters, status : 'opened', assignees : []}})
-        return dispatch({type:'UPDATE_FILTER', filters : {...filters, status : 'opened', assignees : [item]}})
+        if (item===null) return dispatch({type:'UPDATE_FILTER', filters : {...filters,assignees : []}})
+        return dispatch({type:'UPDATE_FILTER', filters : {...filters, assignees : [item]}})
     }
      
   }
