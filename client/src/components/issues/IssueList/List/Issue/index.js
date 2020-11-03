@@ -1,38 +1,32 @@
 import React from 'react';
 import { IssueOpenedIcon, MilestoneIcon } from '@primer/octicons-react';
-import {
-  IssueWrapper,
-  IssueContainer,
-  LabelList,
-  OtherContainer,
-  MilestoneContainer,
-} from './style';
+import S from './style';
 
 function Issue({ issue }) {
   return (
-    <IssueWrapper>
+    <S.IssueWrapper>
       <input className="issue-checkbox" type="checkbox" />
       <IssueOpenedIcon className="issue-open-icon" size={16} />
-      <IssueContainer>
+      <S.IssueContainer>
         <div className="title-container">
           <div className="title">{issue.title}</div>
-          <LabelList>
+          <S.LabelList>
             {issue.labels && issue.labels.map((label) => <div className="label">{label.name}</div>)}
-          </LabelList>
+          </S.LabelList>
         </div>
-        <OtherContainer>
+        <S.OtherContainer>
           <div className="author">
             #{issue.id} {issue.status} 12 hours ago by {issue.author}
           </div>
           {issue.milestone && (
-            <MilestoneContainer>
+            <S.MilestoneContainer>
               <MilestoneIcon className="milestone-icon" size={14} />
               <div className="milestone">{issue.milestone}</div>
-            </MilestoneContainer>
+            </S.MilestoneContainer>
           )}
-        </OtherContainer>
-      </IssueContainer>
-    </IssueWrapper>
+        </S.OtherContainer>
+      </S.IssueContainer>
+    </S.IssueWrapper>
   );
 }
 
