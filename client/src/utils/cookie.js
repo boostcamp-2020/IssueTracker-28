@@ -10,9 +10,14 @@ const deleteCookie = (name) => {
   document.cookie = `${name}= ` + `; expires=${date.toUTCString()}; path=/`;
 };
 
-const splitCookie = (userObj, cookie) => {
+const hasCookie = (cookie) => {
+  if (cookie.includes('user') && cookie.includes('token')) return true;
+  return false;
+};
+
+const getUser = (userObj, cookie) => {
   let user = userObj;
-  if (cookie.includes('user') && cookie.includes('token')) {
+  if (hasCookie(cookie)) {
     const token = getToken('token');
     const userId = getToken('user');
     localStorage.setItem('auth_token', token);
@@ -31,4 +36,20 @@ const splitCookie = (userObj, cookie) => {
   }
   return user;
 };
-export default { getToken, deleteCookie, splitCookie };
+
+const login = () => {
+  if (hasCookie(document.cookie)) {
+    const token = getToken('auth_token');
+    const userId = getToken('user_id');
+    const id = getToken('id');
+    localStorage.setItem('auth_token', token);
+    localStorage.setItem('user_id', userId);
+    localStorage.setItem('id', id);
+    deleteCookie('auth_token');
+    deleteCookie('user_id');
+    deleteCookie('id');
+    window.location.href = '/';
+  }
+};
+
+export default { getToken, deleteCookie, getUser, hasCookie, login };

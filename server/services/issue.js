@@ -27,7 +27,6 @@ const getAssignees = async (data) => {
 
 exports.getIssues = async () => {
   const results = await db.selectIssue();
-
   const data = [];
 
   for (const result of results) {

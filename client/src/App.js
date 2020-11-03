@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { UserProvider } from './contexts/UserContext';
 import IssuePage from '@pages/IssuePage';
 import NewIssuePage from '@pages/NewIssuePage';
 import UserPage from '@pages/UserPage';
-import Cookie from '@util/cookie';
-import LocalStorage from '@util/localStorage';
-
+import MilestonePage from '@pages/MilestonePage';
+import { UserProvider } from '@contexts/UserContext';
 
 const App = () => {
   // const [userState, setUserState] = useState({
