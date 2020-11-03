@@ -15,9 +15,6 @@ function IssueHeader() {
   const resetHandler = ()=>{
     dispatch({type : 'UPDATE_FILTER', filters : initialFilters})
   }
-  console.log("initialFilters 확인 ㅣ ", initialFilters)
-  console.log("filters 확인 ㅣ ", filters )
-  console.log("같은지 확인 ㅣ ", JSON.stringify(initialFilters)===JSON.stringify(filters))
   return (
     <>
       <S.IssueHeader>

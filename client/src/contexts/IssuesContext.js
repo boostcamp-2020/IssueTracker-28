@@ -12,6 +12,7 @@ export const initialFilters = {
 const getFilterMsg = (filter) =>{
   const {status, author, labels, milestone, assignees} = filter;
   let result = '';
+  if (status === '*') return result; //모든 결과 보여주는 경우
   result = `is:${status} is:issue`
   result += `${author==='*' ? "" : ` author:${author}`}`
   result += `${labels==='*' ? "" : labels === [] ? ' no:label' :` label:${labels.map(label=>label.name)}`}`
