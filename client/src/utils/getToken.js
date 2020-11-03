@@ -5,4 +5,4 @@ const getToken = (token) => {
     .split('=')[1];
 };
 
-export { getToken };
+export default getToken;

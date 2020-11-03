@@ -1,12 +1,11 @@
 import React from 'react';
-import User from '../components/user'
+import User from '../components/user';
 
 function UserPage() {
-  return(
-  <>
-    <User/>
-  </>
+  return (
+    <>
+      <User />
+    </>
   );
 }
 export default UserPage;
-

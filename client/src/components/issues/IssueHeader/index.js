@@ -5,7 +5,7 @@ import Filters from './Filters';
 import S from './style';
 
 function IssueHeader() {
-  let [filterValue, setFilterValue] = useState('');
+  const [filterValue, setFilterValue] = useState('');
   return (
     <>
       <S.IssueHeader>

@@ -1,4 +1,5 @@
 const { User } = require('../../models');
+
 exports.selectUser = async (userId) => {
   const results = await User.findOne({
     raw: true,
