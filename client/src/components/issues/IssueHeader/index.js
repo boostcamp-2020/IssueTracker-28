@@ -11,9 +11,7 @@ function IssueHeader() {
   const state = useIssuesState();
   const dispatch = useIssuesDispatch();
   const filters = state.filters;
-
-  console.log(initialFilters === filters)
-
+  
   const resetHandler = ()=>{
     dispatch({type : 'UPDATE_FILTER', filters : initialFilters})
   }

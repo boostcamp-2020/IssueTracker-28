@@ -1,5 +1,5 @@
 import React, { useReducer, createContext, useContext } from 'react';
-import * as api from '../api/issue';
+import * as api from '@api/issue';
 
 export const initialFilters = {
   status : 'opened',
@@ -84,6 +84,7 @@ export function IssuesProvider({ children }) {
 
 export function useIssuesState() {
   const state = useContext(IssuesStateContext);
+
   if (!state) {
     throw new Error('Cannot find IssuesProvider!');
   }

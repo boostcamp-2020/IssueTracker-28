@@ -1,16 +1,17 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const passport = require('passport');
+const cors = require('cors');
 const passportConfig = require('./passport/passport');
 const jwtConfig = require('./passport/jwt');
 const { sequelize } = require('./models');
 const apiRouter = require('./routes/index');
-const cors = require('cors');
+
 const app = express();
 
-app.use(cors());
 sequelize.sync();
 
 app.use(logger('dev'));
@@ -24,7 +25,10 @@ passportConfig();
 jwtConfig();
 app.use(passport.session());
 
+app.use(cors());
+
 app.use('/api', apiRouter);
+
 app.use((req, res, next) => {
   const err = new Error('Not Found');
   err.status = 404;
