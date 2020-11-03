@@ -5,11 +5,11 @@ import { useIssuesState, useIssuesDispatch, getIssues } from '../../../contexts/
 import S from './style';
 
 const filterItems = [
-  {title : 'Open issues', filter : {status : 'opened'}},
-  {title : 'Your issues', filter : {author : localStorage.getItem('user_id')}},
-  {title : 'Everything assigned to you', filter : {assignee : [localStorage.getItem('user_id')]}},
-  {title : 'Everything mentioning you', filter : {author : localStorage.getItem('user_id')}},
-  {title : 'Closed issues', filter : {status : 'closed'}},
+  ['Open issues', {status : 'opened'}],
+  ['Your issues', {author : localStorage.getItem('user_id')}],
+  ['Everything assigned to you', {assignee : localStorage.getItem('user_id')}],
+  ['Everything mentioning you', {author : localStorage.getItem('user_id')}],
+  ['Closed issues', {status : 'closed'}],
 ];
 function Filters({setFilterValue}) {
 
@@ -18,8 +18,8 @@ function Filters({setFilterValue}) {
   const {filters} = state;
 
 
-  const selectHandler = (item) => {
-    setFilterValue(item);
+  const selectHandler = (updatedFilter) => {
+    dispatch({type : 'UPDATE_FILTER', filters : {...filters, ...updatedFilter}})
   };
 
   return (
@@ -33,10 +33,10 @@ function Filters({setFilterValue}) {
               <hr className="dropdown-divider" />
               <Dropdown.Item
                 className="dropdown-item"
-                text={item.title}
+                text={item[0]}
                 key={index}
                 onClick={() => {
-                  selectHandler(item);
+                  selectHandler(item[1]);
                 }}
               />
             </>

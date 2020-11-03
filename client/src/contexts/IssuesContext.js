@@ -13,10 +13,10 @@ const getFilterMsg = (filter) =>{
   const {status, author, labels, milestone, assignee} = filter;
   let result = '';
   result = `is:${status} is:issue`
-  result += `${author==='*' ? "" : `author:${author}`}`
-  result += `${labels==='*' ? "" : labels === "" ? ' no:label' :` label:${labels.map(label=>label.name)}`}`
-  result += `${milestone==='*' ? "" : milestone === "" ? ' no:milestone' :` author:${author}`}`
-  result += `${assignee==='*' ? "" : assignee === "" ? ' no:assignee' :` assignee:${assignee}`}`
+  result += `${author==='*' ? "" : ` author:${author}`}`
+  result += `${labels==='*' ? "" : labels === [] ? ' no:label' :` label:${labels.map(label=>label.name)}`}`
+  result += `${milestone==='*' ? "" : milestone === null ? ' no:milestone' :` author:${author}`}`
+  result += `${assignee==='*' ? "" : assignee === null ? ' no:assignee' :` assignee:${assignee}`}`
   return result;
 }
 

@@ -3,7 +3,7 @@ export function filterIssue(issue, filters) {
     if ((author === '*' || issue.author === author) &&
         (milestone === '*' || issue.milestone === milestone) &&
         (status === '*' || issue.status === status) &&
-        (assignee === '*' || issue.assignee.includes(assignee)) &&
+        (assignee === '*' || issue.assignees.includes(assignee)) &&
         (labels === '*' || checkFilterItem(labels, issue.labels))) {
         return true;
     }

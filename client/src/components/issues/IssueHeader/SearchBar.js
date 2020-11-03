@@ -50,7 +50,7 @@ function SearchBar(props) {
   
   const state = useIssuesState();
   const dispatch = useIssuesDispatch();
-  const {filters} = state;
+  const {filters, filterMessage} = state;
   
   useEffect(() => {
     let filterMessage = '';
@@ -96,7 +96,7 @@ function SearchBar(props) {
       placeholder={InitialMessage}
       onChange={searchHandler}
       onKeyPress={enterHandler}
-      value={searchValue}
+      value={filterMessage}
     />
   );
 }
