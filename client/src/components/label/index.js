@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useLabelState, useLabelDispatch, getLabels } from '@contexts/LabelContext';
 import { GearIcon } from '@primer/octicons-react';
 import { Dropdown } from 'semantic-ui-react';
-import { LabelContainer, LabelHeader } from './style';
+import { BoxColor, LabelContainer, LabelHeader, TitleContainer, LabelName, LabelDesc } from './style';
 import { FilterDropdown } from '../issues/IssueList/ListHeader/style';
 
 const trigger = (
@@ -33,29 +33,31 @@ function Label() {
   return (
     <>
       <LabelContainer>
-        <FilterDropdown className="label-dropdown">
+        <FilterDropdown className='label-dropdown'>
           <Dropdown
-            className="dropdown"
+            className='dropdown'
             multiple={true}
             trigger={trigger}
             icon={null}
           >
-            <Dropdown.Menu className="dropdown-menu" direction="right">
-              <Dropdown.Header className="dropdown-header" content="Apply labels to this issue" />
+            <Dropdown.Menu className='dropdown-menu' direction='left'>
+              <Dropdown.Header className='dropdown-header' content='Apply labels to this issue' />
               {labels && labels.map((item, index) => (
                 <>
-                  <hr className="dropdown-divider" />
-                  <Dropdown.Item
-                    className="dropdown-item"
-                    text={item.name}
-                    key={index}
-                  />
+                  <hr className='dropdown-divider' />
+                  <Dropdown.Item className='dropdown-item' key={index}>
+                    <TitleContainer>
+                      <BoxColor background={item.color} />
+                      <LabelName>{item.name}</LabelName>
+                    </TitleContainer>
+                    <LabelDesc>{item.desc}</LabelDesc>
+                  </Dropdown.Item>
                 </>
               ))}
             </Dropdown.Menu>
           </Dropdown>
         </FilterDropdown>
-        <div className="text">None yet</div>
+        <div className='text'>None yet</div>
       </LabelContainer>
     </>
   );

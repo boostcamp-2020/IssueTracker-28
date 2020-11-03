@@ -23,3 +23,24 @@ export const LabelHeader = styled.div`
     cursor: pointer;
   }
 `;
+
+export const TitleContainer = styled.div`
+  display: flex;
+  padding-bottom: .5rem;
+  color: #586069;
+`;
+
+export const BoxColor = styled.div`
+  width: 16px;
+  height: 16px;
+  background-color: ${(props) => props.background || "white"};
+  border-radius: 3px;
+`;
+
+export const LabelName = styled.div`
+  padding-left: .5rem;
+`;
+
+export const LabelDesc = styled.div`
+  color: #586069;
+`;
