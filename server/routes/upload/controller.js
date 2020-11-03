@@ -1,6 +1,7 @@
 const AWS = require('aws-sdk');
-const fs = require('fs');
 const multer = require('multer');
+const multerS3 = require('multer-s3');
+
 const path = require('path');
 
 const endpoint = new AWS.Endpoint('https://kr.object.ncloudstorage.com');
@@ -18,36 +19,18 @@ const S3 = new AWS.S3({
 });
 
 exports.upload = multer({
-  storage: multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, './routes/upload/images/');
-    },
-    filename: (req, file, cb) => {
+  storage: multerS3({
+    s3: S3,
+    bucket: 'issue', // 버킷 이름
+    contentType: multerS3.AUTO_CONTENT_TYPE, // 자동을 콘텐츠 타입 세팅
+    acl: 'public-read', // 클라이언트에서 자유롭게 가용하기 위함
+    key: (req, file, cb) => {
       cb(null, new Date().valueOf() + path.extname(file.originalname));
     },
   }),
+  limits: { fileSize: 5 * 1024 * 1024 }, // 용량 제한
 });
 
-exports.uploadImage = (req, res) => {
-  const file = req.file;
-  const bucket_name = 'issue';
-  const local_file_name = file.path;
-  const object_name = file.filename;
-  let options = {
-    partSize: 5 * 1024 * 1024,
-  };
-
-  (async () => {
-    await S3.upload(
-      {
-        Bucket: bucket_name,
-        Key: object_name,
-        Body: fs.createReadStream(local_file_name),
-        ACL: 'public-read',
-        ContentType: 'image/png',
-      },
-      options
-    ).promise();
-  })();
-  res.send(req.file.filename);
+exports.callback = (req, res) => {
+  res.send(req.file.location);
 };

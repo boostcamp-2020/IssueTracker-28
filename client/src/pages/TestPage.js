@@ -11,7 +11,7 @@ function TestPage() {
           headers: { 'Content-Type': 'multipart/form-data;charset=utf-8;' },
         })
         .then((res) => {
-          setImgPath(`https://kr.object.ncloudstorage.com/issue/` + res.data);
+          setImgPath(res.data);
         })
         .catch((error) => {
           console.log(error.response);
