@@ -75,64 +75,80 @@ function ListHeader({allCheckedHandler, checkedItems, isAllChecked, setIsAllChec
       <input type='checkbox' checked={isAllChecked} onChange={(e) => checkHandler(e)} className='all-checkbox'  />
   {checkedItems.size === 0 ? null : <span className="checked-item-count">{checkedItems.size} selected</span>}
       <ListFilters>
-        <FilterDropdown>
-          <Dropdown className='author-dropdown dropdown' text='Author'>
-            <Dropdown.Menu className="dropdown-menu" direction='left'>
-              <Dropdown.Header className="dropdown-header" content='Filter by author' />
-                {AUTHOR_MENU.map((item, index) => (
-                  <Fragment>
-                    <hr className="dropdown-divider"/>
-                    <Dropdown.Item className="dropdown-item" onClick={()=>{filterHandler(item, 'author')}} text={item} key={index} />
-                  </Fragment>
-                ))}
-            </Dropdown.Menu>
-          </Dropdown>
-        </FilterDropdown>
-        <FilterDropdown>
-          <Dropdown className='label-dropdown dropdown' text='Label'>
-            <Dropdown.Menu className="dropdown-menu" direction='left'>
-              <Dropdown.Header className="dropdown-header" content='Filter by label' />
-              <hr className="dropdown-divider"/>
-              <Dropdown.Item className="dropdown-item" onClick={()=>{filterHandler(null, 'label')}} text={NO_FILTER_ITEM[0]} />
-              {LABEL_MENU.map((item, index) => (
-                  <Fragment>
-                    <hr className="dropdown-divider"/>
-                    <Dropdown.Item className="dropdown-item"  onClick={()=>{filterHandler(item, 'label')}} text={item} key={index} />
-                  </Fragment>
-                ))}
-            </Dropdown.Menu>
-          </Dropdown>
-        </FilterDropdown>
-        <FilterDropdown>
-          <Dropdown className='milestons-dropdown dropdown' text='Milestons'>
-            <Dropdown.Menu className="dropdown-menu" direction='left'>
-              <Dropdown.Header className="dropdown-header" content='Filter by milestons' />
-              <hr className="dropdown-divider"/>
-              <Dropdown.Item className="dropdown-item" onClick={()=>{filterHandler(null, 'milestone')}} text={NO_FILTER_ITEM[1]} />
-              {MILESTONE_MENU.map((item, index) => (
-                  <Fragment>
-                    <hr className="dropdown-divider"/>
-                    <Dropdown.Item className="dropdown-item" onClick={()=>{filterHandler(item, 'milestone')}} text={item} key={index} />
-                  </Fragment>
-                ))}
-            </Dropdown.Menu>
-          </Dropdown>
-        </FilterDropdown>
-        <FilterDropdown>
-          <Dropdown className='assignee-dropdown dropdown' text='Assignee'>
-            <Dropdown.Menu className="dropdown-menu" direction='left'>
-              <Dropdown.Header className="dropdown-header" content='Filter by assignee' />
-              <hr className="dropdown-divider"/>
-              <Dropdown.Item className="dropdown-item" onClick={()=>{filterHandler(null, 'assignees')}} text={NO_FILTER_ITEM[2]} />
-              {ASSIGNEE_MENU.map((item, index) => (
-                  <Fragment>
-                    <hr className="dropdown-divider"/>
-                    <Dropdown.Item className="dropdown-item" onClick={()=>{filterHandler(item, 'assignees')}} text={item} key={index} />
-                  </Fragment>
-                ))}
-            </Dropdown.Menu>
-          </Dropdown>
-        </FilterDropdown>
+      {checkedItems.size === 0 ?  
+      <>
+      <FilterDropdown>
+      <Dropdown className='author-dropdown dropdown' text='Author'>
+        <Dropdown.Menu className="dropdown-menu" direction='left'>
+          <Dropdown.Header className="dropdown-header" content='Filter by author' />
+            {AUTHOR_MENU.map((item, index) => (
+              <Fragment>
+                <hr className="dropdown-divider"/>
+                <Dropdown.Item className="dropdown-item" onClick={()=>{filterHandler(item, 'author')}} text={item} key={index} />
+              </Fragment>
+            ))}
+        </Dropdown.Menu>
+      </Dropdown>
+    </FilterDropdown>
+    <FilterDropdown>
+      <Dropdown className='label-dropdown dropdown' text='Label'>
+        <Dropdown.Menu className="dropdown-menu" direction='left'>
+          <Dropdown.Header className="dropdown-header" content='Filter by label' />
+          <hr className="dropdown-divider"/>
+          <Dropdown.Item className="dropdown-item" onClick={()=>{filterHandler(null, 'label')}} text={NO_FILTER_ITEM[0]} />
+          {LABEL_MENU.map((item, index) => (
+              <Fragment>
+                <hr className="dropdown-divider"/>
+                <Dropdown.Item className="dropdown-item"  onClick={()=>{filterHandler(item, 'label')}} text={item} key={index} />
+              </Fragment>
+            ))}
+        </Dropdown.Menu>
+      </Dropdown>
+    </FilterDropdown>
+    <FilterDropdown>
+      <Dropdown className='milestons-dropdown dropdown' text='Milestons'>
+        <Dropdown.Menu className="dropdown-menu" direction='left'>
+          <Dropdown.Header className="dropdown-header" content='Filter by milestons' />
+          <hr className="dropdown-divider"/>
+          <Dropdown.Item className="dropdown-item" onClick={()=>{filterHandler(null, 'milestone')}} text={NO_FILTER_ITEM[1]} />
+          {MILESTONE_MENU.map((item, index) => (
+              <Fragment>
+                <hr className="dropdown-divider"/>
+                <Dropdown.Item className="dropdown-item" onClick={()=>{filterHandler(item, 'milestone')}} text={item} key={index} />
+              </Fragment>
+            ))}
+        </Dropdown.Menu>
+      </Dropdown>
+    </FilterDropdown>
+    <FilterDropdown>
+      <Dropdown className='assignee-dropdown dropdown' text='Assignee'>
+        <Dropdown.Menu className="dropdown-menu" direction='left'>
+          <Dropdown.Header className="dropdown-header" content='Filter by assignee' />
+          <hr className="dropdown-divider"/>
+          <Dropdown.Item className="dropdown-item" onClick={()=>{filterHandler(null, 'assignees')}} text={NO_FILTER_ITEM[2]} />
+          {ASSIGNEE_MENU.map((item, index) => (
+              <Fragment>
+                <hr className="dropdown-divider"/>
+                <Dropdown.Item className="dropdown-item" onClick={()=>{filterHandler(item, 'assignees')}} text={item} key={index} />
+              </Fragment>
+            ))}
+        </Dropdown.Menu>
+      </Dropdown>
+    </FilterDropdown>
+    </>
+      : 
+      <FilterDropdown>
+      <Dropdown className='mark-as-dropdown dropdown' text='Mark as'>
+      <Dropdown.Menu className="dropdown-menu" direction='left'>
+        <Dropdown.Header className="dropdown-header" content='Actions' />
+        <hr className="dropdown-divider"/>
+        <Dropdown.Item className="dropdown-item" text='Open'/>
+        <hr className="dropdown-divider"/>
+        <Dropdown.Item className="dropdown-item" text='Closed'/>
+      </Dropdown.Menu>
+    </Dropdown>
+    </FilterDropdown>
+      }
       </ListFilters>
     </ListWrapper>
   );

@@ -29,6 +29,7 @@ export const FilterDropdown = styled.div`
       font-weight : 500;
       font-size : 13.5px;
       background : white;
+      min-width : 200px;
     }
     .dropdown-menu{
       font-weight : 700;
