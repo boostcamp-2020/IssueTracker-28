@@ -1,12 +1,12 @@
 import React from 'react';
-import Label from '../components/label';
+import Input from '@components/input';
 
 function NewIssuePage() {
   return (
     <>
-      <Label />
+      <Input />
     </>
-  )
+  );
 }
 
 export default NewIssuePage;
