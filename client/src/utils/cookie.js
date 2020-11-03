@@ -15,6 +15,7 @@ const hasCookie = (cookie) => {
   return false;
 };
 
+// 일단 사용X
 const getUser = (userObj, cookie) => {
   let user = userObj;
   if (hasCookie(cookie)) {
@@ -37,7 +38,7 @@ const getUser = (userObj, cookie) => {
   return user;
 };
 
-const login = () => {
+const saveUserInfo = () => {
   if (hasCookie(document.cookie)) {
     const token = getToken('auth_token');
     const userId = getToken('user_id');
@@ -52,4 +53,4 @@ const login = () => {
   }
 };
 
-export default { getToken, deleteCookie, getUser, hasCookie, login };
+export default { getToken, deleteCookie, getUser, hasCookie, saveUserInfo };

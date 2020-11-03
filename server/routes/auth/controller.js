@@ -25,20 +25,8 @@ const githubLogin = async (req, res, next) => {
 };
 
 const githubLoginRedirect = (req, res) => {
+  if (process.env.NODE_ENV === 'production') return res.redirect('/');
   return res.send('<script>window.location.href="http://127.0.0.1:8080"</script>');
-  // const { id, userId } = req.user;
-  // const token = jwt.sign({ id, userId }, process.env.JWT_SECRET, {
-  //   expiresIn: '1d',
-  // });
-  // res.json({
-  //   token,
-  // });
-  // Todo : 배포와 버젼환경에서 코드 나누기
-  // localStorage.setItem('token', token);
-  // return res.json({
-  //   token,
-  // });
-  // return res.redirect('/');
 };
 
 module.exports = { githubLogin, githubLoginRedirect };

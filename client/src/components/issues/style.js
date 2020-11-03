@@ -1,5 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const IssuesWrapper = styled.div`
-  margin: 0 160px;
-`;
+export default {
+  IssuesWrapper: styled.div`
+    margin: 50px 160px;
+  `,
+};

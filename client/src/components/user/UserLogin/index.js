@@ -1,14 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { MarkGithubIcon } from '@primer/octicons-react';
 import Logo from '@images/issuelogo.png';
 import Cookie from '@util/cookie';
-import { useUserState, useUserDispatch } from '@contexts/UserContext';
 import S from './style';
 
 function UserLogin() {
-  const state = useUserState();
-  const dispatch = useUserDispatch();
-
   const logoutHandler = () => {
     localStorage.clear();
     Cookie.deleteCookie('auth_token');
@@ -22,7 +18,7 @@ function UserLogin() {
       <S.LoginWrapper>
         <S.LoginImage alt="logo" src={Logo} />
         <a href="/api/auth/github">
-          <S.LoginButton onClick={Cookie.login()}>
+          <S.LoginButton onClick={Cookie.saveUserInfo()}>
             Sign in with Github
             <MarkGithubIcon size={18} className="githubIcon" />
           </S.LoginButton>

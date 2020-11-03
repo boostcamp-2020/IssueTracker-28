@@ -7,30 +7,6 @@ import MilestonePage from '@pages/MilestonePage';
 import { UserProvider } from '@contexts/UserContext';
 
 const App = () => {
-  // const [userState, setUserState] = useState({
-  //   user: '',
-  //   token: '',
-  //   authenticated: false,
-  // });
-
-  // const isAuthenticated = () => {
-  //   const user = localStorage.getItem('user_id') || undefined;
-  //   const token = localStorage.getItem('auth_token') || undefined;
-  //   let userObj = {
-  //     user,
-  //     token,
-  //     authenticated: true,
-  //   };
-  //   if (typeof user === 'undefined') {
-  //     const { cookie } = document;
-  //     userObj = Cookie.hasCookie(userObj, cookie);
-  //   }
-
-  //   // Todo : userState 관리
-  //   // setUserState(userObj)
-  // };
-
-  // isAuthenticated();
   return (
     <UserProvider>
       <Switch>

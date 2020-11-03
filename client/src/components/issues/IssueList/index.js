@@ -1,15 +1,14 @@
 import React from 'react';
 import ListHeader from './ListHeader';
 import List from './List';
-
-import { ListWrapper } from './style';
+import S from './style';
 
 function IssueList() {
   return (
-    <ListWrapper>
+    <S.ListWrapper>
       <ListHeader />
       <List />
-    </ListWrapper>
+    </S.ListWrapper>
   );
 }
 
