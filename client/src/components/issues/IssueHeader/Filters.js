@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import { Dropdown, Icon } from 'semantic-ui-react';
 import { useIssuesState, useIssuesDispatch, getIssues } from '../../../contexts/IssuesContext';
-
 import S from './style';
 
 const filterItems = [
@@ -24,7 +23,7 @@ function Filters() {
 
   return (
     <S.FiltersWrapper>
-      <S.FiltersButton />
+      <S.FiltersButton className="filters-button"/>
       <Dropdown className="filters-dropdown" text="Filters">
         <Dropdown.Menu className="dropdown-menu" direction="right">
           <Dropdown.Header className="dropdown-header" content="Filter Issues" />

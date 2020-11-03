@@ -28,6 +28,9 @@ export default {
   `,
   FiltersButton: styled.button`
     background: linear-gradient(to bottom, #fff, #e9e9e9);
+    &:hover {
+      background : gold;
+    }
     border-radius: 4px 0px 0px 4px;
     color: #606060;
     display: flex;
@@ -77,6 +80,9 @@ export default {
         font-weight : 800;
         font-size : 16px;
         background : #F7F8FA;
+        .item:hover{
+          background : #F7F8FA;
+        }
       }
       .dropdown-divider{
         margin: 0;

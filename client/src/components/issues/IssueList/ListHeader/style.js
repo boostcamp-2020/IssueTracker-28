@@ -19,7 +19,6 @@ export const FilterDropdown = styled.div`
   padding-left: 16px;
   .dropdown{
     .dropdown-item{
-      color : red;
       font-weight : 500;
       font-size : 13.5px;
       background : white;
@@ -28,6 +27,9 @@ export const FilterDropdown = styled.div`
       font-weight : 700;
       font-size : 15px;
       background : #F7F8FA;
+      .item:hover{
+        background : #F7F8FA;
+      }
     }
     .dropdown-header{
       height : 10px;
