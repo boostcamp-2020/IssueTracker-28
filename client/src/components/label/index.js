@@ -31,35 +31,33 @@ function Label() {
   if (!labels) return <button onClick={fetchData}> 불러오기 </button>;
 
   return (
-    <>
-      <LabelContainer>
-        <FilterDropdown className='label-dropdown'>
-          <Dropdown
-            className='dropdown'
-            multiple={true}
-            trigger={trigger}
-            icon={null}
-          >
-            <Dropdown.Menu className='dropdown-menu' direction='left'>
-              <Dropdown.Header className='dropdown-header' content='Apply labels to this issue' />
-              {labels && labels.map((item, index) => (
-                <>
-                  <hr className='dropdown-divider' />
-                  <Dropdown.Item className='dropdown-item' key={index}>
-                    <TitleContainer>
-                      <BoxColor background={item.color} />
-                      <LabelName>{item.name}</LabelName>
-                    </TitleContainer>
-                    <LabelDesc>{item.desc}</LabelDesc>
-                  </Dropdown.Item>
-                </>
-              ))}
-            </Dropdown.Menu>
-          </Dropdown>
-        </FilterDropdown>
-        <div className='text'>None yet</div>
-      </LabelContainer>
-    </>
+    <LabelContainer>
+      <FilterDropdown className='label-dropdown'>
+        <Dropdown
+          className='dropdown'
+          multiple={true}
+          trigger={trigger}
+          icon={null}
+        >
+          <Dropdown.Menu className='dropdown-menu' direction='left'>
+            <Dropdown.Header className='dropdown-header' content='Apply labels to this issue' />
+            {labels && labels.map((item, index) => (
+              <>
+                <hr className='dropdown-divider' />
+                <Dropdown.Item className='dropdown-item' key={index}>
+                  <TitleContainer>
+                    <BoxColor background={item.color} />
+                    <LabelName>{item.name}</LabelName>
+                  </TitleContainer>
+                  <LabelDesc>{item.desc}</LabelDesc>
+                </Dropdown.Item>
+              </>
+            ))}
+          </Dropdown.Menu>
+        </Dropdown>
+      </FilterDropdown>
+      <div className='text'>None yet</div>
+    </LabelContainer>
   );
 }
 

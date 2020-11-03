@@ -32,34 +32,32 @@ function Milestone() {
   if (!milestones) return <button onClick={fetchData}> 불러오기 </button>;
 
   return (
-    <>
-      <LabelContainer>
-        <FilterDropdown className="label-dropdown">
-          <Dropdown
-            className="dropdown"
-            multiple={true}
-            trigger={trigger}
-            icon={null}
-          >
-            <Dropdown.Menu className="dropdown-menu" direction="left">
-              <Dropdown.Header className="dropdown-header" content="Set milestone" />
-              {milestones && milestones.map((item, index) => (
-                <>
-                  <hr className="dropdown-divider" />
-                  <Dropdown.Item className="dropdown-item" key={index}>
-                    <TitleContainer>
-                      <div>{item.title}</div>
-                      <div>{item.due_date}</div>
-                    </TitleContainer>
-                  </Dropdown.Item>
-                </>
-              ))}
-            </Dropdown.Menu>
-          </Dropdown>
-        </FilterDropdown>
-        <div className="text">No Milestone</div>
-      </LabelContainer>
-    </>
+    <LabelContainer>
+      <FilterDropdown className="label-dropdown">
+        <Dropdown
+          className="dropdown"
+          multiple={true}
+          trigger={trigger}
+          icon={null}
+        >
+          <Dropdown.Menu className="dropdown-menu" direction="left">
+            <Dropdown.Header className="dropdown-header" content="Set milestone" />
+            {milestones && milestones.map((item, index) => (
+              <>
+                <hr className="dropdown-divider" />
+                <Dropdown.Item className="dropdown-item" key={index}>
+                  <TitleContainer>
+                    <div>{item.title}</div>
+                    <div>{item.due_date}</div>
+                  </TitleContainer>
+                </Dropdown.Item>
+              </>
+            ))}
+          </Dropdown.Menu>
+        </Dropdown>
+      </FilterDropdown>
+      <div className="text">No Milestone</div>
+    </LabelContainer>
   );
 }
 

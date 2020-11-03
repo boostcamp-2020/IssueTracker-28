@@ -31,18 +31,17 @@ function Assignee() {
   // if (!users) return <button onClick={fetchData}>불러오기</button>;
 
   return (
-    <>
-      <LabelContainer>
-        <FilterDropdown className="label-dropdown">
-          <Dropdown
-            className="dropdown"
-            multiple={true}
-            trigger={trigger}
-            icon={null}
-          >
-            <Dropdown.Menu className="dropdown-menu" direction="left">
-              <Dropdown.Header className="dropdown-header" content="Assign up to 10 people to thie issue" />
-              {/* {users && users.map((item, index) => (
+    <LabelContainer>
+      <FilterDropdown className="label-dropdown">
+        <Dropdown
+          className="dropdown"
+          multiple={true}
+          trigger={trigger}
+          icon={null}
+        >
+          <Dropdown.Menu className="dropdown-menu" direction="left">
+            <Dropdown.Header className="dropdown-header" content="Assign up to 10 people to thie issue" />
+            {/* {users && users.map((item, index) => (
                 <>
                   <hr className="dropdown-divider" />
                   <Dropdown.Item className="dropdown-item" key={index}>
@@ -53,12 +52,11 @@ function Assignee() {
                   </Dropdown.Item>
                 </>
               ))} */}
-            </Dropdown.Menu>
-          </Dropdown>
-        </FilterDropdown>
-        <div className="text">No one-assign yourself</div>
-      </LabelContainer>
-    </>
+          </Dropdown.Menu>
+        </Dropdown>
+      </FilterDropdown>
+      <div className="text">No one-assign yourself</div>
+    </LabelContainer>
   );
 }
 
