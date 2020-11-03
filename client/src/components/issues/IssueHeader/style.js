@@ -9,7 +9,8 @@ export default {
     height: 35px;
     align-items: center;
     padding-left: 10px;
-    font-size: 13px;
+    font-size: 14.5px;
+    color : #404040;
     outline: none;
     border: none;
     border-radius: 0px 4px 4px 0px;

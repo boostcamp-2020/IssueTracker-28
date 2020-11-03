@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Issue from './Issue';
 import { useIssuesState, useIssuesDispatch, getIssues } from '@contexts/IssuesContext';
 import {filterIssue} from '../../../../util/filterIssue'
+import { test_items } from './testItems'
 
 
 function List() {
@@ -27,7 +28,7 @@ function List() {
 
   return (
     <div className="list-wrapper">
-      {issues.filter((issue)=>{
+      {test_items.filter((issue)=>{
         return filterIssue(issue, filters)
       }).map((issue) => (
         <Issue key={issue.id} issue={issue} />

@@ -6,17 +6,17 @@ export const initialFilters = {
   author : '*', // null
   labels : '*', // []
   milestone : '*', // null
-  assignee : '*' // null
+  assignees : '*' // null
 }
 
 const getFilterMsg = (filter) =>{
-  const {status, author, labels, milestone, assignee} = filter;
+  const {status, author, labels, milestone, assignees} = filter;
   let result = '';
   result = `is:${status} is:issue`
   result += `${author==='*' ? "" : ` author:${author}`}`
   result += `${labels==='*' ? "" : labels === [] ? ' no:label' :` label:${labels.map(label=>label.name)}`}`
   result += `${milestone==='*' ? "" : milestone === null ? ' no:milestone' :` author:${author}`}`
-  result += `${assignee==='*' ? "" : assignee === null ? ' no:assignee' :` assignee:${assignee}`}`
+  result += `${assignees==='*' ? "" : assignees === [] ? ' no:assignee' :` assignee:${assignees[0]}`}`
   return result;
 }
 
