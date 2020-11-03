@@ -52,6 +52,7 @@ export const InputPicture = styled.div`
   border: 1px solid #e1e4e8;
   border-top: none;
   border-radius: 0 0 6px 6px;
+  cursor: pointer;
 `;
 
 export const ButtonWrapper = styled.div`
@@ -64,8 +65,5 @@ export const CancelButton = styled.button`
   border: none;
   background: none;
   color: #586069;
-`;
-
-export const SubmitButton = styled.button`
-  
+  cursor: pointer;
 `;
