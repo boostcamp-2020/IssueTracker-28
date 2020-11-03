@@ -10,9 +10,9 @@ const deleteCookie = (name) => {
   document.cookie = `${name}= ` + `; expires=${date.toUTCString()}; path=/`;
 };
 
-const hasCookie = (userObj, cookie) => {
+const splitCookie = (userObj, cookie) => {
   let user = userObj;
-  if (typeof cookie !== 'undefined' && cookie !== '') {
+  if (cookie.includes('user') && cookie.includes('token')) {
     const token = getToken('token');
     const userId = getToken('user');
     localStorage.setItem('auth_token', token);
@@ -31,4 +31,4 @@ const hasCookie = (userObj, cookie) => {
   }
   return user;
 };
-export default { getToken, deleteCookie, hasCookie };
+export default { getToken, deleteCookie, splitCookie };

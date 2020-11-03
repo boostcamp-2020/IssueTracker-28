@@ -21,7 +21,7 @@ const githubLogin = async (req, res, next) => {
 };
 
 const githubLoginRedirect = (req, res) => {
-  // return res.send('<script>window.location.href="http://127.0.0.1:8080"</script>');
+  return res.send('<script>window.location.href="http://127.0.0.1:8080"</script>');
   // const { id, userId } = req.user;
   // const token = jwt.sign({ id, userId }, process.env.JWT_SECRET, {
   //   expiresIn: '1d',
@@ -34,7 +34,7 @@ const githubLoginRedirect = (req, res) => {
   // return res.json({
   //   token,
   // });
-  return res.redirect('/');
+  // return res.redirect('/');
 };
 
 module.exports = { githubLogin, githubLoginRedirect };

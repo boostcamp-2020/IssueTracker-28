@@ -26,7 +26,7 @@ function UserLogin() {
     };
     if (typeof user === 'undefined') {
       const { cookie } = document;
-      userObj = Cookie.hasCookie(userObj, cookie);
+      userObj = Cookie.splitCookie(userObj, cookie);
     }
   };
 
