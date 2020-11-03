@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { UserProvider } from './contexts/UserContext';
+import { UserProvider } from '@contexts/UserContext';
+import Header from '@components/header';
 import IssuePage from '@pages/IssuePage';
 import NewIssuePage from '@pages/NewIssuePage';
 import UserPage from '@pages/UserPage';
 import MilestonePage from '@pages/MilestonePage';
 import Cookie from '@util/cookie';
-import { LabelProvider } from './contexts/LabelContext';
+import { LabelProvider } from '@contexts/LabelContext';
 
 const App = () => {
   // const [userState, setUserState] = useState({
@@ -36,6 +37,7 @@ const App = () => {
   return (
     <LabelProvider>
       <UserProvider>
+        <Header />
         <Switch>
           <Route
             exact
