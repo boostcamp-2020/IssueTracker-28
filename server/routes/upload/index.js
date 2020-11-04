@@ -1,7 +1,5 @@
 const router = require('express').Router();
 const controller = require('./controller');
 
-router.get('/list', controller.getIssues);
-router.post('/', controller.createIssue);
-
+router.post('/test', controller.upload.single('filename'), controller.callback);
 module.exports = router;

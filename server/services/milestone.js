@@ -2,19 +2,17 @@ const db = require('./db/milestone');
 
 exports.getMilestones = async () => {
   const results = await db.selectMilestone();
-  let openMilestone = 0;
-  let closedMilestone = 0;
-  let status = '';
-  const data = [];
-  for (const result of results) {
-    if (result.status) {
-      status = 'open';
-      openMilestone += 1;
-    } else {
-      status = 'closed';
-      closedMilestone += 1;
-    }
-    data.push({ ...result.dataValues, status });
+  let milestoneCnt = [0, 0];
+  const milestones = [];
+  for (let result of results) {
+    let status = result.status === 0 ? 'open' : 'closed';
+    milestoneCnt[result.status] += 1;
+    milestones.push({ ...result.dataValues, status });
   }
-  return { data, openMilestone, closedMilestone };
+  return { milestoneCnt, milestones };
+};
+
+exports.findMilestone = async (title) => {
+  const results = await db.selectMilestoneID(title);
+  return results;
 };

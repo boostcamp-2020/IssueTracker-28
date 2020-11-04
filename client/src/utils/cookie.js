@@ -7,7 +7,7 @@ const getToken = (token) => {
 
 const deleteCookie = (name) => {
   const date = new Date();
-  document.cookie = `${name}= ` + `; expires=${date.toUTCString()}; path=/`;
+  document.cookie = `${name}=; expires=${date.toUTCString()}; path=/`;
 };
 
 const deleteAllCookie = (names) => {

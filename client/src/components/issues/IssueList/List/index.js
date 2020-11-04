@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useIssuesState, useIssuesDispatch, getIssues } from '@contexts/IssuesContext';
-import { filterIssue } from '@util/filterIssue';
+import { filterIssue } from '@utils/filterIssue';
 import Issue from './Issue';
 
 function List() {

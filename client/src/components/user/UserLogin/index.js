@@ -1,7 +1,7 @@
 import React from 'react';
 import { MarkGithubIcon } from '@primer/octicons-react';
 import Logo from '@images/issuelogo.png';
-import Cookie from '@util/cookie';
+import Cookie from '@utils/cookie';
 import S from './style';
 
 function UserLogin() {
