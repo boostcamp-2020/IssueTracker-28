@@ -19,6 +19,7 @@ export default {
     align-items: center;
     justify-content: space-between;
     padding: 4px 0 12px 0;
+    font-weight: 700;
     .gear-icon {
       cursor: pointer;
     }

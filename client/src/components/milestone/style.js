@@ -4,6 +4,13 @@ export default {
   TitleContainer: styled.div`
     color: #586069;
   `,
+  ItemTitle: styled.div`
+    font-weight: 700;
+    margin-bottom: .5rem;
+  `,
+  ItemDate: styled.div`
+    font-size: 13px;
+  `,
   SelectedItem: styled.div`
     color: black;
     font-weight: 700;

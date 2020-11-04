@@ -25,6 +25,8 @@ function Milestone() {
   const { data, loading, error } = state.milestones;
   const milestones = data?.milestones;
 
+  const dateOptions = { day: 'numeric', year: 'numeric', month: 'long' };
+
   const fetchData = () => {
     getMilestones(dispatch);
   };
@@ -55,8 +57,8 @@ function Milestone() {
                   <hr className="dropdown-divider" />
                   <Dropdown.Item className="dropdown-item" key={index} onClick={() => handleItemClick(item)}>
                     <S.TitleContainer>
-                      <div>{item.title}</div>
-                      <div>{item.due_date}</div>
+                      <S.ItemTitle>{item.title}</S.ItemTitle>
+                      <S.ItemDate>Due by {new Date(item.due_date).toLocaleDateString('en-US', dateOptions)}</S.ItemDate>
                     </S.TitleContainer>
                   </Dropdown.Item>
                 </>
