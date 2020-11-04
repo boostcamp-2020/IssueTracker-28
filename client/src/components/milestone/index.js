@@ -17,8 +17,7 @@ const trigger = (
   </LS.LabelHeader>
 );
 
-function Milestone() {
-  const [selectedMilestone, setSelectedMilestone] = useState(null);
+function Milestone({ selectedMilestone, handleMilestoneClick }) {
   const state = useMilestonesState();
   const dispatch = useMilestonesDispatch();
 
@@ -41,10 +40,6 @@ function Milestone() {
 
   const [openCnt, closeCnt] = data.milestoneCnt;
 
-  const handleItemClick = (milestone) => {
-    setSelectedMilestone(milestone);
-  };
-
   return (
     <LS.LabelContainer>
       <DS.FilterDropdown className="label-dropdown">
@@ -55,7 +50,7 @@ function Milestone() {
               milestones.map((item, index) => (
                 <>
                   <hr className="dropdown-divider" />
-                  <Dropdown.Item className="dropdown-item" key={index} onClick={() => handleItemClick(item)}>
+                  <Dropdown.Item className="dropdown-item" key={index} onClick={() => handleMilestoneClick(item)}>
                     <S.TitleContainer>
                       <S.ItemTitle>{item.title}</S.ItemTitle>
                       <S.ItemDate>Due by {new Date(item.due_date).toLocaleDateString('en-US', dateOptions)}</S.ItemDate>

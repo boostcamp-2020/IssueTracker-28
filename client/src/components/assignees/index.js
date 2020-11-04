@@ -13,8 +13,7 @@ const trigger = (
   </LS.LabelHeader>
 );
 
-function Assignees() {
-  const [assignees, setAssignees] = useState(new Set());
+function Assignees({ selectedAssignees, handleAssigneeClick }) {
   const [isAssignSelf, setIsAssignSelf] = useState(false);
   const state = useUsersState();
   const dispatch = useUsersDispatch();
@@ -33,23 +32,11 @@ function Assignees() {
   if (error) return <div> 에러가 발생했습니다 </div>;
   if (!users) return <button onClick={fetchData}>불러오기</button>;
 
-  const handleItemClick = (assignee) => {
-    for (let user of Array.from(assignees)) {
-      if (user.id === assignee.id) return;
-    }
-
-    const newAssignees = new Set(assignees);
-    newAssignees.add(assignee)
-    setAssignees(newAssignees);
-  };
-
   const handleSelfClick = () => {
-    const newAssignees = new Set(assignees);
-    newAssignees.add({
+    handleAssigneeClick({
       id: parseInt(localStorage.getItem('id')),
       userId: localStorage.getItem('user')
     });
-    setAssignees(newAssignees);
     setIsAssignSelf(true);
   };
 
@@ -65,7 +52,7 @@ function Assignees() {
             {users && users.map((item, index) => (
               <>
                 <hr className="dropdown-divider" />
-                <Dropdown.Item className="dropdown-item" key={index} onClick={() => handleItemClick(item)}>
+                <Dropdown.Item className="dropdown-item" key={index} onClick={() => handleAssigneeClick(item)}>
                   <LS.TitleContainer>
                     <div>{item.userId}</div>
                   </LS.TitleContainer>
@@ -76,11 +63,11 @@ function Assignees() {
         </Dropdown>
       </DS.FilterDropdown>
       {
-        assignees.size === 0
+        selectedAssignees.size === 0
           ? isAssignSelf
             ? <S.SelectedItem>{localStorage.getItem('user')}</S.SelectedItem>
             : <S.AssignSelf onClick={() => handleSelfClick()}>No one-assign yourself</S.AssignSelf>
-          : Array.from(assignees).map((assignee) => (
+          : Array.from(selectedAssignees).map((assignee) => (
             <S.SelectedItem>{assignee.userId}</S.SelectedItem>
           ))
       }
