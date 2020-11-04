@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useUsersState, useUsersDispatch, getUsers } from '@contexts/UsersContext';
 import { GearIcon } from '@primer/octicons-react';
 import { Dropdown } from 'semantic-ui-react';
@@ -13,6 +13,7 @@ const trigger = (
 );
 
 function Assignees() {
+  const [assignees, setAssignees] = useState(new Set());
   const state = useUsersState();
   const dispatch = useUsersDispatch();
 
@@ -30,6 +31,14 @@ function Assignees() {
   if (error) return <div> 에러가 발생했습니다 </div>;
   if (!users) return <button onClick={fetchData}>불러오기</button>;
 
+  const handleItemClick = (assignee) => {
+    if (assignees.has(assignee)) return;
+
+    const newAssignees = new Set(assignees);
+    newAssignees.add(assignee)
+    setAssignees(newAssignees);
+  }
+
   return (
     <LS.LabelContainer>
       <DS.FilterDropdown className="label-dropdown">
@@ -42,7 +51,7 @@ function Assignees() {
             {users && users.map((item, index) => (
               <>
                 <hr className="dropdown-divider" />
-                <Dropdown.Item className="dropdown-item" key={index}>
+                <Dropdown.Item className="dropdown-item" key={index} onClick={() => handleItemClick(item)}>
                   <LS.TitleContainer>
                     <div>{item.userId}</div>
                   </LS.TitleContainer>
@@ -52,7 +61,13 @@ function Assignees() {
           </Dropdown.Menu>
         </Dropdown>
       </DS.FilterDropdown>
-      <div className="text">No one-assign yourself</div>
+      {
+        assignees.size === 0
+          ? <div className="text">No one-assign yourself</div>
+          : Array.from(assignees).map((assignee) => (
+            <div>{assignee.userId}</div>
+          ))
+      }
     </LS.LabelContainer>
   );
 }
