@@ -16,7 +16,7 @@ module.exports = {
                 use: ['style-loader', 'css-loader'],
             },
             {
-                test: /\.(eot|ttf|woff2?|otf|svg|png)$/,
+                test: /\.(eot|ttf|woff2?|otf|svg|png|gif)$/,
                 loader: 'file-loader',
                 options: { name: '[name].[ext]' },
             },

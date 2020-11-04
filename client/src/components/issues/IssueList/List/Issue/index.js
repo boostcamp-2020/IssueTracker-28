@@ -5,7 +5,7 @@ import { CHECKED_UPDATE } from '@constants/actionTypes';
 import S from './style';
 
 function Issue({issue}) {
-  const [checkState, setCheckState] = useState(true);
+  const [checkState, setCheckState] = useState(false);
   const state = useCheckedItemState();
   const dispatch = useCheckedItemDispatch();
   const {checkedItems, isAllChecked} = state;

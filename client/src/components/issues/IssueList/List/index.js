@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useIssuesState, useIssuesDispatch, getIssues } from '@contexts/IssuesContext';
 import {IssueOpenedIcon} from '@primer/octicons-react'
 import {filterIssue} from '@utils/filterIssue'
+import Spinner from '@images/spinner3.gif'
 import Issue from './Issue'
 import S from './style.js';
 
@@ -19,7 +20,7 @@ function List() {
     fetchData();
   }, []);
 
-  if (loading) return <div> 로딩중.. </div>;
+  if (loading) return <img style={{width : '250px'}} src={Spinner}/>;
   if (error) return <div> 에러가 발생했습니다 </div>;
   if (!issues) return <button onClick={fetchData}> 불러오기 </button>;
 
