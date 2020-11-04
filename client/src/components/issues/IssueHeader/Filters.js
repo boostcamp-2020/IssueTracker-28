@@ -4,26 +4,25 @@ import { useIssuesState, useIssuesDispatch } from '@contexts/IssuesContext';
 import S from './style';
 
 const filterItems = [
-  ['Open issues', {status : 'opened'}],
-  ['Your issues', {author : localStorage.getItem('user_id')}],
-  ['Everything assigned to you', {assignees : [localStorage.getItem('user_id')]}],
-  ['Everything mentioning you', {author : localStorage.getItem('user_id')}],
-  ['Closed issues', {status : 'closed'}],
+  ['Open issues', { status: 'opened' }],
+  ['Your issues', { author: localStorage.getItem('user_id') }],
+  ['Everything assigned to you', { assignees: [localStorage.getItem('user_id')] }],
+  ['Everything mentioning you', { author: localStorage.getItem('user_id') }],
+  ['Closed issues', { status: 'closed' }],
 ];
-function Filters() {
 
+function Filters() {
   const state = useIssuesState();
   const dispatch = useIssuesDispatch();
-  const {filters} = state;
-
+  const { filters } = state;
 
   const selectHandler = (updatedFilter) => {
-    dispatch({type : 'UPDATE_FILTER', filters : {...filters, ...updatedFilter}})
+    dispatch({ type: 'UPDATE_FILTER', filters: { ...filters, ...updatedFilter } });
   };
 
   return (
     <S.FiltersWrapper>
-      <S.FiltersButton className="filters-button"/>
+      <S.FiltersButton className="filters-button" />
       <Dropdown className="filters-dropdown" text="Filters">
         <Dropdown.Menu className="dropdown-menu" direction="right">
           <Dropdown.Header className="dropdown-header" content="Filter Issues" />

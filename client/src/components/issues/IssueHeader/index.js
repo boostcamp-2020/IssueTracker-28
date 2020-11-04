@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { XCircleFillIcon } from '@primer/octicons-react';
-import { LabelsButton, MilestonesButton, NewIssueButton } from './Buttons';
 import { useIssuesState, useIssuesDispatch, initialFilters } from '@contexts/IssuesContext';
-
-
+import { LabelsButton, MilestonesButton, NewIssueButton } from './Buttons';
 import SearchBar from './SearchBar';
 import Filters from './Filters';
 import S from './style';
@@ -30,9 +28,12 @@ function IssueHeader() {
         </S.LabelMilestone>
         <NewIssueButton />
       </S.IssueHeader>
-      {JSON.stringify(initialFilters)!==JSON.stringify(filters) ? 
-        <S.ResetButton onClick={resetHandler}><XCircleFillIcon className="x-icon" size={16}/>  Clear current search query, filters, and sorts</S.ResetButton>
-         : null}
+      {JSON.stringify(initialFilters) !== JSON.stringify(filters) ? (
+        <S.ResetButton onClick={resetHandler}>
+          <XCircleFillIcon className="x-icon" size={16} /> Clear current search query, filters, and
+          sorts
+        </S.ResetButton>
+      ) : null}
     </>
   );
 }

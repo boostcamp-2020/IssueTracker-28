@@ -57,9 +57,7 @@ export function LabelProvider({ children }) {
 
   return (
     <LabelStateContext.Provider value={state}>
-      <LabelDispatchContext.Provider value={dispatch}>
-        {children}
-      </LabelDispatchContext.Provider>
+      <LabelDispatchContext.Provider value={dispatch}>{children}</LabelDispatchContext.Provider>
     </LabelStateContext.Provider>
   );
 }
