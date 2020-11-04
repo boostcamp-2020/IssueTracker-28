@@ -10,16 +10,23 @@ export default {
     border-top-right-radius: 6px;
     background-color: #f6f8fa;
     padding: 16px;
-    position : relative;
-    .checked-item-count{
-      position : absolute;
-      left : 40px;
-      font-size : 13px;
-      color : #616e75;
+    position: relative;
+    .checked-item-count {
+      position: absolute;
+      left: 40px;
+      font-size: 13px;
+      color: #616e75;
     }
   `,
   ListFilters: styled.div`
     display: flex;
+    .check-icon {
+      display: none !important;
+      margin-right: 5px;
+    }
+    .show {
+      display: inline-block !important;
+    }
   `,
   FilterDropdown: styled.div`
     padding-left: 16px;

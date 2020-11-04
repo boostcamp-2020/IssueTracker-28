@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Dropdown } from 'semantic-ui-react';
+import { CheckIcon } from '@primer/octicons-react';
 import { useLabelState, useLabelDispatch, getLabels } from '@contexts/LabelContext';
 import { useIssuesState, useIssuesDispatch } from '@contexts/IssuesContext';
 import {
@@ -34,6 +35,11 @@ function ListHeader({ checkedItems, isAllChecked }) {
     getLabels(labelDispatch);
     getUsers(usersDispatch);
     getMilestones(milestoneDispatch);
+  };
+
+  const clickHandler = (e) => {
+    const check = e.target.parentNode.querySelector('.check-icon');
+    check.classList.toggle('show');
   };
 
   const filterHandler = handler(state, dispatch);
@@ -83,7 +89,8 @@ function ListHeader({ checkedItems, isAllChecked }) {
                   <Dropdown.Header className="dropdown-header" content="Filter by label" />
                   <Dropdown.Item
                     className="dropdown-item"
-                    onClick={() => {
+                    onClick={(e) => {
+                      clickHandler(e);
                       filterHandler(null, 'label');
                     }}
                     text={NO_FILTER_ITEM[0]}
@@ -94,12 +101,14 @@ function ListHeader({ checkedItems, isAllChecked }) {
                         <hr className="dropdown-divider" />
                         <Dropdown.Item
                           className="dropdown-item"
-                          onClick={() => {
+                          onClick={(e) => {
+                            clickHandler(e);
                             filterHandler(item.name, 'label');
                           }}
                           key={item.id}
                         >
                           <TitleContainer>
+                            <CheckIcon size={16} className="check-icon" />
                             <BoxColor background={item.color} />
                             <LabelName>{item.name}</LabelName>
                           </TitleContainer>
