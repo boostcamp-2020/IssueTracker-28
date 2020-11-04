@@ -9,17 +9,18 @@ export const InputWrapper = styled.div`
 
 export const InputTitle = styled.input`
   width: 97.5%;
-  margin: 8px;
+  height: 32px;
+  margin: 8px 8px 16px 8px;
   padding: 2px 12px;
   font-size: 14px;
   line-height: 20px;
   border: 1px solid #e1e4e8;
   border-radius: 6px;
   outline: none;
+  background-color: rgb(250, 251, 252);
 `;
 
-export const WriteWrapper = styled.div`
-`;
+export const WriteWrapper = styled.div``;
 
 export const Line = styled.div`
   width: 100%;
@@ -34,7 +35,11 @@ export const WriteTitle = styled.div`
   border-radius: 6px 6px 0 0;
   border-bottom: none;
 `;
-
+export const WritePreview = styled.div`
+  display: inline-block;
+  color: rgb(88, 96, 105);
+  margin-left: 10px;
+`;
 export const InputComment = styled.textarea`
   margin: 8px 8px 0 8px;
   padding: 8px;
@@ -43,16 +48,18 @@ export const InputComment = styled.textarea`
   border: 1px solid #e1e4e8;
   border-radius: 6px 6px 0 0;
   border-bottom: 1px dashed #e1e4e8;
+  background-color: rgb(250, 251, 252);
 `;
 
 export const InputPicture = styled.div`
   margin: 0 8px;
-  padding: 5px;
+  padding: 8px;
   color: #586069;
   border: 1px solid #e1e4e8;
   border-top: none;
   border-radius: 0 0 6px 6px;
   cursor: pointer;
+  background-color: rgb(250, 251, 252);
 `;
 
 export const ButtonWrapper = styled.div`
