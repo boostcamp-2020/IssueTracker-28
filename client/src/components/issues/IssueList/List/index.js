@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import Issue from './Issue';
 import { useIssuesState, useIssuesDispatch, getIssues } from '@contexts/IssuesContext';
 import {IssueOpenedIcon} from '@primer/octicons-react'
-import {NoResultsBox} from './style.js';
+import Issue from './Issue'
+import S from './style.js';
 
 function List({isAllChecked, checkedItemHandler, filteredIssues}) {
   const state = useIssuesState();
@@ -28,7 +28,7 @@ function List({isAllChecked, checkedItemHandler, filteredIssues}) {
         filteredIssues.map((issue) => (
           <Issue key={issue.id} issue={issue} isAllChecked={isAllChecked} checkedItemHandler={checkedItemHandler}/>))
            :
-           <NoResultsBox><IssueOpenedIcon size={35} className="issue-opened-icon"/>No results matched your search.</NoResultsBox>
+           <S.NoResultsBox><IssueOpenedIcon size={35} className="issue-opened-icon"/>No results matched your search.</S.NoResultsBox>
       }
     </div>
   );

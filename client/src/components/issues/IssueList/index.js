@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import ListHeader from './ListHeader';
 import List from './List';
-import { ListWrapper } from './style';
 import { useIssuesState} from '@contexts/IssuesContext';
 import {filterIssue} from '@utils/filterIssue'
 import { test_items } from '../issueList/List/testItems'
+import S from './style';
 
 function IssueList() {
   const [checkedItems, setCheckedItems] = useState(new Set());
@@ -36,10 +36,10 @@ function IssueList() {
   };
 
   return (
-    <ListWrapper>
+    <S.ListWrapper>
       <ListHeader isAllChecked={isAllChecked} setIsAllChecked={setIsAllChecked} checkedItems={checkedItems} allCheckedHandler={allCheckedHandler} />
       <List filteredIssues={filteredIssues} isAllChecked={isAllChecked} checkedItemHandler={checkedItemHandler}/>
-    </ListWrapper>
+    </S.ListWrapper>
   );
 }
 

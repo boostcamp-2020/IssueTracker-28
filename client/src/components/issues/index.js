@@ -1,14 +1,14 @@
 import React from 'react';
 import IssueHeader from './IssueHeader';
 import IssueList from './IssueList';
-import { IssuesWrapper } from './style';
+import S from './style';
 
 function Issues() {
   return (
-    <IssuesWrapper>
+    <S.IssuesWrapper>
       <IssueHeader />
       <IssueList />
-    </IssuesWrapper>
+    </S.IssuesWrapper>
   );
 }
 

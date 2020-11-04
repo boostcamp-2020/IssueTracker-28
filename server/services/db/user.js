@@ -10,6 +10,16 @@ exports.selectUser = async (userId) => {
 
   return results;
 };
+
+exports.selectUsers = async () => {
+  const results = await User.findAll({
+    attributes: ['id', 'userId'],
+    raw: true,
+  });
+
+  return results;
+};
+
 exports.insertUser = async (params) => {
   const results = await User.create({
     raw: true,

@@ -3,14 +3,12 @@ const db = require('./db/issue');
 const getLabels = async (data) => {
   const labels = await data.getLabels();
   const result = [];
-
   labels.forEach((label) => {
     const temp = {};
     temp.name = label.name;
     temp.color = label.color;
     result.push(temp);
   });
-
   return result;
 };
 
@@ -27,7 +25,6 @@ const getAssignees = async (data) => {
 
 exports.getIssues = async () => {
   const results = await db.selectIssue();
-
   const data = [];
 
   for (const result of results) {
@@ -48,4 +45,9 @@ exports.getIssues = async () => {
   }
 
   return data;
+};
+
+exports.createIssue = async (params) => {
+  const results = await db.insertIssue(params);
+  return results;
 };

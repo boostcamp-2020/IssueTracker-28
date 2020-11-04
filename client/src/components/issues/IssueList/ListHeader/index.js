@@ -1,6 +1,6 @@
 import React, {Fragment, useState, useEffect} from 'react';
 import { Dropdown } from 'semantic-ui-react';
-import { ListWrapper, ListFilters, FilterDropdown } from './style';
+import S from './style';
 import { useIssuesState, useIssuesDispatch } from '@contexts/IssuesContext';
 
 
@@ -71,13 +71,13 @@ function ListHeader({allCheckedHandler, checkedItems, isAllChecked, setIsAllChec
   },[filters]);
 
   return (
-    <ListWrapper>
+    <S.ListWrapper>
       <input type='checkbox' checked={isAllChecked} onChange={(e) => checkHandler(e)} className='all-checkbox'  />
   {checkedItems.size === 0 ? null : <span className="checked-item-count">{checkedItems.size} selected</span>}
-      <ListFilters>
+      <S.ListFilters>
       {checkedItems.size === 0 ?  
       <>
-      <FilterDropdown>
+      <S.FilterDropdown>
       <Dropdown className='author-dropdown dropdown' text='Author'>
         <Dropdown.Menu className="dropdown-menu" direction='left'>
           <Dropdown.Header className="dropdown-header" content='Filter by author' />
@@ -89,8 +89,8 @@ function ListHeader({allCheckedHandler, checkedItems, isAllChecked, setIsAllChec
             ))}
         </Dropdown.Menu>
       </Dropdown>
-    </FilterDropdown>
-    <FilterDropdown>
+    </S.FilterDropdown>
+    <S.FilterDropdown>
       <Dropdown className='label-dropdown dropdown' text='Label'>
         <Dropdown.Menu className="dropdown-menu" direction='left'>
           <Dropdown.Header className="dropdown-header" content='Filter by label' />
@@ -104,8 +104,8 @@ function ListHeader({allCheckedHandler, checkedItems, isAllChecked, setIsAllChec
             ))}
         </Dropdown.Menu>
       </Dropdown>
-    </FilterDropdown>
-    <FilterDropdown>
+    </S.FilterDropdown>
+    <S.FilterDropdown>
       <Dropdown className='milestons-dropdown dropdown' text='Milestons'>
         <Dropdown.Menu className="dropdown-menu" direction='left'>
           <Dropdown.Header className="dropdown-header" content='Filter by milestons' />
@@ -119,8 +119,8 @@ function ListHeader({allCheckedHandler, checkedItems, isAllChecked, setIsAllChec
             ))}
         </Dropdown.Menu>
       </Dropdown>
-    </FilterDropdown>
-    <FilterDropdown>
+    </S.FilterDropdown>
+    <S.FilterDropdown>
       <Dropdown className='assignee-dropdown dropdown' text='Assignee'>
         <Dropdown.Menu className="dropdown-menu" direction='left'>
           <Dropdown.Header className="dropdown-header" content='Filter by assignee' />
@@ -134,23 +134,23 @@ function ListHeader({allCheckedHandler, checkedItems, isAllChecked, setIsAllChec
             ))}
         </Dropdown.Menu>
       </Dropdown>
-    </FilterDropdown>
+    </S.FilterDropdown>
     </>
       : 
-      <FilterDropdown>
-      <Dropdown className='mark-as-dropdown dropdown' text='Mark as'>
-      <Dropdown.Menu className="dropdown-menu" direction='left'>
-        <Dropdown.Header className="dropdown-header" content='Actions' />
-        <hr className="dropdown-divider"/>
-        <Dropdown.Item className="dropdown-item" text='Open'/>
-        <hr className="dropdown-divider"/>
-        <Dropdown.Item className="dropdown-item" text='Closed'/>
-      </Dropdown.Menu>
-    </Dropdown>
-    </FilterDropdown>
+        <S.FilterDropdown>
+        <Dropdown className='mark-as-dropdown dropdown' text='Mark as'>
+        <Dropdown.Menu className="dropdown-menu" direction='left'>
+          <Dropdown.Header className="dropdown-header" content='Actions' />
+          <hr className="dropdown-divider"/>
+          <Dropdown.Item className="dropdown-item" text='Open'/>
+          <hr className="dropdown-divider"/>
+          <Dropdown.Item className="dropdown-item" text='Closed'/>
+        </Dropdown.Menu>
+      </Dropdown>
+      </S.FilterDropdown>
       }
-      </ListFilters>
-    </ListWrapper>
+      </S.ListFilters>
+    </S.ListWrapper>
   );
 }
 

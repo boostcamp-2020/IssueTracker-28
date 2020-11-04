@@ -20,7 +20,7 @@ function SearchBar() {
   };
 
   const enterHandler = (e) => {
-    if (e.key == 'Enter' && searchValue=="") {
+    if (e.key === 'Enter' && searchValue=="") {
       dispatch({type : 'UPDATE_FILTER', filters : {...initialFilters, status : '*'}})
     }
   };
@@ -36,4 +36,3 @@ function SearchBar() {
 }
 
 export default SearchBar;
-
