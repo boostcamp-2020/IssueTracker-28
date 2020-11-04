@@ -1,6 +1,9 @@
 const updateLabels = (dispatch, filters, item) => {
-  if (item === null)
+  if (item === null) {
+    if (filters.labels.size === 0)
+      return dispatch({ type: 'UPDATE_FILTER', filters: { ...filters, labels: '*' } });
     return dispatch({ type: 'UPDATE_FILTER', filters: { ...filters, labels: new Set() } });
+  }
   if ([...filters.labels].includes(item)) {
     filters.labels.delete(item);
     if (filters.labels.size === 0)
@@ -16,8 +19,11 @@ const updateLabels = (dispatch, filters, item) => {
 };
 
 const updateAssignees = (dispatch, filters, item) => {
-  if (item === null)
+  if (item === null) {
+    if (filters.assignees.size === 0)
+      return dispatch({ type: 'UPDATE_FILTER', filters: { ...filters, assignees: '*' } });
     return dispatch({ type: 'UPDATE_FILTER', filters: { ...filters, assignees: new Set() } });
+  }
   if ([...filters.assignees].includes(item)) {
     filters.assignees.delete(item);
     if (filters.assignees.size === 0)

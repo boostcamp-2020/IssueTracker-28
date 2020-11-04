@@ -37,8 +37,17 @@ function ListHeader({ checkedItems, isAllChecked }) {
     getMilestones(milestoneDispatch);
   };
 
-  const clickHandler = (e) => {
-    const check = e.target.parentNode.querySelector('.check-icon');
+  const clickHandler = (e, filter, isNothing = false) => {
+    const menu = e.target.closest('.dropdown-menu');
+    const item = e.target.closest('.dropdown-item');
+    const check = item.querySelector('.check-icon');
+
+    if (filter === 'author' || filter === 'milestone' || isNothing) {
+      const checkedList = menu.querySelectorAll('.show');
+      checkedList.forEach((element) => {
+        if (element !== check) element.classList.toggle('show');
+      });
+    }
     check.classList.toggle('show');
   };
 
@@ -72,12 +81,17 @@ function ListHeader({ checkedItems, isAllChecked }) {
                         <hr className="dropdown-divider" />
                         <Dropdown.Item
                           className="dropdown-item"
-                          onClick={() => {
+                          onClick={(e) => {
+                            clickHandler(e, 'author');
                             filterHandler(item.userId, 'author');
                           }}
-                          text={item.userId}
                           key={item.id}
-                        />
+                        >
+                          <S.ItemContainer>
+                            <CheckIcon size={16} className="check-icon" />
+                            <LabelName>{item.userId}</LabelName>
+                          </S.ItemContainer>
+                        </Dropdown.Item>
                       </>
                     ))}
                 </Dropdown.Menu>
@@ -90,11 +104,15 @@ function ListHeader({ checkedItems, isAllChecked }) {
                   <Dropdown.Item
                     className="dropdown-item"
                     onClick={(e) => {
-                      clickHandler(e);
+                      clickHandler(e, 'label', true);
                       filterHandler(null, 'label');
                     }}
-                    text={NO_FILTER_ITEM[0]}
-                  />
+                  >
+                    <S.ItemContainer>
+                      <CheckIcon size={16} className="check-icon" />
+                      <LabelName>{NO_FILTER_ITEM[0]}</LabelName>
+                    </S.ItemContainer>
+                  </Dropdown.Item>
                   {labels &&
                     labels.map((item) => (
                       <>
@@ -102,7 +120,7 @@ function ListHeader({ checkedItems, isAllChecked }) {
                         <Dropdown.Item
                           className="dropdown-item"
                           onClick={(e) => {
-                            clickHandler(e);
+                            clickHandler(e, 'label');
                             filterHandler(item.name, 'label');
                           }}
                           key={item.id}
@@ -125,23 +143,30 @@ function ListHeader({ checkedItems, isAllChecked }) {
                   <Dropdown.Header className="dropdown-header" content="Filter by milestons" />
                   <Dropdown.Item
                     className="dropdown-item"
-                    onClick={() => {
+                    onClick={(e) => {
+                      clickHandler(e, 'milestone', true);
                       filterHandler(null, 'milestone');
                     }}
-                    text={NO_FILTER_ITEM[1]}
-                  />
+                  >
+                    <S.ItemContainer>
+                      <CheckIcon size={16} className="check-icon" />
+                      <LabelName>{NO_FILTER_ITEM[1]}</LabelName>
+                    </S.ItemContainer>
+                  </Dropdown.Item>
                   {milestones &&
                     milestones.map((item) => (
                       <>
                         <hr className="dropdown-divider" />
                         <Dropdown.Item
                           className="dropdown-item"
-                          onClick={() => {
+                          onClick={(e) => {
+                            clickHandler(e, 'milestone');
                             filterHandler(item.title, 'milestone');
                           }}
                           key={item.id}
                         >
                           <TitleContainer>
+                            <CheckIcon size={16} className="check-icon" />
                             <div>{item.title}</div>
                             <div>{item.due_date}</div>
                           </TitleContainer>
@@ -158,23 +183,33 @@ function ListHeader({ checkedItems, isAllChecked }) {
                   <hr className="dropdown-divider" />
                   <Dropdown.Item
                     className="dropdown-item"
-                    onClick={() => {
+                    onClick={(e) => {
+                      clickHandler(e, 'assignees', true);
                       filterHandler(null, 'assignees');
                     }}
-                    text={NO_FILTER_ITEM[2]}
-                  />
+                  >
+                    <S.ItemContainer>
+                      <CheckIcon size={16} className="check-icon" />
+                      <LabelName>{NO_FILTER_ITEM[2]}</LabelName>
+                    </S.ItemContainer>
+                  </Dropdown.Item>
                   {users &&
                     users.map((item) => (
                       <>
                         <hr className="dropdown-divider" />
                         <Dropdown.Item
                           className="dropdown-item"
-                          onClick={() => {
+                          onClick={(e) => {
+                            clickHandler(e, 'assignees');
                             filterHandler(item.userId, 'assignees');
                           }}
-                          text={item.userId}
                           key={item.id}
-                        />
+                        >
+                          <S.ItemContainer>
+                            <CheckIcon size={16} className="check-icon" />
+                            <LabelName>{item.userId}</LabelName>
+                          </S.ItemContainer>
+                        </Dropdown.Item>
                       </>
                     ))}
                 </Dropdown.Menu>
