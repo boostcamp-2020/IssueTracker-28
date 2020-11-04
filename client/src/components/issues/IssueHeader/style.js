@@ -9,7 +9,8 @@ export default {
     height: 35px;
     align-items: center;
     padding-left: 10px;
-    font-size: 13px;
+    font-size: 14.5px;
+    color : #404040;
     outline: none;
     border: none;
     border-radius: 0px 4px 4px 0px;
@@ -35,6 +36,9 @@ export default {
   `,
   FiltersButton: styled.button`
     background: linear-gradient(to bottom, #fff, #e9e9e9);
+    &:hover {
+      background : gold;
+    }
     border-radius: 4px 0px 0px 4px;
     color: #606060;
     display: flex;
@@ -80,10 +84,13 @@ export default {
         font-size: 13.5px;
         background: white;
       }
-      .dropdown-menu {
-        font-weight: 800;
-        font-size: 16px;
-        background: #f7f8fa;
+      .dropdown-menu{
+        font-weight : 800;
+        font-size : 16px;
+        background : #F7F8FA;
+        .item:hover{
+          background : #F7F8FA;
+        }
       }
       .dropdown-divider {
         margin: 0;

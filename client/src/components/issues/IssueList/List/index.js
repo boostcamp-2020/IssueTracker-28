@@ -1,15 +1,13 @@
 import React, { useEffect } from 'react';
 import { useIssuesState, useIssuesDispatch, getIssues } from '@contexts/IssuesContext';
-import { filterIssue } from '@utils/filterIssue';
-import Issue from './Issue';
+import {IssueOpenedIcon} from '@primer/octicons-react'
+import Issue from './Issue'
+import S from './style.js';
 
-function List() {
+function List({isAllChecked, checkedItemHandler, filteredIssues}) {
   const state = useIssuesState();
   const dispatch = useIssuesDispatch();
-
-  const { data: issues, loading, error } = state.issues;
-  const filter = state.filters;
-  console.log('현재 적용중인 필터 : ', filter);
+  const { data: issues, loading, error} = state.issues;
 
   const fetchData = () => {
     getIssues(dispatch);
@@ -17,7 +15,7 @@ function List() {
 
   useEffect(() => {
     fetchData();
-  }, [dispatch]);
+  }, []);
 
   if (loading) return <div> 로딩중.. </div>;
   if (error) return <div> 에러가 발생했습니다 </div>;
@@ -25,13 +23,13 @@ function List() {
 
   return (
     <div className="list-wrapper">
-      {issues
-        .filter((issue) => {
-          return filterIssue(issue, filter);
-        })
-        .map((issue) => (
-          <Issue key={issue.id} issue={issue} />
-        ))}
+      {filteredIssues.length > 0 
+          ? 
+        filteredIssues.map((issue) => (
+          <Issue key={issue.id} issue={issue} isAllChecked={isAllChecked} checkedItemHandler={checkedItemHandler}/>))
+           :
+           <S.NoResultsBox><IssueOpenedIcon size={35} className="issue-opened-icon"/>No results matched your search.</S.NoResultsBox>
+      }
     </div>
   );
 }

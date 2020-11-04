@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { XCircleFillIcon } from '@primer/octicons-react';
 import { LabelsButton, MilestonesButton, NewIssueButton } from './Buttons';
-import { useIssuesState, useIssuesDispatch, initialFilters } from '../../../contexts/IssuesContext';
+import { useIssuesState, useIssuesDispatch, initialFilters } from '@contexts/IssuesContext';
+
+
 import SearchBar from './SearchBar';
 import Filters from './Filters';
 import S from './style';
 
 function IssueHeader() {
-  const [filterValue, setFilterValue] = useState('');
   const state = useIssuesState();
   const dispatch = useIssuesDispatch();
   const { filters } = state;
@@ -20,8 +21,8 @@ function IssueHeader() {
     <>
       <S.IssueHeader>
         <S.FilterSearch>
-          <Filters filterValue={filterValue} setFilterValue={setFilterValue} />
-          <SearchBar filterValue={filterValue} />
+          <Filters />
+          <SearchBar />
         </S.FilterSearch>
         <S.LabelMilestone>
           <LabelsButton />
@@ -29,12 +30,9 @@ function IssueHeader() {
         </S.LabelMilestone>
         <NewIssueButton />
       </S.IssueHeader>
-      {initialFilters !== filters ? (
-        <S.ResetButton onClick={resetHandler}>
-          <XCircleFillIcon className="x-icon" size={16} /> Clear current search query, filters, and
-          sorts
-        </S.ResetButton>
-      ) : null}
+      {JSON.stringify(initialFilters)!==JSON.stringify(filters) ? 
+        <S.ResetButton onClick={resetHandler}><XCircleFillIcon className="x-icon" size={16}/>  Clear current search query, filters, and sorts</S.ResetButton>
+         : null}
     </>
   );
 }

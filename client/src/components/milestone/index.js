@@ -21,7 +21,8 @@ function Milestone() {
   const state = useMilestonesState();
   const dispatch = useMilestonesDispatch();
 
-  const { data: milestones, loading, error } = state.milestones;
+  const { data , loading, error } = state.milestones;
+  const milestones = data?.milestones;
 
   const fetchData = () => {
     getMilestones(dispatch);
@@ -34,6 +35,7 @@ function Milestone() {
   if (loading) return <div> 로딩중.. </div>;
   if (error) return <div> 에러가 발생했습니다 </div>;
   if (!milestones) return <button onClick={fetchData}> 불러오기 </button>;
+
 
   return (
     <LabelContainer>

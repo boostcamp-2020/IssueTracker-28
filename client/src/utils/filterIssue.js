@@ -1,30 +1,23 @@
 export function filterIssue(issue, filters) {
-  if (
-    (filters.author === '*' || issue.author === filters.author) &&
-    (filters.milestone === '*' || issue.milestone === filters.milestone) &&
-    (filters.status === '*' || issue.status === filters.status) &&
-    (filters.assignees === '*' || checkFilterItem(filters.assignees, issue.assignees)) &&
-    (filters.labels === '*' || checkFilterItem(filters.labels, issue.labels))
-  ) {
-    return true;
-  }
-  return false;
+    const { author, milestone, status, assignees, labels } = filters;
+    if ((author === '*' || issue.author === author) &&
+        (milestone === '*' || issue.milestone === milestone) &&
+        (status === '*' || issue.status === status) &&
+        (assignees === '*' || JSON.stringify(assignees) === JSON.stringify(issue.assignees) || issue.assignees.includes(assignees[0])) &&
+        (labels === '*' || checkLabelsItem(labels, issue.labels))) {
+        return true;
+    }
+    return false;
 }
 
-const checkFilterItem = (filterArr, IssueArr) => {
-  if (filterArr === IssueArr) return true;
-  for (let i = 0; i < filterArr.length; i++) {
-    if (!IssueArr.includes(filterArr[i])) {
-      return false;
+const checkLabelsItem = (filterLabels, issueLabels) => {
+    if (JSON.stringify(filterLabels) === JSON.stringify(issueLabels)) return true;
+    if (JSON.stringify(filterLabels) === '[]') return false;
+    const issueLabelNames = issueLabels.map((i) => i.name)
+    for (let i = 0; i < filterLabels.length; i++) {
+        if (!issueLabelNames.includes(filterLabels[i])) {
+            return false;
+        }
     }
-  }
-  return true;
-};
-
-// const initialFilters = {
-//     status: 'opened',
-//     author: '*', // ""
-//     labels: ['*'], // []
-//     milestone: '*', // ""
-//     assignees: ['*'] // []
-// }
+    return true;
+}

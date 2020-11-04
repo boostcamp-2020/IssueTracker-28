@@ -1,11 +1,12 @@
 import React, { useReducer, createContext, useContext } from 'react';
 import * as api from '@api/issue';
+import {getFilterMessage} from '@utils/getFilterMessage'
 
 export const initialFilters = {
   status : 'opened',
-  author : '*', // ""
+  author : '*', // null
   labels : '*', // []
-  milestone : '*', // ""
+  milestone : '*', // null
   assignees : '*' // []
 }
 
@@ -16,7 +17,8 @@ const initialState = {
     data: null,
     error: null,
   },
-  filters:initialFilters
+  filters:initialFilters,
+  filterMessage : getFilterMessage(initialFilters)
 };
 
 // 로딩중일 때 바뀔 상태 객체
@@ -45,7 +47,8 @@ function issuesReducer(state, action) {
     case 'UPDATE_FILTER':
       return {
         ...state,
-        filters : action.filters
+        filters : action.filters,
+        filterMessage : getFilterMessage(action.filters)
       }
     case 'GET_ISSUES':
       return {
