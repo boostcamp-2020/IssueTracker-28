@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useIssuesState, useIssuesDispatch, getIssues } from '@contexts/IssuesContext';
 import {IssueOpenedIcon} from '@primer/octicons-react'
 import {filterIssue} from '@utils/filterIssue'
-import Spinner from '@images/spinner3.gif'
+import Spinner from '@images/spinner4.gif'
 import Issue from './Issue'
 import S from './style.js';
 
