@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useUsersState, useUsersDispatch, getUsers } from '@contexts/UsersContext';
 import { GearIcon } from '@primer/octicons-react';
 import { Dropdown } from 'semantic-ui-react';
-import { LabelContainer, LabelHeader, TitleContainer } from '../label/style';
-import { FilterDropdown } from '../issues/IssueList/ListHeader/style';
+import { LabelContainer, LabelHeader, TitleContainer } from '../labels/style';
+import S from '../issues/IssueList/ListHeader/style';
 
 const trigger = (
   <LabelHeader>
@@ -12,7 +12,7 @@ const trigger = (
   </LabelHeader>
 );
 
-function Assignee() {
+function Assignees() {
   // const state = useUsersState();
   // const dispatch = useUsersDispatch();
 
@@ -32,15 +32,13 @@ function Assignee() {
 
   return (
     <LabelContainer>
-      <FilterDropdown className="label-dropdown">
-        <Dropdown
-          className="dropdown"
-          multiple={true}
-          trigger={trigger}
-          icon={null}
-        >
+      <S.FilterDropdown className="label-dropdown">
+        <Dropdown className="dropdown" multiple trigger={trigger} icon={null}>
           <Dropdown.Menu className="dropdown-menu" direction="left">
-            <Dropdown.Header className="dropdown-header" content="Assign up to 10 people to thie issue" />
+            <Dropdown.Header
+              className="dropdown-header"
+              content="Assign up to 10 people to thie issue"
+            />
             {/* {users && users.map((item, index) => (
                 <>
                   <hr className="dropdown-divider" />
@@ -54,10 +52,10 @@ function Assignee() {
               ))} */}
           </Dropdown.Menu>
         </Dropdown>
-      </FilterDropdown>
+      </S.FilterDropdown>
       <div className="text">No one-assign yourself</div>
     </LabelContainer>
   );
 }
 
-export default Assignee;
+export default Assignees;

@@ -4,6 +4,7 @@ import {
   useMilestonesDispatch,
   getMilestones,
 } from '../../contexts/MilestonesContext';
+
 function Milestone() {
   const state = useMilestonesState();
   const dispatch = useMilestonesDispatch();

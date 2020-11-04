@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useContext } from 'react';
-import * as api from '../api/user';
+import * as api from '@api/user';
 
 const initialState = {
   users: {

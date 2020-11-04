@@ -5,7 +5,7 @@ export default {
     display: flex;
     box-sizing: border-box;
     background: #f9f9f9;
-    width: 500px;
+    width: 100%;
     height: 35px;
     align-items: center;
     padding-left: 10px;
@@ -20,10 +20,18 @@ export default {
     display: flex;
     justify-content: space-between;
   `,
-  HeaderItemWrapper: styled.div`
+  FilterSearch: styled.div`
+    display: flex;
+    flex: 1;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    margin-right: 15px;
+  `,
+  LabelMilestone: styled.div`
     display: flex;
     border: 1px solid #e0e0e0;
     border-radius: 4px;
+    margin-right: 15px;
   `,
   FiltersButton: styled.button`
     background: linear-gradient(to bottom, #fff, #e9e9e9);
@@ -42,17 +50,17 @@ export default {
     cursor: pointer;
     outline: none;
   `,
-  ResetButton : styled.div`
-  cursor : pointer;
-  color : gray;
-  font-weight : 600;
-  margin-top : 12.5px;
-  :hover{
-    color : #0266D6;
-  }
-  .x-icon{
-    margin-right : 4px;
-  }
+  ResetButton: styled.div`
+    cursor: pointer;
+    color: gray;
+    font-weight: 600;
+    margin-top: 12.5px;
+    :hover {
+      color: #0266d6;
+    }
+    .x-icon {
+      margin-right: 4px;
+    }
   `,
   FiltersWrapper: styled.div`
     position: relative;
@@ -67,26 +75,26 @@ export default {
       justify-content: center;
       align-items: center;
       margin-bottom: 5px;
-      .dropdown-item{
-        font-weight : 500;
-        font-size : 13.5px;
-        background : white;
+      .dropdown-item {
+        font-weight: 500;
+        font-size: 13.5px;
+        background: white;
       }
-      .dropdown-menu{
-        font-weight : 800;
-        font-size : 16px;
-        background : #F7F8FA;
+      .dropdown-menu {
+        font-weight: 800;
+        font-size: 16px;
+        background: #f7f8fa;
       }
-      .dropdown-divider{
+      .dropdown-divider {
         margin: 0;
         border: none;
-        border-top : 1px solid #E7E8EA;
+        border-top: 1px solid #e7e8ea;
       }
-      .dropdown-header{
-        height : 10px;
-        display : flex;
-        position : relative;
-        bottom : 5px;
+      .dropdown-header {
+        height: 10px;
+        display: flex;
+        position: relative;
+        bottom: 5px;
       }
     }
   `,

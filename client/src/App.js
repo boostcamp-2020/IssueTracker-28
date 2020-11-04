@@ -1,52 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { UserProvider } from '@contexts/UserContext';
-import Header from '@components/header';
+// import Header from '@components/header';
 import IssuePage from '@pages/IssuePage';
 import NewIssuePage from '@pages/NewIssuePage';
 import UserPage from '@pages/UserPage';
 import MilestonePage from '@pages/MilestonePage';
-import Cookie from '@util/cookie';
 import { LabelProvider } from '@contexts/LabelContext';
-import { MilestonesProvider } from '@contexts/milestonesContext';
+import { MilestonesProvider } from '@contexts/MilestonesContext';
 import TestPage from '@pages/TestPage';
 
 const App = () => {
-  // const [userState, setUserState] = useState({
-  //   user: '',
-  //   token: '',
-  //   authenticated: false,
-  // });
-
-  // const isAuthenticated = () => {
-  //   const user = localStorage.getItem('user_id') || undefined;
-  //   const token = localStorage.getItem('auth_token') || undefined;
-  //   let userObj = {
-  //     user,
-  //     token,
-  //     authenticated: true,
-  //   };
-  //   if (typeof user === 'undefined') {
-  //     const { cookie } = document;
-  //     userObj = Cookie.hasCookie(userObj, cookie);
-  //   }
-
-  //   // Todo : userState 관리
-  //   // setUserState(userObj)
-  // };
-
-  // isAuthenticated();
   return (
     <LabelProvider>
       <MilestonesProvider>
         <UserProvider>
-          <Header />
+          {/* <Header /> */}
           <Switch>
             <Route
               exact
               path="/"
               render={() => {
-                if (localStorage.getItem('auth_token') || Cookie.hasCookie({}, document.cookie)) return <IssuePage />;
+                if (localStorage.getItem('auth_token')) return <IssuePage />;
                 return <UserPage />;
               }}
             />

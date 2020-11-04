@@ -15,3 +15,11 @@ exports.insertUser = async (userId) => {
   const user = await db.insertUser({ userId, password: '' });
   return user;
 };
+
+/*
+ * 전체 유저 조회
+ */
+exports.getUsers = async () => {
+  const users = await db.selectUsers();
+  return users;
+};

@@ -47,17 +47,17 @@ const items = [
 function SearchBar(props) {
   const InitialMessage = 'ᑫ Search all issues';
   const [searchValue, setSearchValue] = useState('is:open is:issue');
-  
+
   const state = useIssuesState();
   const dispatch = useIssuesDispatch();
-  const filters = state.filters;
-  
+  const { filters } = state;
+
   useEffect(() => {
     let filterMessage = '';
     switch (props.filterValue) {
       case 'Open issues':
         filterMessage = 'is:open';
-        dispatch({type : 'UPDATE_FILTER', filters : {...filters, status : 'opened'}})
+        dispatch({ type: 'UPDATE_FILTER', filters: { ...filters, status: 'opened' } });
         break;
       case 'Your issues':
         filterMessage = 'is:open is:issue author:@me';
@@ -70,9 +70,9 @@ function SearchBar(props) {
         break;
       case 'Closed issues':
         filterMessage = 'is:closed';
-        dispatch({type : 'UPDATE_FILTER', filters : {...filters, status : 'closed'}})
+        dispatch({ type: 'UPDATE_FILTER', filters: { ...filters, status: 'closed' } });
         break;
-      default :
+      default:
         filterMessage = 'is:open is:issue';
     }
 
@@ -83,7 +83,7 @@ function SearchBar(props) {
   };
   const enterHandler = (e) => {
     if (e.key == 'Enter') {
-      console.log('### value : ', searchValue)
+      console.log('### value : ', searchValue);
       const result = items.filter((item) => {
         return item.title.includes(searchValue) || item.status.includes(searchValue);
       });
@@ -102,4 +102,3 @@ function SearchBar(props) {
 }
 
 export default SearchBar;
-

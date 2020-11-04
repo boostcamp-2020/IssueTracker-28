@@ -7,12 +7,24 @@ const getToken = (token) => {
 
 const deleteCookie = (name) => {
   const date = new Date();
-  document.cookie = `${name}= ` + `; expires=${date.toUTCString()}; path=/`;
+  document.cookie = `${name}=; expires=${date.toUTCString()}; path=/`;
 };
 
-const splitCookie = (userObj, cookie) => {
+const deleteAllCookie = (names) => {
+  names.forEach((name) => {
+    deleteCookie(name);
+  });
+};
+
+const hasCookie = (cookie) => {
+  if (cookie.includes('user') && cookie.includes('token')) return true;
+  return false;
+};
+
+// 일단 사용X
+const getUser = (userObj, cookie) => {
   let user = userObj;
-  if (cookie.includes('user') && cookie.includes('token')) {
+  if (hasCookie(cookie)) {
     const token = getToken('token');
     const userId = getToken('user');
     localStorage.setItem('auth_token', token);
@@ -31,4 +43,18 @@ const splitCookie = (userObj, cookie) => {
   }
   return user;
 };
-export default { getToken, deleteCookie, splitCookie };
+
+const saveUserInfo = () => {
+  if (hasCookie(document.cookie)) {
+    const token = getToken('auth_token');
+    const userId = getToken('user_id');
+    const id = getToken('id');
+    localStorage.setItem('auth_token', token);
+    localStorage.setItem('user_id', userId);
+    localStorage.setItem('id', id);
+    deleteAllCookie(['id', 'auth_token', 'user_id']);
+    window.location.href = '/';
+  }
+};
+
+export default { getToken, deleteCookie, getUser, hasCookie, saveUserInfo };
