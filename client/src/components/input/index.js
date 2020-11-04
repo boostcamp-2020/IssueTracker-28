@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import S from '@components/issues/IssueHeader/Buttons/style';
 import axios from 'axios';
@@ -20,13 +20,17 @@ import {
 } from './style';
 
 function Input() {
+  let timer;
+  let timer2;
   const history = useHistory();
   const [title, setTitle] = useState('');
   const [comment, setComment] = useState('');
+  const [isDelay, setIsDelay] = useState(false);
   const titleHandler = ({ target }) => {
     setTitle(target.value);
   };
   const commentHandler = ({ target }) => {
+    setIsDelay(false);
     setComment(target.value);
   };
   const imageHandler = ({ target }) => {
@@ -38,13 +42,23 @@ function Input() {
           headers: { 'Content-Type': 'multipart/form-data;charset=utf-8;' },
         })
         .then((res) => {
-          setComment(comment + res.data);
+          const imgPath = '\n' + '[img : ' + res.data + ']';
+          setComment(comment + imgPath);
         })
         .catch((error) => {
           console.log(error.response);
         });
     }
   };
+  const keyUpEvent = async () => {
+    clearTimeout(timer);
+    if (comment) {
+      timer = setTimeout(() => {
+        setIsDelay(true);
+      }, 2000);
+    }
+  };
+
   return (
     <InputWrapper>
       <InputTitle placeholder="Title" value={title} onChange={titleHandler} />
@@ -52,11 +66,16 @@ function Input() {
         <WriteTitle>Write</WriteTitle>
         <WritePreview>Preview</WritePreview>
         <Line />
-        <InputComment placeholder="Leave a comment" value={comment} onChange={commentHandler} />
+        <InputComment
+          placeholder="Leave a comment"
+          value={comment}
+          onChange={commentHandler}
+          onKeyUp={keyUpEvent}
+        />
         <AttachWrapper>
           <LabelPicture for="upload_image">Attach files by selecting here</LabelPicture>
           <InputPicture type="file" id="upload_image" accept="image/png" onChange={imageHandler} />
-          <CountComments>{comment.length} 자</CountComments>
+          <CountComments>{isDelay && comment.length + ' 자'} </CountComments>
         </AttachWrapper>
       </WriteWrapper>
       <ButtonWrapper>
