@@ -10,6 +10,12 @@ const deleteCookie = (name) => {
   document.cookie = `${name}= ` + `; expires=${date.toUTCString()}; path=/`;
 };
 
+const deleteAllCookie = (names) => {
+  names.forEach((name) => {
+    deleteCookie(name);
+  });
+};
+
 const hasCookie = (cookie) => {
   if (cookie.includes('user') && cookie.includes('token')) return true;
   return false;
@@ -46,9 +52,7 @@ const saveUserInfo = () => {
     localStorage.setItem('auth_token', token);
     localStorage.setItem('user_id', userId);
     localStorage.setItem('id', id);
-    deleteCookie('auth_token');
-    deleteCookie('user_id');
-    deleteCookie('id');
+    deleteAllCookie(['id', 'auth_token', 'user_id']);
     window.location.href = '/';
   }
 };
