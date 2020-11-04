@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { UserProvider } from '@contexts/UserContext';
+import { UsersProvider } from '@contexts/UsersContext';
 import Header from '@components/header';
 import IssuePage from '@pages/IssuePage';
 import NewIssuePage from '@pages/NewIssuePage';
@@ -14,7 +14,7 @@ const App = () => {
   return (
     <LabelProvider>
       <MilestonesProvider>
-        <UserProvider>
+        <UsersProvider>
           <Header />
           <Switch>
             <Route
@@ -37,7 +37,7 @@ const App = () => {
               )}
             />
           </Switch>
-        </UserProvider>
+        </UsersProvider>
       </MilestonesProvider>
     </LabelProvider>
   );
