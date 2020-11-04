@@ -9,6 +9,7 @@ import MilestonePage from '@pages/MilestonePage';
 import Cookie from '@util/cookie';
 import { LabelProvider } from '@contexts/LabelContext';
 import { MilestonesProvider } from '@contexts/milestonesContext';
+import TestPage from '@pages/TestPage';
 
 const App = () => {
   // const [userState, setUserState] = useState({
@@ -51,6 +52,7 @@ const App = () => {
             />
             <Route path="/new" component={NewIssuePage} />
             <Route path="/milestone" component={MilestonePage} />
+            <Route path="/test" component={TestPage} />
             {/* <Route exact path="/" component={IssuePage} /> */}
             {/* <Route path="/login" component={UserPage} /> */}
             <Route

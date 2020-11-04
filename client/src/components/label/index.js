@@ -17,7 +17,6 @@ function Label() {
   const dispatch = useLabelDispatch();
 
   const { data: labels, loading, error } = state.labels;
-
   const fetchData = () => {
     getLabels(dispatch);
   };
