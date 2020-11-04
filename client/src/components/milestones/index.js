@@ -3,7 +3,7 @@ import {
   useMilestonesState,
   useMilestonesDispatch,
   getMilestones,
-} from '../../contexts/MilestonesContext';
+} from '@contexts/MilestonesContext';
 
 function Milestone() {
   const state = useMilestonesState();
