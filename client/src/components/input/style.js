@@ -61,8 +61,19 @@ export const AttachWrapper = styled.div`
   padding: 8px;
   color: #586069;
 `;
-export const InputPicture = styled.div`
+export const LabelPicture = styled.label`
   width: 70%;
+  cursor: pointer;
+`;
+export const InputPicture = styled.input`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 `;
 export const CountComments = styled.div`
   width: 30%;

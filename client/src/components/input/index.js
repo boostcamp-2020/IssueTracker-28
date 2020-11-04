@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import S from '@components/issues/IssueHeader/Buttons/style';
+import axios from 'axios';
 import {
   InputWrapper,
   InputTitle,
@@ -15,6 +16,7 @@ import {
   AttachWrapper,
   WritePreview,
   CountComments,
+  LabelPicture,
 } from './style';
 
 function Input() {
@@ -27,6 +29,22 @@ function Input() {
   const commentHandler = ({ target }) => {
     setComment(target.value);
   };
+  const imageHandler = ({ target }) => {
+    if (target.files !== null) {
+      const fd = new FormData();
+      fd.append('filename', target.files[0]);
+      axios
+        .post(`/api/upload/test`, fd, {
+          headers: { 'Content-Type': 'multipart/form-data;charset=utf-8;' },
+        })
+        .then((res) => {
+          setComment(comment + res.data);
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+    }
+  };
   return (
     <InputWrapper>
       <InputTitle placeholder="Title" value={title} onChange={titleHandler} />
@@ -36,7 +54,8 @@ function Input() {
         <Line />
         <InputComment placeholder="Leave a comment" value={comment} onChange={commentHandler} />
         <AttachWrapper>
-          <InputPicture>Attach files by selecting here</InputPicture>
+          <LabelPicture for="upload_image">Attach files by selecting here</LabelPicture>
+          <InputPicture type="file" id="upload_image" accept="image/png" onChange={imageHandler} />
           <CountComments>{comment.length} 자</CountComments>
         </AttachWrapper>
       </WriteWrapper>
