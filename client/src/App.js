@@ -25,11 +25,9 @@ const App = () => {
                 return <UserPage />;
               }}
             />
-            <Route path="/new" component={NewIssuePage} />
+            <Route path="/newIssue" component={NewIssuePage} />
             <Route path="/milestone" component={MilestonePage} />
             <Route path="/test" component={TestPage} />
-            {/* <Route exact path="/" component={IssuePage} /> */}
-            {/* <Route path="/login" component={UserPage} /> */}
             <Route
               render={({ location }) => (
                 <div>
