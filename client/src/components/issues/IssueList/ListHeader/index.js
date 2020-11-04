@@ -3,7 +3,7 @@ import { Dropdown } from 'semantic-ui-react';
 import S from './style';
 import { useIssuesState, useIssuesDispatch } from '@contexts/IssuesContext';
 import { useCheckedItemState, useCheckedItemDispatch } from '@contexts/CheckedItemContext';
-
+import { SELECT_ALL, DESELECT_ALL, UPDATE_FILTER } from '@constants/actionTypes';
 
 const AUTHOR_MENU = [
   'yeji9175',
@@ -39,7 +39,7 @@ const NO_FILTER_ITEM = [
 ]
 
 function ListHeader() {
-  const [beCheckState, SetBeCheckState] = useState(false)
+  const [beCheckState, SetBeCheckState] = useState(false);
   const state = useIssuesState();
   const dispatch = useIssuesDispatch();
   const {filters} = state;
@@ -49,39 +49,36 @@ function ListHeader() {
   const {checkedItems, isAllChecked} = checkState;
 
   const checkHandler=(e)=>{
-    SetBeCheckState(!beCheckState)
-    if (e.target.checked)checkDispatch({type:'SELECT_ALL'})
-    else checkDispatch({type:'DESELECT_ALL'})
+    const isChecked = e.target.checked;
+    SetBeCheckState(!beCheckState);
+    isChecked ? checkDispatch({type:SELECT_ALL}) : checkDispatch({type:DESELECT_ALL});
   }
 
+  //필터, issue데이터 등 issue상태가 변하면 전체 선택해제
   useEffect(()=>{
-    checkDispatch({type:'DESELECT_ALL'})
+    checkDispatch({type:DESELECT_ALL})
   },[state])
 
+  //전체 선택 상태에 변화가 생기면 체크상태 변경
   useEffect(()=>{
     if(beCheckState!==isAllChecked)
       SetBeCheckState(isAllChecked)
   },[isAllChecked])
 
-  useEffect(()=>{
-    if (checkedItems.size===0)
-      dispatch({type:'DESELECT_ALL'})
-  },[checkedItems])
-
 
   const filterHandler=(item, type)=>{
     switch(type){
       case 'author':
-        return dispatch({type:'UPDATE_FILTER', filters : {...filters, author : item}});
+        return dispatch({type:UPDATE_FILTER, filters : {...filters, author : item}});
       case 'label':
-        if (item===null) return dispatch({type:'UPDATE_FILTER', filters : {...filters,  labels : []}})
-        if (filters.labels === '*') return dispatch({type:'UPDATE_FILTER', filters : {...filters,  labels : [item]}})
-        return dispatch({type:'UPDATE_FILTER', filters : {...filters,  labels : [...filters.labels, item]}})
+        if (item===null) return dispatch({type:UPDATE_FILTER, filters : {...filters,  labels : []}})
+        if (filters.labels === '*') return dispatch({type:UPDATE_FILTER, filters : {...filters,  labels : [item]}})
+        return dispatch({type:UPDATE_FILTER, filters : {...filters,  labels : [...filters.labels, item]}})
       case 'milestone':
-        return dispatch({type:'UPDATE_FILTER', filters : {...filters, milestone : item}})
+        return dispatch({type:UPDATE_FILTER, filters : {...filters, milestone : item}})
       case 'assignees':
-        if (item===null) return dispatch({type:'UPDATE_FILTER', filters : {...filters,assignees : []}})
-        return dispatch({type:'UPDATE_FILTER', filters : {...filters, assignees : [item]}})
+        if (item===null) return dispatch({type:UPDATE_FILTER, filters : {...filters,assignees : []}})
+        return dispatch({type:UPDATE_FILTER, filters : {...filters, assignees : [item]}})
     }
   }
 

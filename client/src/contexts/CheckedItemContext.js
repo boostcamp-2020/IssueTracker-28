@@ -12,7 +12,6 @@ function checkedItemReducer(state, action) {
       return {
         ...state,
         isAllChecked : true,
-        //checkedItems에 대한 처리 고민
       }
     case 'DESELECT_ALL':
       return {
@@ -60,13 +59,3 @@ export function useCheckedItemDispatch() {
   }
   return dispatch;
 }
-
-export function getIssues(dispatch) {
-    dispatch({ type: 'GET_ISSUES' });
-    try {
-      dispatch({ type: 'GET_ISSUES_SUCCESS', data: response.data });
-    } catch (e) {
-      dispatch({ type: 'GET_ISSUES_ERROR', error: e });
-    }
-  }
-  

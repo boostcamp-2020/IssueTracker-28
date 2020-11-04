@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { IssueOpenedIcon, MilestoneIcon, IssueClosedIcon} from '@primer/octicons-react';
 import { useCheckedItemState, useCheckedItemDispatch } from '@contexts/CheckedItemContext';
+import { CHECKED_UPDATE } from '@constants/actionTypes';
 import S from './style';
 
 function Issue({issue}) {
@@ -9,12 +10,21 @@ function Issue({issue}) {
   const dispatch = useCheckedItemDispatch();
   const {checkedItems, isAllChecked} = state;
 
-  
+  const checkHandler=(e)=>{
+    const isChecked = e.target.checked;
+    if (isChecked !== checkState){
+      setCheckState(!checkState);
+      isChecked ? checkedItems.add(issue.id) : checkedItems.delete(issue.id);  
+      dispatch({type:CHECKED_UPDATE, data : new Set([...checkedItems])});
+    }
+  }
+
+  // 전체 선택 상태 변경시, 해당상태 반영
   useEffect(()=>{
-    setCheckState(isAllChecked)
+    setCheckState(isAllChecked);
     if (isAllChecked){
-      checkedItems.add(issue.id)
-      dispatch({type:'CHECKED_UPDATE', data : new Set([...checkedItems])})
+      checkedItems.add(issue.id);
+      dispatch({type:CHECKED_UPDATE, data : new Set([...checkedItems])});
     }
   }, [isAllChecked])
 
@@ -23,13 +33,6 @@ function Issue({issue}) {
       setCheckState(false);
   }, [checkedItems])
 
-  const checkHandler=(e)=>{
-    if (e.target.checked !== checkState){
-      setCheckState(!checkState);
-      e.target.checked ? checkedItems.add(issue.id):checkedItems.delete(issue.id);  
-      dispatch({type:'CHECKED_UPDATE', data : new Set([...checkedItems])})
-    }
-  }
 
   return (
     <S.IssueWrapper>

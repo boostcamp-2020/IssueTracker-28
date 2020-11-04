@@ -1,9 +1,9 @@
 import React from 'react';
 import { Dropdown } from 'semantic-ui-react';
 import { useIssuesState, useIssuesDispatch } from '@contexts/IssuesContext';
+import { FILTERS_ITEMS } from '@constants/filtersItems';
+import { UPDATE_FILTER } from '@constants/actionTypes';
 import S from './style';
-import {FILTERS_ITEMS} from '@constants/filtersItems'
-
 
 function Filters() {
   const state = useIssuesState();
@@ -11,7 +11,7 @@ function Filters() {
   const {filters} = state;
 
   const selectHandler = (updatedFilter) => {
-    dispatch({type : 'UPDATE_FILTER', filters : {...filters, ...updatedFilter}})
+    dispatch({type : UPDATE_FILTER, filters : {...filters, ...updatedFilter}})
   };
 
   return (
