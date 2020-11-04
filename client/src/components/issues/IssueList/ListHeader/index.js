@@ -2,6 +2,7 @@ import React, {Fragment, useState, useEffect} from 'react';
 import { Dropdown } from 'semantic-ui-react';
 import S from './style';
 import { useIssuesState, useIssuesDispatch } from '@contexts/IssuesContext';
+import { useCheckedItemState, useCheckedItemDispatch } from '@contexts/CheckedItemContext';
 
 
 const AUTHOR_MENU = [
@@ -37,12 +38,36 @@ const NO_FILTER_ITEM = [
   'Assigend to nobody'
 ]
 
-
-function ListHeader({allCheckedHandler, checkedItems, isAllChecked, setIsAllChecked}) {
-  // const [beChecked, setChecked] = useState(false);
+function ListHeader() {
+  const [beCheckState, SetBeCheckState] = useState(false)
   const state = useIssuesState();
   const dispatch = useIssuesDispatch();
   const {filters} = state;
+
+  const checkState = useCheckedItemState();
+  const checkDispatch = useCheckedItemDispatch();
+  const {checkedItems, isAllChecked} = checkState;
+
+  const checkHandler=(e)=>{
+    SetBeCheckState(!beCheckState)
+    if (e.target.checked)checkDispatch({type:'SELECT_ALL'})
+    else checkDispatch({type:'DESELECT_ALL'})
+  }
+
+  useEffect(()=>{
+    checkDispatch({type:'DESELECT_ALL'})
+  },[state])
+
+  useEffect(()=>{
+    if(beCheckState!==isAllChecked)
+      SetBeCheckState(isAllChecked)
+  },[isAllChecked])
+
+  useEffect(()=>{
+    if (checkedItems.size===0)
+      dispatch({type:'DESELECT_ALL'})
+  },[checkedItems])
+
 
   const filterHandler=(item, type)=>{
     switch(type){
@@ -60,22 +85,12 @@ function ListHeader({allCheckedHandler, checkedItems, isAllChecked, setIsAllChec
     }
   }
 
-  const checkHandler = ({ target }) => {
-    setIsAllChecked(!isAllChecked);
-    allCheckedHandler(target.checked);
-  };
-
-  useEffect(()=>{
-    setIsAllChecked(false);
-    allCheckedHandler(false);
-  },[filters]);
-
   return (
     <S.ListWrapper>
-      <input type='checkbox' checked={isAllChecked} onChange={(e) => checkHandler(e)} className='all-checkbox'  />
-  {checkedItems.size === 0 ? null : <span className="checked-item-count">{checkedItems.size} selected</span>}
+      <input type='checkbox' checked={beCheckState} onChange={(e)=>checkHandler(e)} className='all-checkbox'  />
+      {checkedItems.size === 0 ? null : <span className="checked-item-count">{checkedItems.size} selected</span>}
       <S.ListFilters>
-      {checkedItems.size === 0 ?  
+      {checkedItems.size === 0 ? 
       <>
       <S.FilterDropdown>
       <Dropdown className='author-dropdown dropdown' text='Author'>

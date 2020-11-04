@@ -30,6 +30,7 @@ module.exports = {
             '@pages': path.resolve(__dirname, 'src/pages'),
             '@images': path.resolve(__dirname, 'public/images'),
             '@components': path.resolve(__dirname, 'src/components'),
+            '@constants': path.resolve(__dirname, 'src/constants'),
         },
         extensions: ['*', '.js', '.jsx'],
     },
