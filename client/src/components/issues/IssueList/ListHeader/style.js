@@ -34,6 +34,9 @@ export default {
         font-weight: 700;
         font-size: 15px;
         background: #f7f8fa;
+        .item:hover{
+          background : #f7f8fa;
+        }
       }
       .dropdown-header {
         height: 10px;
