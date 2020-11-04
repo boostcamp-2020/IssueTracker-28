@@ -1,35 +1,24 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
-import S from '@components/issues/IssueHeader/Buttons/style';
-import {
-  InputWrapper,
-  InputTitle,
-  WriteWrapper,
-  WriteTitle,
-  Line,
-  InputComment,
-  InputPicture,
-  ButtonWrapper,
-  CancelButton,
-  SubmitButton
-} from './style';
+import BS from '@components/issues/IssueHeader/Buttons/style';
+import S from './style';
 
 function Input() {
   const history = useHistory();
   return (
-    <InputWrapper>
-      <InputTitle placeholder='Title' />
-      <WriteWrapper>
-        <WriteTitle>Write</WriteTitle>
-        <Line />
-        <InputComment placeholder='Leave a comment' />
-        <InputPicture>Attach files by selecting here</InputPicture>
-      </WriteWrapper>
-      <ButtonWrapper>
-        <CancelButton onClick={() => history.push('/')}>Cancel</CancelButton>
-        <S.NewIssueButton>Submit new issue</S.NewIssueButton>
-      </ButtonWrapper>
-    </InputWrapper >
+    <S.InputWrapper>
+      <S.InputTitle placeholder='Title' />
+      <S.WriteWrapper>
+        <S.WriteTitle>Write</S.WriteTitle>
+        <S.Line />
+        <S.InputComment placeholder='Leave a comment' />
+        <S.InputPicture>Attach files by selecting here</S.InputPicture>
+      </S.WriteWrapper>
+      <S.ButtonWrapper>
+        <S.CancelButton onClick={() => history.push('/')}>Cancel</S.CancelButton>
+        <BS.NewIssueButton>Submit new issue</BS.NewIssueButton>
+      </S.ButtonWrapper>
+    </S.InputWrapper >
   );
 }
 

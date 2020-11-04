@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 import { useUsersState, useUsersDispatch, getUsers } from '@contexts/UsersContext';
 import { GearIcon } from '@primer/octicons-react';
 import { Dropdown } from 'semantic-ui-react';
-import { LabelContainer, LabelHeader, TitleContainer } from '../labels/style';
-import S from '../issues/IssueList/ListHeader/style';
+import LS from '@components/labels/style';
+import DS from '../issues/IssueList/ListHeader/style';
 
 const trigger = (
-  <LabelHeader>
+  <LS.LabelHeader>
     <div className="title">Assignees</div>
     <GearIcon className="gear-icon" size={16} />
-  </LabelHeader>
+  </LS.LabelHeader>
 );
 
 function Assignees() {
@@ -31,8 +31,8 @@ function Assignees() {
   // if (!users) return <button onClick={fetchData}>불러오기</button>;
 
   return (
-    <LabelContainer>
-      <S.FilterDropdown className="label-dropdown">
+    <LS.LabelContainer>
+      <DS.FilterDropdown className="label-dropdown">
         <Dropdown className="dropdown" multiple trigger={trigger} icon={null}>
           <Dropdown.Menu className="dropdown-menu" direction="left">
             <Dropdown.Header
@@ -43,18 +43,18 @@ function Assignees() {
                 <>
                   <hr className="dropdown-divider" />
                   <Dropdown.Item className="dropdown-item" key={index}>
-                    <TitleContainer>
+                    <S.TitleContainer>
                       <div>{item.title}</div>
                       <div>{item.due_date}</div>
-                    </TitleContainer>
+                    </S.TitleContainer>
                   </Dropdown.Item>
                 </>
               ))} */}
           </Dropdown.Menu>
         </Dropdown>
-      </S.FilterDropdown>
+      </DS.FilterDropdown>
       <div className="text">No one-assign yourself</div>
-    </LabelContainer>
+    </LS.LabelContainer>
   );
 }
 

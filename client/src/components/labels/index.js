@@ -2,21 +2,14 @@ import React, { useEffect } from 'react';
 import { useLabelState, useLabelDispatch, getLabels } from '@contexts/LabelContext';
 import { GearIcon } from '@primer/octicons-react';
 import { Dropdown } from 'semantic-ui-react';
-import {
-  BoxColor,
-  LabelContainer,
-  LabelHeader,
-  TitleContainer,
-  LabelName,
-  LabelDesc,
-} from './style';
-import S from '../issues/IssueList/ListHeader/style';
+import S from './style';
+import DS from '../issues/IssueList/ListHeader/style';
 
 const trigger = (
-  <LabelHeader>
+  <S.LabelHeader>
     <div className="title">Labels</div>
     <GearIcon className="gear-icon" size={16} />
-  </LabelHeader>
+  </S.LabelHeader>
 );
 
 function Labels() {
@@ -37,8 +30,8 @@ function Labels() {
   if (!labels) return <button onClick={fetchData}> 불러오기 </button>;
 
   return (
-    <LabelContainer>
-      <S.FilterDropdown className="label-dropdown">
+    <S.LabelContainer>
+      <DS.FilterDropdown className="label-dropdown">
         <Dropdown className="dropdown" multiple trigger={trigger} icon={null}>
           <Dropdown.Menu className="dropdown-menu" direction="left">
             <Dropdown.Header className="dropdown-header" content="Apply labels to this issue" />
@@ -47,19 +40,19 @@ function Labels() {
                 <>
                   <hr className="dropdown-divider" />
                   <Dropdown.Item className="dropdown-item" key={index}>
-                    <TitleContainer>
-                      <BoxColor background={item.color} />
-                      <LabelName>{item.name}</LabelName>
-                    </TitleContainer>
-                    <LabelDesc>{item.desc}</LabelDesc>
+                    <S.TitleContainer>
+                      <S.BoxColor background={item.color} />
+                      <S.LabelName>{item.name}</S.LabelName>
+                    </S.TitleContainer>
+                    <S.LabelDesc>{item.desc}</S.LabelDesc>
                   </Dropdown.Item>
                 </>
               ))}
           </Dropdown.Menu>
         </Dropdown>
-      </S.FilterDropdown>
+      </DS.FilterDropdown>
       <div className="text">None yet</div>
-    </LabelContainer>
+    </S.LabelContainer>
   );
 }
 

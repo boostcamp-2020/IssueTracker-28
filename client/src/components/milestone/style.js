@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
-export const TitleContainer = styled.div`
-  color: #586069;
-`;
+export default {
+  TitleContainer: styled.div`
+    color: #586069;
+  `,
+};
