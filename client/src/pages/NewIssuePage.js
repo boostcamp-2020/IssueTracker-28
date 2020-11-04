@@ -1,13 +1,30 @@
 import React from 'react';
-import Label from '../components/label';
-import { LabelProvider } from '@contexts/LabelContext';
+import Input from '@components/input';
+import Assignee from '@components/assignee';
+import Label from '@components/label';
+import Milestone from '@components/milestone';
+import styled from 'styled-components';
+
+const NewIssuePageWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 0 160px;
+`;
+
+const Sidebar = styled.div`
+`;
 
 function NewIssuePage() {
   return (
-    <LabelProvider>
-      <Label />
-    </LabelProvider>
-  )
+    <NewIssuePageWrapper>
+      <Input />
+      <Sidebar>
+        <Assignee />
+        <Label />
+        <Milestone />
+      </Sidebar>
+    </NewIssuePageWrapper>
+  );
 }
 
 export default NewIssuePage;
