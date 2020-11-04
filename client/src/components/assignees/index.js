@@ -15,6 +15,7 @@ const trigger = (
 
 function Assignees() {
   const [assignees, setAssignees] = useState(new Set());
+  const [isAssignSelf, setIsAssignSelf] = useState(false);
   const state = useUsersState();
   const dispatch = useUsersDispatch();
 
@@ -33,11 +34,23 @@ function Assignees() {
   if (!users) return <button onClick={fetchData}>불러오기</button>;
 
   const handleItemClick = (assignee) => {
-    if (assignees.has(assignee)) return;
+    for (let user of Array.from(assignees)) {
+      if (user.id === assignee.id) return;
+    }
 
     const newAssignees = new Set(assignees);
     newAssignees.add(assignee)
     setAssignees(newAssignees);
+  };
+
+  const handleSelfClick = () => {
+    const newAssignees = new Set(assignees);
+    newAssignees.add({
+      id: parseInt(localStorage.getItem('id')),
+      userId: localStorage.getItem('user')
+    });
+    setAssignees(newAssignees);
+    setIsAssignSelf(true);
   };
 
   return (
@@ -64,7 +77,9 @@ function Assignees() {
       </DS.FilterDropdown>
       {
         assignees.size === 0
-          ? <div>No one-assign yourself</div>
+          ? isAssignSelf
+            ? <S.SelectedItem>{localStorage.getItem('user')}</S.SelectedItem>
+            : <S.AssignSelf onClick={() => handleSelfClick()}>No one-assign yourself</S.AssignSelf>
           : Array.from(assignees).map((assignee) => (
             <S.SelectedItem>{assignee.userId}</S.SelectedItem>
           ))
