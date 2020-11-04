@@ -12,7 +12,9 @@ import {
   ButtonWrapper,
   CancelButton,
   SubmitButton,
+  AttachWrapper,
   WritePreview,
+  CountComments,
 } from './style';
 
 function Input() {
@@ -33,7 +35,10 @@ function Input() {
         <WritePreview>Preview</WritePreview>
         <Line />
         <InputComment placeholder="Leave a comment" value={comment} onChange={commentHandler} />
-        <InputPicture>Attach files by selecting here</InputPicture>
+        <AttachWrapper>
+          <InputPicture>Attach files by selecting here</InputPicture>
+          <CountComments>{comment.length} 자</CountComments>
+        </AttachWrapper>
       </WriteWrapper>
       <ButtonWrapper>
         <CancelButton onClick={() => history.push('/')}>Cancel</CancelButton>

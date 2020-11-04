@@ -50,18 +50,25 @@ export const InputComment = styled.textarea`
   border-bottom: 1px dashed #e1e4e8;
   background-color: rgb(250, 251, 252);
 `;
-
-export const InputPicture = styled.div`
-  margin: 0 8px;
-  padding: 8px;
-  color: #586069;
+export const AttachWrapper = styled.div`
+  display: flex;
   border: 1px solid #e1e4e8;
   border-top: none;
   border-radius: 0 0 6px 6px;
   cursor: pointer;
   background-color: rgb(250, 251, 252);
+  margin: 0 8px;
+  padding: 8px;
+  color: #586069;
 `;
-
+export const InputPicture = styled.div`
+  width: 70%;
+`;
+export const CountComments = styled.div`
+  width: 30%;
+  text-align: right;
+  padding-right: 15px;
+`;
 export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
