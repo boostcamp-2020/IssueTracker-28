@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLabelState, useLabelDispatch, getLabels } from '@contexts/LabelContext';
 import { GearIcon } from '@primer/octicons-react';
 import { Dropdown } from 'semantic-ui-react';
@@ -13,6 +13,7 @@ const trigger = (
 );
 
 function Labels() {
+  const [selectedLabels, setSelectedLabels] = useState(new Set());
   const state = useLabelState();
   const dispatch = useLabelDispatch();
 
@@ -29,6 +30,14 @@ function Labels() {
   if (error) return <div> 에러가 발생했습니다 </div>;
   if (!labels) return <button onClick={fetchData}> 불러오기 </button>;
 
+  const handleItemClick = (label) => {
+    if (selectedLabels.has(label)) return;
+
+    const newLabels = new Set(selectedLabels);
+    newLabels.add(label)
+    setSelectedLabels(newLabels);
+  };
+
   return (
     <S.LabelContainer>
       <DS.FilterDropdown className="label-dropdown">
@@ -39,7 +48,7 @@ function Labels() {
               labels.map((item, index) => (
                 <>
                   <hr className="dropdown-divider" />
-                  <Dropdown.Item className="dropdown-item" key={index}>
+                  <Dropdown.Item className="dropdown-item" key={index} onClick={() => handleItemClick(item)}>
                     <S.TitleContainer>
                       <S.BoxColor background={item.color} />
                       <S.LabelName>{item.name}</S.LabelName>
@@ -51,7 +60,13 @@ function Labels() {
           </Dropdown.Menu>
         </Dropdown>
       </DS.FilterDropdown>
-      <div className="text">None yet</div>
+      {
+        selectedLabels.size === 0
+          ? <div>None yet</div>
+          : Array.from(selectedLabels).map((label) => (
+            <S.SelectedItem background={label.color}>{label.name}</S.SelectedItem>
+          ))
+      }
     </S.LabelContainer>
   );
 }

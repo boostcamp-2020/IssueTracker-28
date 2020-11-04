@@ -40,11 +40,15 @@ export default {
   LabelDesc: styled.div`
     color: #586069;
   `,
-  SeletedItem: styled.div`
-    color: black;
-    padding-bottom: 3px;
+  SelectedItem: styled.div`
+    color: white;
+    font-weight: 800;
+    padding: 4px 10px;
+    margin-bottom: 4px;
+    border-radius: 5px;
+    background-color: ${(props) => props.background || "black"};
     &:last-child {
-      padding-bottom: 0px;
+      margin-bottom: 0px;
     }
   `
 };

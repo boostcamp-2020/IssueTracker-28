@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useUsersState, useUsersDispatch, getUsers } from '@contexts/UsersContext';
 import { GearIcon } from '@primer/octicons-react';
 import { Dropdown } from 'semantic-ui-react';
+import S from './style';
 import LS from '@components/labels/style';
-import DS from '../issues/IssueList/ListHeader/style';
+import DS from '@components/issues/IssueList/ListHeader/style';
 
 const trigger = (
   <LS.LabelHeader>
@@ -37,7 +38,7 @@ function Assignees() {
     const newAssignees = new Set(assignees);
     newAssignees.add(assignee)
     setAssignees(newAssignees);
-  }
+  };
 
   return (
     <LS.LabelContainer>
@@ -63,9 +64,9 @@ function Assignees() {
       </DS.FilterDropdown>
       {
         assignees.size === 0
-          ? <div className="text">No one-assign yourself</div>
+          ? <div>No one-assign yourself</div>
           : Array.from(assignees).map((assignee) => (
-            <LS.SeletedItem>{assignee.userId}</LS.SeletedItem>
+            <S.SelectedItem>{assignee.userId}</S.SelectedItem>
           ))
       }
     </LS.LabelContainer>
