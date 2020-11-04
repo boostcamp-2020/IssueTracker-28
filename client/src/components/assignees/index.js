@@ -65,7 +65,7 @@ function Assignees() {
         assignees.size === 0
           ? <div className="text">No one-assign yourself</div>
           : Array.from(assignees).map((assignee) => (
-            <div>{assignee.userId}</div>
+            <LS.SeletedItem>{assignee.userId}</LS.SeletedItem>
           ))
       }
     </LS.LabelContainer>

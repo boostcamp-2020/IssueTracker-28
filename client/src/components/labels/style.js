@@ -18,7 +18,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 4px 0;
+    padding: 4px 0 12px 0;
     .gear-icon {
       cursor: pointer;
     }
@@ -40,4 +40,11 @@ export default {
   LabelDesc: styled.div`
     color: #586069;
   `,
+  SeletedItem: styled.div`
+    color: black;
+    padding-bottom: 3px;
+    &:last-child {
+      padding-bottom: 0px;
+    }
+  `
 };
