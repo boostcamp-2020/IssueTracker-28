@@ -53,18 +53,18 @@ exports.createIssue = async (params) => {
 };
 
 exports.createIssueAssignees = async (params) => {
-  let results = [];
-  await params.assignees.map(async (assignee) => {
-    const issueAssignee = await db.insertIssueAssignee({ ...params, assignees: assignee });
-    results.push(issueAssignee.dataValues);
-  });
+  const results = await Promise.all(
+    params.assignees.map((assignee) => {
+      return db.insertIssueAssignee({ ...params, assignees: assignee });
+    })
+  );
   return results;
 };
 exports.createIssueLabels = async (params) => {
-  let results = [];
-  await params.labels.map(async (label) => {
-    const issueLabel = await db.insertIssueLabel({ ...params, labels: label });
-    results.push(issueLabel.dataValues);
-  });
+  const results = await Promise.all(
+    params.labels.map((label) => {
+      return db.insertIssueLabel({ ...params, labels: label });
+    })
+  );
   return results;
 };

@@ -47,6 +47,6 @@ exports.insertIssueLabel = async (params) => {
     labelId: params.labels,
     issueId: params.issueId,
   });
-
+  console.log('여기 : ', results);
   return results;
 };
