@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   useMilestonesState,
   useMilestonesDispatch,
@@ -18,6 +18,7 @@ const trigger = (
 );
 
 function Milestone() {
+  const [selectedMilestone, setSelectedMilestone] = useState(null);
   const state = useMilestonesState();
   const dispatch = useMilestonesDispatch();
 
@@ -36,6 +37,11 @@ function Milestone() {
   if (error) return <div> 에러가 발생했습니다 </div>;
   if (!milestones) return <button onClick={fetchData}> 불러오기 </button>;
 
+  const [openCnt, closeCnt] = data.milestoneCnt;
+
+  const handleItemClick = (milestone) => {
+    setSelectedMilestone(milestone);
+  };
 
   return (
     <LS.LabelContainer>
@@ -47,7 +53,7 @@ function Milestone() {
               milestones.map((item, index) => (
                 <>
                   <hr className="dropdown-divider" />
-                  <Dropdown.Item className="dropdown-item" key={index}>
+                  <Dropdown.Item className="dropdown-item" key={index} onClick={() => handleItemClick(item)}>
                     <S.TitleContainer>
                       <div>{item.title}</div>
                       <div>{item.due_date}</div>
@@ -58,7 +64,15 @@ function Milestone() {
           </Dropdown.Menu>
         </Dropdown>
       </DS.FilterDropdown>
-      <div className="text">No Milestone</div>
+      {
+        selectedMilestone
+          ?
+          <>
+            <S.ProgressBar value={openCnt} max={openCnt + closeCnt}></S.ProgressBar>
+            <S.SelectedItem>{selectedMilestone.title}</S.SelectedItem>
+          </>
+          : <div>No Milestone</div>
+      }
     </LS.LabelContainer>
   );
 }
