@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import S from './style';
 import axios from 'axios';
-
-const InputForm = ({ comment, setComment, isDelay, setIsDelay }) => {
+import ButtonWrapper from './buttonWrapper';
+const InputForm = ({
+  formHeight,
+  color,
+  buttonState,
+  isEditClicked,
+  setIsEditClicked,
+  comment,
+  setComment,
+}) => {
   let timer;
   const commentHandler = ({ target }) => {
     setIsDelay(false);
     setComment(target.value);
   };
+  const [isDelay, setIsDelay] = useState(false);
 
   const imageHandler = ({ target }) => {
     if (target.files !== null) {
@@ -35,20 +44,29 @@ const InputForm = ({ comment, setComment, isDelay, setIsDelay }) => {
       }, 2000);
     }
   };
+
   return (
-    <>
-      <S.InputComment
-        placeholder="Leave a comment"
-        value={comment}
-        onChange={commentHandler}
-        onKeyUp={keyUpEvent}
-      />
+    <S.WriteWrapper>
+      <S.TitleBackground color={color}>
+        <S.WriteTitle>Write</S.WriteTitle>
+        <S.WritePreview>Preview</S.WritePreview>
+      </S.TitleBackground>
+      <S.Line />
+      <S.InputDiv formHeight={formHeight}>
+        <S.InputComment
+          placeholder="Leave a comment"
+          value={comment}
+          onChange={commentHandler}
+          onKeyUp={keyUpEvent}
+        />
+      </S.InputDiv>
       <S.AttachWrapper>
         <S.LabelPicture for="upload_image">Attach files by selecting here</S.LabelPicture>
         <S.InputPicture type="file" id="upload_image" accept="image/png" onChange={imageHandler} />
         <S.CountComments>{isDelay && `${comment.length} 자`} </S.CountComments>
       </S.AttachWrapper>
-    </>
+      {ButtonWrapper(buttonState, isEditClicked, setIsEditClicked)}
+    </S.WriteWrapper>
   );
 };
 
