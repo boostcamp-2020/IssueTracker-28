@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import S from './style';
 import { useIssuesState, useIssuesDispatch, initialFilters } from '@contexts/IssuesContext';
+import S from './style';
 import { UPDATE_FILTER } from '@constants/actionTypes';
 
 function SearchBar() {
   const state = useIssuesState();
   const dispatch = useIssuesDispatch();
-  const {filters, filterMessage} = state;
-  const [searchValue, setSearchValue] = useState(filterMessage);
+  const { filters, filterMessage } = state;
+
   const placeholderMessage = 'ᑫ Search all issues';
+  const [searchValue, setSearchValue] = useState(filterMessage);
 
   useEffect(() => {
-    setSearchValue(filterMessage)
+    setSearchValue(filterMessage);
   }, [filters]);
   const searchHandler = (e) => {
     setSearchValue(e.target.value);

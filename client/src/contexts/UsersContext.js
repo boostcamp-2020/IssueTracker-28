@@ -81,6 +81,7 @@ export async function getUsers(dispatch) {
   dispatch({ type: 'GET_USERS' });
   try {
     const response = await api.getUsers();
+    console.log(response);
     dispatch({ type: 'GET_USERS_SUCCESS', data: response.data });
   } catch (e) {
     dispatch({ type: 'GET_USERS_ERROR', error: e });

@@ -1,7 +1,7 @@
 import React from 'react';
 import { XCircleFillIcon } from '@primer/octicons-react';
-import { LabelsButton, MilestonesButton, NewIssueButton } from './Buttons';
 import { useIssuesState, useIssuesDispatch, initialFilters } from '@contexts/IssuesContext';
+import { LabelsButton, MilestonesButton, NewIssueButton } from './Buttons';
 import SearchBar from './SearchBar';
 import Filters from './Filters';
 import S from './style';

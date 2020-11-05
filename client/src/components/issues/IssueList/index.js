@@ -11,5 +11,4 @@ function IssueList() {
     </S.ListWrapper>
   );
 }
-
 export default IssueList;

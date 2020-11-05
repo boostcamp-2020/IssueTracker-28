@@ -16,7 +16,7 @@ function Filters() {
 
   return (
     <S.FiltersWrapper>
-      <S.FiltersButton className="filters-button"/>
+      <S.FiltersButton className="filters-button" />
       <Dropdown className="filters-dropdown" text="Filters">
         <Dropdown.Menu className="dropdown-menu" direction="right">
           <Dropdown.Header className="dropdown-header" content="Filter Issues" />
