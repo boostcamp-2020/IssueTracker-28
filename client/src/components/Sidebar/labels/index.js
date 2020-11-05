@@ -3,7 +3,7 @@ import { useLabelState, useLabelDispatch, getLabels } from '@contexts/LabelConte
 import { GearIcon } from '@primer/octicons-react';
 import { Dropdown } from 'semantic-ui-react';
 import S from './style';
-import DS from '../issues/IssueList/ListHeader/style';
+import DS from '../../issues/IssueList/ListHeader/style';
 
 const trigger = (
   <S.LabelHeader>

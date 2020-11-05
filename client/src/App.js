@@ -5,6 +5,7 @@ import IssuePage from '@pages/IssuePage';
 import NewIssuePage from '@pages/NewIssuePage';
 import UserPage from '@pages/UserPage';
 import MilestonePage from '@pages/MilestonePage';
+import IssueDetailPage from '@pages/IssueDetailPage';
 import { LabelProvider } from '@contexts/LabelContext';
 import { MilestonesProvider } from '@contexts/MilestonesContext';
 
@@ -24,6 +25,7 @@ const App = () => {
             />
             <Route path="/newIssue" component={NewIssuePage} />
             <Route path="/milestone" component={MilestonePage} />
+            <Route exact path="/detail/:id" component={IssueDetailPage} />
             <Route
               render={({ location }) => (
                 <div>
