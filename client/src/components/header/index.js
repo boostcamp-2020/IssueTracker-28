@@ -1,17 +1,16 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { MarkGithubIcon } from '@primer/octicons-react';
-import { HeaderWrapper, HomeButton } from './style';
+import Book from '@images/headerbook.png';
+import S from './style';
 
 function Header() {
   const history = useHistory();
 
   return (
-    <HeaderWrapper>
-      <HomeButton onClick={() => history.push('/')}>
-        <MarkGithubIcon className="github-icon" />
-      </HomeButton>
-    </HeaderWrapper>
+    <S.HeaderWrapper>
+      <S.HeaderImage alt="book" src={Book} />
+      <S.HeaderText onClick={() => history.push('/')}>ISSUES</S.HeaderText>
+    </S.HeaderWrapper>
   );
 }
 

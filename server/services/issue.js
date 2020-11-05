@@ -51,3 +51,20 @@ exports.createIssue = async (params) => {
   const results = await db.insertIssue(params);
   return results;
 };
+
+exports.createIssueAssignees = async (params) => {
+  const results = await Promise.all(
+    params.assignees.map((assignee) => {
+      return db.insertIssueAssignee({ ...params, assignees: assignee });
+    })
+  );
+  return results;
+};
+exports.createIssueLabels = async (params) => {
+  const results = await Promise.all(
+    params.labels.map((label) => {
+      return db.insertIssueLabel({ ...params, labels: label });
+    })
+  );
+  return results;
+};

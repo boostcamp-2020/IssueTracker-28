@@ -1,4 +1,4 @@
-const { User, Issue, Milestone, sequelize } = require('../../models');
+const { User, Issue, Milestone, IssueAssignee, IssueLabel, sequelize } = require('../../models');
 
 exports.selectIssue = async () => {
   const issues = await Issue.findAll({
@@ -23,10 +23,30 @@ exports.insertIssue = async (params) => {
     raw: true,
     title: params.title,
     content: params.content,
-    milestoneId: params.milestone_id,
-    userId: params.user_id,
+    milestoneId: params.milestone,
+    userId: params.user,
     status: params.status,
   });
 
   return issues;
+};
+
+exports.insertIssueAssignee = async (params) => {
+  const results = await IssueAssignee.create({
+    raw: true,
+    userId: params.assignees,
+    issueId: params.issueId,
+  });
+
+  return results;
+};
+
+exports.insertIssueLabel = async (params) => {
+  const results = await IssueLabel.create({
+    raw: true,
+    labelId: params.labels,
+    issueId: params.issueId,
+  });
+  console.log('여기 : ', results);
+  return results;
 };

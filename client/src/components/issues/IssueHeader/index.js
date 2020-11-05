@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { XCircleFillIcon } from '@primer/octicons-react';
 import { LabelsButton, MilestonesButton, NewIssueButton } from './Buttons';
 import { useIssuesState, useIssuesDispatch, initialFilters } from '@contexts/IssuesContext';
