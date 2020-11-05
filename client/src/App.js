@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { UserProvider } from '@contexts/UserContext';
-// import Header from '@components/header';
+import { UsersProvider } from '@contexts/UsersContext';
+import Header from '@components/header';
 import IssuePage from '@pages/IssuePage';
 import NewIssuePage from '@pages/NewIssuePage';
 import UserPage from '@pages/UserPage';
@@ -14,8 +14,8 @@ const App = () => {
   return (
     <LabelProvider>
       <MilestonesProvider>
-        <UserProvider>
-          {/* <Header /> */}
+        <UsersProvider>
+          <Header />
           <Switch>
             <Route
               exact
@@ -25,11 +25,9 @@ const App = () => {
                 return <UserPage />;
               }}
             />
-            <Route path="/new" component={NewIssuePage} />
+            <Route path="/newIssue" component={NewIssuePage} />
             <Route path="/milestone" component={MilestonePage} />
             <Route path="/test" component={TestPage} />
-            {/* <Route exact path="/" component={IssuePage} /> */}
-            {/* <Route path="/login" component={UserPage} /> */}
             <Route
               render={({ location }) => (
                 <div>
@@ -39,7 +37,7 @@ const App = () => {
               )}
             />
           </Switch>
-        </UserProvider>
+        </UsersProvider>
       </MilestonesProvider>
     </LabelProvider>
   );

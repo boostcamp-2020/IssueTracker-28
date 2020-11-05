@@ -8,6 +8,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 36px 160px;
   `,
   HeaderImage: styled.img`
     width: 18px;
@@ -17,20 +18,6 @@ export default {
     font-size: 15px;
     margin-left: 5px;
     font-weight: bold;
+    cursor: pointer;
   `,
 };
-// export const HeaderWrapper = styled.header`
-//   padding: 24px 160px;
-//   background-color: black;
-//   color: white;
-//   margin-bottom: 2rem;
-// `;
-
-// export const HomeButton = styled.a`
-//   color: white;
-//   .github-icon {
-//     width: 36px;
-//     height: 36px;
-//     cursor: pointer;
-//   }
-// `;
