@@ -24,7 +24,7 @@ const getAssignees = async (data) => {
 };
 
 exports.getIssues = async () => {
-  const results = await db.selectIssue();
+  const results = await db.selectIssues();
   const data = [];
 
   for (const result of results) {
@@ -60,6 +60,7 @@ exports.createIssueAssignees = async (params) => {
   );
   return results;
 };
+
 exports.createIssueLabels = async (params) => {
   const results = await Promise.all(
     params.labels.map((label) => {
@@ -67,4 +68,40 @@ exports.createIssueLabels = async (params) => {
     })
   );
   return results;
+};
+
+const getComments = async (issueId) => {
+  const comments = await db.selectComments(issueId);
+  const data = comments.map((comment) => {
+    const temp = {};
+    temp.id = comment.id;
+    temp.content = comment.content;
+    temp.time = comment.updated_at;
+    temp.author = comment['user.user_id'];
+    return temp;
+  });
+
+  return data;
+};
+
+exports.getIssueDetail = async (issueId) => {
+  const issue = await db.selectIssue(issueId);
+  const data = {};
+
+  const issueDetail = {};
+  issueDetail.id = issue.id;
+  issueDetail.title = issue.title;
+  issueDetail.content = issue.content;
+  issueDetail.author = issue.user.dataValues.user_id;
+  if (issue.milestone) issueDetail.milestone = issue.milestone.dataValues.title;
+  else issueDetail.milestone = null;
+  if (issue.status === 0) issueDetail.status = 'opened';
+  else issueDetail.status = 'closed';
+  issueDetail.labels = await getLabels(issue);
+  issueDetail.assignees = await getAssignees(issue);
+  issueDetail.time = issue.dataValues.updated_at;
+  data.issueDetail = issueDetail;
+  data.comments = await getComments(issueId);
+
+  return data;
 };

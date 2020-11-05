@@ -17,8 +17,7 @@ export default {
     border-radius: 6px;
     outline: none;
   `,
-  WriteWrapper: styled.div`
-  `,
+  WriteWrapper: styled.div``,
   Line: styled.div`
     width: 100%;
     border-bottom: 1px solid #e1e4e8;

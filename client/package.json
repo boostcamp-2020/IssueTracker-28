@@ -25,6 +25,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@primer/components": "^20.3.0",
     "@primer/octicons-react": "^11.0.0",
     "axios": "^0.21.0",
     "module-alias": "^2.2.2",
