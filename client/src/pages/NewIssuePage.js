@@ -9,7 +9,6 @@ const NewIssuePageWrapper = styled.div`
   justify-content: space-between;
   margin: 24px auto;
   max-width: 950px;
-  //margin: 24px 160px;
 `;
 
 function NewIssuePage() {
