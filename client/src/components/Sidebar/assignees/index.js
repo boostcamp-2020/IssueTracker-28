@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useUsersState, useUsersDispatch, getUsers } from '@contexts/UsersContext';
 import { GearIcon } from '@primer/octicons-react';
 import { Dropdown } from 'semantic-ui-react';
-import S from './style';
-import LS from '@components/labels/style';
+import LS from '@sidebar/labels/style';
 import DS from '@components/issues/IssueList/ListHeader/style';
+import S from './style';
 
 const trigger = (
   <LS.LabelHeader>
@@ -35,7 +35,7 @@ function Assignees({ selectedAssignees, handleAssigneeClick }) {
   const handleSelfClick = () => {
     handleAssigneeClick({
       id: parseInt(localStorage.getItem('id')),
-      userId: localStorage.getItem('user')
+      userId: localStorage.getItem('user'),
     });
     setIsAssignSelf(true);
   };
@@ -49,28 +49,35 @@ function Assignees({ selectedAssignees, handleAssigneeClick }) {
               className="dropdown-header"
               content="Assign up to 10 people to thie issue"
             />
-            {users && users.map((item, index) => (
-              <>
-                <hr className="dropdown-divider" />
-                <Dropdown.Item className="dropdown-item" key={index} onClick={() => handleAssigneeClick(item)}>
-                  <LS.TitleContainer>
-                    <div>{item.userId}</div>
-                  </LS.TitleContainer>
-                </Dropdown.Item>
-              </>
-            ))}
+            {users &&
+              users.map((item, index) => (
+                <>
+                  <hr className="dropdown-divider" />
+                  <Dropdown.Item
+                    className="dropdown-item"
+                    key={index}
+                    onClick={() => handleAssigneeClick(item)}
+                  >
+                    <LS.TitleContainer>
+                      <div>{item.userId}</div>
+                    </LS.TitleContainer>
+                  </Dropdown.Item>
+                </>
+              ))}
           </Dropdown.Menu>
         </Dropdown>
       </DS.FilterDropdown>
-      {
-        selectedAssignees.size === 0
-          ? isAssignSelf
-            ? <S.SelectedItem>{localStorage.getItem('user')}</S.SelectedItem>
-            : <S.AssignSelf onClick={() => handleSelfClick()}>No one-assign yourself</S.AssignSelf>
-          : Array.from(selectedAssignees).map((assignee) => (
-            <S.SelectedItem>{assignee.userId}</S.SelectedItem>
-          ))
-      }
+      {selectedAssignees.size === 0 ? (
+        isAssignSelf ? (
+          <S.SelectedItem>{localStorage.getItem('user')}</S.SelectedItem>
+        ) : (
+          <S.AssignSelf onClick={() => handleSelfClick()}>No one-assign yourself</S.AssignSelf>
+        )
+      ) : (
+        Array.from(selectedAssignees).map((assignee) => (
+          <S.SelectedItem>{assignee.userId}</S.SelectedItem>
+        ))
+      )}
     </LS.LabelContainer>
   );
 }

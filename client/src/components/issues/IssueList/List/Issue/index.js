@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { IssueOpenedIcon, MilestoneIcon, IssueClosedIcon } from '@primer/octicons-react';
 import { useCheckedItemState, useCheckedItemDispatch } from '@contexts/CheckedItemContext';
 import { CHECKED_UPDATE } from '@constants/actionTypes';
+import { useHistory } from 'react-router-dom';
 import S from './style';
 
 function Issue({ issue }) {
@@ -14,6 +15,7 @@ function Issue({ issue }) {
     const isChecked = e.target.checked;
     if (isChecked !== checkState) {
       setCheckState(!checkState);
+      // eslint-disable-next-line no-unused-expressions
       isChecked ? checkedItems.add(issue.id) : checkedItems.delete(issue.id);
       dispatch({ type: CHECKED_UPDATE, data: new Set([...checkedItems]) });
     }
@@ -32,6 +34,8 @@ function Issue({ issue }) {
     if (checkedItems.size === 0) setCheckState(false);
   }, [checkedItems]);
 
+  const history = useHistory();
+
   return (
     <S.IssueWrapper>
       <input
@@ -47,7 +51,14 @@ function Issue({ issue }) {
       )}
       <S.IssueContainer>
         <div className="title-container">
-          <div className="title">{issue.title}</div>
+          <div
+            className="title"
+            onClick={() => {
+              history.push(`detail/${issue.id}`);
+            }}
+          >
+            {issue.title}
+          </div>
           <S.LabelList>
             {issue.labels &&
               issue.labels.map((label) => (

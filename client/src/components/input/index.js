@@ -11,13 +11,16 @@ function Input() {
   const [title, setTitle] = useState('');
   const [comment, setComment] = useState('');
   const [isDelay, setIsDelay] = useState(false);
+
   const titleHandler = ({ target }) => {
     setTitle(target.value);
   };
+
   const commentHandler = ({ target }) => {
     setIsDelay(false);
     setComment(target.value);
   };
+
   const imageHandler = ({ target }) => {
     if (target.files !== null) {
       const fd = new FormData();
@@ -27,7 +30,7 @@ function Input() {
           headers: { 'Content-Type': 'multipart/form-data;charset=utf-8;' },
         })
         .then((res) => {
-          const imgPath = '\n' + '[img : ' + res.data + ']';
+          const imgPath = `${'\n' + '[img : '}${res.data}]`;
           setComment(comment + imgPath);
         })
         .catch((error) => {
@@ -35,6 +38,7 @@ function Input() {
         });
     }
   };
+  
   const keyUpEvent = async () => {
     clearTimeout(timer);
     if (comment) {
@@ -46,7 +50,7 @@ function Input() {
 
   return (
     <S.InputWrapper>
-      <S.InputTitle placeholder='Title' value={title} onChange={titleHandler} />
+      <S.InputTitle placeholder="Title" value={title} onChange={titleHandler} />
       <S.WriteWrapper>
         <S.WriteTitle>Write</S.WriteTitle>
         <S.WritePreview>Preview</S.WritePreview>
@@ -59,15 +63,20 @@ function Input() {
         />
         <S.AttachWrapper>
           <S.LabelPicture for="upload_image">Attach files by selecting here</S.LabelPicture>
-          <S.InputPicture type="file" id="upload_image" accept="image/png" onChange={imageHandler} />
-          <S.CountComments>{isDelay && comment.length + ' 자'} </S.CountComments>
+          <S.InputPicture
+            type="file"
+            id="upload_image"
+            accept="image/png"
+            onChange={imageHandler}
+          />
+          <S.CountComments>{isDelay && `${comment.length} 자`} </S.CountComments>
         </S.AttachWrapper>
       </S.WriteWrapper>
       <S.ButtonWrapper>
         <S.CancelButton onClick={() => history.push('/')}>Cancel</S.CancelButton>
         <BS.NewIssueButton>Submit new issue</BS.NewIssueButton>
       </S.ButtonWrapper>
-    </S.InputWrapper >
+    </S.InputWrapper>
   );
 }
 

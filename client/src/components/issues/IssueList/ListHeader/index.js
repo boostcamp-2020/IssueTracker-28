@@ -3,15 +3,15 @@ import { Dropdown } from 'semantic-ui-react';
 import { CheckIcon } from '@primer/octicons-react';
 import { useLabelState, useLabelDispatch, getLabels } from '@contexts/LabelContext';
 import { useIssuesState, useIssuesDispatch } from '@contexts/IssuesContext';
+import { useUsersState, useUsersDispatch, getUsers } from '@contexts/UsersContext';
+import { useCheckedItemState, useCheckedItemDispatch } from '@contexts/CheckedItemContext';
+import { SELECT_ALL, DESELECT_ALL, UPDATE_FILTER } from '@constants/actionTypes';
 import {
   useMilestonesState,
   useMilestonesDispatch,
   getMilestones,
 } from '@contexts/MilestonesContext';
-import { useUsersState, useUsersDispatch, getUsers } from '@contexts/UsersContext';
-import { useCheckedItemState, useCheckedItemDispatch } from '@contexts/CheckedItemContext';
-import { SELECT_ALL, DESELECT_ALL, UPDATE_FILTER } from '@constants/actionTypes';
-import LS from '../../../labels/style';
+import LS from '@sidebar/labels/style';
 import S from './style';
 import handler from './handler';
 
