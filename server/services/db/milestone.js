@@ -6,6 +6,7 @@ exports.selectMilestone = async () => {
   });
   return milestones;
 };
+
 exports.selectMilestoneID = async (title) => {
   const milestones = await Milestone.findOne({
     raw: true,
@@ -14,4 +15,43 @@ exports.selectMilestoneID = async (title) => {
     },
   });
   return milestones;
+};
+
+exports.insertMilestone = async ({ status, title, due_date, desc }) => {
+  const milestone = await Milestone.create({
+    status,
+    title,
+    due_date, 
+    desc,
+    raw: true,
+  });
+
+  return milestone;
+};
+
+exports.updateMilestone = async ({ id, status, title, due_date, desc }) => {
+  const result = await Milestone.update({
+    status,
+    title,
+    due_date, 
+    desc,
+    raw: true,
+  },
+  {
+    where: {
+      id: id
+    }
+  });
+
+  return result;
+};
+
+exports.deleteMilestone = async ({ id }) => {
+  const result = await Milestone.destroy({
+    where: {
+      id: id
+    }
+  });
+
+  return result;
 };

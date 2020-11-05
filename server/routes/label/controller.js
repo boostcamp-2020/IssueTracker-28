@@ -25,11 +25,11 @@ exports.createLabel = async (req, res, next) => {
   try {
     const { name, desc, color } = req.body;
 
-    const labels = await labelServices.createLabel({ name, desc, color });
+    const label = await labelServices.createLabel({ name, desc, color });
 
     res.json({
       message: '새로운 라벨 생성 성공',
-      data: labels
+      data: label
     });
 
   } catch (error) {
