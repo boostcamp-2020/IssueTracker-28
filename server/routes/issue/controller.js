@@ -57,3 +57,39 @@ exports.createIssue = async (req, res, next) => {
     next(error);
   }
 };
+
+/*
+    UPDATE /api/issue/
+    * 이슈 상태 변경 API
+*/
+exports.updateIssueStatus = async (req, res, next) => {
+  const { ids, status } = req.body;
+  console.log('########## params ::::: ', ids, status)
+  try {
+    const result = await issueServices.updateIssueStatus(ids, status);
+    if (result) {
+      res.json({
+        message: '이슈 상태 수정 성공',
+      });
+    } else {
+      res.status(400).json({
+        message: '이슈 상태 수정 실패',
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.updateHistory = async (req, res, next) => {
+  const { hid } = req.params;
+  const userId = req.user.user_id;
+  const { price, content, paymentName, cardId, createdAt } = req.body;
+  try {
+    const result = await History.updateHistory([price, content, paymentName, userId, cardId, createdAt, hid])
+    return res.status(200).json({ success: true, hid: result.insertId });
+  } catch (err) {
+    console.log(err)
+    res.status(400).json({ success: false })
+  }
+}

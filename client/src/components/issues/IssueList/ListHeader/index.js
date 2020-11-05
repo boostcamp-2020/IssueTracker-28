@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Dropdown } from 'semantic-ui-react';
 import { CheckIcon } from '@primer/octicons-react';
 import { useLabelState, useLabelDispatch, getLabels } from '@contexts/LabelContext';
-import { useIssuesState, useIssuesDispatch } from '@contexts/IssuesContext';
+import { useIssuesState, useIssuesDispatch, updateIssueStatus } from '@contexts/IssuesContext';
 import { useUsersState, useUsersDispatch, getUsers } from '@contexts/UsersContext';
 import { useCheckedItemState, useCheckedItemDispatch } from '@contexts/CheckedItemContext';
 import { SELECT_ALL, DESELECT_ALL, UPDATE_FILTER } from '@constants/actionTypes';
@@ -18,8 +18,8 @@ import handler from './handler';
 const NO_FILTER_ITEM = ['Unlabeled', 'Issues with no milestone', 'Assigend to nobody'];
 
 function ListHeader() {
-  const state = useIssuesState();
-  const dispatch = useIssuesDispatch();
+  const issuesState = useIssuesState();
+  const issuesDispatch = useIssuesDispatch();
 
   const labelState = useLabelState();
   const labelDispatch = useLabelDispatch();
@@ -48,7 +48,7 @@ function ListHeader() {
   // 필터, issue데이터 등 issue상태가 변하면 전체 선택해제
   useEffect(() => {
     checkDispatch({ type: DESELECT_ALL });
-  }, [state]);
+  }, [issuesState]);
 
   // 전체 선택 상태에 변화가 생기면 체크상태 변경
   useEffect(() => {
@@ -75,7 +75,15 @@ function ListHeader() {
     check.classList.toggle('show');
   };
 
-  const filterHandler = handler(state, dispatch);
+  const markAsOpenHandler=()=>{
+    updateIssueStatus(issuesDispatch, checkedItems, 0)
+  }
+  const markAsCloseHandler=()=>{
+    updateIssueStatus(issuesDispatch, checkedItems, 1)
+  }
+  
+
+  const filterHandler = handler(issuesState, issuesDispatch);
 
   useEffect(() => {
     fetchData();
@@ -246,9 +254,9 @@ function ListHeader() {
               <Dropdown.Menu className="dropdown-menu" direction="left">
                 <Dropdown.Header className="dropdown-header" content="Actions" />
                 <hr className="dropdown-divider" />
-                <Dropdown.Item className="dropdown-item" text="Open" />
+                <Dropdown.Item className="dropdown-item" text="Open" onClick={markAsOpenHandler}/>
                 <hr className="dropdown-divider" />
-                <Dropdown.Item className="dropdown-item" text="Closed" />
+                <Dropdown.Item className="dropdown-item" text="Closed" onClick={markAsCloseHandler}/>
               </Dropdown.Menu>
             </Dropdown>
           </S.FilterDropdown>

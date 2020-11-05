@@ -68,3 +68,9 @@ exports.createIssueLabels = async (params) => {
   );
   return results;
 };
+
+
+exports.updateIssueStatus = async (ids, status) => {
+  const results = await db.updateIssueStatus(ids, status);
+  return results;
+};
