@@ -10,12 +10,38 @@ exports.selectLabel = async () => {
 };
 
 exports.insertLabel = async ({ name, desc, color }) => {
-  const labels = await Label.create({
+  const label = await Label.create({
     name,
     desc,
     color,
     raw: true,
   });
 
-  return labels;
+  return label;
+};
+
+exports.updateLabel = async ({ id, name, desc, color }) => {
+  const result = await Label.update({
+    name,
+    desc,
+    color,
+    raw: true,
+  },
+  {
+    where: {
+      id: id
+    }
+  });
+
+  return result;
+};
+
+exports.deleteLabel = async ({ id }) => {
+  const result = await Label.destroy({
+    where: {
+      id: id
+    }
+  });
+
+  return result;
 };

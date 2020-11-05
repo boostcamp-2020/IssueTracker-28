@@ -37,3 +37,42 @@ exports.createLabel = async (req, res, next) => {
   }
 };
 
+/*
+    PUT /api/label
+    * 라벨 수정 API
+*/
+exports.updateLabel = async (req, res, next) => {
+  try {
+    const { id, name, desc, color } = req.body;
+
+    const result = await labelServices.updateLabel({ id, name, desc, color });
+
+    res.json({
+      message: '라벨 수정 성공',
+      data: result  // [affected rows 개수, 바뀐 label element]
+    });
+
+  } catch (error) {
+    next(error);
+  }
+};
+
+/*
+    DELETE /api/label
+    * 라벨 삭제 API
+*/
+exports.deleteLabel = async (req, res, next) => {
+  try {
+    const { id } = req.body;
+
+    const result = await labelServices.deleteLabel({ id });
+
+    res.json({
+      message: '라벨 삭제 성공',
+      data: result // affected rows 개수
+    });
+
+  } catch (error) {
+    next(error);
+  }
+};
