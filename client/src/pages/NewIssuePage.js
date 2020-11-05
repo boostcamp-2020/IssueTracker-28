@@ -8,7 +8,9 @@ import styled from 'styled-components';
 const NewIssuePageWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 24px 160px;
+  margin: 24px auto;
+  max-width: 950px;
+  //margin: 24px 160px;
 `;
 
 const Sidebar = styled.div``;

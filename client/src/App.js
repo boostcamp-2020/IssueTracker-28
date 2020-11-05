@@ -8,7 +8,6 @@ import UserPage from '@pages/UserPage';
 import MilestonePage from '@pages/MilestonePage';
 import { LabelProvider } from '@contexts/LabelContext';
 import { MilestonesProvider } from '@contexts/MilestonesContext';
-import TestPage from '@pages/TestPage';
 
 const App = () => {
   return (
@@ -27,7 +26,6 @@ const App = () => {
             />
             <Route path="/newIssue" component={NewIssuePage} />
             <Route path="/milestone" component={MilestonePage} />
-            <Route path="/test" component={TestPage} />
             <Route
               render={({ location }) => (
                 <div>
