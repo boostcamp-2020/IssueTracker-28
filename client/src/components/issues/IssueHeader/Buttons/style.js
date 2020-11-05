@@ -42,6 +42,7 @@ export default {
     background: linear-gradient( to bottom, #32CD56, #27A844 );
     color: #ffffff;
     border-radius : 4px;
+    font-size: 14px;
 
   `,
     ShowTotalNum: styled.span`

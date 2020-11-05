@@ -52,8 +52,8 @@ function Input() {
     <S.InputWrapper>
       <S.InputTitle placeholder="Title" value={title} onChange={titleHandler} />
       <S.WriteWrapper>
-        <S.WriteTitle>Write</S.WriteTitle>
-        <S.WritePreview>Preview</S.WritePreview>
+        <S.WriteTitle><S.WriteTitleButton>Write</S.WriteTitleButton></S.WriteTitle>
+        <S.WritePreviewButton>Preview</S.WritePreviewButton>
         <S.Line />
         <S.InputComment
           placeholder="Leave a comment"
