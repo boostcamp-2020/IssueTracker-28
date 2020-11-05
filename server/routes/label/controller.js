@@ -16,3 +16,24 @@ exports.getLabels = async (req, res, next) => {
     next(error);
   }
 };
+
+/*
+    POST /api/label
+    * 새로운 라벨 생성 API
+*/
+exports.createLabel = async (req, res, next) => {
+  try {
+    const { name, desc, color } = req.body;
+
+    const labels = await labelServices.createLabel({ name, desc, color });
+
+    res.json({
+      message: '새로운 라벨 생성 성공',
+      data: labels
+    });
+
+  } catch (error) {
+    next(error);
+  }
+};
+
