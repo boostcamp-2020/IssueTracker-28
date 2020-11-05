@@ -6,7 +6,6 @@ import S from './style';
 
 function Input() {
   let timer;
-  let timer2;
   const history = useHistory();
   const [title, setTitle] = useState('');
   const [comment, setComment] = useState('');
@@ -38,7 +37,7 @@ function Input() {
         });
     }
   };
-  
+
   const keyUpEvent = async () => {
     clearTimeout(timer);
     if (comment) {

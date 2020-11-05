@@ -25,7 +25,8 @@ const App = () => {
             />
             <Route path="/newIssue" component={NewIssuePage} />
             <Route path="/milestone" component={MilestonePage} />
-            <Route exact path="/detail/:id" component={IssueDetailPage} />
+            {/* <Route path="/detail/:id" component={IssueDetailPage} /> */}
+            <Route path="/detail" component={IssueDetailPage} />
             <Route
               render={({ location }) => (
                 <div>

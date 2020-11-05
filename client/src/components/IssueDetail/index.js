@@ -1,14 +1,10 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-
+import Content from '@components/IssueDetail/Content';
 const IssueDetail = () => {
   const { id } = useParams();
 
-  return (
-    <div>
-      <h2>About {id}</h2>
-    </div>
-  );
+  return <Content />;
 };
 
 export default IssueDetail;
