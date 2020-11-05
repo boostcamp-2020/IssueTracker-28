@@ -5,14 +5,14 @@ import { LabelsButton, MilestonesButton, NewIssueButton } from './Buttons';
 import SearchBar from './SearchBar';
 import Filters from './Filters';
 import S from './style';
+import { UPDATE_FILTER } from '@constants/actionTypes';
 
 function IssueHeader() {
   const state = useIssuesState();
   const dispatch = useIssuesDispatch();
   const { filters } = state;
-
   const resetHandler = () => {
-    dispatch({ type: 'UPDATE_FILTER', filters: initialFilters });
+    dispatch({ type: UPDATE_FILTER, filters: initialFilters });
   };
 
   return (
@@ -28,12 +28,14 @@ function IssueHeader() {
         </S.LabelMilestone>
         <NewIssueButton />
       </S.IssueHeader>
-      {JSON.stringify(initialFilters) !== JSON.stringify(filters) ? (
-        <S.ResetButton onClick={resetHandler}>
-          <XCircleFillIcon className="x-icon" size={16} /> Clear current search query, filters, and
-          sorts
-        </S.ResetButton>
-      ) : null}
+      {JSON.stringify(initialFilters)!==JSON.stringify(filters)
+        ? 
+          <S.ResetButton onClick={resetHandler}>
+            <XCircleFillIcon className="x-icon" size={16}/>
+            <span>  Clear current search query, filters, and sorts</span>
+          </S.ResetButton>
+         :
+         null}
     </>
   );
 }

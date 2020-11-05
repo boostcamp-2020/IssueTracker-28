@@ -91,7 +91,6 @@ export async function getMilestones(dispatch) {
   dispatch({ type: 'GET_MILESTONES' });
   try {
     const response = await api.getMilestones();
-    console.log('data : ', response.data.milestones);
     dispatch({
       type: 'GET_MILESTONES_SUCCESS',
       data: response.data,

@@ -25,18 +25,33 @@ exports.getIssues = async (req, res, next) => {
 exports.createIssue = async (req, res, next) => {
   try {
     const { title, content, milestone, user, status } = req.body;
-    const { id: milestone_id } = await milestoneServices.findMilestone(milestone);
-    const { id: user_id } = await userServices.findUser(user);
-    const issues = await issueServices.createIssue({
+    // Todo : Postman은 배열을 인식하지 못함 -> 변경 필요
+    const assignees = [8, 9];
+    const labels = [2, 3];
+    // Todo : 프론트에서 요청하는 값에 의해서 변경 필요
+    // const { id: milestone_id } = await milestoneServices.findMilestone(milestone);
+    // const { id: user_id } = await userServices.findUser(user);
+    const { id: issueId } = await issueServices.createIssue({
       title,
       content,
-      milestone_id,
-      user_id,
+      milestone,
+      user,
       status,
     });
+    Promise.all([
+      await issueServices.createIssueAssignees({
+        assignees,
+        issueId,
+      }),
+      await issueServices.createIssueLabels({
+        labels,
+        issueId,
+      }),
+    ]);
+
     res.json({
       message: '새로운 이슈 생성 성공',
-      data: issues,
+      data: issueId,
     });
   } catch (error) {
     next(error);

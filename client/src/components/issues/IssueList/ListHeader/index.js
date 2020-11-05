@@ -14,6 +14,8 @@ import S from './style';
 import handler from './handler';
 
 const NO_FILTER_ITEM = ['Unlabeled', 'Issues with no milestone', 'Assigend to nobody'];
+import { useCheckedItemState, useCheckedItemDispatch } from '@contexts/CheckedItemContext';
+import { SELECT_ALL, DESELECT_ALL, UPDATE_FILTER } from '@constants/actionTypes';
 
 function ListHeader({ checkedItems, isAllChecked }) {
   const state = useIssuesState();
@@ -30,6 +32,29 @@ function ListHeader({ checkedItems, isAllChecked }) {
   const { data: users } = usersState.users;
   const { data } = milestoneState.milestones;
   const milestones = data?.milestones;
+  
+  const [beCheckState, SetBeCheckState] = useState(false);
+
+  const checkState = useCheckedItemState();
+  const checkDispatch = useCheckedItemDispatch();
+  const {checkedItems, isAllChecked} = checkState;
+
+  const checkHandler=(e)=>{
+    const isChecked = e.target.checked;
+    SetBeCheckState(!beCheckState);
+    isChecked ? checkDispatch({type:SELECT_ALL}) : checkDispatch({type:DESELECT_ALL});
+  }
+
+  //필터, issue데이터 등 issue상태가 변하면 전체 선택해제
+  useEffect(()=>{
+    checkDispatch({type:DESELECT_ALL})
+  },[state])
+
+  //전체 선택 상태에 변화가 생기면 체크상태 변경
+  useEffect(()=>{
+    if(beCheckState!==isAllChecked)
+      SetBeCheckState(isAllChecked)
+  },[isAllChecked])
 
   const fetchData = () => {
     getLabels(labelDispatch);

@@ -1,60 +1,77 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useUsersState, useUsersDispatch, getUsers } from '@contexts/UsersContext';
 import { GearIcon } from '@primer/octicons-react';
 import { Dropdown } from 'semantic-ui-react';
-import { LabelContainer, LabelHeader, TitleContainer } from '../labels/style';
-import S from '../issues/IssueList/ListHeader/style';
+import S from './style';
+import LS from '@components/labels/style';
+import DS from '@components/issues/IssueList/ListHeader/style';
 
 const trigger = (
-  <LabelHeader>
+  <LS.LabelHeader>
     <div className="title">Assignees</div>
     <GearIcon className="gear-icon" size={16} />
-  </LabelHeader>
+  </LS.LabelHeader>
 );
 
-function Assignees() {
-  // const state = useUsersState();
-  // const dispatch = useUsersDispatch();
+function Assignees({ selectedAssignees, handleAssigneeClick }) {
+  const [isAssignSelf, setIsAssignSelf] = useState(false);
+  const state = useUsersState();
+  const dispatch = useUsersDispatch();
 
-  // const { data: users, loading, error } = state.users;
+  const { data: users, loading, error } = state.users;
 
-  // const fetchData = () => {
-  //   getUsers(dispatch);
-  // };
+  const fetchData = () => {
+    getUsers(dispatch);
+  };
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, [dispatch]);
+  useEffect(() => {
+    fetchData();
+  }, [dispatch]);
 
-  // if (loading) return <div> 로딩중.. </div>;
-  // if (error) return <div> 에러가 발생했습니다 </div>;
-  // if (!users) return <button onClick={fetchData}>불러오기</button>;
+  if (loading) return <div> 로딩중.. </div>;
+  if (error) return <div> 에러가 발생했습니다 </div>;
+  if (!users) return <button onClick={fetchData}>불러오기</button>;
+
+  const handleSelfClick = () => {
+    handleAssigneeClick({
+      id: parseInt(localStorage.getItem('id')),
+      userId: localStorage.getItem('user')
+    });
+    setIsAssignSelf(true);
+  };
 
   return (
-    <LabelContainer>
-      <S.FilterDropdown className="label-dropdown">
+    <LS.LabelContainer>
+      <DS.FilterDropdown className="label-dropdown">
         <Dropdown className="dropdown" multiple trigger={trigger} icon={null}>
           <Dropdown.Menu className="dropdown-menu" direction="left">
             <Dropdown.Header
               className="dropdown-header"
               content="Assign up to 10 people to thie issue"
             />
-            {/* {users && users.map((item, index) => (
-                <>
-                  <hr className="dropdown-divider" />
-                  <Dropdown.Item className="dropdown-item" key={index}>
-                    <TitleContainer>
-                      <div>{item.title}</div>
-                      <div>{item.due_date}</div>
-                    </TitleContainer>
-                  </Dropdown.Item>
-                </>
-              ))} */}
+            {users && users.map((item, index) => (
+              <>
+                <hr className="dropdown-divider" />
+                <Dropdown.Item className="dropdown-item" key={index} onClick={() => handleAssigneeClick(item)}>
+                  <LS.TitleContainer>
+                    <div>{item.userId}</div>
+                  </LS.TitleContainer>
+                </Dropdown.Item>
+              </>
+            ))}
           </Dropdown.Menu>
         </Dropdown>
-      </S.FilterDropdown>
-      <div className="text">No one-assign yourself</div>
-    </LabelContainer>
+      </DS.FilterDropdown>
+      {
+        selectedAssignees.size === 0
+          ? isAssignSelf
+            ? <S.SelectedItem>{localStorage.getItem('user')}</S.SelectedItem>
+            : <S.AssignSelf onClick={() => handleSelfClick()}>No one-assign yourself</S.AssignSelf>
+          : Array.from(selectedAssignees).map((assignee) => (
+            <S.SelectedItem>{assignee.userId}</S.SelectedItem>
+          ))
+      }
+    </LS.LabelContainer>
   );
 }
 

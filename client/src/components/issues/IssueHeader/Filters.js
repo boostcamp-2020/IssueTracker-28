@@ -1,23 +1,17 @@
 import React from 'react';
 import { Dropdown } from 'semantic-ui-react';
 import { useIssuesState, useIssuesDispatch } from '@contexts/IssuesContext';
+import { FILTERS_ITEMS } from '@constants/filtersItems';
+import { UPDATE_FILTER } from '@constants/actionTypes';
 import S from './style';
-
-const filterItems = [
-  ['Open issues', { status: 'opened' }],
-  ['Your issues', { author: localStorage.getItem('user_id') }],
-  ['Everything assigned to you', { assignees: [localStorage.getItem('user_id')] }],
-  ['Everything mentioning you', { author: localStorage.getItem('user_id') }],
-  ['Closed issues', { status: 'closed' }],
-];
 
 function Filters() {
   const state = useIssuesState();
   const dispatch = useIssuesDispatch();
-  const { filters } = state;
+  const {filters} = state;
 
   const selectHandler = (updatedFilter) => {
-    dispatch({ type: 'UPDATE_FILTER', filters: { ...filters, ...updatedFilter } });
+    dispatch({type : UPDATE_FILTER, filters : {...filters, ...updatedFilter}})
   };
 
   return (
@@ -26,7 +20,7 @@ function Filters() {
       <Dropdown className="filters-dropdown" text="Filters">
         <Dropdown.Menu className="dropdown-menu" direction="right">
           <Dropdown.Header className="dropdown-header" content="Filter Issues" />
-          {filterItems.map((item, index) => (
+          {FILTERS_ITEMS.map((item, index) => (
             <>
               <hr className="dropdown-divider" />
               <Dropdown.Item
