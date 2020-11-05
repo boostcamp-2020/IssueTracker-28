@@ -1,23 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import S from '@components/issues/IssueHeader/Buttons/style';
 import axios from 'axios';
-import {
-  InputWrapper,
-  InputTitle,
-  WriteWrapper,
-  WriteTitle,
-  Line,
-  InputComment,
-  InputPicture,
-  ButtonWrapper,
-  CancelButton,
-  SubmitButton,
-  AttachWrapper,
-  WritePreview,
-  CountComments,
-  LabelPicture,
-} from './style';
+import BS from '@components/issues/IssueHeader/Buttons/style';
+import S from './style';
 
 function Input() {
   let timer;
@@ -60,29 +45,29 @@ function Input() {
   };
 
   return (
-    <InputWrapper>
-      <InputTitle placeholder="Title" value={title} onChange={titleHandler} />
-      <WriteWrapper>
-        <WriteTitle>Write</WriteTitle>
-        <WritePreview>Preview</WritePreview>
-        <Line />
-        <InputComment
+    <S.InputWrapper>
+      <S.InputTitle placeholder='Title' value={title} onChange={titleHandler} />
+      <S.WriteWrapper>
+        <S.WriteTitle>Write</S.WriteTitle>
+        <S.WritePreview>Preview</S.WritePreview>
+        <S.Line />
+        <S.InputComment
           placeholder="Leave a comment"
           value={comment}
           onChange={commentHandler}
           onKeyUp={keyUpEvent}
         />
-        <AttachWrapper>
-          <LabelPicture for="upload_image">Attach files by selecting here</LabelPicture>
-          <InputPicture type="file" id="upload_image" accept="image/png" onChange={imageHandler} />
-          <CountComments>{isDelay && comment.length + ' 자'} </CountComments>
-        </AttachWrapper>
-      </WriteWrapper>
-      <ButtonWrapper>
-        <CancelButton onClick={() => history.push('/')}>Cancel</CancelButton>
-        <S.NewIssueButton>Submit new issue</S.NewIssueButton>
-      </ButtonWrapper>
-    </InputWrapper>
+        <S.AttachWrapper>
+          <S.LabelPicture for="upload_image">Attach files by selecting here</S.LabelPicture>
+          <S.InputPicture type="file" id="upload_image" accept="image/png" onChange={imageHandler} />
+          <S.CountComments>{isDelay && comment.length + ' 자'} </S.CountComments>
+        </S.AttachWrapper>
+      </S.WriteWrapper>
+      <S.ButtonWrapper>
+        <S.CancelButton onClick={() => history.push('/')}>Cancel</S.CancelButton>
+        <BS.NewIssueButton>Submit new issue</BS.NewIssueButton>
+      </S.ButtonWrapper>
+    </S.InputWrapper >
   );
 }
 
