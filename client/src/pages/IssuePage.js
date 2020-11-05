@@ -1,5 +1,6 @@
 import React from 'react';
 import { IssuesProvider } from '@contexts/IssuesContext';
+import { CheckedItemProvider } from '@contexts/CheckedItemContext';
 import Issues from '../components/issues';
 import 'semantic-ui-css/semantic.min.css';
 
@@ -7,7 +8,9 @@ function IssuePage() {
   return (
     <>
       <IssuesProvider>
-        <Issues />
+        <CheckedItemProvider>
+          <Issues />
+        </CheckedItemProvider>
       </IssuesProvider>
     </>
   );

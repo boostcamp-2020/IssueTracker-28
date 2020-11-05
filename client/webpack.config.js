@@ -17,7 +17,7 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(eot|ttf|woff2?|otf|svg|png)$/,
+        test: /\.(eot|ttf|woff2?|otf|svg|png|gif)$/,
         loader: 'file-loader',
         options: { name: '[name].[ext]' },
       },
@@ -31,6 +31,7 @@ module.exports = {
       '@pages': path.resolve(__dirname, 'src/pages'),
       '@images': path.resolve(__dirname, 'public/images'),
       '@components': path.resolve(__dirname, 'src/components'),
+      '@constants': path.resolve(__dirname, 'src/constants'),
     },
     extensions: ['*', '.js', '.jsx'],
   },

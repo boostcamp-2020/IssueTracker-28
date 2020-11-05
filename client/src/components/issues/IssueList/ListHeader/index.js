@@ -2,7 +2,8 @@ import React, {Fragment, useState, useEffect} from 'react';
 import { Dropdown } from 'semantic-ui-react';
 import S from './style';
 import { useIssuesState, useIssuesDispatch } from '@contexts/IssuesContext';
-
+import { useCheckedItemState, useCheckedItemDispatch } from '@contexts/CheckedItemContext';
+import { SELECT_ALL, DESELECT_ALL, UPDATE_FILTER } from '@constants/actionTypes';
 
 const AUTHOR_MENU = [
   'yeji9175',
@@ -37,45 +38,56 @@ const NO_FILTER_ITEM = [
   'Assigend to nobody'
 ]
 
-
-function ListHeader({allCheckedHandler, checkedItems, isAllChecked, setIsAllChecked}) {
-  // const [beChecked, setChecked] = useState(false);
+function ListHeader() {
+  const [beCheckState, SetBeCheckState] = useState(false);
   const state = useIssuesState();
   const dispatch = useIssuesDispatch();
   const {filters} = state;
 
+  const checkState = useCheckedItemState();
+  const checkDispatch = useCheckedItemDispatch();
+  const {checkedItems, isAllChecked} = checkState;
+
+  const checkHandler=(e)=>{
+    const isChecked = e.target.checked;
+    SetBeCheckState(!beCheckState);
+    isChecked ? checkDispatch({type:SELECT_ALL}) : checkDispatch({type:DESELECT_ALL});
+  }
+
+  //필터, issue데이터 등 issue상태가 변하면 전체 선택해제
+  useEffect(()=>{
+    checkDispatch({type:DESELECT_ALL})
+  },[state])
+
+  //전체 선택 상태에 변화가 생기면 체크상태 변경
+  useEffect(()=>{
+    if(beCheckState!==isAllChecked)
+      SetBeCheckState(isAllChecked)
+  },[isAllChecked])
+
+
   const filterHandler=(item, type)=>{
     switch(type){
       case 'author':
-        return dispatch({type:'UPDATE_FILTER', filters : {...filters, author : item}});
+        return dispatch({type:UPDATE_FILTER, filters : {...filters, author : item}});
       case 'label':
-        if (item===null) return dispatch({type:'UPDATE_FILTER', filters : {...filters,  labels : []}})
-        if (filters.labels === '*') return dispatch({type:'UPDATE_FILTER', filters : {...filters,  labels : [item]}})
-        return dispatch({type:'UPDATE_FILTER', filters : {...filters,  labels : [...filters.labels, item]}})
+        if (item===null) return dispatch({type:UPDATE_FILTER, filters : {...filters,  labels : []}})
+        if (filters.labels === '*') return dispatch({type:UPDATE_FILTER, filters : {...filters,  labels : [item]}})
+        return dispatch({type:UPDATE_FILTER, filters : {...filters,  labels : [...filters.labels, item]}})
       case 'milestone':
-        return dispatch({type:'UPDATE_FILTER', filters : {...filters, milestone : item}})
+        return dispatch({type:UPDATE_FILTER, filters : {...filters, milestone : item}})
       case 'assignees':
-        if (item===null) return dispatch({type:'UPDATE_FILTER', filters : {...filters,assignees : []}})
-        return dispatch({type:'UPDATE_FILTER', filters : {...filters, assignees : [item]}})
+        if (item===null) return dispatch({type:UPDATE_FILTER, filters : {...filters,assignees : []}})
+        return dispatch({type:UPDATE_FILTER, filters : {...filters, assignees : [item]}})
     }
   }
 
-  const checkHandler = ({ target }) => {
-    setIsAllChecked(!isAllChecked);
-    allCheckedHandler(target.checked);
-  };
-
-  useEffect(()=>{
-    setIsAllChecked(false);
-    allCheckedHandler(false);
-  },[filters]);
-
   return (
     <S.ListWrapper>
-      <input type='checkbox' checked={isAllChecked} onChange={(e) => checkHandler(e)} className='all-checkbox'  />
-  {checkedItems.size === 0 ? null : <span className="checked-item-count">{checkedItems.size} selected</span>}
+      <input type='checkbox' checked={beCheckState} onChange={(e)=>checkHandler(e)} className='all-checkbox'  />
+      {checkedItems.size === 0 ? null : <span className="checked-item-count">{checkedItems.size} selected</span>}
       <S.ListFilters>
-      {checkedItems.size === 0 ?  
+      {checkedItems.size === 0 ? 
       <>
       <S.FilterDropdown>
       <Dropdown className='author-dropdown dropdown' text='Author'>

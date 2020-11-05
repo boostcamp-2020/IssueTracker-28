@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export default {
   LoginWrapper: styled.div`
-    width: 380px;
-    height: 330px;
+    width: 400px;
+    min-height: 320px;
     background: white;
     border: 1px solid #d9d9d9;
     border-radius: 5px;
@@ -11,8 +11,7 @@ export default {
     align-items: center;
     justify-content: space-around;
     flex-direction: column;
-    padding: 20px 0;
-    box-sizing: border-box;
+    padding: 25px 0;
     margin-bottom: 120px;
   `,
   LoginButton: styled.div`
@@ -20,10 +19,10 @@ export default {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    background: #333333;
+    background: #222222;
     color: white;
     border: none;
-    width: 320px;
+    width: 325px;
     height: 45px;
     border-radius: 4px;
     font-size: 16px;
@@ -36,15 +35,15 @@ export default {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    width: 320px;
+    width: 325px;
     color: black;
     height: 45px;
     border-radius: 4px;
     font-size: 16px;
-    background: #d9d9d9;
+    background: white;
     border: 1px solid #d9d9d9;
   `,
   LoginImage: styled.img`
-    width: 240px;
+    width: 70%;
   `,
 };
