@@ -36,14 +36,14 @@ export default {
         font-weight: 500;
         font-size: 13.5px;
         background: white;
-        min-width : 150px;
+        min-width: 150px;
       }
       .dropdown-menu {
         font-weight: 700;
         font-size: 15px;
         background: #f7f8fa;
-        .item:hover{
-          background : #f7f8fa;
+        .item:hover {
+          background: #f7f8fa;
         }
       }
       .dropdown-header {

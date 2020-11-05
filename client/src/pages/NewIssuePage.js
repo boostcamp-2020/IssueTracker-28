@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Input from '@components/input';
+import Header from '@components/header';
 import Assignees from '@components/assignees';
 import Labels from '@components/labels';
 import Milestone from '@components/milestone';
@@ -21,12 +22,12 @@ function NewIssuePage() {
   const [selectedMilestone, setSelectedMilestone] = useState(null);
 
   const handleAssigneeClick = (assignee) => {
-    for (let user of Array.from(selectedAssignees)) {
+    for (const user of Array.from(selectedAssignees)) {
       if (user.id === assignee.id) return;
     }
 
     const newAssignees = new Set(selectedAssignees);
-    newAssignees.add(assignee)
+    newAssignees.add(assignee);
     setSelectedAssignees(newAssignees);
   };
 
@@ -34,7 +35,7 @@ function NewIssuePage() {
     if (selectedLabels.has(label)) return;
 
     const newLabels = new Set(selectedLabels);
-    newLabels.add(label)
+    newLabels.add(label);
     setSelectedLabels(newLabels);
   };
 
@@ -43,14 +44,23 @@ function NewIssuePage() {
   };
 
   return (
-    <NewIssuePageWrapper>
-      <Input />
-      <Sidebar>
-        <Assignees selectedAssignees={selectedAssignees} handleAssigneeClick={handleAssigneeClick} />
-        <Labels selectedLabels={selectedLabels} handleLabelClick={handleLabelClick} />
-        <Milestone selectedMilestone={selectedMilestone} handleMilestoneClick={handleMilestoneClick} />
-      </Sidebar>
-    </NewIssuePageWrapper>
+    <>
+      <Header />
+      <NewIssuePageWrapper>
+        <Input />
+        <Sidebar>
+          <Assignees
+            selectedAssignees={selectedAssignees}
+            handleAssigneeClick={handleAssigneeClick}
+          />
+          <Labels selectedLabels={selectedLabels} handleLabelClick={handleLabelClick} />
+          <Milestone
+            selectedMilestone={selectedMilestone}
+            handleMilestoneClick={handleMilestoneClick}
+          />
+        </Sidebar>
+      </NewIssuePageWrapper>
+    </>
   );
 }
 

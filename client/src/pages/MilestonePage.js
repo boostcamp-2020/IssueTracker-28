@@ -1,13 +1,14 @@
 import React from 'react';
-import { MilestonesProvider } from '@contexts/MilestonesContext';
+import Header from '@components/header';
 import Milestones from '../components/milestones';
 import 'semantic-ui-css/semantic.min.css';
 
 function MilestonePage() {
   return (
-    <MilestonesProvider>
+    <>
+      <Header />
       <Milestones />
-    </MilestonesProvider>
+    </>
   );
 }
 

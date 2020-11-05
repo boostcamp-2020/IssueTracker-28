@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Dropdown } from 'semantic-ui-react';
 import { CheckIcon } from '@primer/octicons-react';
 import { useLabelState, useLabelDispatch, getLabels } from '@contexts/LabelContext';
@@ -9,15 +9,15 @@ import {
   getMilestones,
 } from '@contexts/MilestonesContext';
 import { useUsersState, useUsersDispatch, getUsers } from '@contexts/UsersContext';
-import { BoxColor, TitleContainer, LabelName, LabelDesc } from '../../../labels/style';
+import { useCheckedItemState, useCheckedItemDispatch } from '@contexts/CheckedItemContext';
+import { SELECT_ALL, DESELECT_ALL, UPDATE_FILTER } from '@constants/actionTypes';
+import LS from '../../../labels/style';
 import S from './style';
 import handler from './handler';
 
 const NO_FILTER_ITEM = ['Unlabeled', 'Issues with no milestone', 'Assigend to nobody'];
-import { useCheckedItemState, useCheckedItemDispatch } from '@contexts/CheckedItemContext';
-import { SELECT_ALL, DESELECT_ALL, UPDATE_FILTER } from '@constants/actionTypes';
 
-function ListHeader({ checkedItems, isAllChecked }) {
+function ListHeader() {
   const state = useIssuesState();
   const dispatch = useIssuesDispatch();
 
@@ -32,29 +32,28 @@ function ListHeader({ checkedItems, isAllChecked }) {
   const { data: users } = usersState.users;
   const { data } = milestoneState.milestones;
   const milestones = data?.milestones;
-  
+
   const [beCheckState, SetBeCheckState] = useState(false);
 
   const checkState = useCheckedItemState();
   const checkDispatch = useCheckedItemDispatch();
-  const {checkedItems, isAllChecked} = checkState;
+  const { checkedItems, isAllChecked } = checkState;
 
-  const checkHandler=(e)=>{
+  const checkHandler = (e) => {
     const isChecked = e.target.checked;
     SetBeCheckState(!beCheckState);
-    isChecked ? checkDispatch({type:SELECT_ALL}) : checkDispatch({type:DESELECT_ALL});
-  }
+    isChecked ? checkDispatch({ type: SELECT_ALL }) : checkDispatch({ type: DESELECT_ALL });
+  };
 
-  //필터, issue데이터 등 issue상태가 변하면 전체 선택해제
-  useEffect(()=>{
-    checkDispatch({type:DESELECT_ALL})
-  },[state])
+  // 필터, issue데이터 등 issue상태가 변하면 전체 선택해제
+  useEffect(() => {
+    checkDispatch({ type: DESELECT_ALL });
+  }, [state]);
 
-  //전체 선택 상태에 변화가 생기면 체크상태 변경
-  useEffect(()=>{
-    if(beCheckState!==isAllChecked)
-      SetBeCheckState(isAllChecked)
-  },[isAllChecked])
+  // 전체 선택 상태에 변화가 생기면 체크상태 변경
+  useEffect(() => {
+    if (beCheckState !== isAllChecked) SetBeCheckState(isAllChecked);
+  }, [isAllChecked]);
 
   const fetchData = () => {
     getLabels(labelDispatch);
@@ -114,7 +113,7 @@ function ListHeader({ checkedItems, isAllChecked }) {
                         >
                           <S.ItemContainer>
                             <CheckIcon size={16} className="check-icon" />
-                            <LabelName>{item.userId}</LabelName>
+                            <LS.LabelName>{item.userId}</LS.LabelName>
                           </S.ItemContainer>
                         </Dropdown.Item>
                       </>
@@ -135,7 +134,7 @@ function ListHeader({ checkedItems, isAllChecked }) {
                   >
                     <S.ItemContainer>
                       <CheckIcon size={16} className="check-icon" />
-                      <LabelName>{NO_FILTER_ITEM[0]}</LabelName>
+                      <LS.LabelName>{NO_FILTER_ITEM[0]}</LS.LabelName>
                     </S.ItemContainer>
                   </Dropdown.Item>
                   {labels &&
@@ -150,12 +149,12 @@ function ListHeader({ checkedItems, isAllChecked }) {
                           }}
                           key={item.id}
                         >
-                          <TitleContainer>
+                          <LS.TitleContainer>
                             <CheckIcon size={16} className="check-icon" />
-                            <BoxColor background={item.color} />
-                            <LabelName>{item.name}</LabelName>
-                          </TitleContainer>
-                          <LabelDesc>{item.desc}</LabelDesc>
+                            <LS.BoxColor background={item.color} />
+                            <LS.LabelName>{item.name}</LS.LabelName>
+                          </LS.TitleContainer>
+                          <LS.LabelDesc>{item.desc}</LS.LabelDesc>
                         </Dropdown.Item>
                       </>
                     ))}
@@ -175,7 +174,7 @@ function ListHeader({ checkedItems, isAllChecked }) {
                   >
                     <S.ItemContainer>
                       <CheckIcon size={16} className="check-icon" />
-                      <LabelName>{NO_FILTER_ITEM[1]}</LabelName>
+                      <LS.LabelName>{NO_FILTER_ITEM[1]}</LS.LabelName>
                     </S.ItemContainer>
                   </Dropdown.Item>
                   {milestones &&
@@ -190,11 +189,11 @@ function ListHeader({ checkedItems, isAllChecked }) {
                           }}
                           key={item.id}
                         >
-                          <TitleContainer>
+                          <LS.TitleContainer>
                             <CheckIcon size={16} className="check-icon" />
                             <div>{item.title}</div>
                             <div>{item.due_date}</div>
-                          </TitleContainer>
+                          </LS.TitleContainer>
                         </Dropdown.Item>
                       </>
                     ))}
@@ -215,7 +214,7 @@ function ListHeader({ checkedItems, isAllChecked }) {
                   >
                     <S.ItemContainer>
                       <CheckIcon size={16} className="check-icon" />
-                      <LabelName>{NO_FILTER_ITEM[2]}</LabelName>
+                      <LS.LabelName>{NO_FILTER_ITEM[2]}</LS.LabelName>
                     </S.ItemContainer>
                   </Dropdown.Item>
                   {users &&
@@ -232,7 +231,7 @@ function ListHeader({ checkedItems, isAllChecked }) {
                         >
                           <S.ItemContainer>
                             <CheckIcon size={16} className="check-icon" />
-                            <LabelName>{item.userId}</LabelName>
+                            <LS.LabelName>{item.userId}</LS.LabelName>
                           </S.ItemContainer>
                         </Dropdown.Item>
                       </>

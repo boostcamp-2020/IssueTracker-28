@@ -4,40 +4,39 @@ import { useCheckedItemState, useCheckedItemDispatch } from '@contexts/CheckedIt
 import { CHECKED_UPDATE } from '@constants/actionTypes';
 import S from './style';
 
-function Issue({issue}) {
+function Issue({ issue }) {
   const [checkState, setCheckState] = useState(false);
   const state = useCheckedItemState();
   const dispatch = useCheckedItemDispatch();
-  const {checkedItems, isAllChecked} = state;
+  const { checkedItems, isAllChecked } = state;
 
-  const checkHandler=(e)=>{
+  const checkHandler = (e) => {
     const isChecked = e.target.checked;
-    if (isChecked !== checkState){
+    if (isChecked !== checkState) {
       setCheckState(!checkState);
-      isChecked ? checkedItems.add(issue.id) : checkedItems.delete(issue.id);  
-      dispatch({type:CHECKED_UPDATE, data : new Set([...checkedItems])});
+      isChecked ? checkedItems.add(issue.id) : checkedItems.delete(issue.id);
+      dispatch({ type: CHECKED_UPDATE, data: new Set([...checkedItems]) });
     }
-  }
+  };
 
   // 전체 선택 상태 변경시, 해당상태 반영
-  useEffect(()=>{
+  useEffect(() => {
     setCheckState(isAllChecked);
-    if (isAllChecked){
+    if (isAllChecked) {
       checkedItems.add(issue.id);
-      dispatch({type:CHECKED_UPDATE, data : new Set([...checkedItems])});
+      dispatch({ type: CHECKED_UPDATE, data: new Set([...checkedItems]) });
     }
-  }, [isAllChecked])
+  }, [isAllChecked]);
 
-  useEffect(()=>{
-    if (checkedItems.size===0)
-      setCheckState(false);
-  }, [checkedItems])
+  useEffect(() => {
+    if (checkedItems.size === 0) setCheckState(false);
+  }, [checkedItems]);
 
   return (
     <S.IssueWrapper>
       <input
         type="checkbox"
-        checked={beChecked}
+        checked={checkState}
         onChange={(e) => checkHandler(e)}
         className="issue-checkbox"
       />
