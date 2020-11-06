@@ -4,7 +4,7 @@ import axios from 'axios';
 import BS from '@components/issues/IssueHeader/Buttons/style';
 import S from './style';
 
-function Input() {
+function Input({ selectedAssignees, selectedLabels, selectedMilestone }) {
   let timer;
   let timer2;
   const history = useHistory();
