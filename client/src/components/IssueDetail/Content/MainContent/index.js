@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import InputForm from '@components/input/inputForm';
+import InputForm from '@components/input/InputForm';
 import Comment from './Comment';
 import S from './style';
 
-const MainContent = ({ author, content, setContent, createdAt, issueAuthor }) => {
+const MainContent = () => {
   const [newComment, setNewComment] = useState('');
   return (
     <>

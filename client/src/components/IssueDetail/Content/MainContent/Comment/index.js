@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { SmileyIcon } from '@primer/octicons-react';
-import InputForm from '@components/input/inputForm';
+import InputForm from '@components/input/InputForm';
 import S from './style';
 
 const Comment = ({ isIssue, issueAuthor, author, createdAt, content }) => {
