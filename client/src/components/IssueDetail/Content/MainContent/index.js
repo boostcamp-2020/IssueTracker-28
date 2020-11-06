@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import InputForm from '@components/input/InputForm';
+import InputForm from '@components/input/form';
 import Comment from './Comment';
 import S from './style';
 
