@@ -20,14 +20,14 @@ function NewIssuePage() {
     return Array.from(selectedAssignees).reduce((acc, cur) => {
       acc.push(cur.id);
       return acc;
-    }, []);;
+    }, []);
   };
 
   const getLabelsId = () => {
     return Array.from(selectedLabels).reduce((acc, cur) => {
       acc.push(cur.id);
       return acc;
-    }, []);;
+    }, []);
   };
 
   return (
@@ -37,7 +37,7 @@ function NewIssuePage() {
         <Input
           selectedAssignees={selectedAssignees && getAssigneesId()}
           selectedLabels={selectedLabels && getLabelsId()}
-          selectedMilestone={selectedMilestone && selectedMilestone.id} 
+          selectedMilestone={selectedMilestone && selectedMilestone.id}
         />
         <Sidebar
           selectedAssignees={selectedAssignees}

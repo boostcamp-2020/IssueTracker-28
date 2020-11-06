@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import S from './style';
-import InputForm from './InputForm/index';
+import InputForm from './inputForm';
 
 function Input({ selectedAssignees, selectedLabels, selectedMilestone }) {
-  const history = useHistory();
   const [title, setTitle] = useState('');
   const [comment, setComment] = useState('');
 

@@ -1,8 +1,11 @@
 import React from 'react';
-import S from './style';
 import BS from '@components/issues/IssueHeader/Buttons/style';
+import { useHistory } from 'react-router-dom';
+import S from './style';
 
 const ButtonWrapper = (buttonState, isEditClicked, setIsEditClicked) => {
+  const history = useHistory();
+
   switch (buttonState) {
     case 'NEW_ISSUE':
       return (
@@ -36,6 +39,7 @@ const ButtonWrapper = (buttonState, isEditClicked, setIsEditClicked) => {
           <BS.NewIssueButton>Update Comment</BS.NewIssueButton>
         </S.ButtonWrapper>
       );
+    default:
   }
 };
 
