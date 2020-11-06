@@ -4,7 +4,7 @@ export default {
   IssueDetailWrapper: styled.div`
     display: flex;
     flex-direction: column;
-    margin: 24px auto;
+    margin: 30px auto;
     max-width: 900px;
   `,
 };
