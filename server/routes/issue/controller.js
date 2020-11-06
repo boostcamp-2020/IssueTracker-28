@@ -1,6 +1,5 @@
 const issueServices = require('../../services/issue');
-const milestoneServices = require('../../services/milestone');
-const userServices = require('../../services/user');
+
 /*
     GET /api/issue/list
     * 전체 이슈 목록 조회 API
@@ -76,20 +75,21 @@ exports.updateIssueStatus = async (req, res, next) => {
         message: '이슈 상태 수정 실패',
       });
     }
+    
+/*
+    GET /api/issue/detail/:id
+    * 이슈 상세 조회 API
+*/
+exports.getIssueDetail = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const detail = await issueServices.getIssueDetail(id);
+
+    res.json({
+      message: '이슈 상세 조회 성공',
+      data: detail,
+    });
   } catch (error) {
     next(error);
   }
 };
-
-exports.updateHistory = async (req, res, next) => {
-  const { hid } = req.params;
-  const userId = req.user.user_id;
-  const { price, content, paymentName, cardId, createdAt } = req.body;
-  try {
-    const result = await History.updateHistory([price, content, paymentName, userId, cardId, createdAt, hid])
-    return res.status(200).json({ success: true, hid: result.insertId });
-  } catch (err) {
-    console.log(err)
-    res.status(400).json({ success: false })
-  }
-}

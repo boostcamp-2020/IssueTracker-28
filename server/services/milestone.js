@@ -16,3 +16,18 @@ exports.findMilestone = async (title) => {
   const results = await db.selectMilestoneID(title);
   return results;
 };
+
+exports.createMilestone = async (params) => {
+  const results = await db.insertMilestone(params);
+  return results;
+};
+
+exports.updateMilestone = async (params) => {
+  const results = await db.updateMilestone(params);
+  return results;
+};
+
+exports.deleteMilestone = async (params) => {
+  const results = await db.deleteMilestone(params);
+  return results;
+};

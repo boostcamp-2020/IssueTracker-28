@@ -1,6 +1,14 @@
-const { User, Issue, Milestone, IssueAssignee, IssueLabel, sequelize } = require('../../models');
+const {
+  User,
+  Issue,
+  Milestone,
+  IssueAssignee,
+  IssueLabel,
+  Comment,
+  sequelize,
+} = require('../../models');
 
-exports.selectIssue = async () => {
+exports.selectIssues = async () => {
   const issues = await Issue.findAll({
     attributes: ['id', 'title', 'content', 'user_id', 'milestone_id', 'status', 'updated_at'],
     include: [{
@@ -17,6 +25,27 @@ exports.selectIssue = async () => {
 
   return issues;
 };
+
+exports.selectIssue = async (id) => {
+  const issue = await Issue.findOne({
+    attributes: ['id', 'title', 'content', 'user_id', 'milestone_id', 'status', 'updated_at'],
+    where: { id },
+    include: [
+      {
+        model: User,
+        attributes: ['id', 'user_id'],
+      },
+      {
+        model: Milestone,
+        attributes: ['id', 'title'],
+      },
+    ],
+    order: sequelize.literal('id DESC'),
+  });
+
+  return issue;
+};
+
 exports.insertIssue = async (params) => {
   const issues = await Issue.create({
     raw: true,
@@ -50,7 +79,6 @@ exports.insertIssueLabel = async (params) => {
   return results;
 };
 
-
 exports.updateIssueStatus = async (ids, status) => {
   try {
     await Issue.update({ status }, {
@@ -63,4 +91,19 @@ exports.updateIssueStatus = async (ids, status) => {
     console.log(err)
     return false;
   }
+};
+
+exports.selectComments = async (issueId) => {
+  const results = await Comment.findAll({
+    attributes: ['id', 'content', 'user_id', 'updated_at'],
+    where: { issueId },
+    include: [
+      {
+        model: User,
+        attributes: ['id', 'user_id'],
+      },
+    ],
+    raw: true,
+  });
+  return results;
 };
