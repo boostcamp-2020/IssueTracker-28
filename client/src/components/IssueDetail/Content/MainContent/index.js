@@ -3,7 +3,7 @@ import InputForm from '@components/input/inputForm';
 import Comment from './Comment';
 import S from './style';
 
-const MainContent = ({ author, content, setContent, createdAt, issueAuthor }) => {
+const MainContent = () => {
   const [newComment, setNewComment] = useState('');
   return (
     <>
