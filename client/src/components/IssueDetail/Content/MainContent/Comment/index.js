@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-import S from './style';
 import { SmileyIcon } from '@primer/octicons-react';
 import InputForm from '@components/input/inputForm';
+import S from './style';
+
 const Comment = ({ isIssue, issueAuthor, author, createdAt, content }) => {
+  const [isEditClicked, setIsEditClicked] = useState(false);
+  const [comment, setComment] = useState(content);
+
   const editHandler = () => {
     setIsEditClicked(!isEditClicked);
   };
-  const [isEditClicked, setIsEditClicked] = useState(false);
-  const [comment, setComment] = useState(content);
+
   const isIssueAuthor = issueAuthor === author;
   const isCommentAuthor = author === localStorage.getItem('user_id');
   return (
@@ -40,10 +43,10 @@ const Comment = ({ isIssue, issueAuthor, author, createdAt, content }) => {
             formHeight="45%"
             color="rgb(241,248,255)"
             buttonState={isIssue === true ? 'UPDATE_ISSUE' : 'UPDATE_COMMENT'}
-            isEditClicked={isEditClicked}
-            setIsEditClicked={setIsEditClicked}
             comment={comment}
             setComment={setComment}
+            isEditClicked={isEditClicked}
+            setIsEditClicked={setIsEditClicked}
           />
         </S.InputWrappers>
       )}

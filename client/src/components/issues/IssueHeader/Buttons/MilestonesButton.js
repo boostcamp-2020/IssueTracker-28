@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import S from './style';
 
 import { MilestoneIcon } from '@primer/octicons-react';
 import {
@@ -7,13 +6,15 @@ import {
   useMilestonesDispatch,
   getMilestones,
 } from '@contexts/MilestonesContext';
+import { useHistory } from 'react-router-dom';
+import S from './style';
 
 function MilestonesButton() {
   const state = useMilestonesState();
   const dispatch = useMilestonesDispatch();
+  const history = useHistory();
 
   const { data } = state.milestones;
-
 
   const fetchData = () => {
     getMilestones(dispatch);
@@ -26,7 +27,7 @@ function MilestonesButton() {
   const milestones = data?.milestones;
 
   return (
-    <S.MilestonesButton>
+    <S.MilestonesButton onClick={() => history.push('/milestone')}>
       <MilestoneIcon />
       <S.ButtonText>Milestones</S.ButtonText>
       <S.ShowTotalNum>{milestones ? milestones.length : 0}</S.ShowTotalNum>

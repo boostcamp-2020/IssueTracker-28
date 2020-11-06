@@ -1,22 +1,24 @@
 import React, { useState } from 'react';
-import S from './style';
 import axios from 'axios';
+import S from './style';
 import ButtonWrapper from './buttonWrapper';
+
 const InputForm = ({
   formHeight,
   color,
   buttonState,
-  isEditClicked,
-  setIsEditClicked,
   comment,
   setComment,
+  isEditClicked,
+  setIsEditClicked,
 }) => {
   let timer;
+
+  const [isDelay, setIsDelay] = useState(false);
   const commentHandler = ({ target }) => {
     setIsDelay(false);
     setComment(target.value);
   };
-  const [isDelay, setIsDelay] = useState(false);
 
   const imageHandler = ({ target }) => {
     if (target.files !== null) {
