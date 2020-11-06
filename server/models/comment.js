@@ -8,10 +8,6 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      title: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
       content: {
         type: DataTypes.TEXT,
         allowNull: true,

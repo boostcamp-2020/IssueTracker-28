@@ -1,17 +1,37 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useEffect } from 'react';
 import S from './style';
-import { MilestoneIcon } from '@primer/octicons-react'
+
+import { MilestoneIcon } from '@primer/octicons-react';
+import {
+  useMilestonesState,
+  useMilestonesDispatch,
+  getMilestones,
+} from '@contexts/MilestonesContext';
 
 function MilestonesButton() {
-  const history = useHistory();
+  const state = useMilestonesState();
+  const dispatch = useMilestonesDispatch();
+
+  const { data } = state.milestones;
+
+
+  const fetchData = () => {
+    getMilestones(dispatch);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [dispatch]);
+
+  const milestones = data?.milestones;
+
   return (
-    <S.MilestonesButton onClick={() => history.push('/milestone')}>
+    <S.MilestonesButton>
       <MilestoneIcon />
       <S.ButtonText>Milestones</S.ButtonText>
-      <S.ShowTotalNum>0</S.ShowTotalNum>
+      <S.ShowTotalNum>{milestones ? milestones.length : 0}</S.ShowTotalNum>
     </S.MilestonesButton>
   );
-};
+}
 
 export default MilestonesButton;

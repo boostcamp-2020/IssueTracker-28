@@ -3,6 +3,7 @@ import { Dropdown } from 'semantic-ui-react';
 import { useIssuesState, useIssuesDispatch } from '@contexts/IssuesContext';
 import { FILTERS_ITEMS } from '@constants/filtersItems';
 import { UPDATE_FILTER } from '@constants/actionTypes';
+import { uncheckAllFilters } from '@utils/uncheckAllFilters';
 import S from './style';
 
 function Filters() {
@@ -10,9 +11,18 @@ function Filters() {
   const dispatch = useIssuesDispatch();
   const {filters} = state;
 
-  const selectHandler = (updatedFilter) => {
+  const selectHandler = (index, updatedFilter) => {
     dispatch({type : UPDATE_FILTER, filters : {...filters, ...updatedFilter}})
+    // yourIssues, assigning you 필터 선택시, 드롭다운 필터에 있는 체크를 display:none으로 변경
+    uncheckFiltersHandler(index)
   };
+
+  const uncheckFiltersHandler=(index)=>{
+    const authorDropdown = document.querySelector('.author-dropdown');
+    const assigneeDropdown = document.querySelector('.assignee-dropdown');
+    if (index===1) uncheckAllFilters(authorDropdown);
+    if (index===2) uncheckAllFilters(assigneeDropdown);
+  }
 
   return (
     <S.FiltersWrapper>
@@ -28,7 +38,7 @@ function Filters() {
                 text={item[0]}
                 key={index}
                 onClick={() => {
-                  selectHandler(item[1]);
+                  selectHandler(index, item[1]);
                 }}
               />
             </>

@@ -2,18 +2,20 @@ const db = require('./db/label');
 
 exports.getLabels = async () => {
   const results = await db.selectLabel();
+  return results;
+};
 
-  const data = [];
+exports.createLabel = async (params) => {
+  const results = await db.insertLabel(params);
+  return results;
+};
 
-  for (const result of results) {
-    const label = {};
-    label.id = result.id;
-    label.name = result.name;
-    label.desc = result.desc;
-    label.color = result.color;
+exports.updateLabel = async (params) => {
+  const results = await db.updateLabel(params);
+  return results;
+};
 
-    data.push(label);
-  }
-
-  return data;
+exports.deleteLabel = async (params) => {
+  const results = await db.deleteLabel(params);
+  return results;
 };
