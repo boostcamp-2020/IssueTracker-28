@@ -1,6 +1,13 @@
 import API from './common';
 
-export async function getIssues() {
-    const response = await API.get('/issue/list');
-    return response.data;
-}
+const getIssues = async () => {
+  const response = await API.get('/issue/list');
+  return response.data;
+};
+
+const getIssueDetail = async (id) => {
+  const response = await API.get(`/issue/detail/${id}`);
+  return response.data;
+};
+
+export { getIssues, getIssueDetail };
