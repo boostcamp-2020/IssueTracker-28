@@ -12,12 +12,15 @@ export default {
   `,
   InputTitle: styled.input`
     width: 97.5%;
-    margin: 8px 8px 0px 8px;
-    padding: 2px 12px;
-    font-size: 14px;
+    height : 35px;
+    margin: 8px;
+    padding : 2px 8px;
+    font-size: 15px;
     line-height: 20px;
     border: 1px solid #e1e4e8;
-    border-radius: 6px;
+    border-radius: 4px;
     outline: none;
+    background : #FAFBFC;
+    box-shadow: inset 0 1px 3px #efefef;
   `,
 };

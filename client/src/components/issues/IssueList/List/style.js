@@ -18,4 +18,13 @@ export default {
       margin-bottom: 28px;
     }
   `,
+  LoadSpinner: styled.img`
+    width : 250px;
+    position : absolute;
+    margin : auto;
+    top: 0;
+    bottom:0;  
+    left:0;
+    right:0;  
+  `
 };

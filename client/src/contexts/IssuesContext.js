@@ -111,3 +111,13 @@ export async function getIssues(dispatch) {
     dispatch({ type: 'GET_ISSUES_ERROR', error: e });
   }
 }
+
+export async function updateIssueStatus(dispatch, issueIDs, status){
+  console.log(status);
+  try{
+    await api.updateIssueStatus(issueIDs, status);
+    getIssues(dispatch);
+  }catch(e){
+    dispatch({ type: 'GET_ISSUES_ERROR', error: e });
+  }
+}

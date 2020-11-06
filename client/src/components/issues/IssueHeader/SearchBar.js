@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useIssuesState, useIssuesDispatch, initialFilters } from '@contexts/IssuesContext';
 import S from './style';
+import { uncheckAllFilters } from '@utils/uncheckAllFilters'
 import { UPDATE_FILTER } from '@constants/actionTypes';
 
 function SearchBar() {
@@ -17,9 +18,11 @@ function SearchBar() {
   const searchHandler = (e) => {
     setSearchValue(e.target.value);
   };
+
   const enterHandler = (e) => {
     if (e.key === 'Enter' && searchValue=="") {
       dispatch({type : UPDATE_FILTER, filters : {...initialFilters, status : '*'}})
+      uncheckAllFilters();
     }
   };
   return (

@@ -41,7 +41,7 @@ function Issue({ issue }) {
       <input
         type="checkbox"
         checked={checkState}
-        onChange={(e) => checkHandler(e)}
+        onChange={checkHandler}
         className="issue-checkbox"
       />
       {issue.status === 'opened' ? (

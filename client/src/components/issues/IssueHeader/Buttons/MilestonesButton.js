@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import S from './style';
+
 import { MilestoneIcon } from '@primer/octicons-react';
 import {
   useMilestonesState,
@@ -12,6 +13,7 @@ function MilestonesButton() {
   const dispatch = useMilestonesDispatch();
 
   const { data } = state.milestones;
+
 
   const fetchData = () => {
     getMilestones(dispatch);

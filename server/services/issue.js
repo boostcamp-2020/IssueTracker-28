@@ -70,6 +70,12 @@ exports.createIssueLabels = async (params) => {
   return results;
 };
 
+
+exports.updateIssueStatus = async (ids, status) => {
+  const results = await db.updateIssueStatus(ids, status);
+  return results;
+};
+
 const getComments = async (issueId) => {
   const comments = await db.selectComments(issueId);
   const data = comments.map((comment) => {
@@ -105,3 +111,4 @@ exports.getIssueDetail = async (issueId) => {
 
   return data;
 };
+

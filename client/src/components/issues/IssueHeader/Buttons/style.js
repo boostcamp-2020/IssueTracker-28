@@ -37,7 +37,8 @@ export default {
     border: 1px solid #329246;
     background: linear-gradient(to bottom, #32cd56, #27a844);
     color: #ffffff;
-    border-radius: 4px;
+    border-radius : 4px;
+    font-size: 14px;
   `,
   ShowTotalNum: styled.span`
     padding: 3px 6px;

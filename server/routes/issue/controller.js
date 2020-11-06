@@ -58,6 +58,25 @@ exports.createIssue = async (req, res, next) => {
 };
 
 /*
+    UPDATE /api/issue/
+    * 이슈 상태 변경 API
+*/
+exports.updateIssueStatus = async (req, res, next) => {
+  const { ids, status } = req.body;
+  console.log('########## params ::::: ', ids, status)
+  try {
+    const result = await issueServices.updateIssueStatus(ids, status);
+    if (result) {
+      res.json({
+        message: '이슈 상태 수정 성공',
+      });
+    } else {
+      res.status(400).json({
+        message: '이슈 상태 수정 실패',
+      });
+    }
+    
+/*
     GET /api/issue/detail/:id
     * 이슈 상세 조회 API
 */
