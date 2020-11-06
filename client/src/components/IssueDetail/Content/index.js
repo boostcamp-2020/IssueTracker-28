@@ -1,7 +1,12 @@
 import React from 'react';
-
-const IssueDetail = () => {
-  return <div />;
+import MainContent from '@components/IssueDetail/Content/MainContent';
+const Content = () => {
+  return (
+    <>
+      <MainContent />
+      {/* <Sidebar /> */}
+    </>
+  );
 };
 
-export default IssueDetail;
+export default Content;

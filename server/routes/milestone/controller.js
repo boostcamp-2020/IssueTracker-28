@@ -15,3 +15,63 @@ exports.getMilestones = async (req, res, next) => {
     next(error);
   }
 };
+
+/*
+    POST /api/milestone
+    * 새로운 마일스톤 생성 API
+*/
+exports.createMilestone = async (req, res, next) => {
+  try {
+    const { status, title, due_date, desc } = req.body;
+
+    const milestone = await milestoneServices.createMilestone({ status, title, due_date, desc });
+
+    res.json({
+      message: '새로운 마일스톤 생성 성공',
+      data: milestone
+    });
+
+  } catch (error) {
+    next(error);
+  }
+};
+
+/*
+    PUT /api/milestone
+    * 라벨 수정 API
+*/
+exports.updateMilestone = async (req, res, next) => {
+  try {
+    const { id, status, title, due_date, desc } = req.body;
+
+    const result = await milestoneServices.updateMilestone({ id, status, title, due_date, desc });
+
+    res.json({
+      message: '마일스톤 수정 성공',
+      data: result  // [affected rows 개수, 바뀐 마일스톤 element]
+    });
+
+  } catch (error) {
+    next(error);
+  }
+};
+
+/*
+    DELETE /api/label
+    * 마일스톤 삭제 API
+*/
+exports.deleteMilestone = async (req, res, next) => {
+  try {
+    const { id } = req.body;
+
+    const result = await milestoneServices.deleteMilestone({ id });
+
+    res.json({
+      message: '마일스톤 삭제 성공',
+      data: result // affected rows 개수
+    });
+
+  } catch (error) {
+    next(error);
+  }
+};

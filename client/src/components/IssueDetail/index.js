@@ -22,6 +22,7 @@ const IssueDetail = () => {
       <Content issue={issue} comments={comments} />
     </S.IssueDetailWrapper>
   );
+
 };
 
 export default IssueDetail;
