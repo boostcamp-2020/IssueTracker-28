@@ -19,34 +19,33 @@ const CommonHeaderButton = styled.button`
 `;
 
 export default {
-  MilestoneHeader: styled.div`
+    LabelHeader: styled.div`
     display: flex;
     justify-content: space-between;
   `,
-  LabelMilestone: styled.div`
+    LabelMilestone: styled.div`
     display: flex;
     border: 1px solid #e0e0e0;
     border-radius: 4px;
     margin-right: 15px;
   `,
-  LabelsButton: styled(CommonHeaderButton)
-    `
+    LabelsButton: styled(CommonHeaderButton)`
     border-radius: 4px 0 0 4px;
-    background: #ffffff;
-    color: #606060;
-    border-right: 1px solid #e0e0e0;
-  `,
-  MilestonesButton: styled(CommonHeaderButton)
-    `
-    border-radius: 0 4px 4px 0;
     background: #1066D6;
     color: white;
+    border-right: 1px solid #e0e0e0;
   `,
-  ButtonText: styled.p`
+    MilestonesButton: styled(CommonHeaderButton)
+        `
+    border-radius: 0 4px 4px 0;
+    background: #ffffff;
+    color: #606060;
+  `,
+    ButtonText: styled.p`
     margin: 0 5px;
   `,
-  NewMilestoneButton: styled(CommonHeaderButton)
-    `
+    NewLabelButton: styled(CommonHeaderButton)
+        `
     border: 1px solid #329246;
     background: linear-gradient( to bottom, #32CD56, #27A844 );
     color: #ffffff;

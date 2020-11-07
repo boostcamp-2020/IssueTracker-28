@@ -4,6 +4,7 @@ import { UsersProvider } from '@contexts/UsersContext';
 import IssuePage from '@pages/IssuePage';
 import NewIssuePage from '@pages/NewIssuePage';
 import UserPage from '@pages/UserPage';
+import LabelPage from '@pages/LabelPage';
 import MilestonePage from '@pages/MilestonePage';
 import IssueDetailPage from '@pages/IssueDetailPage';
 import { LabelProvider } from '@contexts/LabelContext';
@@ -19,11 +20,13 @@ const App = () => {
               exact
               path="/"
               render={() => {
+                <IssuePage/>
                 if (localStorage.getItem('auth_token')) return <IssuePage />;
                 return <UserPage />;
               }}
             />
             <Route path="/newIssue" component={NewIssuePage} />
+            <Route path="/label" component={LabelPage} />
             <Route path="/milestone" component={MilestonePage} />
             <Route path="/detail/:id" component={IssueDetailPage} />
             <Route
