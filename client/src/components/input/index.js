@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import S from './style';
-import InputForm from './InputForm';
+import InputForm from './form';
 
 function Input({ selectedAssignees, selectedLabels, selectedMilestone }) {
   const [title, setTitle] = useState('');

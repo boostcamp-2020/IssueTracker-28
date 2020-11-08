@@ -10,10 +10,13 @@ const IssueDetail = () => {
   const [comments, setComments] = useState([]);
   const { id } = useParams();
 
-  useEffect(async () => {
-    const { data } = await api.getIssueDetail(id);
-    setIssue(data.issueDetail);
-    setComments(data.comments);
+  useEffect(() => {
+    async function fetchData() {
+      const { data } = await api.getIssueDetail(id);
+      setIssue(data.issueDetail);
+      setComments(data.comments);
+    }
+    fetchData();
   }, []);
 
   return (
@@ -22,7 +25,6 @@ const IssueDetail = () => {
       <Content issue={issue} comments={comments} />
     </S.IssueDetailWrapper>
   );
-
 };
 
 export default IssueDetail;
