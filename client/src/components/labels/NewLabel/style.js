@@ -59,6 +59,7 @@ export default {
     margin-right : 4px;
     box-sizing : border-box;
     cursor : pointer;
+    color : ${(props) => props.iconColor};
     `,
     Title: styled.p`
     margin-bottom : 6px;

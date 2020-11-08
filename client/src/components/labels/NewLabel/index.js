@@ -42,7 +42,13 @@ function NewLabel({setIsCreateState}) {
             <S.ColorWrapper className="create-label-item">
                 <S.Title>Color</S.Title>
                 <S.NewColorWrapper>
-                    <S.NewColorButton color={newLabelColor} onClick={handleRandomColor}><SyncIcon/></S.NewColorButton>
+                    <S.NewColorButton
+                        color={newLabelColor}
+                        iconColor={ColorHandler.getContrastColor(newLabelColor)}
+                        onClick={handleRandomColor}
+                        >
+                        <SyncIcon/>
+                    </S.NewColorButton>
                     <S.Input 
                         value={newLabelColor || '#'}
                         onChange={handleInputColor}>
