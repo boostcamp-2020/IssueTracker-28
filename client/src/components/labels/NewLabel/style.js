@@ -6,13 +6,13 @@ export default {
     background : #F5F8FA;;
     border-radius : 6px;
     border: 1px solid #e0e0e0;
-    padding : 16px;
+    padding : 18px 16px;
     box-sizing : border-box;
   `,
     NewLabelItem: styled.div`
     background : ${(props) => props.color || "#EDEDED"};
     padding : 3px 10px;
-    border-radius : 5px;
+    border-radius : 2rem;
     font-size : 13px;
     font-weight : 600;
     display : inline-block;
@@ -86,6 +86,7 @@ export default {
     border: 1px solid #329246;
     background: linear-gradient( to bottom, #32CD56, #27A844 );
     color: #ffffff;
+    transition : all 0.3s;
     opacity : ${(props) => props.isValid ? '100%' : '60%'};
     ${(props) => !props.isValid && 'pointer-events: none;'} 
     `

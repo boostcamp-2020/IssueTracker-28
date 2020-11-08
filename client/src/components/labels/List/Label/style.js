@@ -20,7 +20,7 @@ export default {
     LabelItem: styled.div`
     background : ${(props) => props.color || "gray"};
     padding : 3px 10px;
-    border-radius : 5px;
+    border-radius : 2rem;
     font-size : 13px;
     font-weight : 600;
     display : inline-block;
