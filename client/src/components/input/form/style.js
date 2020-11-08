@@ -10,48 +10,37 @@ export default {
   `,
   TitleBackground: styled.div`
     background-color: ${(props) => props.color};
-  `,
-  WriteTitle: styled.div`
-    display: inline-block;
-    margin: 10px 6px 0px 8px;
-    width : 68px;
-    height : 36px;
-    // 아래 부분(border)은 Preview 클릭시 주석처리
-    border: 1px solid #e1e4e8;
-    border-radius: 6px 6px 0 0;
-    border-bottom: none;
-    // button{ <- Preview 클릭시 주석해제
-    //   color: rgb(88, 96, 105);
-    //   position : relative;
-    //   bottom : 1px;
-    // }
-  `,
-  WritePreview: styled.div`
-    display: inline-block;
-    width : 84px;
-    height : 36px;
-    // border: 1px solid #e1e4e8; <- 클릭시 주석 해제
-    border-radius: 6px 6px 0 0;
-    border-bottom: none;
-    position : relative;
-    // 아래 부분(button)은 Preview 클릭시 주석처리
-    button{
+    .comment-tab{
+      display: inline-block;
+      text-align : center;
+      padding : 8px 16px;
       color: rgb(88, 96, 105);
+      cursor : pointer;
       position : relative;
-      bottom : 1px;
+      top : 1px;
+      z-index : 10;
     }
   `,
-  CommentTabButton: styled.button`
-    width : 100%;
-    height : 102%;
-    border : none;
-    border-radius: 6px 6px 0 0;
-    font-size : 14px;
-    display : flex;
-    justify-content : center;
-    align-items : center;
-    cursor : pointer;
-    background : white;
+  WriteTitle: styled.div`
+    margin: 10px 6px 0px 8px;
+    ${(props) => props.isSelected &&
+      `border: 1px solid #e1e4e8;
+        border-radius: 6px 6px 0 0;
+        border-bottom: 1px solid white;
+        color : #24292E;
+        background : white;
+        `
+    }
+  `,
+  WritePreview: styled.div`
+  ${(props) => props.isSelected &&
+      `border: 1px solid #e1e4e8;
+      border-radius: 6px 6px 0 0;
+      border-bottom: 1px solid white;
+      color : #24292E;
+      background : white;
+      `
+    }
   `,
   AttachWrapper: styled.div`
     display: flex;
@@ -61,9 +50,10 @@ export default {
     cursor: pointer;
     background-color: rgb(250, 251, 252);
     margin: 0 8px;
-    padding: 8px;
+    padding: 8px 10px;
     color: #586069;
     width: 97.5%;
+    font-size : 13px;
   `,
   LabelPicture: styled.label`
     width: 70%;
