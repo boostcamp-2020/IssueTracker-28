@@ -22,7 +22,6 @@ export default {
     padding : 3px 10px;
     border-radius : 2rem;
     font-size : 13px;
-    font-weight : 600;
     display : inline-block;
     color : #000000;
   `,

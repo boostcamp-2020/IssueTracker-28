@@ -4,6 +4,7 @@ import ColorHandler from '@utils/colorHandler';
 import S from './style';
 
 function NewLabel({setIsCreateState}) {
+
   const [ newLabelName, SetNewLabelName ] = useState(null)
   const [ newLabelColor, SetNewLabelColor ] = useState(ColorHandler.getRandomColor());
   const handleIsCreate=()=>{
@@ -25,7 +26,7 @@ function NewLabel({setIsCreateState}) {
 
   return (
     <S.NewLabelWrapper> 
-        <S.NewLabelItem color={newLabelColor}>{newLabelName || 'Label preview'}</S.NewLabelItem>
+        <S.NewLabelItem fontColor={ColorHandler.getContrastColor(newLabelColor)} color={newLabelColor}>{newLabelName || 'Label preview'}</S.NewLabelItem>
         <S.CreateLabelWrapper>
             <S.NameWrapper className="create-label-item">
                 <S.Title>Label Name</S.Title>

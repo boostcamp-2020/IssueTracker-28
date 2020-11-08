@@ -1,5 +1,4 @@
 import React from 'react';
-import { CalendarIcon } from '@primer/octicons-react';
 import S from './style';
 
 function Label({label}) {

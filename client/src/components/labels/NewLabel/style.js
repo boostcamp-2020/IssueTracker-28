@@ -14,9 +14,8 @@ export default {
     padding : 3px 10px;
     border-radius : 2rem;
     font-size : 13px;
-    font-weight : 600;
     display : inline-block;
-    color : #000000;
+    color : ${(props) => props.fontColor};
     margin-bottom : 25px;
     `,
     CreateLabelWrapper: styled.div`
@@ -67,7 +66,7 @@ export default {
     font-weight : 600;
     `,
     Input: styled.input`
-    height : 34px;
+    height : 35px;
     padding-left : 6px;
     background : #FAFBFC;
     border: 1px solid #e0e0e0;
