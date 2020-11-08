@@ -5,7 +5,7 @@ import List from './List';
 import S from './style';
 
 function Label() {
-  const [ isCreateState, setIsCreateState] = useState(true);
+  const [ isCreateState, setIsCreateState] = useState(false);
   return (
     <S.LabelWrapper>
       <Header setIsCreateState={setIsCreateState} isCreateState={isCreateState}/>

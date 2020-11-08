@@ -1,24 +1,26 @@
 import React, { useState } from 'react';
 import { SyncIcon } from '@primer/octicons-react';
-import getRandomColor from '@utils/getRandomColor';
+import ColorHandler from '@utils/colorHandler';
 import S from './style';
 
 function NewLabel({setIsCreateState}) {
   const [ newLabelName, SetNewLabelName ] = useState(null)
-  const [ newLabelColor, SetNewLabelColor ] = useState(getRandomColor());
+  const [ newLabelColor, SetNewLabelColor ] = useState(ColorHandler.getRandomColor());
   const handleIsCreate=()=>{
     setIsCreateState(false);
   }
   const handleLabelName=(e)=>{
     SetNewLabelName(e.target.value);
   }
-  const HandleLabelColor=()=>{
-    const newLabelColor = getRandomColor();
+  const handleRandomColor=()=>{
+    const newLabelColor = ColorHandler.getRandomColor();
     SetNewLabelColor(newLabelColor);
   }
-
+  const handleInputColor=(e)=>{
+    SetNewLabelColor(e.target.value);
+  }
   const createLabelHandler=()=>{
-    
+    // 새로운 Label 생성 API요청
   }
 
 
@@ -40,13 +42,16 @@ function NewLabel({setIsCreateState}) {
             <S.ColorWrapper className="create-label-item">
                 <S.Title>Color</S.Title>
                 <S.NewColorWrapper>
-                    <S.NewColorButton color={newLabelColor} onClick={HandleLabelColor}><SyncIcon/></S.NewColorButton>
-                    <S.Input value={newLabelColor}></S.Input>
+                    <S.NewColorButton color={newLabelColor} onClick={handleRandomColor}><SyncIcon/></S.NewColorButton>
+                    <S.Input 
+                        value={newLabelColor || '#'}
+                        onChange={handleInputColor}>
+                    </S.Input>
                 </S.NewColorWrapper>
             </S.ColorWrapper>
             <S.ButtonsWrapper className="create-label-item">
                 <S.CancelButton onClick={handleIsCreate}>Cancel</S.CancelButton>
-                <S.CreateLabelButton onClick={createLabelHandler} >Create Label</S.CreateLabelButton>
+                <S.CreateLabelButton labelName={newLabelName && newLabelColor} onClick={createLabelHandler}>Create Label</S.CreateLabelButton>
             </S.ButtonsWrapper>
         </S.CreateLabelWrapper>
     </S.NewLabelWrapper>
