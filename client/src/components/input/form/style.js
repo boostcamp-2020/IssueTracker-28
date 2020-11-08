@@ -13,17 +13,45 @@ export default {
   `,
   WriteTitle: styled.div`
     display: inline-block;
-    margin: 10px 8px 0px 8px;
-    padding: 8px 16px;
+    margin: 10px 6px 0px 8px;
+    width : 68px;
+    height : 36px;
+    // 아래 부분(border)은 Preview 클릭시 주석처리
     border: 1px solid #e1e4e8;
     border-radius: 6px 6px 0 0;
     border-bottom: none;
-    background-color: white;
+    // button{ <- Preview 클릭시 주석해제
+    //   color: rgb(88, 96, 105);
+    //   position : relative;
+    //   bottom : 1px;
+    // }
   `,
   WritePreview: styled.div`
     display: inline-block;
-    color: rgb(88, 96, 105);
-    margin-left: 10px;
+    width : 84px;
+    height : 36px;
+    // border: 1px solid #e1e4e8; <- 클릭시 주석 해제
+    border-radius: 6px 6px 0 0;
+    border-bottom: none;
+    position : relative;
+    // 아래 부분(button)은 Preview 클릭시 주석처리
+    button{
+      color: rgb(88, 96, 105);
+      position : relative;
+      bottom : 1px;
+    }
+  `,
+  CommentTabButton: styled.button`
+    width : 100%;
+    height : 102%;
+    border : none;
+    border-radius: 6px 6px 0 0;
+    font-size : 14px;
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    cursor : pointer;
+    background : white;
   `,
   AttachWrapper: styled.div`
     display: flex;
@@ -61,13 +89,14 @@ export default {
   `,
   InputComment: styled.textarea`
     margin: 8px 8px 0 8px;
-    padding: 8px;
+    padding: 10px;
     width: 97.5%;
     height: 97.5%;
     border: 1px solid #e1e4e8;
     border-radius: 6px 6px 0 0;
     border-bottom: 1px dashed #e1e4e8;
-    background-color: rgb(250, 251, 252);
+    background : #FAFBFC;
+    box-shadow: inset 0 1px 3px #efefef;
   `,
   ButtonWrapper: styled.div`
     display: flex;

@@ -50,8 +50,12 @@ const InputForm = ({
   return (
     <S.WriteWrapper>
       <S.TitleBackground color={color}>
-        <S.WriteTitle>Write</S.WriteTitle>
-        <S.WritePreview>Preview</S.WritePreview>
+        <S.WriteTitle>
+          <S.CommentTabButton>Write</S.CommentTabButton>
+        </S.WriteTitle>
+        <S.WritePreview>
+          <S.CommentTabButton>Preview</S.CommentTabButton>
+        </S.WritePreview>
       </S.TitleBackground>
       <S.Line />
       <S.InputDiv formHeight={formHeight}>
