@@ -1,8 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { TagIcon, MilestoneIcon } from '@primer/octicons-react';
 import S from './style';
 
-function Header() {
+function Header({isCreateState, setIsCreateState}) {
+  const handleIsCreate=()=>{
+    setIsCreateState(!isCreateState);
+  }
+
   return (
     <S.LabelHeader>
       <S.LabelMilestone>
@@ -15,7 +19,7 @@ function Header() {
           <S.ButtonText>Milestones</S.ButtonText>
         </S.MilestonesButton>
       </S.LabelMilestone>
-      <S.NewLabelButton>New Label</S.NewLabelButton>
+      <S.NewLabelButton onClick={handleIsCreate}>New Label</S.NewLabelButton>
     </S.LabelHeader>
   );
 }

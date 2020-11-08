@@ -1,12 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import Header from './Header';
+import NewLabel from './NewLabel';
 import List from './List';
 import S from './style';
 
 function Label() {
+  const [ isCreateState, setIsCreateState] = useState(true);
   return (
     <S.LabelWrapper>
-      <Header />
+      <Header setIsCreateState={setIsCreateState} isCreateState={isCreateState}/>
+      {isCreateState && <NewLabel setIsCreateState={setIsCreateState}/>}
       <List />
     </S.LabelWrapper>
   );
