@@ -23,7 +23,6 @@ function NewLabel({setIsCreateState}) {
     // 새로운 Label 생성 API요청
   }
 
-
   return (
     <S.NewLabelWrapper> 
         <S.NewLabelItem color={newLabelColor}>{newLabelName || 'Label preview'}</S.NewLabelItem>
@@ -51,7 +50,10 @@ function NewLabel({setIsCreateState}) {
             </S.ColorWrapper>
             <S.ButtonsWrapper className="create-label-item">
                 <S.CancelButton onClick={handleIsCreate}>Cancel</S.CancelButton>
-                <S.CreateLabelButton labelName={newLabelName && newLabelColor} onClick={createLabelHandler}>Create Label</S.CreateLabelButton>
+                <S.CreateLabelButton
+                    isValid={newLabelName && ColorHandler.checkIsHexColor(newLabelColor)}
+                    onClick={createLabelHandler}>Create Label
+                </S.CreateLabelButton>
             </S.ButtonsWrapper>
         </S.CreateLabelWrapper>
     </S.NewLabelWrapper>

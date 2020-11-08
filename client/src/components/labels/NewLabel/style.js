@@ -86,7 +86,7 @@ export default {
     border: 1px solid #329246;
     background: linear-gradient( to bottom, #32CD56, #27A844 );
     color: #ffffff;
-    opacity : ${(props) => props.labelName ? '100%' : '60%'};
-    ${(props) => !props.labelName && 'pointer-events: none;'} 
+    opacity : ${(props) => props.isValid ? '100%' : '60%'};
+    ${(props) => !props.isValid && 'pointer-events: none;'} 
     `
 };
