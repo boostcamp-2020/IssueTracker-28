@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
   useMilestonesState,
   useMilestonesDispatch,
   getMilestones,
 } from '@contexts/MilestonesContext';
+import Date from '@utils/date';
 import { GearIcon } from '@primer/octicons-react';
 import { Dropdown } from 'semantic-ui-react';
 import S from './style';
@@ -23,8 +24,6 @@ function Milestone({ selectedMilestone, handleMilestoneClick }) {
 
   const { data, loading, error } = state.milestones;
   const milestones = data?.milestones;
-
-  const dateOptions = { day: 'numeric', year: 'numeric', month: 'long' };
 
   const fetchData = () => {
     getMilestones(dispatch);
@@ -53,7 +52,8 @@ function Milestone({ selectedMilestone, handleMilestoneClick }) {
                   <Dropdown.Item className="dropdown-item" key={index} onClick={() => handleMilestoneClick(item)}>
                     <S.TitleContainer>
                       <S.ItemTitle>{item.title}</S.ItemTitle>
-                      <S.ItemDate>Due by {new Date(item.due_date).toLocaleDateString('en-US', dateOptions)}</S.ItemDate>
+                      <S.ItemDate>Due by {Date.getDate(item.due_date, { day: 'numeric', year: 'numeric', month: 'long' })}</S.ItemDate>
+                      {/* <S.ItemDate>Due by {new Date(item.due_date).toLocaleDateString('en-US', dateOptions)}</S.ItemDate> */}
                     </S.TitleContainer>
                   </Dropdown.Item>
                 </>

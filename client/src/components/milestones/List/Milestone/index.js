@@ -1,17 +1,18 @@
 import React from 'react';
+import Date from '@utils/date';
 import { CalendarIcon } from '@primer/octicons-react';
 import S from './style';
 
-function Milestone() {
+function Milestone({ milestone }) {
   return (
     <S.MilestoneWrapper>
       <S.Left>
-        <S.Title>스프린트1</S.Title>
+        <S.Title>{milestone.title}</S.Title>
         <S.DateWrapper>
           <CalendarIcon />
-          <S.Date>Due by November 06, 2020</S.Date>
+          <S.Date>Due by {Date.getDate(milestone.due_date, { day: 'numeric', year: 'numeric', month: 'long' })}</S.Date>
         </S.DateWrapper>
-        <S.Description>이번 배포를 위한 스프린트</S.Description>
+        <S.Description>{milestone.desc}</S.Description>
       </S.Left>
       <S.Right>
         <S.ProgressBar value={33} max={100}></S.ProgressBar>
