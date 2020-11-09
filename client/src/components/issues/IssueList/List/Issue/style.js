@@ -24,7 +24,8 @@ export default {
     &:hover {
       background: #f7f8fa;
     }
-    .title:hover {
+    .title {
+      margin-right : 2px;
       cursor: pointer;
     }
   `,
