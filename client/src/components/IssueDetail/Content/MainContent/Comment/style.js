@@ -5,16 +5,14 @@ export default {
     display: flex;
   `,
   Triangle: styled.div`
-    margin-top: 45px;
+    margin-top: 15px;
     width: 0;
     height: 0;
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
     border-right: 10px solid ${(props) => props.backgroundColor};
-    margin-left: 100px;
   `,
   CommentsWrapper: styled.div`
-    margin-top: 30px;
     width: 70%;
     height: 150px;
     border: 1px solid rgb(225, 228, 232);
@@ -62,12 +60,8 @@ export default {
     height: ${(props) => props.wrapperHeight};
     border: 1px solid rgb(225, 228, 232);
     border-radius: 6px;
-    margin: 30px;
-    margin-left: 110px;
   `,
-  FlexWrapper: styled.div`
-    display: flex;
-  `,
+
   ButtonWrapper: styled.div`
     display: flex;
     justify-content: ${(props) => props.justifyContent};
@@ -82,5 +76,17 @@ export default {
     color: rgb(215, 58, 73);
     margin-right: 10px;
     cursor: pointer;
+  `,
+  VerticalLine: styled.div`
+    border-left: 2px solid rgb(225, 228, 232);
+    height: 60px;
+    margin-left: 130px;
+  `,
+  Profile: styled.img`
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+    border: 1px solid black;
+    border-radius: 1.5em;
   `,
 };

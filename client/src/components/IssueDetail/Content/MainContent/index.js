@@ -13,7 +13,22 @@ const MainContent = ({ issue, comments }) => {
   const [createComment, setCreateComment] = useState(false);
   const history = useHistory();
   const statusHandler = () => {
-    setUpdateStatus(!updateStatus);
+    const status = issue.status === 'opened' ? 1 : 0;
+    const body = {
+      ids: issue.id,
+      status,
+    };
+    axios
+      .put(`/api/issue/status`, body)
+      .then((res) => {
+        console.log('res: ', res);
+        // Todo : 새로고침 구현
+        // history.push(`/detail/${issue.id}`);
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+    console.log('update: ', updateStatus);
   };
   const createHandler = () => {
     const body = {
@@ -32,24 +47,6 @@ const MainContent = ({ issue, comments }) => {
         console.log(error.response);
       });
   };
-  useEffect(() => {
-    const status = issue.status === 'opened' ? 1 : 0;
-    const body = {
-      ids: issue.id,
-      status,
-    };
-    axios
-      .put(`/api/issue/status`, body)
-      .then((res) => {
-        console.log('res: ', res);
-        // Todo : 새로고침 구현
-        // history.push(`/detail/${issue.id}`);
-      })
-      .catch((error) => {
-        console.log(error.response);
-      });
-    console.log('update: ', updateStatus);
-  }, [updateStatus]);
   return (
     <>
       <Comment isIssue={true} issue={issue} />
@@ -58,31 +55,35 @@ const MainContent = ({ issue, comments }) => {
           <Comment key={index} issueAuthor={issue.issueAuthor} isIssue={false} issue={comment} />
         );
       })}
-      <S.InputFormWrapper>
-        <InputForm
-          formHeight="60%"
-          color="rgb(250,251,252)"
-          buttonState="NEW_COMMENT"
-          comment={newComment}
-          setComment={setNewComment}
-        />
-        <S.ButtonWrapper justifyContent="flex-end">
-          <S.EditCancelButton onClick={statusHandler}>
-            {issue.status === 'opened' ? (
-              <div>
-                <IssueOpenedIcon size={16} />
-                <span>Open Issue</span>
-              </div>
-            ) : (
-              <div>
-                <IssueClosedIcon size={16} />
-                <span>Closed Issue</span>
-              </div>
-            )}
-          </S.EditCancelButton>
-          <Button.NewIssueButton onClick={createHandler}>Comment</Button.NewIssueButton>
-        </S.ButtonWrapper>
-      </S.InputFormWrapper>
+      <S.FlexWrapper>
+        <S.Profile src="https://issue.kr.object.ncloudstorage.com/1604932511555.png" />
+        <S.Triangle backgroundColor="rgb(241,248,255)" />
+        <S.InputFormWrapper>
+          <InputForm
+            formHeight="60%"
+            color="rgb(250,251,252)"
+            buttonState="NEW_COMMENT"
+            comment={newComment}
+            setComment={setNewComment}
+          />
+          <S.ButtonWrapper justifyContent="flex-end">
+            <S.EditCancelButton onClick={statusHandler}>
+              {issue.status === 'opened' ? (
+                <div>
+                  <IssueOpenedIcon size={16} />
+                  <span>Open Issue</span>
+                </div>
+              ) : (
+                <div>
+                  <IssueClosedIcon size={16} />
+                  <span>Closed Issue</span>
+                </div>
+              )}
+            </S.EditCancelButton>
+            <Button.NewIssueButton onClick={createHandler}>Comment</Button.NewIssueButton>
+          </S.ButtonWrapper>
+        </S.InputFormWrapper>
+      </S.FlexWrapper>
     </>
   );
 };

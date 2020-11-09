@@ -50,9 +50,11 @@ const Comment = ({ isIssue, issueAuthor, issue }) => {
   const isCommentAuthor = issue.author === localStorage.getItem('user_id');
   return (
     <>
-      {isEditClicked !== true ? (
-        <S.FlexWrapper>
-          <S.Triangle backgroundColor={isIssueAuthor ? 'rgb(241,248,255)' : 'rgb(250,251,252)'} />
+      <S.FlexWrapper>
+        <S.Profile src="https://issue.kr.object.ncloudstorage.com/1604932511555.png" />
+        <S.Triangle backgroundColor={isIssueAuthor ? 'rgb(241,248,255)' : 'rgb(250,251,252)'} />
+
+        {isEditClicked !== true ? (
           <S.CommentsWrapper>
             <S.TitleWrapper
               backgroundColor={isIssueAuthor ? 'rgb(241,248,255)' : 'rgb(250,251,252)'}
@@ -71,34 +73,35 @@ const Comment = ({ isIssue, issueAuthor, issue }) => {
             </S.TitleWrapper>
             <S.CommentsContent>{issue.content}</S.CommentsContent>
           </S.CommentsWrapper>
-        </S.FlexWrapper>
-      ) : (
-        <S.InputWrappers wrapperHeight="250px">
-          <InputForm
-            formHeight="58%"
-            color={isIssueAuthor ? 'rgb(241,248,255)' : 'rgb(250,251,252)'}
-            comment={comment}
-            setComment={setComment}
-            isEditClicked={isEditClicked}
-            setIsEditClicked={setIsEditClicked}
-          />
-          {isIssue === true ? (
-            <S.ButtonWrapper justifyContent="flex-end">
-              <S.EditCancelButton onClick={editHandler}>Cancel</S.EditCancelButton>
-              <Button.NewIssueButton onClick={updateIssueHandler}>
-                Update Issue
-              </Button.NewIssueButton>
-            </S.ButtonWrapper>
-          ) : (
-            <S.ButtonWrapper justifyContent="flex-end">
-              <S.EditCancelButton onClick={editHandler}>Cancel</S.EditCancelButton>
-              <Button.NewIssueButton onClick={updateCommentHandler}>
-                Update Comment
-              </Button.NewIssueButton>
-            </S.ButtonWrapper>
-          )}
-        </S.InputWrappers>
-      )}
+        ) : (
+          <S.InputWrappers wrapperHeight="250px">
+            <InputForm
+              formHeight="58%"
+              color={isIssueAuthor ? 'rgb(241,248,255)' : 'rgb(250,251,252)'}
+              comment={comment}
+              setComment={setComment}
+              isEditClicked={isEditClicked}
+              setIsEditClicked={setIsEditClicked}
+            />
+            {isIssue === true ? (
+              <S.ButtonWrapper justifyContent="flex-end">
+                <S.EditCancelButton onClick={editHandler}>Cancel</S.EditCancelButton>
+                <Button.NewIssueButton onClick={updateIssueHandler}>
+                  Update Issue
+                </Button.NewIssueButton>
+              </S.ButtonWrapper>
+            ) : (
+              <S.ButtonWrapper justifyContent="flex-end">
+                <S.EditCancelButton onClick={editHandler}>Cancel</S.EditCancelButton>
+                <Button.NewIssueButton onClick={updateCommentHandler}>
+                  Update Comment
+                </Button.NewIssueButton>
+              </S.ButtonWrapper>
+            )}
+          </S.InputWrappers>
+        )}
+      </S.FlexWrapper>
+      <S.VerticalLine />
     </>
   );
 };

@@ -5,7 +5,7 @@ export default {
     position: relative;
     width: 100%;
     height: 90px;
-    margin: 15px;
+    margin: 15px 15px 30px 15px;
     border-bottom: 1px solid rgb(225, 228, 232);
     .edit-button {
       position: absolute;
