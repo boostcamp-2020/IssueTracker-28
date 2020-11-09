@@ -5,13 +5,9 @@ import S from './style';
 
 const Comment = ({ isIssue, issueAuthor, issue }) => {
   const [isEditClicked, setIsEditClicked] = useState(false);
-  const [temp, setTemp] = useState();
-  console.log('comment: ', temp);
-  console.log('comment: ', issue);
+  const [comment, setComment] = useState(issue.content);
   useEffect(() => {
-    setTemp(issue.content);
-    console.log('dzdzd: ', issue);
-    console.log('dzdzd: ', temp);
+    setComment(issue.content);
   }, []);
   const editHandler = () => {
     setIsEditClicked(!isEditClicked);
@@ -49,8 +45,8 @@ const Comment = ({ isIssue, issueAuthor, issue }) => {
             formHeight="45%"
             color="rgb(241,248,255)"
             buttonState={isIssue === true ? 'UPDATE_ISSUE' : 'UPDATE_COMMENT'}
-            comment={temp}
-            setComment={setTemp}
+            comment={comment}
+            setComment={setComment}
             isEditClicked={isEditClicked}
             setIsEditClicked={setIsEditClicked}
           />
