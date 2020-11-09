@@ -15,14 +15,12 @@ const IssueDetail = () => {
     setIssue(data.issueDetail);
     setComments(data.comments);
   }, []);
-
   return (
     <S.IssueDetailWrapper>
       <Header issue={issue} commentsCount={comments.length} />
       <Content issue={issue} comments={comments} />
     </S.IssueDetailWrapper>
   );
-
 };
 
 export default IssueDetail;

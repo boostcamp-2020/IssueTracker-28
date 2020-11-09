@@ -1,10 +1,10 @@
 import React from 'react';
 import MainContent from '@components/IssueDetail/Content/MainContent';
 
-const Content = () => {
+const Content = ({ issue, comments }) => {
   return (
     <>
-      <MainContent />
+      <MainContent issue={issue} comments={comments} />
       {/* <Sidebar /> */}
     </>
   );

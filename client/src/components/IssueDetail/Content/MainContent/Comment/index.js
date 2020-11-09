@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SmileyIcon } from '@primer/octicons-react';
 import InputForm from '@components/input/form';
 import S from './style';
 
-const Comment = ({ isIssue, issueAuthor, author, createdAt, content }) => {
+const Comment = ({ isIssue, issueAuthor, issue }) => {
   const [isEditClicked, setIsEditClicked] = useState(false);
-  const [comment, setComment] = useState(content);
-
+  const [temp, setTemp] = useState();
+  console.log('comment: ', temp);
+  console.log('comment: ', issue);
+  useEffect(() => {
+    setTemp(issue.content);
+    console.log('dzdzd: ', issue);
+    console.log('dzdzd: ', temp);
+  }, []);
   const editHandler = () => {
     setIsEditClicked(!isEditClicked);
   };
 
-  const isIssueAuthor = issueAuthor === author;
-  const isCommentAuthor = author === localStorage.getItem('user_id');
+  const isIssueAuthor = isIssue || issueAuthor === issue.author;
+  const isCommentAuthor = issue.author === localStorage.getItem('user_id');
   return (
     <>
       {isEditClicked !== true ? (
@@ -23,8 +29,8 @@ const Comment = ({ isIssue, issueAuthor, author, createdAt, content }) => {
               backgroundColor={isIssueAuthor ? 'rgb(241,248,255)' : 'rgb(250,251,252)'}
             >
               <S.AuthorInfo>
-                <S.TitleAuthor>{author}</S.TitleAuthor>
-                <S.TitleTime>commented {createdAt}</S.TitleTime>
+                <S.TitleAuthor>{issue.author}</S.TitleAuthor>
+                <S.TitleTime>commented {issue.createdAt}</S.TitleTime>
               </S.AuthorInfo>
               <S.WriterInfo>
                 {isCommentAuthor && (
@@ -34,7 +40,7 @@ const Comment = ({ isIssue, issueAuthor, author, createdAt, content }) => {
                 {isCommentAuthor && <S.EditButton onClick={editHandler}>Edit</S.EditButton>}
               </S.WriterInfo>
             </S.TitleWrapper>
-            <S.CommentsContent>{content}</S.CommentsContent>
+            <S.CommentsContent>{issue.content}</S.CommentsContent>
           </S.CommentsWrapper>
         </S.FlexWrapper>
       ) : (
@@ -43,8 +49,8 @@ const Comment = ({ isIssue, issueAuthor, author, createdAt, content }) => {
             formHeight="45%"
             color="rgb(241,248,255)"
             buttonState={isIssue === true ? 'UPDATE_ISSUE' : 'UPDATE_COMMENT'}
-            comment={comment}
-            setComment={setComment}
+            comment={temp}
+            setComment={setTemp}
             isEditClicked={isEditClicked}
             setIsEditClicked={setIsEditClicked}
           />

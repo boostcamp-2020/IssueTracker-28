@@ -16,6 +16,7 @@ const InputForm = ({
 
   const [isDelay, setIsDelay] = useState(false);
   const commentHandler = ({ target }) => {
+    console.log('res:', comment);
     setIsDelay(false);
     setComment(target.value);
   };
@@ -30,6 +31,8 @@ const InputForm = ({
         })
         .then((res) => {
           const imgPath = `${'\n' + '[img : '}${res.data}]`;
+          console.log('res:', comment);
+          console.log('res:', res.data);
           setComment(comment + imgPath);
         })
         .catch((error) => {
