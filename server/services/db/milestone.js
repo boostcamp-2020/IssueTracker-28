@@ -1,9 +1,16 @@
-const { Milestone } = require('../../models');
+const { Milestone, Issue } = require('../../models');
 
 exports.selectMilestone = async () => {
   const milestones = await Milestone.findAll({
     attributes: ['id', 'status', 'title', 'due_date', 'desc'],
+    include: [
+      {
+        model: Issue,
+        attributes: ['id', 'status'],
+      }
+    ],
   });
+
   return milestones;
 };
 
@@ -11,7 +18,7 @@ exports.selectMilestoneID = async (title) => {
   const milestones = await Milestone.findOne({
     raw: true,
     where: {
-      title: title,
+      title,
     },
   });
   return milestones;
@@ -39,7 +46,7 @@ exports.updateMilestone = async ({ id, status, title, due_date, desc }) => {
     },
     {
       where: {
-        id: id
+        id
       }
     });
 
@@ -49,7 +56,7 @@ exports.updateMilestone = async ({ id, status, title, due_date, desc }) => {
 exports.deleteMilestone = async ({ id }) => {
   const result = await Milestone.destroy({
     where: {
-      id: id
+      id
     }
   });
 

@@ -30,7 +30,7 @@ exports.updateLabel = async ({ id, name, desc, color }) => {
     },
     {
       where: {
-        id: id
+        id
       }
     });
 
@@ -40,7 +40,7 @@ exports.updateLabel = async ({ id, name, desc, color }) => {
 exports.deleteLabel = async ({ id }) => {
   const result = await Label.destroy({
     where: {
-      id: id
+      id
     }
   });
 
