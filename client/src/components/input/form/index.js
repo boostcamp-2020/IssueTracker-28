@@ -3,15 +3,7 @@ import axios from 'axios';
 import S from './style';
 import ButtonWrapper from './buttonWrapper';
 
-const InputForm = ({
-  formHeight,
-  color,
-  buttonState,
-  comment,
-  setComment,
-  isEditClicked,
-  setIsEditClicked,
-}) => {
+const InputForm = ({ formHeight, color, buttonState, comment, setComment }) => {
   let timer;
 
   const [isDelay, setIsDelay] = useState(false);
@@ -76,7 +68,6 @@ const InputForm = ({
         <S.InputPicture type="file" id={buttonState} accept="image/png" onChange={imageHandler} />
         <S.CountComments>{isDelay && `${comment.length} 자`} </S.CountComments>
       </S.AttachWrapper>
-      {/* {ButtonWrapper(buttonState, isEditClicked, setIsEditClicked)} */}
     </S.WriteWrapper>
   );
 };

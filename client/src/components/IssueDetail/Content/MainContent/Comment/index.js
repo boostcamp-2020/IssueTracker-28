@@ -8,7 +8,7 @@ import axios from 'axios';
 const Comment = ({ isIssue, issueAuthor, issue }) => {
   const [isEditClicked, setIsEditClicked] = useState(false);
   const [comment, setComment] = useState(issue.content);
-  const re = /\[\S+\]\^\(\S+\)/i;
+  const re = /\[.*\]\^\(.*\)/i;
   const editHandler = () => {
     setIsEditClicked(!isEditClicked);
   };
@@ -72,6 +72,8 @@ const Comment = ({ isIssue, issueAuthor, issue }) => {
             </S.TitleWrapper>
             <S.CommentsContent>
               {issue.content.split('!').map((cur, i) => {
+                console.log('cur: ', cur);
+                console.log('cur: ', re.test(cur));
                 if (re.test(cur)) {
                   let [imgName, imgPath] = cur.split('^');
                   imgName = imgName.replace(/\[|\]|\s*/gi, '');
@@ -92,8 +94,7 @@ const Comment = ({ isIssue, issueAuthor, issue }) => {
               color={isIssueAuthor ? 'rgb(241,248,255)' : 'rgb(250,251,252)'}
               comment={comment}
               setComment={setComment}
-              isEditClicked={isEditClicked}
-              setIsEditClicked={setIsEditClicked}
+              buttonState={isIssue === true ? 'Update Issue' : 'Update comment'}
             />
             {isIssue === true ? (
               <S.ButtonWrapper justifyContent="flex-end">
