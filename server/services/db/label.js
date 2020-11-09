@@ -21,17 +21,18 @@ exports.insertLabel = async ({ name, desc, color }) => {
 };
 
 exports.updateLabel = async ({ id, name, desc, color }) => {
-  const result = await Label.update({
-    name,
-    desc,
-    color,
-    raw: true,
-  },
-  {
-    where: {
-      id: id
-    }
-  });
+  const result = await Label.update(
+    {
+      name,
+      desc,
+      color,
+      raw: true,
+    },
+    {
+      where: {
+        id: id
+      }
+    });
 
   return result;
 };

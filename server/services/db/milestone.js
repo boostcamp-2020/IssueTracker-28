@@ -21,7 +21,7 @@ exports.insertMilestone = async ({ status, title, due_date, desc }) => {
   const milestone = await Milestone.create({
     status,
     title,
-    due_date, 
+    dueDate: due_date,
     desc,
     raw: true,
   });
@@ -30,18 +30,18 @@ exports.insertMilestone = async ({ status, title, due_date, desc }) => {
 };
 
 exports.updateMilestone = async ({ id, status, title, due_date, desc }) => {
-  const result = await Milestone.update({
-    status,
-    title,
-    due_date, 
-    desc,
-    raw: true,
-  },
-  {
-    where: {
-      id: id
-    }
-  });
+  const result = await Milestone.update(
+    {
+      status,
+      title,
+      dueDate: due_date,
+      desc,
+    },
+    {
+      where: {
+        id: id
+      }
+    });
 
   return result;
 };

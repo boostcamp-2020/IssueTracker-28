@@ -47,9 +47,15 @@ exports.updateMilestone = async (req, res, next) => {
 
     const result = await milestoneServices.updateMilestone({ id, status, title, due_date, desc });
 
-    res.json({
-      message: '마일스톤 수정 성공',
-      data: result  // [affected rows 개수, 바뀐 마일스톤 element]
+    if (result[0] === 1) {
+      res.json({
+        message: '마일스톤 수정 성공',
+        data: result  // [affected rows 개수, 바뀐 마일스톤 element]
+      });
+    }
+    res.status(400).json({
+      message: '마일스톤 수정 실패',
+      data: result
     });
 
   } catch (error) {
@@ -67,9 +73,15 @@ exports.deleteMilestone = async (req, res, next) => {
 
     const result = await milestoneServices.deleteMilestone({ id });
 
-    res.json({
-      message: '마일스톤 삭제 성공',
-      data: result // affected rows 개수
+    if (result === 1) {
+      res.json({
+        message: '마일스톤 삭제 성공',
+        data: result // affected rows 개수
+      });
+    }
+    res.status(400).json({
+      message: '마일스톤 삭제 실패',
+      data: result
     });
 
   } catch (error) {

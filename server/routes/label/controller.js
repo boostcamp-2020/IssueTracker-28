@@ -48,9 +48,15 @@ exports.updateLabel = async (req, res, next) => {
 
     const result = await labelServices.updateLabel({ id, name, desc, color });
 
-    res.json({
-      message: '라벨 수정 성공',
-      data: result  // [affected rows 개수, 바뀐 label element]
+    if (result[0] === 1) {
+      res.json({
+        message: '라벨 수정 성공',
+        data: result  // [affected rows 개수, 바뀐 label element]
+      });
+    }
+    res.status(400).json({
+      message: '라벨 수정 실패',
+      data: result
     });
 
   } catch (error) {
@@ -68,9 +74,15 @@ exports.deleteLabel = async (req, res, next) => {
 
     const result = await labelServices.deleteLabel({ id });
 
-    res.json({
-      message: '라벨 삭제 성공',
-      data: result // affected rows 개수
+    if (result === 1) {
+      res.json({
+        message: '라벨 삭제 성공',
+        data: result // affected rows 개수
+      });
+    }
+    res.status(400).json({
+      message: '라벨 삭제 실패',
+      data: result
     });
 
   } catch (error) {
