@@ -37,12 +37,13 @@ exports.createMilestone = async (req, res, next) => {
 };
 
 /*
-    PUT /api/milestone
-    * 라벨 수정 API
+    PUT /api/milestone/:id
+    * 마일스톤 수정 API
 */
 exports.updateMilestone = async (req, res, next) => {
   try {
-    const { id, status, title, due_date, desc } = req.body;
+    const { id } = req.params;
+    const { status, title, due_date, desc } = req.body;
 
     const result = await milestoneServices.updateMilestone({ id, status, title, due_date, desc });
 
@@ -57,12 +58,12 @@ exports.updateMilestone = async (req, res, next) => {
 };
 
 /*
-    DELETE /api/label
+    DELETE /api/label/:id
     * 마일스톤 삭제 API
 */
 exports.deleteMilestone = async (req, res, next) => {
   try {
-    const { id } = req.body;
+    const { id } = req.params;
 
     const result = await milestoneServices.deleteMilestone({ id });
 

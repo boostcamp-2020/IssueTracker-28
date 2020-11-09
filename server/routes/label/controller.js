@@ -38,12 +38,13 @@ exports.createLabel = async (req, res, next) => {
 };
 
 /*
-    PUT /api/label
+    PUT /api/label/:id
     * 라벨 수정 API
 */
 exports.updateLabel = async (req, res, next) => {
   try {
-    const { id, name, desc, color } = req.body;
+    const { id } = req.params;
+    const { name, desc, color } = req.body;
 
     const result = await labelServices.updateLabel({ id, name, desc, color });
 
@@ -58,12 +59,12 @@ exports.updateLabel = async (req, res, next) => {
 };
 
 /*
-    DELETE /api/label
+    DELETE /api/label/:id
     * 라벨 삭제 API
 */
 exports.deleteLabel = async (req, res, next) => {
   try {
-    const { id } = req.body;
+    const { id } = req.params;
 
     const result = await labelServices.deleteLabel({ id });
 
