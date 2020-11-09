@@ -15,6 +15,7 @@ const InputForm = ({
   let timer;
 
   const [isDelay, setIsDelay] = useState(false);
+  const [isSelected, setIsSelected] = useState(true);
   const commentHandler = ({ target }) => {
     setIsDelay(false);
     setComment(target.value);
@@ -38,6 +39,11 @@ const InputForm = ({
     }
   };
 
+  const tabHandler =(e)=>{
+    console.log(e.target.isSelected);
+    setIsSelected(!isSelected);
+  }
+
   const keyUpEvent = async () => {
     clearTimeout(timer);
     if (comment) {
@@ -50,8 +56,8 @@ const InputForm = ({
   return (
     <S.WriteWrapper>
       <S.TitleBackground color={color}>
-        <S.WriteTitle>Write</S.WriteTitle>
-        <S.WritePreview>Preview</S.WritePreview>
+        <S.WriteTitle className="comment-tab" isSelected={isSelected} onClick={tabHandler}>Write</S.WriteTitle>
+        <S.WritePreview className="comment-tab" isSelected={!isSelected} onClick={tabHandler}>Preview</S.WritePreview>
       </S.TitleBackground>
       <S.Line />
       <S.InputDiv formHeight={formHeight}>

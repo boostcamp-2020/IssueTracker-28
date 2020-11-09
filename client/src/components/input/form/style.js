@@ -10,20 +10,37 @@ export default {
   `,
   TitleBackground: styled.div`
     background-color: ${(props) => props.color};
+    .comment-tab{
+      display: inline-block;
+      text-align : center;
+      padding : 8px 16px;
+      color: rgb(88, 96, 105);
+      cursor : pointer;
+      position : relative;
+      top : 1px;
+      z-index : 10;
+    }
   `,
   WriteTitle: styled.div`
-    display: inline-block;
-    margin: 10px 8px 0px 8px;
-    padding: 8px 16px;
-    border: 1px solid #e1e4e8;
-    border-radius: 6px 6px 0 0;
-    border-bottom: none;
-    background-color: white;
+    margin: 10px 6px 0px 8px;
+    ${(props) => props.isSelected &&
+      `border: 1px solid #e1e4e8;
+        border-radius: 6px 6px 0 0;
+        border-bottom: 1px solid white;
+        color : #24292E;
+        background : white;
+        `
+    }
   `,
   WritePreview: styled.div`
-    display: inline-block;
-    color: rgb(88, 96, 105);
-    margin-left: 10px;
+  ${(props) => props.isSelected &&
+      `border: 1px solid #e1e4e8;
+      border-radius: 6px 6px 0 0;
+      border-bottom: 1px solid white;
+      color : #24292E;
+      background : white;
+      `
+    }
   `,
   AttachWrapper: styled.div`
     display: flex;
@@ -33,9 +50,10 @@ export default {
     cursor: pointer;
     background-color: rgb(250, 251, 252);
     margin: 0 8px;
-    padding: 8px;
+    padding: 8px 10px;
     color: #586069;
     width: 97.5%;
+    font-size : 13px;
   `,
   LabelPicture: styled.label`
     width: 70%;
@@ -61,13 +79,14 @@ export default {
   `,
   InputComment: styled.textarea`
     margin: 8px 8px 0 8px;
-    padding: 8px;
+    padding: 10px;
     width: 97.5%;
     height: 97.5%;
     border: 1px solid #e1e4e8;
     border-radius: 6px 6px 0 0;
     border-bottom: 1px dashed #e1e4e8;
-    background-color: rgb(250, 251, 252);
+    background : #FAFBFC;
+    box-shadow: inset 0 1px 3px #efefef;
   `,
   ButtonWrapper: styled.div`
     display: flex;
