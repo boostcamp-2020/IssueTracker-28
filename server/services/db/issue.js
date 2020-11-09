@@ -11,14 +11,15 @@ const {
 exports.selectIssues = async () => {
   const issues = await Issue.findAll({
     attributes: ['id', 'title', 'content', 'user_id', 'milestone_id', 'status', 'updated_at'],
-    include: [{
-      model: User,
-      attributes: ['id', 'user_id'],
-    },
-    {
-      model: Milestone,
-      attributes: ['id', 'title'],
-    },
+    include: [
+      {
+        model: User,
+        attributes: ['id', 'user_id'],
+      },
+      {
+        model: Milestone,
+        attributes: ['id', 'title'],
+      },
     ],
     order: sequelize.literal('id DESC'),
   });
@@ -75,20 +76,22 @@ exports.insertIssueLabel = async (params) => {
     labelId: params.labels,
     issueId: params.issueId,
   });
-  console.log('여기 : ', results);
   return results;
 };
 
 exports.updateIssueStatus = async (ids, status) => {
   try {
-    await Issue.update({ status }, {
-      where: {
-        id: ids,
-      },
-    });
+    await Issue.update(
+      { status },
+      {
+        where: {
+          id: ids,
+        },
+      }
+    );
     return true;
   } catch (err) {
-    console.log(err)
+    console.log(err);
     return false;
   }
 };

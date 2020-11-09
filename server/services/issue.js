@@ -70,7 +70,6 @@ exports.createIssueLabels = async (params) => {
   return results;
 };
 
-
 exports.updateIssueStatus = async (ids, status) => {
   const results = await db.updateIssueStatus(ids, status);
   return results;
@@ -99,10 +98,8 @@ exports.getIssueDetail = async (issueId) => {
   issueDetail.title = issue.title;
   issueDetail.content = issue.content;
   issueDetail.author = issue.user.dataValues.user_id;
-  if (issue.milestone) issueDetail.milestone = issue.milestone.dataValues.title;
-  else issueDetail.milestone = null;
-  if (issue.status === 0) issueDetail.status = 'opened';
-  else issueDetail.status = 'closed';
+  issueDetail.milestone = issue.milestone ? issue.milestone.dataValues.title : null;
+  issueDetail.status = issue.status === 0 ? 'opened' : 'closed';
   issueDetail.labels = await getLabels(issue);
   issueDetail.assignees = await getAssignees(issue);
   issueDetail.time = issue.dataValues.updated_at;
@@ -111,4 +108,3 @@ exports.getIssueDetail = async (issueId) => {
 
   return data;
 };
-
