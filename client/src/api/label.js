@@ -24,10 +24,6 @@ export async function updateLabel(id, params) {
 }
 
 export async function deleteLabel(id) {
-    const response = await axios.delete('/api/label', {
-        data: {
-            id: id
-        }
-    });
+    const response = await axios.delete(`/api/label/${id}`);
     return response;
 }

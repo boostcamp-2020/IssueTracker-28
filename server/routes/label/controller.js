@@ -57,8 +57,7 @@ exports.updateLabel = async(req, res, next) => {
 */
 exports.deleteLabel = async(req, res, next) => {
     try {
-        const { id } = req.body;
-        console.log('id ::::: ', id)
+        const { id } = req.params;
         const result = await labelServices.deleteLabel({ id });
         res.json({
             message: '라벨 삭제 성공',
