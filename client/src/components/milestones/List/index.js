@@ -6,6 +6,7 @@ import {
 } from '@contexts/MilestonesContext';
 import Milestone from './Milestone';
 import { MilestoneIcon, CheckIcon } from '@primer/octicons-react';
+import Spinner from '@images/spinner3.gif';
 import S from './style';
 
 function List() {
@@ -20,7 +21,7 @@ function List() {
     fetchData();
   }, [dispatch]);
 
-  if (loading) return <div> 로딩중.. </div>;
+  if (loading) return <S.LoadSpinner src={Spinner} />;
   if (error) return <div> 에러가 발생했습니다 </div>;
   if (!data) return <button onClick={fetchData}>불러오기</button>;
 

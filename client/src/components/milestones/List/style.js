@@ -22,5 +22,14 @@ export default {
     margin-left: 4px;
   `,
   List: styled.div`
+  `,
+  LoadSpinner: styled.img`
+    width : 250px;
+    position : absolute;
+    margin : auto;
+    top: 0;
+    bottom:0;  
+    left:0;
+    right:0;  
   `
 };
