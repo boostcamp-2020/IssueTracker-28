@@ -76,7 +76,7 @@ const InputForm = ({
         <S.InputPicture type="file" id={buttonState} accept="image/png" onChange={imageHandler} />
         <S.CountComments>{isDelay && `${comment.length} 자`} </S.CountComments>
       </S.AttachWrapper>
-      {ButtonWrapper(buttonState, isEditClicked, setIsEditClicked)}
+      {/* {ButtonWrapper(buttonState, isEditClicked, setIsEditClicked)} */}
     </S.WriteWrapper>
   );
 };

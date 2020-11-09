@@ -74,8 +74,8 @@ function Assignees({ selectedAssignees, handleAssigneeClick }) {
           <S.AssignSelf onClick={() => handleSelfClick()}>No one-assign yourself</S.AssignSelf>
         )
       ) : (
-        Array.from(selectedAssignees).map((assignee) => (
-          <S.SelectedItem>{assignee.userId}</S.SelectedItem>
+        Array.from(selectedAssignees).map((assignee, index) => (
+          <S.SelectedItem key={index}>{assignee.userId}</S.SelectedItem>
         ))
       )}
     </LS.LabelContainer>

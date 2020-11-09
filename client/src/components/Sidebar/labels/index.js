@@ -39,7 +39,11 @@ function Labels({ selectedLabels, handleLabelClick }) {
               labels.map((item, index) => (
                 <>
                   <hr className="dropdown-divider" />
-                  <Dropdown.Item className="dropdown-item" key={index} onClick={() => handleLabelClick(item)}>
+                  <Dropdown.Item
+                    className="dropdown-item"
+                    key={index}
+                    onClick={() => handleLabelClick(item)}
+                  >
                     <S.TitleContainer>
                       <S.BoxColor background={item.color} />
                       <S.LabelName>{item.name}</S.LabelName>
@@ -51,13 +55,15 @@ function Labels({ selectedLabels, handleLabelClick }) {
           </Dropdown.Menu>
         </Dropdown>
       </DS.FilterDropdown>
-      {
-        selectedLabels.size === 0
-          ? <div>None yet</div>
-          : Array.from(selectedLabels).map((label) => (
-            <S.SelectedItem background={label.color}>{label.name}</S.SelectedItem>
-          ))
-      }
+      {selectedLabels.size === 0 ? (
+        <div>None yet</div>
+      ) : (
+        Array.from(selectedLabels).map((label, index) => (
+          <S.SelectedItem key={index} background={label.color}>
+            {label.name}
+          </S.SelectedItem>
+        ))
+      )}
     </S.LabelContainer>
   );
 }
