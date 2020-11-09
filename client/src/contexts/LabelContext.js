@@ -87,3 +87,32 @@ export async function getLabels(dispatch) {
     dispatch({ type: 'GET_LABELS_ERROR', error: e });
   }
 }
+
+export async function createLabel(dispatch, params) {
+  try {
+    await api.createLabel(params);
+    getLabels(dispatch);
+  } catch (e) {
+    dispatch({ type: 'GET_LABELS_ERROR', error: e });
+  }
+}
+
+export async function updateLabel(dispatch, id, params) {
+  try {
+    console.log('@@:::::', params)
+    // await api.updateLabel(params);
+    // dispatch({ type: 'GET_LABELS_SUCCESS', data: response.data });
+  } catch (e) {
+    // dispatch({ type: 'GET_LABELS_ERROR', error: e });
+  }
+}
+
+export async function deleteLabel(dispatch, id) {
+  try {
+    console.log('id :::: ', id)
+    await api.deleteLabel(id);
+    getLabels(dispatch);
+  } catch (e) {
+    dispatch({ type: 'GET_LABELS_ERROR', error: e });
+  }
+}

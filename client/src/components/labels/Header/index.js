@@ -1,12 +1,12 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { useHistory } from 'react-router-dom';
 import { TagIcon, MilestoneIcon } from '@primer/octicons-react';
 import S from './style';
 
-function Header({isCreateState, setIsCreateState}) {
+function Header({isVisible, setIsVisible}) {
   const history = useHistory();
-  const handleIsCreate=()=>{
-    setIsCreateState(!isCreateState);
+  const handleIsVisible=()=>{
+    setIsVisible(!isVisible);
   }
   return (
     <S.LabelHeader>
@@ -20,7 +20,7 @@ function Header({isCreateState, setIsCreateState}) {
           <S.ButtonText>Milestones</S.ButtonText>
         </S.MilestonesButton>
       </S.LabelMilestone>
-      <S.NewLabelButton onClick={handleIsCreate}>New Label</S.NewLabelButton>
+      <S.NewLabelButton onClick={handleIsVisible}>New Label</S.NewLabelButton>
     </S.LabelHeader>
   );
 }
