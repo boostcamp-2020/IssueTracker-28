@@ -7,7 +7,7 @@ export default {
     height: 100px;
     .edit-button {
       position: absolute;
-      top: 0px;
+      top: 2px;
       right: 10px;
     }
   `,
@@ -21,6 +21,8 @@ export default {
       font-size: 14px;
       align-self: center;
       margin-left: 10px;
+      border: none;
+      background: #ffffff;
       &:hover {
         cursor: pointer;
         text-decoration: underline;
@@ -42,6 +44,8 @@ export default {
   `,
   TitleWrapper: styled.div`
     display: flex;
+    height: 34px;
+    align-items: center;
   `,
   ContentWrapper: styled.div`
     display: flex;

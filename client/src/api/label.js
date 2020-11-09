@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-export async function getLabels() {
+const getLabels = async () => {
   const response = await axios.get('/api/label/list');
   return response.data;
-}
+};
+
+export { getLabels };
