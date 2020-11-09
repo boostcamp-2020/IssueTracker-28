@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { SyncIcon } from '@primer/octicons-react';
-import * as api from '@api/label'
 import ColorHandler from '@utils/colorHandler';
 import {
   useLabelDispatch,
@@ -32,17 +31,13 @@ function NewLabel({setIsVisible, setIsEditState, label}) {
   const handleInputColor=(e)=>{
     setNewLabelColor(e.target.value);
   }
-  // Label 생성 API요청
-  const createLabelHandler=async()=>{
+  // Label 생성,삭제 API요청
+  const UpdateLabelHandler=async()=>{
     const newLabelInfo = { name : newLabelName, desc : newLabelDesc, color : newLabelColor }
-    await createLabel(dispatch, newLabelInfo);
+    isEdit ? await updateLabel(dispatch, label.id, newLabelInfo) : await createLabel(dispatch, newLabelInfo)
     setIsVisible(false);
   }
-  // Label 수정 API요청
-  const editLabelHandler=async()=>{
-    const editedLabelInfo = { name : newLabelName, desc : newLabelDesc, color : newLabelColor }
-    await updateLabel(dispatch, label.id, editedLabelInfo);
-  }
+
   // Label 삭제 API 요청
   const deleteLabelHandler=async()=>{
     await deleteLabel(dispatch, label.id);
@@ -90,12 +85,12 @@ function NewLabel({setIsVisible, setIsEditState, label}) {
                 {isEdit ?
                   <S.CreateLabelButton
                   isValid={newLabelName && ColorHandler.checkIsHexColor(newLabelColor)}
-                  onClick={editLabelHandler}>Save changes
+                  onClick={UpdateLabelHandler}>Save changes
                   </S.CreateLabelButton>
                   :
                   <S.CreateLabelButton
                   isValid={newLabelName && ColorHandler.checkIsHexColor(newLabelColor)}
-                  onClick={createLabelHandler}>Create Label
+                  onClick={UpdateLabelHandler}>Create Label
                   </S.CreateLabelButton>
                 }
             </S.ButtonsWrapper>

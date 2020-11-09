@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import NewLabel from '../../newLabel'
+import {
+  useLabelDispatch,
+  deleteLabel,
+} from '@contexts/LabelContext';
 import S from './style';
 
 function Label({label}) {
-  console.log('###', label)
   const [ isEditState, setIsEditState ] = useState(false);
+  const dispatch = useLabelDispatch();
   const handleEditLabel =()=>{
     setIsEditState(!isEditState);
-    
   }
-
   const handleDeleteLabel =()=>{
-
+    deleteLabel(dispatch, label.id);
   }
-
   return (
    <>
    {isEditState 

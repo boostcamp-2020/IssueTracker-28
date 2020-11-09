@@ -13,6 +13,15 @@ export async function createLabel(params) {
     });
     return response;
 }
+export async function updateLabel(id, params) {
+    const response = await axios.put('/api/label', {
+        id: id,
+        name: params.name,
+        desc: params.desc,
+        color: params.color
+    });
+    return response;
+}
 
 export async function deleteLabel(id) {
     const response = await axios.delete('/api/label', {
