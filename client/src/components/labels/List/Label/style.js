@@ -26,7 +26,7 @@ export default {
     border-radius : 2rem;
     font-size : 13px;
     display : inline-block;
-    color : #000000;
+    color : ${(props)=> props.fontColor || "white"};
   `,
     DescWrapper: styled.div`
   `,

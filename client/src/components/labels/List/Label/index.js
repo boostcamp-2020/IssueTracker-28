@@ -4,6 +4,7 @@ import {
   useLabelDispatch,
   deleteLabel,
 } from '@contexts/LabelContext';
+import ColorHandler from '@utils/colorHandler'
 import S from './style';
 
 function Label({label}) {
@@ -26,7 +27,7 @@ function Label({label}) {
     <S.LabelWrapper>
       <S.LabelListWrapper>
         <S.LabelItemWrapper>
-          <S.LabelItem color={label.color}>{label.name}</S.LabelItem>
+          <S.LabelItem fontColor={ColorHandler.getContrastColor(label.color)} color={label.color}>{label.name}</S.LabelItem>
         </S.LabelItemWrapper>
         <S.DescWrapper>{label.desc}</S.DescWrapper>
         <S.ButtonsWrapper>
