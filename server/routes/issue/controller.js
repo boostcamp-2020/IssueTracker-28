@@ -52,11 +52,12 @@ exports.createIssue = async (req, res, next) => {
 };
 
 /*
-    UPDATE /api/issue/
+    UPDATE /api/issue/status
     * 이슈 상태 변경 API
 */
 exports.updateIssueStatus = async (req, res, next) => {
   const { ids, status } = req.body;
+  console.log(req.body);
   try {
     const result = await issueServices.updateIssueStatus(ids, status);
     if (result) {
@@ -66,6 +67,28 @@ exports.updateIssueStatus = async (req, res, next) => {
     } else {
       res.status(400).json({
         message: '이슈 상태 수정 실패',
+      });
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+/*
+    UPDATE /api/issue/content
+    * 이슈 내용 변경 API
+*/
+exports.updateIssueContent = async (req, res, next) => {
+  const { ids, content } = req.body;
+  try {
+    const result = await issueServices.updateIssueContent(ids, content);
+    if (result) {
+      res.json({
+        message: '이슈 내용 수정 성공',
+      });
+    } else {
+      res.status(400).json({
+        message: '이슈 내용 수정 실패',
       });
     }
   } catch (err) {

@@ -3,24 +3,29 @@ import InputForm from '@components/input/form';
 import Comment from './Comment';
 import S from './style';
 import Button from '@components/issues/IssueHeader/Buttons/style';
-import { StateLabel, IssueClosedIcon } from '@primer/octicons-react';
+import { IssueOpenedIcon, IssueClosedIcon } from '@primer/octicons-react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 const MainContent = ({ issue, comments }) => {
   const [newComment, setNewComment] = useState('');
+  const history = useHistory();
   const statusHandler = () => {
-    // todo  : 상태 업데이트 만들기
-    // axios
-    //   .post(`/api/upload/test`, fd, {
-    //     headers: { 'Content-Type': 'multipart/form-data;charset=utf-8;' },
-    //   })
-    //   .then((res) => {
-    //     const imgPath = `${'\n' + '[img : '}${res.data}]`;
-    //     setComment(comment + imgPath);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error.response);
-    //   });
+    const status = issue.status === 'opened' ? 1 : 0;
+    const body = {
+      ids: issue.id,
+      status,
+    };
+    axios
+      .put(`/api/issue/status`, body)
+      .then((res) => {
+        console.log('res: ', res);
+        // Todo : 새로고침 구현
+        // history.push(`/detail/${issue.id}`);
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
   };
   const updateHandler = () => {};
   return (
@@ -41,9 +46,9 @@ const MainContent = ({ issue, comments }) => {
         />
         <S.ButtonWrapper justifyContent="flex-end">
           <S.EditCancelButton onClick={statusHandler}>
-            {issue.status === 'open' ? (
+            {issue.status === 'opened' ? (
               <div>
-                <StateLabel size={16} />
+                <IssueOpenedIcon size={16} />
                 <span>Open Issue</span>
               </div>
             ) : (

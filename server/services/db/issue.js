@@ -81,8 +81,26 @@ exports.insertIssueLabel = async (params) => {
 
 exports.updateIssueStatus = async (ids, status) => {
   try {
+    console.log('?zzzzzzzzzzzzzzzz?:', ids, status);
     await Issue.update(
       { status },
+      {
+        where: {
+          id: ids,
+        },
+      }
+    );
+    return true;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};
+
+exports.updateIssueContent = async (ids, content) => {
+  try {
+    await Issue.update(
+      { content },
       {
         where: {
           id: ids,
