@@ -9,15 +9,10 @@ const MainContent = ({ issue, comments }) => {
     <>
       <Comment isIssue={true} issue={issue} />
       {comments.map((comment, index) => {
-        <Comment key={index} issueAuthor={issue.issueAuthor} isIssue={false} issue={comment} />;
+        return (
+          <Comment key={index} issueAuthor={issue.issueAuthor} isIssue={false} issue={comment} />
+        );
       })}
-      {/* <Comment
-        issueAuthor="sang-gyeong"
-        author="sang-gyeong"
-        createdAt="5 days ago"
-        isOwner
-        content="테스트"
-      /> */}
       <S.InputWrappers wrapperHeight="250px">
         <InputForm
           formHeight="45%"

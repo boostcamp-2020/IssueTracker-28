@@ -19,7 +19,7 @@ const Comment = ({ isIssue, issueAuthor, issue }) => {
     <>
       {isEditClicked !== true ? (
         <S.FlexWrapper>
-          <S.Triangle />
+          <S.Triangle backgroundColor={isIssueAuthor ? 'rgb(241,248,255)' : 'rgb(250,251,252)'} />
           <S.CommentsWrapper>
             <S.TitleWrapper
               backgroundColor={isIssueAuthor ? 'rgb(241,248,255)' : 'rgb(250,251,252)'}

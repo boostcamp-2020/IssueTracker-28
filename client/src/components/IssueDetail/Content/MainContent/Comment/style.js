@@ -10,7 +10,7 @@ export default {
     height: 0;
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
-    border-right: 10px solid rgb(241, 248, 255);
+    border-right: 10px solid ${(props) => props.backgroundColor};
     margin-left: 100px;
   `,
   CommentsWrapper: styled.div`
