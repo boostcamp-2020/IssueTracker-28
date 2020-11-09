@@ -1,12 +1,15 @@
 import React from 'react';
-import { TagIcon, MilestoneIcon } from '@primer/octicons-react';
 import { useHistory } from 'react-router-dom';
+import { TagIcon, MilestoneIcon } from '@primer/octicons-react';
 import S from './style';
 
-function Header() {
+function Header({isCreateState, setIsCreateState}) {
   const history = useHistory();
+  const handleIsCreate=()=>{
+    setIsCreateState(!isCreateState);
+  }
   return (
-    <S.MilestoneHeader>
+    <S.LabelHeader>
       <S.LabelMilestone>
         <S.LabelsButton onClick={()=>history.push('/label')}>
           <TagIcon size={14} />
@@ -17,8 +20,8 @@ function Header() {
           <S.ButtonText>Milestones</S.ButtonText>
         </S.MilestonesButton>
       </S.LabelMilestone>
-      <S.NewMilestoneButton>New Milestone</S.NewMilestoneButton>
-    </S.MilestoneHeader>
+      <S.NewLabelButton onClick={handleIsCreate}>New Label</S.NewLabelButton>
+    </S.LabelHeader>
   );
 }
 

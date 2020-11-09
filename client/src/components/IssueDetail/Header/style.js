@@ -7,8 +7,28 @@ export default {
     height: 100px;
     .edit-button {
       position: absolute;
-      top: 8px;
+      top: 0px;
       right: 10px;
+    }
+  `,
+  EditWrapper: styled.div`
+    display: flex;
+    .issue-title {
+      width: 100%;
+    }
+    .cancle-button {
+      color: #0366d6;
+      font-size: 14px;
+      align-self: center;
+      margin-left: 10px;
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+    .save-button {
+      margin-left: 15px;
+      width: 70px;
     }
   `,
   IssueTitle: styled.div`
