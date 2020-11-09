@@ -4,6 +4,9 @@ import { CalendarIcon } from '@primer/octicons-react';
 import S from './style';
 
 function Milestone({ milestone }) {
+  const openIssueCnt = milestone.issues.filter(issue => issue.status === 0).length;
+  const closeIssueCnt = milestone.issues.filter(issue => issue.status === 1).length;
+
   return (
     <S.MilestoneWrapper>
       <S.Left>
@@ -15,11 +18,11 @@ function Milestone({ milestone }) {
         <S.Description>{milestone.desc}</S.Description>
       </S.Left>
       <S.Right>
-        <S.ProgressBar value={33} max={100}></S.ProgressBar>
+        <S.ProgressBar value={closeIssueCnt} max={openIssueCnt + closeIssueCnt === 0 ? 100 : openIssueCnt + closeIssueCnt}></S.ProgressBar>
         <S.ProgressState>
-          <S.State>33% complete</S.State>
-          <S.State>2 open</S.State>
-          <S.State>0 closed</S.State>
+          <S.State>{Math.round(closeIssueCnt / (openIssueCnt + closeIssueCnt === 0 ? 100 : openIssueCnt + closeIssueCnt) * 100)}% complete</S.State>
+          <S.State>{openIssueCnt} open</S.State>
+          <S.State>{closeIssueCnt} closed</S.State>
         </S.ProgressState>
         <S.ButtonWrapper>
           <S.Button>Edit</S.Button>

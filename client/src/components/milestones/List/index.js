@@ -41,7 +41,7 @@ function List() {
       </S.ListHeader>
       <S.List>
         {milestones && milestones.map(milestone => (
-          <Milestone milestone={milestone} />
+          <Milestone key={milestone.id} milestone={milestone} />
         ))}
       </S.List>
     </S.ListWrapper>
