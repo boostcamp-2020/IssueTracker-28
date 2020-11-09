@@ -108,3 +108,8 @@ exports.getIssueDetail = async (issueId) => {
 
   return data;
 };
+
+exports.updateIssueTitle = async (id, title) => {
+  const result = await db.updateIssueTitle(id, title);
+  return result;
+};

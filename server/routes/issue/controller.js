@@ -96,3 +96,34 @@ exports.getIssueDetail = async (req, res, next) => {
     next(error);
   }
 };
+
+/*
+    PUT /api/issue/title/:id
+    {
+      title: 'test1'
+    }
+    * 이슈 제목 수정 API
+*/
+exports.updateIssueTitle = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { title } = req.body;
+
+    const result = await issueServices.updateIssueTitle(id, title);
+
+    if (result) {
+      res.status(200).json({
+        message: '이슈 제목 수정 성공',
+        data: {
+          historyId: id,
+        },
+      });
+    } else {
+      res.status(400).json({
+        message: '이슈 제목 수정 실패',
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};

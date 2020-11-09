@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
   useMilestonesState,
   useMilestonesDispatch,
@@ -8,7 +8,7 @@ import { GearIcon } from '@primer/octicons-react';
 import { Dropdown } from 'semantic-ui-react';
 import S from './style';
 import LS from '../labels/style';
-import DS from '../../issues/IssueList/ListHeader/style';
+import DS from '../../issues/issueList/listHeader/style';
 
 const trigger = (
   <LS.LabelHeader>

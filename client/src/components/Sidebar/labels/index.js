@@ -3,7 +3,7 @@ import { useLabelState, useLabelDispatch, getLabels } from '@contexts/LabelConte
 import { GearIcon } from '@primer/octicons-react';
 import { Dropdown } from 'semantic-ui-react';
 import S from './style';
-import DS from '../../issues/IssueList/ListHeader/style';
+import DS from '../../issues/issueList/listHeader/style';
 
 const trigger = (
   <S.LabelHeader>
@@ -36,10 +36,14 @@ function Labels({ selectedLabels, handleLabelClick }) {
           <Dropdown.Menu className="dropdown-menu" direction="left">
             <Dropdown.Header className="dropdown-header" content="Apply labels to this issue" />
             {labels &&
-              labels.map((item, index) => (
+              labels.map((item) => (
                 <>
                   <hr className="dropdown-divider" />
-                  <Dropdown.Item className="dropdown-item" key={index} onClick={() => handleLabelClick(item)}>
+                  <Dropdown.Item
+                    className="dropdown-item"
+                    key={item.id}
+                    onClick={() => handleLabelClick(item)}
+                  >
                     <S.TitleContainer>
                       <S.BoxColor background={item.color} />
                       <S.LabelName>{item.name}</S.LabelName>
@@ -51,13 +55,13 @@ function Labels({ selectedLabels, handleLabelClick }) {
           </Dropdown.Menu>
         </Dropdown>
       </DS.FilterDropdown>
-      {
-        selectedLabels.size === 0
-          ? <div>None yet</div>
-          : Array.from(selectedLabels).map((label) => (
-            <S.SelectedItem background={label.color}>{label.name}</S.SelectedItem>
-          ))
-      }
+      {selectedLabels.size === 0 ? (
+        <div>None yet</div>
+      ) : (
+        Array.from(selectedLabels).map((label) => (
+          <S.SelectedItem background={label.color}>{label.name}</S.SelectedItem>
+        ))
+      )}
     </S.LabelContainer>
   );
 }

@@ -3,7 +3,7 @@ import { useUsersState, useUsersDispatch, getUsers } from '@contexts/UsersContex
 import { GearIcon } from '@primer/octicons-react';
 import { Dropdown } from 'semantic-ui-react';
 import LS from '@sidebar/labels/style';
-import DS from '@components/issues/IssueList/ListHeader/style';
+import DS from '@components/issues/issueList/listHeader/style';
 import S from './style';
 
 const trigger = (
@@ -35,7 +35,7 @@ function Assignees({ selectedAssignees, handleAssigneeClick }) {
   const handleSelfClick = () => {
     handleAssigneeClick({
       id: parseInt(localStorage.getItem('id')),
-      userId: localStorage.getItem('user'),
+      userId: localStorage.getItem('user_id'),
     });
     setIsAssignSelf(true);
   };
@@ -50,12 +50,12 @@ function Assignees({ selectedAssignees, handleAssigneeClick }) {
               content="Assign up to 10 people to thie issue"
             />
             {users &&
-              users.map((item, index) => (
+              users.map((item) => (
                 <>
                   <hr className="dropdown-divider" />
                   <Dropdown.Item
                     className="dropdown-item"
-                    key={index}
+                    key={item.id}
                     onClick={() => handleAssigneeClick(item)}
                   >
                     <LS.TitleContainer>
@@ -69,7 +69,7 @@ function Assignees({ selectedAssignees, handleAssigneeClick }) {
       </DS.FilterDropdown>
       {selectedAssignees.size === 0 ? (
         isAssignSelf ? (
-          <S.SelectedItem>{localStorage.getItem('user')}</S.SelectedItem>
+          <S.SelectedItem>{localStorage.getItem('user_id')}</S.SelectedItem>
         ) : (
           <S.AssignSelf onClick={() => handleSelfClick()}>No one-assign yourself</S.AssignSelf>
         )

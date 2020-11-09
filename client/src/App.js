@@ -20,7 +20,7 @@ const App = () => {
               exact
               path="/"
               render={() => {
-                <IssuePage/>
+                return <IssuePage />;
                 if (localStorage.getItem('auth_token')) return <IssuePage />;
                 return <UserPage />;
               }}
