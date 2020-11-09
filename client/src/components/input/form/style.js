@@ -10,6 +10,8 @@ export default {
   `,
   TitleBackground: styled.div`
     background-color: ${(props) => props.color};
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
     .comment-tab {
       display: inline-block;
       text-align: center;

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { SmileyIcon } from '@primer/octicons-react';
 import InputForm from '@components/input/form';
 import S from './style';
+import Button from '@components/issues/IssueHeader/Buttons/style';
+import axios from 'axios';
 
 const Comment = ({ isIssue, issueAuthor, issue }) => {
   const [isEditClicked, setIsEditClicked] = useState(false);
@@ -12,7 +14,38 @@ const Comment = ({ isIssue, issueAuthor, issue }) => {
   const editHandler = () => {
     setIsEditClicked(!isEditClicked);
   };
-
+  const updateCommentHandler = () => {
+    const body = {
+      content: comment,
+      id: issue.id,
+    };
+    axios
+      .put(`/api/comment`, body)
+      .then((res) => {
+        console.log('res: ', res);
+        // Todo : 새로고침 구현
+        // history.push(`/detail/${issue.id}`);
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+  };
+  const updateIssueHandler = () => {
+    const body = {
+      content: comment,
+      ids: issue.id,
+    };
+    axios
+      .put(`/api/issue/content`, body)
+      .then((res) => {
+        console.log('res: ', res);
+        // Todo : 새로고침 구현
+        // history.push(`/detail/${issue.id}`);
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+  };
   const isIssueAuthor = isIssue || issueAuthor === issue.author;
   const isCommentAuthor = issue.author === localStorage.getItem('user_id');
   return (
@@ -42,14 +75,28 @@ const Comment = ({ isIssue, issueAuthor, issue }) => {
       ) : (
         <S.InputWrappers wrapperHeight="250px">
           <InputForm
-            formHeight="45%"
-            color="rgb(241,248,255)"
-            buttonState={isIssue === true ? 'UPDATE_ISSUE' : 'UPDATE_COMMENT'}
+            formHeight="58%"
+            color={isIssueAuthor ? 'rgb(241,248,255)' : 'rgb(250,251,252)'}
             comment={comment}
             setComment={setComment}
             isEditClicked={isEditClicked}
             setIsEditClicked={setIsEditClicked}
           />
+          {isIssue === true ? (
+            <S.ButtonWrapper justifyContent="flex-end">
+              <S.EditCancelButton onClick={editHandler}>Cancel</S.EditCancelButton>
+              <Button.NewIssueButton onClick={updateIssueHandler}>
+                Update Issue
+              </Button.NewIssueButton>
+            </S.ButtonWrapper>
+          ) : (
+            <S.ButtonWrapper justifyContent="flex-end">
+              <S.EditCancelButton onClick={editHandler}>Cancel</S.EditCancelButton>
+              <Button.NewIssueButton onClick={updateCommentHandler}>
+                Update Comment
+              </Button.NewIssueButton>
+            </S.ButtonWrapper>
+          )}
         </S.InputWrappers>
       )}
     </>

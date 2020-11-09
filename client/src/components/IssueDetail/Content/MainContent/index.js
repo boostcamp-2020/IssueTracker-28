@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import InputForm from '@components/input/form';
 import Comment from './Comment';
 import S from './style';
@@ -9,8 +9,30 @@ import { useHistory } from 'react-router-dom';
 
 const MainContent = ({ issue, comments }) => {
   const [newComment, setNewComment] = useState('');
+  const [updateStatus, setUpdateStatus] = useState(false);
+  const [createComment, setCreateComment] = useState(false);
   const history = useHistory();
   const statusHandler = () => {
+    setUpdateStatus(!updateStatus);
+  };
+  const createHandler = () => {
+    const body = {
+      content: newComment,
+      issue: issue.id,
+      user: localStorage.getItem('user_id'),
+    };
+    axios
+      .post(`/api/comment`, body)
+      .then((res) => {
+        console.log('res: ', res);
+        // Todo : 새로고침 구현
+        // history.push(`/detail/${issue.id}`);
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+  };
+  useEffect(() => {
     const status = issue.status === 'opened' ? 1 : 0;
     const body = {
       ids: issue.id,
@@ -26,8 +48,8 @@ const MainContent = ({ issue, comments }) => {
       .catch((error) => {
         console.log(error.response);
       });
-  };
-  const updateHandler = () => {};
+    console.log('update: ', updateStatus);
+  }, [updateStatus]);
   return (
     <>
       <Comment isIssue={true} issue={issue} />
@@ -58,7 +80,7 @@ const MainContent = ({ issue, comments }) => {
               </div>
             )}
           </S.EditCancelButton>
-          <Button.NewIssueButton onClick={updateHandler}>Update Comment</Button.NewIssueButton>
+          <Button.NewIssueButton onClick={createHandler}>Comment</Button.NewIssueButton>
         </S.ButtonWrapper>
       </S.InputFormWrapper>
     </>

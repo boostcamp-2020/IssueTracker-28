@@ -81,7 +81,6 @@ exports.insertIssueLabel = async (params) => {
 
 exports.updateIssueStatus = async (ids, status) => {
   try {
-    console.log('?zzzzzzzzzzzzzzzz?:', ids, status);
     await Issue.update(
       { status },
       {
