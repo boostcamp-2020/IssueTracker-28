@@ -53,6 +53,7 @@ const Header = ({ issue, commentsCount }) => {
           {issue.status} this issue 3 days ago · {commentsCount} comment
         </S.Content>
       </S.ContentWrapper>
+      <S.HrLine />
       {editButton}
     </S.HeaderWrapper>
   );

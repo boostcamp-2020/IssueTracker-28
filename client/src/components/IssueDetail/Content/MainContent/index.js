@@ -5,8 +5,9 @@ import S from './style';
 
 const MainContent = () => {
   const [newComment, setNewComment] = useState('');
+
   return (
-    <>
+    <S.MainContent>
       <Comment
         isIssue
         issueAuthor="dooking"
@@ -32,7 +33,7 @@ const MainContent = () => {
           setComment={setNewComment}
         />
       </S.InputWrappers>
-    </>
+    </S.MainContent>
   );
 };
 

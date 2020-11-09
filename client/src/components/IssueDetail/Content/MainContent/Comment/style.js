@@ -14,8 +14,8 @@ export default {
     margin-left: 100px;
   `,
   CommentsWrapper: styled.div`
-    margin-top: 30px;
-    width: 70%;
+    margin-top: 10px;
+    width: 78%;
     height: 150px;
     border: 1px solid rgb(225, 228, 232);
     border-radius: 6px;
