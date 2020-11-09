@@ -53,7 +53,7 @@ exports.insertIssue = async (params) => {
     title: params.title,
     content: params.content,
     milestoneId: params.milestone,
-    userId: params.user,
+    userId: params.userId,
     status: params.status,
   });
 
