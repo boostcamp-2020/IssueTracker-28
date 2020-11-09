@@ -8,9 +8,7 @@ import axios from 'axios';
 const Comment = ({ isIssue, issueAuthor, issue }) => {
   const [isEditClicked, setIsEditClicked] = useState(false);
   const [comment, setComment] = useState(issue.content);
-  useEffect(() => {
-    setComment(issue.content);
-  }, []);
+  const re = /\[\S+\]\^\(\S+\)/i;
   const editHandler = () => {
     setIsEditClicked(!isEditClicked);
   };
@@ -46,6 +44,7 @@ const Comment = ({ isIssue, issueAuthor, issue }) => {
         console.log(error.response);
       });
   };
+
   const isIssueAuthor = isIssue || issueAuthor === issue.author;
   const isCommentAuthor = issue.author === localStorage.getItem('user_id');
   return (
@@ -71,7 +70,20 @@ const Comment = ({ isIssue, issueAuthor, issue }) => {
                 {isCommentAuthor && <S.EditButton onClick={editHandler}>Edit</S.EditButton>}
               </S.WriterInfo>
             </S.TitleWrapper>
-            <S.CommentsContent>{issue.content}</S.CommentsContent>
+            <S.CommentsContent>
+              {issue.content.split('!').map((cur, i) => {
+                if (re.test(cur)) {
+                  let [imgName, imgPath] = cur.split('^');
+                  imgName = imgName.replace(/\[|\]|\s*/gi, '');
+                  imgPath = imgPath.replace(/\(|\)|\s*/gi, '');
+                  return <S.ImgLink href={imgPath}>{imgName}</S.ImgLink>;
+                } else if (cur === '') {
+                  return ``;
+                } else {
+                  return <span>{cur}</span>;
+                }
+              })}
+            </S.CommentsContent>
           </S.CommentsWrapper>
         ) : (
           <S.InputWrappers wrapperHeight="250px">

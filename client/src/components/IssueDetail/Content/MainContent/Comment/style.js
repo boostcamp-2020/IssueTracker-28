@@ -89,4 +89,8 @@ export default {
     border: 1px solid black;
     border-radius: 1.5em;
   `,
+  ImgLink: styled.a`
+    padding-right: 5px;
+    font-weight: bold;
+  `,
 };

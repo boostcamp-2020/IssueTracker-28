@@ -30,7 +30,7 @@ const InputForm = ({
           headers: { 'Content-Type': 'multipart/form-data;charset=utf-8;' },
         })
         .then((res) => {
-          const imgPath = `${'\n' + '[img : '}${res.data}]`;
+          const imgPath = '\n' + '![img]^(' + `${res.data}` + ')!';
           setComment(comment + imgPath);
         })
         .catch((error) => {
