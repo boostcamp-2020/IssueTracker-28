@@ -26,17 +26,17 @@ export default {
   `,
   TitleContainer: styled.div`
     display: flex;
-    padding-bottom: .5rem;
+    padding-bottom: 0.5rem;
     color: #586069;
   `,
   BoxColor: styled.div`
     width: 16px;
     height: 16px;
-    background-color: ${(props) => props.background || "white"};
+    background-color: ${(props) => props.background || 'white'};
     border-radius: 3px;
   `,
   LabelName: styled.div`
-    padding-left: .5rem;
+    padding-left: 0.5rem;
   `,
   LabelDesc: styled.div`
     color: #586069;
@@ -47,9 +47,9 @@ export default {
     padding: 4px 10px;
     margin-bottom: 4px;
     border-radius: 5px;
-    background-color: ${(props) => props.background || "black"};
+    background-color: ${(props) => props.background || 'black'};
     &:last-child {
       margin-bottom: 0px;
     }
-  `
+  `,
 };

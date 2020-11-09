@@ -13,25 +13,40 @@ const Sidebar = ({
   setSelectedMilestone,
 }) => {
   const handleAssigneeClick = (assignee) => {
+    const assignees = new Set();
+    let flag = false;
     for (const user of Array.from(selectedAssignees)) {
-      if (user.id === assignee.id) return;
+      if (user.id !== assignee.id) assignees.add(user);
+      else flag = true;
     }
 
-    const newAssignees = new Set(selectedAssignees);
-    newAssignees.add(assignee);
-    setSelectedAssignees(newAssignees);
+    if (flag) setSelectedAssignees(assignees);
+    else {
+      const newAssignees = new Set(selectedAssignees);
+      newAssignees.add(assignee);
+      setSelectedAssignees(newAssignees);
+    }
   };
 
   const handleLabelClick = (label) => {
-    if (selectedLabels.has(label)) return;
-
-    const newLabels = new Set(selectedLabels);
-    newLabels.add(label);
-    setSelectedLabels(newLabels);
+    const labels = new Set();
+    let flag = false;
+    for (const selectedLabel of Array.from(selectedLabels)) {
+      if (selectedLabel.id !== label.id) labels.add(selectedLabel);
+      else flag = true;
+    }
+    if (flag) setSelectedLabels(labels);
+    else {
+      const newLabels = new Set(selectedLabels);
+      newLabels.add(label);
+      setSelectedLabels(newLabels);
+    }
   };
 
   const handleMilestoneClick = (milestone) => {
-    setSelectedMilestone(milestone);
+    console.log(milestone, selectedMilestone);
+    if (JSON.stringify(selectedMilestone) === JSON.stringify(milestone)) setSelectedMilestone(null);
+    else setSelectedMilestone(milestone);
   };
 
   const SidebarWrapper = styled.div``;

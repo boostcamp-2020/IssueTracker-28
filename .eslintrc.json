@@ -25,6 +25,7 @@
         "no-await-in-loop": "off",
         "react/prop-types": "off",
         "react/jsx-one-expression-per-line": "off",
-        "import/no-unresolved": "off"
+        "import/no-unresolved": "off",
+        "react/no-array-index-key": "off"
     }
 }

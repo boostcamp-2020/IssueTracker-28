@@ -30,7 +30,7 @@ function Assignees({ selectedAssignees, handleAssigneeClick }) {
 
   if (loading) return <div> 로딩중.. </div>;
   if (error) return <div> 에러가 발생했습니다 </div>;
-  if (!users) return <button onClick={fetchData}>불러오기</button>;
+  if (!users) return <input type="button" onClick={fetchData} value="불러오기" />;
 
   const handleSelfClick = () => {
     handleAssigneeClick({
@@ -38,6 +38,10 @@ function Assignees({ selectedAssignees, handleAssigneeClick }) {
       userId: localStorage.getItem('user_id'),
     });
     setIsAssignSelf(true);
+  };
+
+  const clickHandler = (e, item) => {
+    handleAssigneeClick(item);
   };
 
   return (
@@ -56,7 +60,7 @@ function Assignees({ selectedAssignees, handleAssigneeClick }) {
                   <Dropdown.Item
                     className="dropdown-item"
                     key={item.id}
-                    onClick={() => handleAssigneeClick(item)}
+                    onClick={(e) => clickHandler(e, item)}
                   >
                     <LS.TitleContainer>
                       <div>{item.userId}</div>
