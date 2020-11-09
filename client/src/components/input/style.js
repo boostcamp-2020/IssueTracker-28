@@ -16,7 +16,7 @@ export default {
     height : 35px;
     margin: 9px;
     padding : 2px 8px;
-    font-size: 15px;
+    font-size: 16px;
     line-height: 20px;
     border: 1px solid #e1e4e8;
     border-radius: 4px;

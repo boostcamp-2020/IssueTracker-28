@@ -20,6 +20,9 @@ export default {
     justify-content: space-between;
     padding: 4px 0 12px 0;
     font-weight: 700;
+    &:hover{
+      color : #0266D6;
+    }
     .gear-icon {
       cursor: pointer;
     }
