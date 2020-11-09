@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export default {
   WriteWrapper: styled.div`
-    height: 100%;
+    height: 200px;
   `,
   Line: styled.div`
     width: 100%;
@@ -10,37 +10,37 @@ export default {
   `,
   TitleBackground: styled.div`
     background-color: ${(props) => props.color};
-    .comment-tab{
+    .comment-tab {
       display: inline-block;
-      text-align : center;
-      padding : 8px 16px;
+      text-align: center;
+      padding: 8px 16px;
       color: rgb(88, 96, 105);
-      cursor : pointer;
-      position : relative;
-      top : 1px;
-      z-index : 10;
+      cursor: pointer;
+      position: relative;
+      top: 1px;
+      z-index: 10;
     }
   `,
   WriteTitle: styled.div`
     margin: 10px 6px 0px 8px;
-    ${(props) => props.isSelected &&
+    ${(props) =>
+      props.isSelected &&
       `border: 1px solid #e1e4e8;
         border-radius: 6px 6px 0 0;
         border-bottom: 1px solid white;
         color : #24292E;
         background : white;
-        `
-    }
+        `}
   `,
   WritePreview: styled.div`
-  ${(props) => props.isSelected &&
+    ${(props) =>
+      props.isSelected &&
       `border: 1px solid #e1e4e8;
       border-radius: 6px 6px 0 0;
       border-bottom: 1px solid white;
       color : #24292E;
       background : white;
-      `
-    }
+      `}
   `,
   AttachWrapper: styled.div`
     display: flex;
@@ -53,7 +53,7 @@ export default {
     padding: 8px 10px;
     color: #586069;
     width: 97.5%;
-    font-size : 13px;
+    font-size: 13px;
   `,
   LabelPicture: styled.label`
     width: 70%;
@@ -85,7 +85,7 @@ export default {
     border: 1px solid #e1e4e8;
     border-radius: 6px 6px 0 0;
     border-bottom: 1px dashed #e1e4e8;
-    background : #FAFBFC;
+    background: #fafbfc;
     box-shadow: inset 0 1px 3px #efefef;
   `,
   ButtonWrapper: styled.div`

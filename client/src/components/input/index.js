@@ -38,9 +38,9 @@ function Input({ selectedAssignees, selectedLabels, selectedMilestone }) {
   return (
     <S.InputWrapper>
       <S.InputTitle placeholder="Title" value={title} onChange={titleHandler} />
-      <S.InputFormWrapper wrapperHeight="400px">
+      <S.InputFormWrapper wrapperHeight="80%">
         <InputForm
-          formHeight="79%"
+          formHeight="315px"
           color="white"
           buttonState="NEW_ISSUE"
           comment={content}

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export default {
   InputWrapper: styled.div`
+    height: 500px;
     width: 100%;
     border: 1px solid #e1e4e8;
     border-radius: 6px;
