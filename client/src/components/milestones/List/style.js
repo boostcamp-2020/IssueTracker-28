@@ -11,12 +11,16 @@ export default {
     border-top-right-radius: 6px;
     background-color: #f6f8fa;
     padding: 16px;
+    .show {
+      font-weight: bold;
+    }
   `,
   CountWrapper: styled.div`
     display: flex;
     align-items: center;
     color: #606060;
     margin-right: 10px;
+    cursor: pointer;
   `,
   Count: styled.div`
     margin-left: 4px;
