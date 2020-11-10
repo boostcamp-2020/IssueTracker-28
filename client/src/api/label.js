@@ -15,8 +15,7 @@ async function createLabel(params) {
 }
 
 async function updateLabel(id, params) {
-    const response = await axios.put('/api/label', {
-        id: id,
+    const response = await axios.put(`/api/label/${id}`, {
         name: params.name,
         desc: params.desc,
         color: params.color
