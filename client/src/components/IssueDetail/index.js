@@ -18,7 +18,9 @@ const IssueDetail = () => {
     }
     fetchData();
   }, []);
-
+  if (Object.keys(issue).length === 0) {
+    return <div>Loading...</div>;
+  }
   return (
     <S.IssueDetailWrapper>
       <Header issue={issue} commentsCount={comments.length} />

@@ -53,7 +53,7 @@ exports.insertIssue = async (params) => {
     title: params.title,
     content: params.content,
     milestoneId: params.milestone,
-    userId: params.user,
+    userId: params.userId,
     status: params.status,
   });
 
@@ -83,6 +83,23 @@ exports.updateIssueStatus = async (ids, status) => {
   try {
     await Issue.update(
       { status },
+      {
+        where: {
+          id: ids,
+        },
+      }
+    );
+    return true;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};
+
+exports.updateIssueContent = async (ids, content) => {
+  try {
+    await Issue.update(
+      { content },
       {
         where: {
           id: ids,

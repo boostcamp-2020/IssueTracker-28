@@ -75,6 +75,11 @@ exports.updateIssueStatus = async (ids, status) => {
   return results;
 };
 
+exports.updateIssueContent = async (ids, content) => {
+  const results = await db.updateIssueContent(ids, content);
+  return results;
+};
+
 const getComments = async (issueId) => {
   const comments = await db.selectComments(issueId);
   const data = comments.map((comment) => {

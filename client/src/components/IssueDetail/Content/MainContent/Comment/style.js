@@ -4,18 +4,16 @@ export default {
     FlexWrapper: styled.div`
     display: flex;
   `,
-    Triangle: styled.div`
-    margin-top: 45px;
+  Triangle: styled.div`
+    margin-top: 15px;
     width: 0;
     height: 0;
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
-    border-right: 10px solid rgb(241, 248, 255);
-    margin-left: 100px;
+    border-right: 10px solid ${(props) => props.backgroundColor};
   `,
   CommentsWrapper: styled.div`
-    margin-top: 10px;
-    width: 78%;
+    width: 70%;
     height: 150px;
     border: 1px solid rgb(225, 228, 232);
     border-radius: 6px;
@@ -69,10 +67,37 @@ export default {
     width: 70%;
     height: ${(props) => props.wrapperHeight};
     border: 1px solid rgb(225, 228, 232);
-    margin: 30px;
-    margin-left: 110px;
+    border-radius: 6px;
   `,
-    FlexWrapper: styled.div`
+  ButtonWrapper: styled.div`
     display: flex;
+    justify-content: ${(props) => props.justifyContent};
+    margin: 8px;
+  `,
+  EditCancelButton: styled.button`
+    font-weight: bold;
+    background: rgb(250, 251, 252);
+    border: 1px solid #e1e4e8;
+    border-radius: 4px;
+    padding: 5px 15px;
+    color: rgb(215, 58, 73);
+    margin-right: 10px;
+    cursor: pointer;
+  `,
+  VerticalLine: styled.div`
+    border-left: 2px solid rgb(225, 228, 232);
+    height: 60px;
+    margin-left: 130px;
+  `,
+  Profile: styled.img`
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+    border: 1px solid black;
+    border-radius: 1.5em;
+  `,
+  ImgLink: styled.a`
+    padding-right: 5px;
+    font-weight: bold;
   `,
 };
