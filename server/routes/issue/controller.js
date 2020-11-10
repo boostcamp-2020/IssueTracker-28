@@ -57,7 +57,6 @@ exports.createIssue = async (req, res, next) => {
 */
 exports.updateIssueStatus = async (req, res, next) => {
   const { ids, status } = req.body;
-  console.log(req.body);
   try {
     const result = await issueServices.updateIssueStatus(ids, status);
     if (result) {

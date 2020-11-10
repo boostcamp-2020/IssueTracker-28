@@ -15,7 +15,6 @@ const Comment = ({ isIssue, issueAuthor, issue, issueID }) => {
   const [isEditClicked, setIsEditClicked] = useState(false);
   const [comment, setComment] = useState(issue.content);
   const dispatch = useIssueDetailDispatch();
-  const re = /\[.*\]\^\(.*\)/i;
   const editHandler = () => {
     setIsEditClicked(!isEditClicked);
   };

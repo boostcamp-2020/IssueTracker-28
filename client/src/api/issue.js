@@ -1,5 +1,18 @@
 import API from './common';
 
+const createIssue = async (title, content, milestone, assignees, labels, user, status = 0) => {
+  const response = await API.post(`/issue`, {
+    title,
+    content,
+    milestone,
+    assignees,
+    labels,
+    user,
+    status,
+  });
+  return response;
+};
+
 const updateIssueStatus = async (issueIDs, status) => {
   const response = await API.put(`/issue/status`, {
     ids: issueIDs,
@@ -32,4 +45,11 @@ const updateIssueTitle = async (id, title) => {
   return response;
 };
 
-export { getIssues, getIssueDetail, updateIssueStatus, updateIssueTitle, updateIssueContent };
+export {
+  createIssue,
+  getIssues,
+  getIssueDetail,
+  updateIssueStatus,
+  updateIssueTitle,
+  updateIssueContent,
+};

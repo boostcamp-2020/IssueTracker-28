@@ -34,7 +34,6 @@ const InputForm = ({ formHeight, color, buttonState, comment, setComment }) => {
       }, 2000);
     }
   };
-  console.log('ise: ', isSelected);
 
   return (
     <S.WriteWrapper>
