@@ -1,9 +1,9 @@
 import React from 'react';
-import BS from '@components/issues/IssueHeader/Buttons/style';
+import BS from '@components/issues/header/buttons/style';
 import { useHistory } from 'react-router-dom';
 import S from './style';
 
-const ButtonWrapper = (buttonState, isEditClicked, setIsEditClicked) => {
+function ButtonWrapper(buttonState, isEditClicked, setIsEditClicked) {
   const history = useHistory();
 
   switch (buttonState) {
@@ -41,6 +41,6 @@ const ButtonWrapper = (buttonState, isEditClicked, setIsEditClicked) => {
       );
     default:
   }
-};
+}
 
 export default ButtonWrapper;

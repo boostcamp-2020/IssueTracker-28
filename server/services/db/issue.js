@@ -53,7 +53,7 @@ exports.insertIssue = async (params) => {
     title: params.title,
     content: params.content,
     milestoneId: params.milestone,
-    userId: params.user,
+    userId: params.userId,
     status: params.status,
   });
 
@@ -96,6 +96,23 @@ exports.updateIssueStatus = async (ids, status) => {
   }
 };
 
+exports.updateIssueContent = async (ids, content) => {
+  try {
+    await Issue.update(
+      { content },
+      {
+        where: {
+          id: ids,
+        },
+      }
+    );
+    return true;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};
+
 exports.selectComments = async (issueId) => {
   const results = await Comment.findAll({
     attributes: ['id', 'content', 'user_id', 'updated_at'],
@@ -109,4 +126,23 @@ exports.selectComments = async (issueId) => {
     raw: true,
   });
   return results;
+};
+
+exports.updateIssueTitle = async (id, title) => {
+  try {
+    await Issue.update(
+      {
+        title,
+      },
+      {
+        where: {
+          id,
+        },
+      }
+    );
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
 };

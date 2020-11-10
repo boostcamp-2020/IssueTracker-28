@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import S from './style';
 import { TagIcon } from '@primer/octicons-react';
 import { useLabelState, useLabelDispatch, getLabels } from '@contexts/LabelContext';
 import { useHistory } from 'react-router-dom';
+import S from './style';
 
 function LabelsButton() {
   const state = useLabelState();
@@ -26,6 +26,6 @@ function LabelsButton() {
       <S.ShowTotalNum>{labels ? labels.length : 0}</S.ShowTotalNum>
     </S.LabelsButton>
   );
-};
+}
 
 export default LabelsButton;

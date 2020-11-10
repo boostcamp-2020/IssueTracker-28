@@ -1,5 +1,5 @@
 const issueServices = require('../../services/issue');
-
+const userServices = require('../../services/user');
 /*
     GET /api/issue/list
     * 전체 이슈 목록 조회 API
@@ -23,18 +23,13 @@ exports.getIssues = async (req, res, next) => {
 */
 exports.createIssue = async (req, res, next) => {
   try {
-    const { title, content, milestone, user, status } = req.body;
-    // Todo : Postman은 배열을 인식하지 못함 -> 변경 필요
-    const assignees = [8, 9];
-    const labels = [2, 3];
-    // Todo : 프론트에서 요청하는 값에 의해서 변경 필요
-    // const { id: milestone_id } = await milestoneServices.findMilestone(milestone);
-    // const { id: user_id } = await userServices.findUser(user);
+    const { title, content, milestone, assignees, labels, user, status } = req.body;
+    const { id: userId } = await userServices.findUser(user);
     const { id: issueId } = await issueServices.createIssue({
       title,
       content,
       milestone,
-      user,
+      userId,
       status,
     });
     Promise.all([
@@ -47,8 +42,7 @@ exports.createIssue = async (req, res, next) => {
         issueId,
       }),
     ]);
-
-    res.json({
+    res.status(200).json({
       message: '새로운 이슈 생성 성공',
       data: issueId,
     });
@@ -58,11 +52,12 @@ exports.createIssue = async (req, res, next) => {
 };
 
 /*
-    UPDATE /api/issue/
+    UPDATE /api/issue/status
     * 이슈 상태 변경 API
 */
 exports.updateIssueStatus = async (req, res, next) => {
   const { ids, status } = req.body;
+  console.log(req.body);
   try {
     const result = await issueServices.updateIssueStatus(ids, status);
     if (result) {
@@ -72,6 +67,28 @@ exports.updateIssueStatus = async (req, res, next) => {
     } else {
       res.status(400).json({
         message: '이슈 상태 수정 실패',
+      });
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+/*
+    UPDATE /api/issue/content
+    * 이슈 내용 변경 API
+*/
+exports.updateIssueContent = async (req, res, next) => {
+  const { ids, content } = req.body;
+  try {
+    const result = await issueServices.updateIssueContent(ids, content);
+    if (result) {
+      res.json({
+        message: '이슈 내용 수정 성공',
+      });
+    } else {
+      res.status(400).json({
+        message: '이슈 내용 수정 실패',
       });
     }
   } catch (err) {
@@ -92,6 +109,37 @@ exports.getIssueDetail = async (req, res, next) => {
       message: '이슈 상세 조회 성공',
       data: detail,
     });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/*
+    PUT /api/issue/title/:id
+    {
+      title: 'test1'
+    }
+    * 이슈 제목 수정 API
+*/
+exports.updateIssueTitle = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { title } = req.body;
+
+    const result = await issueServices.updateIssueTitle(id, title);
+
+    if (result) {
+      res.status(200).json({
+        message: '이슈 제목 수정 성공',
+        data: {
+          historyId: id,
+        },
+      });
+    } else {
+      res.status(400).json({
+        message: '이슈 제목 수정 실패',
+      });
+    }
   } catch (error) {
     next(error);
   }
