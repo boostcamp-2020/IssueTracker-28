@@ -1,24 +1,28 @@
 import React from 'react';
+import Date from '@utils/date';
 import { CalendarIcon } from '@primer/octicons-react';
 import S from './style';
 
-function Milestone() {
+function Milestone({ milestone }) {
+  const openIssueCnt = milestone.issues.filter(issue => issue.status === 0).length;
+  const closeIssueCnt = milestone.issues.filter(issue => issue.status === 1).length;
+
   return (
     <S.MilestoneWrapper>
       <S.Left>
-        <S.Title>스프린트1</S.Title>
+        <S.Title>{milestone.title}</S.Title>
         <S.DateWrapper>
           <CalendarIcon />
-          <S.Date>Due by November 06, 2020</S.Date>
+          <S.Date>Due by {Date.getDate(milestone.due_date, { day: 'numeric', year: 'numeric', month: 'long' })}</S.Date>
         </S.DateWrapper>
-        <S.Description>이번 배포를 위한 스프린트</S.Description>
+        <S.Description>{milestone.desc}</S.Description>
       </S.Left>
       <S.Right>
-        <S.ProgressBar value={33} max={100}></S.ProgressBar>
+        <S.ProgressBar value={closeIssueCnt} max={openIssueCnt + closeIssueCnt === 0 ? 100 : openIssueCnt + closeIssueCnt}></S.ProgressBar>
         <S.ProgressState>
-          <S.State>33% complete</S.State>
-          <S.State>2 open</S.State>
-          <S.State>0 closed</S.State>
+          <S.State>{Math.round(closeIssueCnt / (openIssueCnt + closeIssueCnt === 0 ? 100 : openIssueCnt + closeIssueCnt) * 100)}% complete</S.State>
+          <S.State>{openIssueCnt} open</S.State>
+          <S.State>{closeIssueCnt} closed</S.State>
         </S.ProgressState>
         <S.ButtonWrapper>
           <S.Button>Edit</S.Button>
