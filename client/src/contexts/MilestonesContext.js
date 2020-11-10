@@ -66,7 +66,6 @@ function MilestonesProvider({ children }) {
 
 function useMilestonesState() {
   const state = useContext(MilestonesStateContext);
-
   if (!state) {
     throw new Error('Cannot find MilestonesProvider!');
   }

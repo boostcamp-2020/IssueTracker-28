@@ -18,7 +18,7 @@ function Header() {
           <S.ButtonText>Milestones</S.ButtonText>
         </S.MilestonesButton>
       </S.LabelMilestone>
-      <S.NewMilestoneButton onClick={() => history.push('/newMilestone')}>New Milestone</S.NewMilestoneButton>
+      <S.NewMilestoneButton onClick={() => history.push('/milestone/new')}>New Milestone</S.NewMilestoneButton>
     </S.MilestoneHeader>
   );
 }

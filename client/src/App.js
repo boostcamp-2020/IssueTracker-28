@@ -30,8 +30,8 @@ const App = () => {
             <Route path="/newIssue" component={NewIssuePage} />
             <Route path="/label" component={LabelPage} />
             <Route path="/milestone/edit/:id" component={EditMilestonePage} />
+            <Route path="/milestone/new" component={NewMilestonePage} />
             <Route path="/milestone" component={MilestonePage} />
-            <Route path="/newMilestone" component={NewMilestonePage} />
             <Route path="/detail/:id" component={IssueDetailPage} />
             <Route
               render={({ location }) => (

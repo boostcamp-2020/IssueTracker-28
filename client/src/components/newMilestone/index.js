@@ -45,6 +45,7 @@ function NewMilestone() {
       </S.Header>
       <Input handleTitle={handleTitle} handleDescription={handleDescription} />
       <S.ButtonWrapper>
+        <S.CancelButton onClick={() => history.push('/milestone')}>Cancel</S.CancelButton>
         <BS.NewIssueButton onClick={handleClick}>Create milestone</BS.NewIssueButton>
       </S.ButtonWrapper>
     </S.NewMilestoneWrapper>
