@@ -5,6 +5,7 @@ import { Dropdown } from 'semantic-ui-react';
 import LS from '@sidebar/labels/style';
 import DS from '@components/issues/issueList/listHeader/style';
 import S from './style';
+import EmptyUserPic from '@images/empty-user.png'
 
 const trigger = (
   <LS.LabelHeader>
@@ -63,6 +64,7 @@ function Assignees({ selectedAssignees, handleAssigneeClick }) {
                     onClick={(e) => clickHandler(e, item)}
                   >
                     <LS.TitleContainer>
+                      <LS.LabelPic src={EmptyUserPic} />
                       <div>{item.userId}</div>
                     </LS.TitleContainer>
                   </Dropdown.Item>
@@ -75,13 +77,16 @@ function Assignees({ selectedAssignees, handleAssigneeClick }) {
         isAssignSelf ? (
           <S.SelectedItem>{localStorage.getItem('user_id')}</S.SelectedItem>
         ) : (
-          <S.AssignSelf onClick={() => handleSelfClick()}>No one-assign yourself</S.AssignSelf>
-        )
+            <S.AssignSelf onClick={() => handleSelfClick()}>No one-assign yourself</S.AssignSelf>
+          )
       ) : (
-        Array.from(selectedAssignees).map((assignee) => (
-          <S.SelectedItem>{assignee.userId}</S.SelectedItem>
-        ))
-      )}
+          Array.from(selectedAssignees).map((assignee) => (
+            <S.SelectedAssigneeWrapper>
+              <LS.LabelPic src={EmptyUserPic}/>
+              <S.SelectedItem>{assignee.userId}</S.SelectedItem>
+            </S.SelectedAssigneeWrapper>
+          ))
+        )}
     </LS.LabelContainer>
   );
 }

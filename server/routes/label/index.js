@@ -4,6 +4,6 @@ const controller = require('./controller');
 router.get('/list', controller.getLabels);
 router.post('/', controller.createLabel);
 router.put('/', controller.updateLabel);
-router.delete('/', controller.deleteLabel);
+router.delete('/:id', controller.deleteLabel);
 
 module.exports = router;

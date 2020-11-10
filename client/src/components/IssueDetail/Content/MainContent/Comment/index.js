@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SmileyIcon } from '@primer/octicons-react';
 import InputForm from '@components/input/form';
+import EmptyUserPic from '@images/empty-user.png'
 import S from './style';
 
 const Comment = ({ isIssue, issueAuthor, author, createdAt, content }) => {
@@ -19,6 +20,7 @@ const Comment = ({ isIssue, issueAuthor, author, createdAt, content }) => {
         <S.FlexWrapper>
           <S.Triangle />
           <S.CommentsWrapper>
+            <S.CommentAuthorPic src={EmptyUserPic} />
             <S.TitleWrapper
               backgroundColor={isIssueAuthor ? 'rgb(241,248,255)' : 'rgb(250,251,252)'}
             >
@@ -38,18 +40,18 @@ const Comment = ({ isIssue, issueAuthor, author, createdAt, content }) => {
           </S.CommentsWrapper>
         </S.FlexWrapper>
       ) : (
-        <S.InputWrappers wrapperHeight="250px">
-          <InputForm
-            formHeight="45%"
-            color="rgb(241,248,255)"
-            buttonState={isIssue === true ? 'UPDATE_ISSUE' : 'UPDATE_COMMENT'}
-            comment={comment}
-            setComment={setComment}
-            isEditClicked={isEditClicked}
-            setIsEditClicked={setIsEditClicked}
-          />
-        </S.InputWrappers>
-      )}
+          <S.InputWrappers wrapperHeight="250px">
+            <InputForm
+              formHeight="45%"
+              color="rgb(241,248,255)"
+              buttonState={isIssue === true ? 'UPDATE_ISSUE' : 'UPDATE_COMMENT'}
+              comment={comment}
+              setComment={setComment}
+              isEditClicked={isEditClicked}
+              setIsEditClicked={setIsEditClicked}
+            />
+          </S.InputWrappers>
+        )}
     </>
   );
 };

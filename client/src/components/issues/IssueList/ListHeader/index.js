@@ -14,6 +14,7 @@ import {
 import LS from '@sidebar/labels/style';
 import S from './style';
 import handler from './handler';
+import EmptyUserPic from '@images/empty-user.png'
 
 const NO_FILTER_ITEM = ['Unlabeled', 'Issues with no milestone', 'Assigend to nobody'];
 
@@ -120,7 +121,8 @@ function ListHeader() {
                         >
                           <S.ItemContainer>
                             <CheckIcon size={16} className="check-icon" />
-                            <LS.LabelName>{item.userId}</LS.LabelName>
+                            <LS.LabelPic src={EmptyUserPic} />
+                            <div>{item.userId}</div>
                           </S.ItemContainer>
                         </Dropdown.Item>
                       </>
@@ -169,7 +171,7 @@ function ListHeader() {
               </Dropdown>
             </S.FilterDropdown>
             <S.FilterDropdown>
-              <Dropdown className="milestons-dropdown dropdown" text="Milestons">
+              <Dropdown className="milestons-dropdown dropdown" text="Milestones">
                 <Dropdown.Menu className="dropdown-menu" direction="left">
                   <Dropdown.Header className="dropdown-header" content="Filter by milestons" />
                   <Dropdown.Item
@@ -238,6 +240,7 @@ function ListHeader() {
                         >
                           <S.ItemContainer>
                             <CheckIcon size={16} className="check-icon" />
+                            <img src={EmptyUserPic} style={{width : '20px', borderRadius : '4px'}}/>
                             <LS.LabelName>{item.userId}</LS.LabelName>
                           </S.ItemContainer>
                         </Dropdown.Item>

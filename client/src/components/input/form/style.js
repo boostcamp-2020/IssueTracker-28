@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 export default {
-  WriteWrapper: styled.div`
+    WriteWrapper: styled.div `
     height: 100%;
   `,
-  Line: styled.div`
+    Line: styled.div `
     width: 100%;
     border-bottom: 1px solid #e1e4e8;
   `,
-  TitleBackground: styled.div`
+    TitleBackground: styled.div `
     background-color: ${(props) => props.color};
     .comment-tab{
       display: inline-block;
@@ -21,7 +21,7 @@ export default {
       z-index : 10;
     }
   `,
-  WriteTitle: styled.div`
+    WriteTitle: styled.div `
     margin: 10px 6px 0px 8px;
     ${(props) => props.isSelected &&
       `border: 1px solid #e1e4e8;
@@ -98,6 +98,9 @@ export default {
     background: none;
     color: #586069;
     cursor: pointer;
+    &:hover{
+      color : #303030;
+    }
   `,
   EditCancelButton: styled.button`
     font-weight: bold;

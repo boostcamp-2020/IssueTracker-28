@@ -24,7 +24,8 @@ export default {
     &:hover {
       background: #f7f8fa;
     }
-    .title:hover {
+    .title {
+      margin-right : 2px;
       cursor: pointer;
     }
   `,
@@ -39,16 +40,16 @@ export default {
   `,
   LabelList: styled.div`
     display: flex;
-    .label {
-      padding: 0 7px;
-      margin-left: 2px;
-      border: 1px solid transparent;
-      color: #fff;
-      border-radius: 2rem;
-      background-color: #6b6bce;
-      font-size: 12px;
-      font-weight: 500;
-    }
+  `,
+  Label : styled.div`
+  padding: 0 7px;
+  margin-left: 2px;
+  border: 1px solid transparent;
+  color: #fff;
+  border-radius: 2rem;
+  background-color: #6b6bce;
+  font-size: 12px;
+  font-weight: 500;
   `,
   OtherContainer: styled.div`
     display: flex;

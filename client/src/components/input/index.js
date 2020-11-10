@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import S from './style';
 import InputForm from './form';
+import EmptyUserPic from '@images/empty-user.png'
 
 function Input({ selectedAssignees, selectedLabels, selectedMilestone }) {
   const [title, setTitle] = useState('');
@@ -12,6 +13,8 @@ function Input({ selectedAssignees, selectedLabels, selectedMilestone }) {
 
   return (
     <S.InputWrapper>
+      <S.AuthorPic src={EmptyUserPic}/>
+      <S.InputTriangle/>
       <S.InputTitle placeholder="Title" value={title} onChange={titleHandler} />
       <S.InputFormWrapper wrapperHeight="400px">
         <InputForm
