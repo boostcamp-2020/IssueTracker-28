@@ -241,6 +241,7 @@ function ListHeader() {
                           <S.ItemContainer>
                             <CheckIcon size={16} className="check-icon" />
                             <img
+                              alt="profile"
                               src={EmptyUserPic}
                               style={{ width: '20px', borderRadius: '4px' }}
                             />

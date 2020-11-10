@@ -118,3 +118,33 @@ exports.updateIssueTitle = async (id, title) => {
   const result = await db.updateIssueTitle(id, title);
   return result;
 };
+
+exports.addIssueAssignee = async (id, assignee) => {
+  const result = await db.addIssueAssignee(id, assignee);
+  return result;
+};
+
+exports.addIssueLabel = async (id, label) => {
+  const result = await db.addIssueLabel(id, label);
+  return result;
+};
+
+exports.addIssueMilestone = async (id, milestone) => {
+  const result = await db.addIssueMilestone(id, milestone);
+  return result;
+};
+
+exports.deleteIssueAssignee = async (id, assignee) => {
+  const result = await db.deleteIssueAssignee(id, assignee);
+  return result;
+};
+
+exports.deleteIssueLabel = async (id, label) => {
+  const result = await db.deleteIssueLabel(id, label);
+  return result;
+};
+
+exports.deleteIssueMilestone = async (id) => {
+  const result = await db.deleteIssueMilestone(id);
+  return result;
+};

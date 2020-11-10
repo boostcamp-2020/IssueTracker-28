@@ -7,7 +7,7 @@ exports.selectMilestone = async () => {
       {
         model: Issue,
         attributes: ['id', 'status'],
-      }
+      },
     ],
   });
 
@@ -46,9 +46,10 @@ exports.updateMilestone = async ({ id, status, title, due_date, desc }) => {
     },
     {
       where: {
-        id
-      }
-    });
+        id,
+      },
+    }
+  );
 
   return result;
 };
@@ -56,8 +57,8 @@ exports.updateMilestone = async ({ id, status, title, due_date, desc }) => {
 exports.deleteMilestone = async ({ id }) => {
   const result = await Milestone.destroy({
     where: {
-      id
-    }
+      id,
+    },
   });
 
   return result;
