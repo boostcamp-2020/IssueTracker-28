@@ -32,9 +32,16 @@ const updateMilestoneStatus = async (params) => {
   return response.data;
 };
 
+const deleteMilestone = async ({ id }) => {
+  const response = await axios.delete(`/api/milestone/${id}`);
+  console.log('response :>> ', response);
+  return response.data;
+};
+
 export {
   getMilestones,
   createMilestone,
   updateMilestone,
-  updateMilestoneStatus
+  updateMilestoneStatus,
+  deleteMilestone
 };

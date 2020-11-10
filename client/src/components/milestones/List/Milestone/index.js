@@ -43,7 +43,7 @@ function Milestone({ milestone, handleStatusClick, handleDeleteClick }) {
           <S.Button onClick={() => handleStatusClick(milestone.id, milestone.status)}>{
             milestone.status === 'open' ? 'Close' : 'Open'
           }</S.Button>
-          <S.Button className='delete-btn' onClick={handleDeleteClick}>Delete</S.Button>
+          <S.Button className='delete-btn' onClick={() => handleDeleteClick(milestone.id)}>Delete</S.Button>
         </S.ButtonWrapper>
       </S.Right>
     </S.MilestoneWrapper>

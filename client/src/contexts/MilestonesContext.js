@@ -118,6 +118,14 @@ async function updateMilestoneStatus(dispatch, params) {
   }
 }
 
+async function deleteMilestone(dispatch, params) {
+  try {
+    await api.deleteMilestone(params);
+  } catch (e) {
+    dispatch({ type: 'PUT_MILESTONE_STATUS_ERROR', error: e });
+  }
+}
+
 export {
   MilestonesProvider,
   useMilestonesState,
@@ -126,4 +134,5 @@ export {
   createMilestone,
   updateMilestone,
   updateMilestoneStatus,
+  deleteMilestone
 };

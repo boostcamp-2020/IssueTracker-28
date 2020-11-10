@@ -4,6 +4,7 @@ import {
   useMilestonesDispatch,
   getMilestones,
   updateMilestoneStatus,
+  deleteMilestone
 } from '@contexts/MilestonesContext';
 import Milestone from './Milestone';
 import { MilestoneIcon, CheckIcon } from '@primer/octicons-react';
@@ -53,8 +54,9 @@ function List() {
     fetchData();
   };
 
-  const handleDeleteClick = () => {
-
+  const handleDeleteClick = (id) => {
+    deleteMilestone(dispatch, { id });
+    fetchData();
   };
 
   if (loading) return <S.LoadSpinner src={Spinner} />;
