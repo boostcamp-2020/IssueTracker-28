@@ -44,6 +44,21 @@ function labelReducer(state, action) {
         ...state,
         labels: error(action.error),
       };
+    case 'CREATE_LABELS_ERROR':
+      return {
+        ...state,
+        labels: error(action.error),
+      };
+    case 'UPDATE_LABELS_ERROR':
+      return {
+        ...state,
+        labels: error(action.error),
+      };
+    case 'DELETE_LABELS_ERROR':
+      return {
+        ...state,
+        labels: error(action.error),
+      };
     default:
       return state;
   }
@@ -93,7 +108,7 @@ export async function createLabel(dispatch, params) {
     await api.createLabel(params);
     getLabels(dispatch);
   } catch (e) {
-    dispatch({ type: 'GET_LABELS_ERROR', error: e });
+    dispatch({ type: 'CREATE_LABELS_ERROR', error: e });
   }
 }
 
@@ -102,7 +117,7 @@ export async function updateLabel(dispatch, id, params) {
     await api.updateLabel(id, params);
     getLabels(dispatch);
   } catch (e) {
-    dispatch({ type: 'GET_LABELS_ERROR', error: e });
+    dispatch({ type: 'UPDATE_LABELS_ERROR', error: e });
   }
 }
 
@@ -111,6 +126,6 @@ export async function deleteLabel(dispatch, id) {
     await api.deleteLabel(id);
     getLabels(dispatch);
   } catch (e) {
-    dispatch({ type: 'GET_LABELS_ERROR', error: e });
+    dispatch({ type: 'DELETE_LABELS_ERROR', error: e });
   }
 }
