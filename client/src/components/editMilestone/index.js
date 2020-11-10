@@ -28,12 +28,10 @@ function EditMilestone() {
     setDescription(target.value);
   };
 
-  const handleCloseClick = () => {
-    if (milestone.status === 'closed') return;
-
+  const handleStatusClick = () => {
     updateMilestoneStatus(dispatch, {
       id: milestone.id,
-      status: 1
+      status: milestone.status === 'open' ? 1 : 0
     });
 
     history.push('/milestone');
@@ -93,7 +91,9 @@ function EditMilestone() {
       </IS.InputWrapper>
       <S.ButtonWrapper>
         <S.CancelButton onClick={() => history.push('/milestone')}>Cancel</S.CancelButton>
-        <S.CancelButton onClick={handleCloseClick}>Close milestone</S.CancelButton>
+        <S.CancelButton onClick={handleStatusClick}>
+          {milestone.status === 'open' ? 'Close' : 'Open'} milestone
+        </S.CancelButton>
         <BS.NewIssueButton onClick={handleSaveClick}>Save Changes</BS.NewIssueButton>
       </S.ButtonWrapper>
     </S.EditMilestoneWrapper>
