@@ -3,7 +3,7 @@ import { useUsersState, useUsersDispatch, getUsers } from '@contexts/UsersContex
 import { GearIcon } from '@primer/octicons-react';
 import { Dropdown } from 'semantic-ui-react';
 import LS from '@sidebar/labels/style';
-import DS from '@components/issues/IssueList/ListHeader/style';
+import DS from '@components/issues/issueList/listHeader/style';
 import S from './style';
 import EmptyUserPic from '@images/empty-user.png'
 
@@ -31,14 +31,18 @@ function Assignees({ selectedAssignees, handleAssigneeClick }) {
 
   if (loading) return <div> 로딩중.. </div>;
   if (error) return <div> 에러가 발생했습니다 </div>;
-  if (!users) return <button onClick={fetchData}>불러오기</button>;
+  if (!users) return <input type="button" onClick={fetchData} value="불러오기" />;
 
   const handleSelfClick = () => {
     handleAssigneeClick({
       id: parseInt(localStorage.getItem('id')),
-      userId: localStorage.getItem('user'),
+      userId: localStorage.getItem('user_id'),
     });
     setIsAssignSelf(true);
+  };
+
+  const clickHandler = (e, item) => {
+    handleAssigneeClick(item);
   };
 
   return (
@@ -51,13 +55,13 @@ function Assignees({ selectedAssignees, handleAssigneeClick }) {
               content="Assign up to 10 people to thie issue"
             />
             {users &&
-              users.map((item, index) => (
+              users.map((item) => (
                 <>
                   <hr className="dropdown-divider" />
                   <Dropdown.Item
                     className="dropdown-item"
-                    key={index}
-                    onClick={() => handleAssigneeClick(item)}
+                    key={item.id}
+                    onClick={(e) => clickHandler(e, item)}
                   >
                     <LS.TitleContainer>
                       <LS.LabelPic src={EmptyUserPic} />
@@ -71,7 +75,7 @@ function Assignees({ selectedAssignees, handleAssigneeClick }) {
       </DS.FilterDropdown>
       {selectedAssignees.size === 0 ? (
         isAssignSelf ? (
-          <S.SelectedItem>{localStorage.getItem('user')}</S.SelectedItem>
+          <S.SelectedItem>{localStorage.getItem('user_id')}</S.SelectedItem>
         ) : (
             <S.AssignSelf onClick={() => handleSelfClick()}>No one-assign yourself</S.AssignSelf>
           )

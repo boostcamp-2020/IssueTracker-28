@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Input from '@components/input';
 import Header from '@components/header';
-import Sidebar from '@components/Sidebar';
+import Sidebar from '@components/sidebar';
 import styled from 'styled-components';
 
 const NewIssuePageWrapper = styled.div`

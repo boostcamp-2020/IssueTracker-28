@@ -9,20 +9,20 @@ import S from './style';
 function Filters() {
   const state = useIssuesState();
   const dispatch = useIssuesDispatch();
-  const {filters} = state;
+  const { filters } = state;
 
-  const selectHandler = (index, updatedFilter) => {
-    dispatch({type : UPDATE_FILTER, filters : {...filters, ...updatedFilter}})
-    // yourIssues, assigning you 필터 선택시, 드롭다운 필터에 있는 체크를 display:none으로 변경
-    uncheckFiltersHandler(index)
-  };
-
-  const uncheckFiltersHandler=(index)=>{
+  const uncheckFiltersHandler = (index) => {
     const authorDropdown = document.querySelector('.author-dropdown');
     const assigneeDropdown = document.querySelector('.assignee-dropdown');
-    if (index===1) uncheckAllFilters(authorDropdown);
-    if (index===2) uncheckAllFilters(assigneeDropdown);
-  }
+    if (index === 1) uncheckAllFilters(authorDropdown);
+    if (index === 2) uncheckAllFilters(assigneeDropdown);
+  };
+
+  const selectHandler = (index, updatedFilter) => {
+    dispatch({ type: UPDATE_FILTER, filters: { ...filters, ...updatedFilter } });
+    // yourIssues, assigning you 필터 선택시, 드롭다운 필터에 있는 체크를 display:none으로 변경
+    uncheckFiltersHandler(index);
+  };
 
   return (
     <S.FiltersWrapper>
