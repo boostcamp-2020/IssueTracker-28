@@ -1,13 +1,23 @@
 import styled from 'styled-components';
 
 export default {
-    NewLabelWrapper: styled.div`
-    margin-top: 24px;
-    background : #F5F8FA;;
-    border-radius : 6px;
-    border: 1px solid #e0e0e0;
+    NewLabelWrapper: styled.div `
+    ${(props) => props.isEdit ?
+            `border: 1px solid #e0e0e0;
+        border-top : none;`
+            :
+            `margin-top: 24px;
+        border-radius : 6px;
+        background : #F5F8FA;;
+        border: 1px solid #e0e0e0;
+        `}  
+    position : relative;
     padding : 18px 16px;
     box-sizing : border-box;
+    &:last-of-type {
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+      }
   `,
     NewLabelItem: styled.div`
     background : ${(props) => props.color || "#EDEDED"};
@@ -89,5 +99,17 @@ export default {
     transition : all 0.3s;
     opacity : ${(props) => props.isValid ? '100%' : '60%'};
     ${(props) => !props.isValid && 'pointer-events: none;'} 
+    `,
+    DeleteLabelButton: styled.button`
+    position : absolute;
+    right : 15px;
+    top : 15px;
+    cursor : pointer;
+    background : none;
+    color : #5E656E;
+    &:hover{
+      color : #0266D6;
+      text-decoration : underline;
+    }
     `
 };

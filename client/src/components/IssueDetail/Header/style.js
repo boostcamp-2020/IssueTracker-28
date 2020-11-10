@@ -9,7 +9,7 @@ export default {
     border-bottom: 1px solid rgb(225, 228, 232);
     .edit-button {
       position: absolute;
-      top: 0px;
+      top: 2px;
       right: 10px;
     }
   `,
@@ -23,6 +23,8 @@ export default {
       font-size: 14px;
       align-self: center;
       margin-left: 10px;
+      border: none;
+      background: #ffffff;
       &:hover {
         cursor: pointer;
         text-decoration: underline;
@@ -44,6 +46,8 @@ export default {
   `,
   TitleWrapper: styled.div`
     display: flex;
+    height: 34px;
+    align-items: center;
   `,
   ContentWrapper: styled.div`
     display: flex;
@@ -56,5 +60,11 @@ export default {
     .detail-author {
       font-weight: bold;
     }
+  `,
+  HrLine: styled.hr`
+    width: 99%;
+    border: 0px;
+    margin-top: 20px;
+    border-top: 1px solid #cccccc;
   `,
 };

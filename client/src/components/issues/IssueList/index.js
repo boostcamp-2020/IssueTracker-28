@@ -1,6 +1,6 @@
 import React from 'react';
-import ListHeader from './ListHeader';
-import List from './List';
+import ListHeader from './listHeader';
+import List from './list';
 import S from './style';
 
 function IssueList() {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { SmileyIcon } from '@primer/octicons-react';
 import InputForm from '@components/input/form';
+import EmptyUserPic from '@images/empty-user.png'
 import S from './style';
 import Button from '@components/issues/IssueHeader/Buttons/style';
 import axios from 'axios';
@@ -55,6 +56,7 @@ const Comment = ({ isIssue, issueAuthor, issue }) => {
 
         {isEditClicked !== true ? (
           <S.CommentsWrapper>
+            <S.CommentAuthorPic src={EmptyUserPic} />
             <S.TitleWrapper
               backgroundColor={isIssueAuthor ? 'rgb(241,248,255)' : 'rgb(250,251,252)'}
             >

@@ -127,3 +127,22 @@ exports.selectComments = async (issueId) => {
   });
   return results;
 };
+
+exports.updateIssueTitle = async (id, title) => {
+  try {
+    await Issue.update(
+      {
+        title,
+      },
+      {
+        where: {
+          id,
+        },
+      }
+    );
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};

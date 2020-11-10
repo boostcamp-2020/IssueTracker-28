@@ -3,7 +3,7 @@ import { useLabelState, useLabelDispatch, getLabels } from '@contexts/LabelConte
 import { GearIcon } from '@primer/octicons-react';
 import { Dropdown } from 'semantic-ui-react';
 import S from './style';
-import DS from '../../issues/IssueList/ListHeader/style';
+import DS from '../../issues/issueList/listHeader/style';
 
 const trigger = (
   <S.LabelHeader>
@@ -36,12 +36,12 @@ function Labels({ selectedLabels, handleLabelClick }) {
           <Dropdown.Menu className="dropdown-menu" direction="left">
             <Dropdown.Header className="dropdown-header" content="Apply labels to this issue" />
             {labels &&
-              labels.map((item, index) => (
+              labels.map((item) => (
                 <>
                   <hr className="dropdown-divider" />
                   <Dropdown.Item
                     className="dropdown-item"
-                    key={index}
+                    key={item.id}
                     onClick={() => handleLabelClick(item)}
                   >
                     <S.TitleContainer>

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import * as api from '@api/issue';
-import Header from '@components/IssueDetail/Header';
-import Content from '@components/IssueDetail/Content';
+import Header from '@components/issueDetail/header';
+import Content from '@components/issueDetail/content';
 import S from './style';
 
 const IssueDetail = () => {
