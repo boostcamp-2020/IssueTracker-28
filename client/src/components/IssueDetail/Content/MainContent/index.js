@@ -4,48 +4,23 @@ import Comment from './Comment';
 import S from './style';
 import Button from '@components/issues/header/Buttons/style';
 import { IssueOpenedIcon, IssueClosedIcon } from '@primer/octicons-react';
-import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import * as issueAPI from '@api/issue';
+import * as commentAPI from '@api/comment';
 
 const MainContent = ({ issue, comments }) => {
   const [newComment, setNewComment] = useState('');
   const [updateStatus, setUpdateStatus] = useState(false);
   const [createComment, setCreateComment] = useState(false);
   const history = useHistory();
-  const statusHandler = () => {
+  const statusHandler = async () => {
     const status = issue.status === 'opened' ? 1 : 0;
-    const body = {
-      ids: issue.id,
-      status,
-    };
-    axios
-      .put(`/api/issue/status`, body)
-      .then((res) => {
-        console.log('res: ', res);
-        // Todo : 새로고침 구현
-        // history.push(`/detail/${issue.id}`);
-      })
-      .catch((error) => {
-        console.log(error.response);
-      });
-    console.log('update: ', updateStatus);
+    const { data } = await issueAPI.updateIssueStatus(issue.id, status);
+    console.log('update: ', data);
   };
-  const createHandler = () => {
-    const body = {
-      content: newComment,
-      issue: issue.id,
-      user: localStorage.getItem('user_id'),
-    };
-    axios
-      .post(`/api/comment`, body)
-      .then((res) => {
-        console.log('res: ', res);
-        // Todo : 새로고침 구현
-        // history.push(`/detail/${issue.id}`);
-      })
-      .catch((error) => {
-        console.log(error.response);
-      });
+  const createHandler = async () => {
+    const { data } = await commentAPI.createComment(newComment, issue.id);
+    console.log('create: ', data);
   };
   return (
     <S.MainContentWrapper>

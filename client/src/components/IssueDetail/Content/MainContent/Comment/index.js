@@ -3,7 +3,8 @@ import { SmileyIcon } from '@primer/octicons-react';
 import InputForm from '@components/input/form';
 import S from './style';
 import Button from '@components/issues/header/Buttons/style';
-import axios from 'axios';
+import * as issueAPI from '@api/issue';
+import * as commentAPI from '@api/comment';
 
 const Comment = ({ isIssue, issueAuthor, issue }) => {
   const [isEditClicked, setIsEditClicked] = useState(false);
@@ -12,37 +13,11 @@ const Comment = ({ isIssue, issueAuthor, issue }) => {
   const editHandler = () => {
     setIsEditClicked(!isEditClicked);
   };
-  const updateCommentHandler = () => {
-    const body = {
-      content: comment,
-      id: issue.id,
-    };
-    axios
-      .put(`/api/comment`, body)
-      .then((res) => {
-        console.log('res: ', res);
-        // Todo : 새로고침 구현
-        // history.push(`/detail/${issue.id}`);
-      })
-      .catch((error) => {
-        console.log(error.response);
-      });
+  const updateCommentHandler = async () => {
+    const { data } = await commentAPI.updateComment(issue.id, comment);
   };
-  const updateIssueHandler = () => {
-    const body = {
-      content: comment,
-      ids: issue.id,
-    };
-    axios
-      .put(`/api/issue/content`, body)
-      .then((res) => {
-        console.log('res: ', res);
-        // Todo : 새로고침 구현
-        // history.push(`/detail/${issue.id}`);
-      })
-      .catch((error) => {
-        console.log(error.response);
-      });
+  const updateIssueHandler = async () => {
+    const { data } = await issueAPI.updateIssueContent(issue.id, comment);
   };
 
   const isIssueAuthor = isIssue || issueAuthor === issue.author;

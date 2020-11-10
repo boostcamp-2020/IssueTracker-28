@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import S from './style';
-import ButtonWrapper from './buttonWrapper';
+import * as api from '@api/upload';
 
 const InputForm = ({ formHeight, color, buttonState, comment, setComment }) => {
   let timer;
@@ -13,21 +13,13 @@ const InputForm = ({ formHeight, color, buttonState, comment, setComment }) => {
     setComment(target.value);
   };
 
-  const imageHandler = ({ target }) => {
+  const imageHandler = async ({ target }) => {
     if (target.files !== null) {
       const fd = new FormData();
       fd.append('filename', target.files[0]);
-      axios
-        .post(`/api/upload/test`, fd, {
-          headers: { 'Content-Type': 'multipart/form-data;charset=utf-8;' },
-        })
-        .then((res) => {
-          const imgPath = '\n' + '![img]^(' + `${res.data}` + ')!';
-          setComment(comment + imgPath);
-        })
-        .catch((error) => {
-          console.log(error.response);
-        });
+      const data = await api.imageUpload(fd);
+      const imgPath = '\n' + '![img]^(' + `${data}` + ')!';
+      setComment(comment + imgPath);
     }
   };
 
