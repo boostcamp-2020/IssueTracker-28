@@ -3,6 +3,7 @@ const db = require('./db/issue');
 const getLabels = async (data) => {
   const labels = await data.getLabels();
   const result = [];
+
   labels.forEach((label) => {
     const temp = {};
     temp.name = label.name;
@@ -19,8 +20,22 @@ const getAssignees = async (data) => {
   assignees.forEach((assignee) => {
     result.push(assignee.userId);
   });
-
   return result;
+};
+
+const makeData = async (issue) => {
+  const data = {};
+  data.id = issue.id;
+  data.title = issue.title;
+  data.content = issue.content;
+  data.author = {};
+  data.author.userId = issue.user.dataValues.user_id;
+  data.author.profileImg = issue.user.dataValues.profile_img;
+  data.milestone = issue.milestone ? issue.milestone.dataValues.title : null;
+  data.status = issue.status === 0 ? 'opened' : 'closed';
+  data.labels = await getLabels(issue);
+  data.assignees = await getAssignees(issue);
+  data.time = issue.dataValues.updated_at;
 };
 
 exports.getIssues = async () => {
@@ -28,22 +43,8 @@ exports.getIssues = async () => {
   const data = [];
 
   for (const result of results) {
-    const issue = {};
-    issue.id = result.id;
-    issue.title = result.title;
-    issue.content = result.content;
-    issue.author = result.user.dataValues.user_id;
-    if (result.milestone) issue.milestone = result.milestone.dataValues.title;
-    else issue.milestone = null;
-    if (result.status === 0) issue.status = 'opened';
-    else issue.status = 'closed';
-    issue.labels = await getLabels(result);
-    issue.assignees = await getAssignees(result);
-    issue.time = result.dataValues.updated_at;
-
-    data.push(issue);
+    data.push(makeData(result));
   }
-
   return data;
 };
 
@@ -90,29 +91,14 @@ const getComments = async (issueId) => {
     temp.author = comment['user.user_id'];
     return temp;
   });
-
   return data;
 };
 
 exports.getIssueDetail = async (issueId) => {
   const issue = await db.selectIssue(issueId);
   const data = {};
-
-  const issueDetail = {};
-  issueDetail.id = issue.id;
-  issueDetail.title = issue.title;
-  issueDetail.content = issue.content;
-  issueDetail.author = {};
-  issue.author.userId = issue.user.dataValues.user_id;
-  issue.author.profileImg = issue.user.dataValues.profile_img;
-  issueDetail.milestone = issue.milestone ? issue.milestone.dataValues.title : null;
-  issueDetail.status = issue.status === 0 ? 'opened' : 'closed';
-  issueDetail.labels = await getLabels(issue);
-  issueDetail.assignees = await getAssignees(issue);
-  issueDetail.time = issue.dataValues.updated_at;
-  data.issueDetail = issueDetail;
+  data.issueDetail = makeData(issue);
   data.comments = await getComments(issueId);
-
   return data;
 };
 
