@@ -49,8 +49,8 @@ function Issue({ issue }) {
       {issue.status === 'opened' ? (
         <IssueOpenedIcon className="issue-open-icon" size={16} />
       ) : (
-        <IssueClosedIcon className="issue-closed-icon" size={15} />
-      )}
+          <IssueClosedIcon className="issue-closed-icon" size={15} />
+        )}
       <S.IssueContainer>
         <div className="title-container">
           <div
@@ -65,9 +65,9 @@ function Issue({ issue }) {
             {issue.labels &&
               issue.labels.map((label) => (
                 <S.Label
-                  style={{ 
+                  style={{
                     background: label.color,
-                    color : ColorHandler.getContrastColor(label.color)
+                    color: ColorHandler.getContrastColor(label.color)
                   }}>
                   {label.name}
                 </S.Label>
