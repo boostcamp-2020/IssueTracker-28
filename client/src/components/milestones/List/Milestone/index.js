@@ -4,9 +4,9 @@ import Date from '@utils/date';
 import { CalendarIcon } from '@primer/octicons-react';
 import S from './style';
 
-function Milestone({ milestone }) {
-  console.log('milestone.due_date :>> ', milestone.due_date);
+function Milestone({ milestone, handleStatusClick, handleDeleteClick }) {
   const history = useHistory();
+
   const openIssueCnt = milestone.issues.filter(issue => issue.status === 0).length;
   const closeIssueCnt = milestone.issues.filter(issue => issue.status === 1).length;
 
@@ -40,8 +40,10 @@ function Milestone({ milestone }) {
         </S.ProgressState>
         <S.ButtonWrapper>
           <S.Button onClick={handleEditClick}>Edit</S.Button>
-          <S.Button>Close</S.Button>
-          <S.Button className='delete-btn'>Delete</S.Button>
+          <S.Button onClick={() => handleStatusClick(milestone.id, milestone.status)}>{
+            milestone.status === 'open' ? 'Close' : 'Open'
+          }</S.Button>
+          <S.Button className='delete-btn' onClick={handleDeleteClick}>Delete</S.Button>
         </S.ButtonWrapper>
       </S.Right>
     </S.MilestoneWrapper>

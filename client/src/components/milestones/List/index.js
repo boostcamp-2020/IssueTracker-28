@@ -3,6 +3,7 @@ import {
   useMilestonesState,
   useMilestonesDispatch,
   getMilestones,
+  updateMilestoneStatus,
 } from '@contexts/MilestonesContext';
 import Milestone from './Milestone';
 import { MilestoneIcon, CheckIcon } from '@primer/octicons-react';
@@ -10,16 +11,24 @@ import Spinner from '@images/spinner3.gif';
 import S from './style';
 
 function List() {
-  const [status, setStatus] = useState(0); // open: 0, close: 1
   const state = useMilestonesState();
   const dispatch = useMilestonesDispatch();
   const { data, loading, error } = state.milestones;
+  const [status, setStatus] = useState(0); // open: 0, close: 1
+
+  useEffect(() => {
+    toggleStatus();
+  });
+
+  useEffect(() => {
+    fetchData();
+  }, [dispatch]);
 
   const fetchData = () => {
     getMilestones(dispatch);
   };
 
-  const handleStatus = (e, status) => {
+  const handleStatus = (status) => {
     setStatus(status);
   };
 
@@ -35,13 +44,18 @@ function List() {
     status === 0 ? $open.classList.add('show') : $close.classList.add('show');
   };
 
-  useEffect(() => {
-    toggleStatus();
-  });
+  const handleStatusClick = (id, status) => {
+    updateMilestoneStatus(dispatch, {
+      id,
+      status: status === 'open' ? 1 : 0
+    });
 
-  useEffect(() => {
     fetchData();
-  }, [dispatch, status]);
+  };
+
+  const handleDeleteClick = () => {
+
+  };
 
   if (loading) return <S.LoadSpinner src={Spinner} />;
   if (error) return <div>에러가 발생했습니다</div>;
@@ -53,11 +67,11 @@ function List() {
   return (
     <S.ListWrapper>
       <S.ListHeader>
-        <S.CountWrapper className='count-wrapper open' onClick={(e) => handleStatus(e, 0)}>
+        <S.CountWrapper className='count-wrapper open' onClick={() => handleStatus(0)}>
           <MilestoneIcon />
           <S.Count>{openCnt} Open</S.Count>
         </S.CountWrapper>
-        <S.CountWrapper className='count-wrapper close' onClick={(e) => handleStatus(e, 1)}>
+        <S.CountWrapper className='count-wrapper close' onClick={() => handleStatus(1)}>
           <CheckIcon />
           <S.Count>{closedCnt} Closed</S.Count>
         </S.CountWrapper>
@@ -66,7 +80,12 @@ function List() {
         {milestones && milestones.map(milestone => {
           const milestoneStatus = milestone.status === 'open' ? 0 : 1;
           if (milestoneStatus === status) {
-            return <Milestone key={milestone.id} milestone={milestone} />
+            return <Milestone
+              key={milestone.id}
+              milestone={milestone}
+              handleStatusClick={handleStatusClick}
+              handleDeleteClick={handleDeleteClick}
+            />
           }
         })}
       </S.List>
