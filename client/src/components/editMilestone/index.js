@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import BS from '@components/issues/header/buttons/style';
 import Input from '@components/newMilestone/input';
@@ -14,7 +14,7 @@ function EditMilestone() {
   return (
     <S.EditMilestoneWrapper>
       <S.Header>
-        <MS.LabelMilestone>
+        <S.LabelMilestone>
           <MS.LabelsButton onClick={() => history.push('/label')}>
             <TagIcon size={14} />
             <MS.ButtonText>Labels</MS.ButtonText>
@@ -23,7 +23,7 @@ function EditMilestone() {
             <MilestoneIcon />
             <MS.ButtonText>Milestones</MS.ButtonText>
           </MS.MilestonesButton>
-        </MS.LabelMilestone>
+        </S.LabelMilestone>
       </S.Header>
       <Input />
       <S.ButtonWrapper>
