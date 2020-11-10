@@ -6,7 +6,6 @@ import {
   updateMilestoneStatus
 } from '@contexts/MilestonesContext';
 import { TagIcon, MilestoneIcon } from '@primer/octicons-react';
-import BS from '@components/issues/header/buttons/style';
 import IS from '@components/newMilestone/input/style';
 import MS from '@components/milestones/header/style';
 import S from './style';
@@ -94,7 +93,10 @@ function EditMilestone() {
         <S.CancelButton onClick={handleStatusClick}>
           {milestone.status === 'open' ? 'Close' : 'Open'} milestone
         </S.CancelButton>
-        <BS.NewIssueButton onClick={handleSaveClick}>Save Changes</BS.NewIssueButton>
+        <S.SubmitButton
+          isValid={title.length > 0 ? true : false}
+          onClick={handleSaveClick}
+        >Save Changes</S.SubmitButton>
       </S.ButtonWrapper>
     </S.EditMilestoneWrapper>
   );

@@ -19,7 +19,7 @@ export default {
     display: flex;
     float: right;
     margin-top: 15px;
-    button{
+    button {
       height : 35px;
       padding : 0 18px;
       border-radius: 4px;
@@ -27,19 +27,21 @@ export default {
       white-space : nowrap;
       cursor : pointer;
     }
-    button:hover{
+    button:hover {
       filter : brightness(95%);
     }
   `,
   CancelButton: styled.button`
     border: 1px solid #e0e0e0;
     background: linear-gradient( to bottom, white, #eaeaea );
-    font-weight: bold;
     color : #5E656E;
-    border-radius: 4px;
-    padding: 5px 15px;
-    color: #000;
     margin-right: 8px;
-    cursor: pointer;
   `,
+  SubmitButton: styled.button`
+    border: 1px solid #329246;
+    background: linear-gradient(to bottom, #32cd56, #27a844);
+    color: #fff;
+    opacity : ${(props) => props.isValid ? '100%' : '60%'};
+    ${(props) => !props.isValid && 'pointer-events: none;'}
+  `
 };

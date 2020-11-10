@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useMilestonesDispatch, createMilestone } from '@contexts/MilestonesContext';
-import BS from '@components/issues/header/buttons/style';
 import Input from './input';
 import S from './style';
 
@@ -46,7 +45,10 @@ function NewMilestone() {
       <Input handleTitle={handleTitle} handleDescription={handleDescription} />
       <S.ButtonWrapper>
         <S.CancelButton onClick={() => history.push('/milestone')}>Cancel</S.CancelButton>
-        <BS.NewIssueButton onClick={handleClick}>Create milestone</BS.NewIssueButton>
+        <S.SubmitButton
+          isValid={title.length > 0 ? true : false}
+          onClick={handleClick}
+        >Create milestone</S.SubmitButton>
       </S.ButtonWrapper>
     </S.NewMilestoneWrapper>
   );
