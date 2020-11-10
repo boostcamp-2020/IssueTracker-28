@@ -14,7 +14,7 @@ exports.selectIssues = async () => {
     include: [
       {
         model: User,
-        attributes: ['id', 'user_id'],
+        attributes: ['id', 'user_id', 'profile_img'],
       },
       {
         model: Milestone,
@@ -34,7 +34,7 @@ exports.selectIssue = async (id) => {
     include: [
       {
         model: User,
-        attributes: ['id', 'user_id'],
+        attributes: ['id', 'user_id', 'profile_img'],
       },
       {
         model: Milestone,

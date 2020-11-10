@@ -17,7 +17,10 @@ const getAssignees = async (data) => {
   const result = [];
 
   assignees.forEach((assignee) => {
-    result.push(assignee.userId);
+    const user = {};
+    user.userId = assignee.userId;
+    user.profileImg = assignee.profileImg;
+    result.push(user);
   });
 
   return result;
@@ -32,7 +35,9 @@ exports.getIssues = async () => {
     issue.id = result.id;
     issue.title = result.title;
     issue.content = result.content;
-    issue.author = result.user.dataValues.user_id;
+    issue.author = {}
+    issue.author.userId = result.user.dataValues.user_id;
+    issue.author.profileImg = result.user.dataValues.profile_img;
     if (result.milestone) issue.milestone = result.milestone.dataValues.title;
     else issue.milestone = null;
     if (result.status === 0) issue.status = 'opened';

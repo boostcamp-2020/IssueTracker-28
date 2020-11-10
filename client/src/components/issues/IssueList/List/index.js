@@ -12,6 +12,8 @@ function List() {
   const { data: issues, loading, error } = state.issues;
   const { filters } = state;
 
+  console.log('filters ::: ', filters);
+
   const fetchData = () => {
     getIssues(dispatch);
   };
@@ -33,11 +35,11 @@ function List() {
       {filteredIssues.length > 0 ? (
         filteredIssues.map((issue) => <Issue key={issue.id} issue={issue} />)
       ) : (
-        <S.NoResultsBox>
-          <IssueOpenedIcon size={35} className="issue-opened-icon" />
-          <span>No results matched your search.</span>
-        </S.NoResultsBox>
-      )}
+          <S.NoResultsBox>
+            <IssueOpenedIcon size={35} className="issue-opened-icon" />
+            <span>No results matched your search.</span>
+          </S.NoResultsBox>
+        )}
     </div>
   );
 }

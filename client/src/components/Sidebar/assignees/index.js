@@ -64,7 +64,7 @@ function Assignees({ selectedAssignees, handleAssigneeClick }) {
                     onClick={(e) => clickHandler(e, item)}
                   >
                     <LS.TitleContainer>
-                      <LS.LabelPic src={EmptyUserPic} />
+                      <LS.LabelPic src={item.profileImg ? item.profileImg : EmptyUserPic} />
                       <div>{item.userId}</div>
                     </LS.TitleContainer>
                   </Dropdown.Item>
@@ -82,7 +82,7 @@ function Assignees({ selectedAssignees, handleAssigneeClick }) {
       ) : (
           Array.from(selectedAssignees).map((assignee) => (
             <S.SelectedAssigneeWrapper>
-              <LS.LabelPic src={EmptyUserPic}/>
+              <LS.LabelPic src={EmptyUserPic} />
               <S.SelectedItem>{assignee.userId}</S.SelectedItem>
             </S.SelectedAssigneeWrapper>
           ))

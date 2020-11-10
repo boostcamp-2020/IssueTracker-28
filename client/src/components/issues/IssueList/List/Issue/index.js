@@ -8,6 +8,7 @@ import getElapsedTime from '@utils/getElapsedTime';
 import S from './style';
 
 function Issue({ issue }) {
+  console.log('issue ::: ', issue);
   const [checkState, setCheckState] = useState(false);
   const state = useCheckedItemState();
   const dispatch = useCheckedItemDispatch();
@@ -76,7 +77,7 @@ function Issue({ issue }) {
         </div>
         <S.OtherContainer>
           <div className="author">
-            #{issue.id} {issue.status} {getElapsedTime(issue.time)} ago by {issue.author}
+            #{issue.id} {issue.status} {getElapsedTime(issue.time)} ago by {issue.author.userId}
           </div>
           {issue.milestone && (
             <S.MilestoneContainer>

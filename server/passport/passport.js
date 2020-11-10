@@ -15,8 +15,8 @@ const githubLoginVerify = async (accessToken, refreshToken, profile, done) => {
         } = profile;
 
         console.log('avatar_url :: ', avatar_url);
-        const user = await UserServices.findUser(login);
-        if (user) return done(null, user);
+        // const user = await UserServices.findUser(login);
+        // if (user) return done(null, user);
         const addUser = await UserServices.insertUser(login, avatar_url);
         return done(null, addUser.dataValues);
     } catch (err) {

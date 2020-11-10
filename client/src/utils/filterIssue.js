@@ -22,10 +22,10 @@ const checkAssigneesItem = (filterAssignees, issueAssignees) => {
 const filterIssue = (issue, filters) => {
   const { author, milestone, status, assignees, labels } = filters;
   if (
-    (author === '*' || issue.author === author) &&
+    (author === '*' || issue.author.userId === author) &&
     (milestone === '*' || issue.milestone === milestone) &&
     (status === '*' || issue.status === status) &&
-    (assignees === '*' || checkAssigneesItem([...assignees], issue.assignees)) &&
+    (assignees === '*' || checkAssigneesItem([...assignees], issue.assignees.userId)) &&
     (labels === '*' || checkLabelsItem([...labels], issue.labels))
   ) {
     return true;
