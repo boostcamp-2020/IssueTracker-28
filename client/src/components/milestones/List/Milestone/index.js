@@ -5,6 +5,7 @@ import { CalendarIcon } from '@primer/octicons-react';
 import S from './style';
 
 function Milestone({ milestone }) {
+  console.log('milestone.due_date :>> ', milestone.due_date);
   const history = useHistory();
   const openIssueCnt = milestone.issues.filter(issue => issue.status === 0).length;
   const closeIssueCnt = milestone.issues.filter(issue => issue.status === 1).length;
@@ -22,7 +23,11 @@ function Milestone({ milestone }) {
         <S.Title>{milestone.title}</S.Title>
         <S.DateWrapper>
           <CalendarIcon />
-          <S.Date>Due by {Date.getDate(milestone.due_date, { day: 'numeric', year: 'numeric', month: 'long' })}</S.Date>
+          <S.Date>{
+            milestone.due_date
+              ? 'Due by ' + Date.getDate(milestone.due_date, { day: 'numeric', year: 'numeric', month: 'long' })
+              : 'No due date'
+          }</S.Date>
         </S.DateWrapper>
         <S.Description>{milestone.desc}</S.Description>
       </S.Left>
