@@ -102,7 +102,9 @@ exports.getIssueDetail = async (issueId) => {
   issueDetail.id = issue.id;
   issueDetail.title = issue.title;
   issueDetail.content = issue.content;
-  issueDetail.author = issue.user.dataValues.user_id;
+  issueDetail.author = {};
+  issue.author.userId = issue.user.dataValues.user_id;
+  issue.author.profileImg = issue.user.dataValues.profile_img;
   issueDetail.milestone = issue.milestone ? issue.milestone.dataValues.title : null;
   issueDetail.status = issue.status === 0 ? 'opened' : 'closed';
   issueDetail.labels = await getLabels(issue);
