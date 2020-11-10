@@ -37,8 +37,17 @@ export default {
     border: 1px solid #329246;
     background: linear-gradient(to bottom, #32cd56, #27a844);
     color: #ffffff;
-    border-radius : 4px;
+    border-radius: 4px;
     font-size: 14px;
+  `,
+  IssueDetailButton: styled(CommonHeaderButton)`
+    border: 1px solid #329246;
+    background: linear-gradient(to bottom, #32cd56, #27a844);
+    color: #ffffff;
+    border-radius: 4px;
+    font-size: 14px;
+    opacity: ${(props) => (props.isValid ? '100%' : '60%')};
+    ${(props) => !props.isValid && 'pointer-events: none;'}
   `,
   ShowTotalNum: styled.span`
     padding: 3px 6px;

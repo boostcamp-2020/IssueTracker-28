@@ -67,16 +67,16 @@ const Comment = ({ isIssue, issueAuthor, issue, issueID }) => {
             {isIssue === true ? (
               <S.ButtonWrapper justifyContent="flex-end">
                 <S.EditCancelButton onClick={editHandler}>Cancel</S.EditCancelButton>
-                <Button.NewIssueButton onClick={updateIssueHandler}>
+                <Button.IssueDetailButton isValid={comment && true} onClick={updateIssueHandler}>
                   Update Issue
-                </Button.NewIssueButton>
+                </Button.IssueDetailButton>
               </S.ButtonWrapper>
             ) : (
               <S.ButtonWrapper justifyContent="flex-end">
                 <S.EditCancelButton onClick={editHandler}>Cancel</S.EditCancelButton>
-                <Button.NewIssueButton onClick={updateCommentHandler}>
+                <Button.IssueDetailButton isValid={comment && true} onClick={updateCommentHandler}>
                   Update Comment
-                </Button.NewIssueButton>
+                </Button.IssueDetailButton>
               </S.ButtonWrapper>
             )}
           </S.InputWrappers>

@@ -51,7 +51,9 @@ function Input({ selectedAssignees, selectedLabels, selectedMilestone }) {
       </S.InputFormWrapper>
       <S.ButtonWrapper justifyContent="space-between">
         <S.CancelButton onClick={() => history.push('/')}>Cancel</S.CancelButton>
-        <Button.NewIssueButton onClick={submitHandler}>Submit new issue</Button.NewIssueButton>
+        <Button.IssueDetailButton isValid={title && true} onClick={submitHandler}>
+          Submit new issue
+        </Button.IssueDetailButton>
       </S.ButtonWrapper>
     </S.InputWrapper>
   );

@@ -49,16 +49,18 @@ const MainContent = ({ issue, comments }) => {
           <S.ButtonWrapper justifyContent="flex-end">
             <S.EditCancelButton onClick={statusHandler}>
               {issue.status === 'opened' ? (
-                <span>Reopen Issue</span>
-              ) : (
                 <>
                   <IssueClosedIcon size={16} />
                   <span>Closed Issue</span>
                 </>
+              ) : (
+                <span>Reopen Issue</span>
               )}
             </S.EditCancelButton>
 
-            <BS.NewIssueButton onClick={createHandler}>Comment</BS.NewIssueButton>
+            <BS.IssueDetailButton isValid={newComment && true} onClick={createHandler}>
+              Comment
+            </BS.IssueDetailButton>
           </S.ButtonWrapper>
         </S.InputFormWrapper>
       </S.FlexWrapper>
