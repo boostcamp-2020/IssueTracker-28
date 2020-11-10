@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import BS from '@components/issues/header/buttons/style';
-import Input from '@components/newMilestone/input';
+import { useMilestonesDispatch, updateMilestone } from '@contexts/MilestonesContext';
 import { TagIcon, MilestoneIcon } from '@primer/octicons-react';
+import BS from '@components/issues/header/buttons/style';
+import IS from '@components/newMilestone/input/style';
 import MS from '@components/milestones/header/style';
 import S from './style';
 
@@ -10,6 +11,37 @@ function EditMilestone() {
   const history = useHistory();
   const location = useLocation();
   const { milestone } = location.state;
+  const dispatch = useMilestonesDispatch();
+
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+
+  const handleTitle = ({ target }) => {
+    setTitle(target.value);
+  };
+
+  const handleDescription = ({ target }) => {
+    setDescription(target.value);
+  };
+
+  const handleCloseClick = () => {
+    /** @todo close버튼 클릭하면 마일스톤 status를 close로 업데이트 */
+  };
+
+  const handleSaveClick = () => {
+    const date = document.querySelector('.edit-date').value;
+
+    if (title.length === 0) return;
+
+    updateMilestone(dispatch, {
+      id: milestone.id,
+      title,
+      due_date: date,
+      desc: description
+    });
+
+    history.push('/milestone');
+  };
 
   return (
     <S.EditMilestoneWrapper>
@@ -25,11 +57,33 @@ function EditMilestone() {
           </MS.MilestonesButton>
         </S.LabelMilestone>
       </S.Header>
-      <Input />
+      <IS.InputWrapper>
+        <IS.Title>Title</IS.Title>
+        <IS.InputTitle
+          className='form-control'
+          placeholder='Title'
+          type='text'
+          defaultValue={milestone.title}
+          onChange={handleTitle}
+        />
+        <IS.Title>Due Date (optional)</IS.Title>
+        <IS.InputDate
+          className='form-control edit-date'
+          type='date'
+          defaultValue={milestone.due_date}
+        />
+        <IS.Title>Description (optional)</IS.Title>
+        <IS.InputDescription
+          className='form-control'
+          type='text'
+          defaultValue={milestone.desc}
+          onChange={handleDescription}
+        />
+      </IS.InputWrapper>
       <S.ButtonWrapper>
-        <S.CancelButton>Cancel</S.CancelButton>
-        <S.CancelButton>Close milestone</S.CancelButton>
-        <BS.NewIssueButton>Create milestone</BS.NewIssueButton>
+        <S.CancelButton onClick={() => history.push('/milestone')}>Cancel</S.CancelButton>
+        <S.CancelButton onClick={handleCloseClick}>Close milestone</S.CancelButton>
+        <BS.NewIssueButton onClick={handleSaveClick}>Save Changes</BS.NewIssueButton>
       </S.ButtonWrapper>
     </S.EditMilestoneWrapper>
   );
