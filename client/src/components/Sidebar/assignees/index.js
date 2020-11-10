@@ -79,7 +79,7 @@ function Assignees({ selectedAssignees, handleAssigneeClick }) {
         Array.from(selectedAssignees).map((assignee) => (
           <S.SelectedAssigneeWrapper>
             <LS.LabelPic src={EmptyUserPic} />
-            <S.SelectedItem>{assignee.userId}</S.SelectedItem>
+            <S.SelectedItem>{assignee}</S.SelectedItem>
           </S.SelectedAssigneeWrapper>
         ))
       )}

@@ -28,14 +28,16 @@ const makeData = async (issue) => {
   data.id = issue.id;
   data.title = issue.title;
   data.content = issue.content;
-  data.author = {};
-  data.author.userId = issue.user.dataValues.user_id;
-  data.author.profileImg = issue.user.dataValues.profile_img;
+  data.author = issue.user.dataValues.user_id;
+  // data.author = {};
+  // data.author.userId = issue.user.dataValues.user_id;
+  // data.author.profileImg = issue.user.dataValues.profile_img;
   data.milestone = issue.milestone ? issue.milestone.dataValues.title : null;
   data.status = issue.status === 0 ? 'opened' : 'closed';
   data.labels = await getLabels(issue);
   data.assignees = await getAssignees(issue);
   data.time = issue.dataValues.updated_at;
+  return data;
 };
 
 exports.getIssues = async () => {
@@ -43,7 +45,8 @@ exports.getIssues = async () => {
   const data = [];
 
   for (const result of results) {
-    data.push(makeData(result));
+    const issue = await makeData(result);
+    data.push(issue);
   }
   return data;
 };
@@ -97,7 +100,7 @@ const getComments = async (issueId) => {
 exports.getIssueDetail = async (issueId) => {
   const issue = await db.selectIssue(issueId);
   const data = {};
-  data.issueDetail = makeData(issue);
+  data.issueDetail = await makeData(issue);
   data.comments = await getComments(issueId);
   return data;
 };
