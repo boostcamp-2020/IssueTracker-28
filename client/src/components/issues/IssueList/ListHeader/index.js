@@ -5,7 +5,7 @@ import { useLabelState, useLabelDispatch, getLabels } from '@contexts/LabelConte
 import { useIssuesState, useIssuesDispatch, updateIssueStatus } from '@contexts/IssuesContext';
 import { useUsersState, useUsersDispatch, getUsers } from '@contexts/UsersContext';
 import { useCheckedItemState, useCheckedItemDispatch } from '@contexts/CheckedItemContext';
-import { SELECT_ALL, DESELECT_ALL, UPDATE_FILTER } from '@constants/actionTypes';
+import { SELECT_ALL, DESELECT_ALL } from '@constants/actionTypes';
 import {
   useMilestonesState,
   useMilestonesDispatch,
@@ -14,6 +14,7 @@ import {
 import LS from '@sidebar/labels/style';
 import S from './style';
 import handler from './handler';
+import EmptyUserPic from '@images/empty-user.png'
 
 const NO_FILTER_ITEM = ['Unlabeled', 'Issues with no milestone', 'Assigend to nobody'];
 
@@ -33,7 +34,7 @@ function ListHeader() {
   const { data } = milestoneState.milestones;
   const milestones = data?.milestones;
 
-  const [beCheckState, SetBeCheckState] = useState(false);
+  const [beCheckState, setBeCheckState] = useState(false);
 
   const checkState = useCheckedItemState();
   const checkDispatch = useCheckedItemDispatch();
@@ -41,7 +42,7 @@ function ListHeader() {
 
   const checkHandler = (e) => {
     const isChecked = e.target.checked;
-    SetBeCheckState(!beCheckState);
+    setBeCheckState(!beCheckState);
     isChecked ? checkDispatch({ type: SELECT_ALL }) : checkDispatch({ type: DESELECT_ALL });
   };
 
@@ -52,7 +53,7 @@ function ListHeader() {
 
   // 전체 선택 상태에 변화가 생기면 체크상태 변경
   useEffect(() => {
-    if (beCheckState !== isAllChecked) SetBeCheckState(isAllChecked);
+    if (beCheckState !== isAllChecked) setBeCheckState(isAllChecked);
   }, [isAllChecked]);
 
   const fetchData = () => {
@@ -75,13 +76,12 @@ function ListHeader() {
     check.classList.toggle('show');
   };
 
-  const markAsOpenHandler=()=>{
-    updateIssueStatus(issuesDispatch, checkedItems, 0)
-  }
-  const markAsCloseHandler=()=>{
-    updateIssueStatus(issuesDispatch, checkedItems, 1)
-  }
-  
+  const markAsOpenHandler = () => {
+    updateIssueStatus(issuesDispatch, checkedItems, 0);
+  };
+  const markAsCloseHandler = () => {
+    updateIssueStatus(issuesDispatch, checkedItems, 1);
+  };
 
   const filterHandler = handler(issuesState, issuesDispatch);
 
@@ -121,7 +121,8 @@ function ListHeader() {
                         >
                           <S.ItemContainer>
                             <CheckIcon size={16} className="check-icon" />
-                            <LS.LabelName>{item.userId}</LS.LabelName>
+                            <LS.LabelPic src={EmptyUserPic} />
+                            <div>{item.userId}</div>
                           </S.ItemContainer>
                         </Dropdown.Item>
                       </>
@@ -170,7 +171,7 @@ function ListHeader() {
               </Dropdown>
             </S.FilterDropdown>
             <S.FilterDropdown>
-              <Dropdown className="milestons-dropdown dropdown" text="Milestons">
+              <Dropdown className="milestons-dropdown dropdown" text="Milestones">
                 <Dropdown.Menu className="dropdown-menu" direction="left">
                   <Dropdown.Header className="dropdown-header" content="Filter by milestons" />
                   <Dropdown.Item
@@ -239,6 +240,7 @@ function ListHeader() {
                         >
                           <S.ItemContainer>
                             <CheckIcon size={16} className="check-icon" />
+                            <img src={EmptyUserPic} style={{width : '20px', borderRadius : '4px'}}/>
                             <LS.LabelName>{item.userId}</LS.LabelName>
                           </S.ItemContainer>
                         </Dropdown.Item>
@@ -254,9 +256,13 @@ function ListHeader() {
               <Dropdown.Menu className="dropdown-menu" direction="left">
                 <Dropdown.Header className="dropdown-header" content="Actions" />
                 <hr className="dropdown-divider" />
-                <Dropdown.Item className="dropdown-item" text="Open" onClick={markAsOpenHandler}/>
+                <Dropdown.Item className="dropdown-item" text="Open" onClick={markAsOpenHandler} />
                 <hr className="dropdown-divider" />
-                <Dropdown.Item className="dropdown-item" text="Closed" onClick={markAsCloseHandler}/>
+                <Dropdown.Item
+                  className="dropdown-item"
+                  text="Closed"
+                  onClick={markAsCloseHandler}
+                />
               </Dropdown.Menu>
             </Dropdown>
           </S.FilterDropdown>

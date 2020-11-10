@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import Label from './Label';
+import Label from './label';
 import {
   useLabelState,
   useLabelDispatch,

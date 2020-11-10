@@ -61,5 +61,6 @@ export default {
   `,
   ItemContainer: styled.div`
     display: flex;
+    align-items : center;
   `,
 };
