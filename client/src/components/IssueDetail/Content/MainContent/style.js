@@ -1,16 +1,12 @@
 import styled from 'styled-components';
 
 export default {
-  InputFormWrapper: styled.div`
+  MainContentWrapper: styled.div`
     width: 70%;
+  `,
+  InputFormWrapper: styled.div`
+    width: 80%;
     height: 100%;
-  `,
-  MainContent: styled.div`
-    width: 100%;
-  `,
-  InputWrappers: styled.div`
-    width: 78%;
-    height: ${(props) => props.wrapperHeight};
     border: 1px solid rgb(225, 228, 232);
     border-radius: 6px;
   `,

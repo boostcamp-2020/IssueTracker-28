@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { SmileyIcon } from '@primer/octicons-react';
 import InputForm from '@components/input/form';
-import EmptyUserPic from '@images/empty-user.png';
-import Button from '@components/issues/header/buttons/style';
-import axios from 'axios';
 import S from './style';
+import Button from '@components/issues/header/Buttons/style';
+import axios from 'axios';
 
 const Comment = ({ isIssue, issueAuthor, issue }) => {
   const [isEditClicked, setIsEditClicked] = useState(false);
@@ -56,7 +55,6 @@ const Comment = ({ isIssue, issueAuthor, issue }) => {
 
         {isEditClicked !== true ? (
           <S.CommentsWrapper>
-            <S.CommentAuthorPic src={EmptyUserPic} />
             <S.TitleWrapper
               backgroundColor={isIssueAuthor ? 'rgb(241,248,255)' : 'rgb(250,251,252)'}
             >
@@ -81,11 +79,11 @@ const Comment = ({ isIssue, issueAuthor, issue }) => {
                   imgName = imgName.replace(/\[|\]|\s*/gi, '');
                   imgPath = imgPath.replace(/\(|\)|\s*/gi, '');
                   return <S.ImgLink href={imgPath}>{imgName}</S.ImgLink>;
-                }
-                if (cur === '') {
+                } else if (cur === '') {
                   return ``;
+                } else {
+                  return <span>{cur}</span>;
                 }
-                return <span>{cur}</span>;
               })}
             </S.CommentsContent>
           </S.CommentsWrapper>
