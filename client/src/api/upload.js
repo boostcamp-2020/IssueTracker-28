@@ -6,7 +6,6 @@ const imageUpload = async (file) => {
       headers: { 'Content-Type': 'multipart/form-data;charset=utf-8;' },
     })
     .then((res) => {
-      console.log('res: ', res.data);
       return res.data;
     })
     .catch((error) => {

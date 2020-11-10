@@ -1,26 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import * as api from '@api/issue';
+import {
+  useIssueDetailState,
+  useIssueDetailDispatch,
+  getIssue,
+} from '@contexts/IssueDetailContext';
 import Header from '@components/issueDetail/header';
 import Content from '@components/issueDetail/content';
 import S from './style';
 
 const IssueDetail = () => {
-  const [issue, setIssue] = useState({});
-  const [comments, setComments] = useState([]);
   const { id } = useParams();
+  const state = useIssueDetailState();
+  const dispatch = useIssueDetailDispatch();
+
+  const { data, loading, error } = state.issue;
+  const issue = data?.issueDetail;
+  const comments = data?.comments;
+
+  const fetchData = () => {
+    getIssue(dispatch, id);
+  };
 
   useEffect(() => {
-    async function fetchData() {
-      const { data } = await api.getIssueDetail(id);
-      setIssue(data.issueDetail);
-      setComments(data.comments);
-    }
     fetchData();
-  }, []);
-  if (Object.keys(issue).length === 0) {
-    return <div>Loading...</div>;
-  }
+  }, [dispatch]);
+
+  if (loading) return <div> 로딩중.. </div>;
+  if (error) return <div> 에러가 발생했습니다 </div>;
+  if (!data) return <button onClick={fetchData}> 불러오기 </button>;
   return (
     <S.IssueDetailWrapper>
       <Header issue={issue} commentsCount={comments.length} />

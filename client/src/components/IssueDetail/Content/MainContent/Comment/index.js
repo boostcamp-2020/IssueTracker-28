@@ -1,23 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { SmileyIcon } from '@primer/octicons-react';
 import InputForm from '@components/input/form';
 import S from './style';
 import Button from '@components/issues/header/Buttons/style';
-import * as issueAPI from '@api/issue';
-import * as commentAPI from '@api/comment';
+import {
+  useIssueDetailDispatch,
+  updateComment,
+  updateIssueContent,
+} from '@contexts/IssueDetailContext';
 
-const Comment = ({ isIssue, issueAuthor, issue }) => {
+const Comment = ({ isIssue, issueAuthor, issue, issueID }) => {
   const [isEditClicked, setIsEditClicked] = useState(false);
   const [comment, setComment] = useState(issue.content);
+  const dispatch = useIssueDetailDispatch();
   const re = /\[.*\]\^\(.*\)/i;
   const editHandler = () => {
     setIsEditClicked(!isEditClicked);
   };
   const updateCommentHandler = async () => {
-    const { data } = await commentAPI.updateComment(issue.id, comment);
+    await updateComment(dispatch, issue.id, issueID, comment);
   };
   const updateIssueHandler = async () => {
-    const { data } = await issueAPI.updateIssueContent(issue.id, comment);
+    await updateIssueContent(dispatch, issue.id, comment);
   };
 
   const isIssueAuthor = isIssue || issueAuthor === issue.author;
@@ -47,8 +51,6 @@ const Comment = ({ isIssue, issueAuthor, issue }) => {
             </S.TitleWrapper>
             <S.CommentsContent>
               {issue.content.split('!').map((cur, i) => {
-                console.log('cur: ', cur);
-                console.log('cur: ', re.test(cur));
                 if (re.test(cur)) {
                   let [imgName, imgPath] = cur.split('^');
                   imgName = imgName.replace(/\[|\]|\s*/gi, '');

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import S from './style';
 import * as api from '@api/upload';
 
@@ -24,7 +23,6 @@ const InputForm = ({ formHeight, color, buttonState, comment, setComment }) => {
   };
 
   const tabHandler = (e) => {
-    console.log(e.target.isSelected);
     setIsSelected(!isSelected);
   };
 

@@ -14,8 +14,6 @@ function Input({ selectedAssignees, selectedLabels, selectedMilestone }) {
     setTitle(target.value);
   };
   const submitHandler = () => {
-    console.log(selectedAssignees, selectedLabels, selectedMilestone);
-    console.log(title, content);
     const body = {
       title,
       content,

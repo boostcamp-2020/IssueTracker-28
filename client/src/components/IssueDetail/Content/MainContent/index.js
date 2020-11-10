@@ -1,38 +1,43 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import InputForm from '@components/input/form';
 import Comment from './Comment';
 import S from './style';
-import Button from '@components/issues/header/Buttons/style';
+import BS from '@components/issues/header/Buttons/style';
 import { IssueOpenedIcon, IssueClosedIcon } from '@primer/octicons-react';
-import { useHistory } from 'react-router-dom';
-import * as issueAPI from '@api/issue';
-import * as commentAPI from '@api/comment';
+import {
+  useIssueDetailDispatch,
+  updateIssueStatus,
+  createComment,
+} from '@contexts/IssueDetailContext';
 
 const MainContent = ({ issue, comments }) => {
   const [newComment, setNewComment] = useState('');
-  const [updateStatus, setUpdateStatus] = useState(false);
-  const [createComment, setCreateComment] = useState(false);
-  const history = useHistory();
+  const dispatch = useIssueDetailDispatch();
+
   const statusHandler = async () => {
     const status = issue.status === 'opened' ? 1 : 0;
-    const { data } = await issueAPI.updateIssueStatus(issue.id, status);
-    console.log('update: ', data);
+    await updateIssueStatus(dispatch, issue.id, status);
   };
   const createHandler = async () => {
-    const { data } = await commentAPI.createComment(newComment, issue.id);
-    console.log('create: ', data);
+    await createComment(dispatch, issue.id, newComment);
   };
   return (
     <S.MainContentWrapper>
       <Comment isIssue={true} issue={issue} />
       {comments.map((comment, index) => {
         return (
-          <Comment key={index} issueAuthor={issue.issueAuthor} isIssue={false} issue={comment} />
+          <Comment
+            key={index}
+            issueAuthor={issue.issueAuthor}
+            isIssue={false}
+            issue={comment}
+            issueID={issue.id}
+          />
         );
       })}
       <S.FlexWrapper>
         <S.Profile src="https://issue.kr.object.ncloudstorage.com/1604932511555.png" />
-        <S.Triangle backgroundColor="rgb(241,248,255)" />
+        <S.Triangle backgroundColor="rgb(250,251,252)" />
         <S.InputFormWrapper>
           <InputForm
             formHeight="60%"
@@ -55,7 +60,7 @@ const MainContent = ({ issue, comments }) => {
                 </div>
               )}
             </S.EditCancelButton>
-            <Button.NewIssueButton onClick={createHandler}>Comment</Button.NewIssueButton>
+            <BS.NewIssueButton onClick={createHandler}>Comment</BS.NewIssueButton>
           </S.ButtonWrapper>
         </S.InputFormWrapper>
       </S.FlexWrapper>
