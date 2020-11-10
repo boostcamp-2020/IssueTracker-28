@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { IssueOpenedIcon, MilestoneIcon, IssueClosedIcon } from '@primer/octicons-react';
+import { AvatarStack, Avatar } from '@primer/components';
 import { useCheckedItemState, useCheckedItemDispatch } from '@contexts/CheckedItemContext';
 import { CHECKED_UPDATE } from '@constants/actionTypes';
 import { useHistory } from 'react-router-dom';
+import EmptyUserPic from '@images/empty-user.png'
 import ColorHandler from '@utils/colorHandler';
 import getElapsedTime from '@utils/getElapsedTime';
 import S from './style';
 
 function Issue({ issue }) {
-  console.log('issue ::: ', issue);
+  console.log('assignees ::: ', issue.assignees);
   const [checkState, setCheckState] = useState(false);
   const state = useCheckedItemState();
   const dispatch = useCheckedItemDispatch();
@@ -75,6 +77,13 @@ function Issue({ issue }) {
               ))}
           </S.LabelList>
         </div>
+        <S.AssigneesContainer>
+          <AvatarStack alignRight>
+            {issue.assignees.map((assignee) => (
+              <Avatar style={{ backgroundColor: 'transparent' }} alt={assignee.userId} src={assignee.profileImg ? assignee.profileImg : EmptyUserPic} />
+            ))}
+          </AvatarStack>
+        </S.AssigneesContainer>
         <S.OtherContainer>
           <div className="author">
             #{issue.id} {issue.status} {getElapsedTime(issue.time)} ago by {issue.author.userId}

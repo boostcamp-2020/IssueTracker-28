@@ -12,8 +12,6 @@ function List() {
   const { data: issues, loading, error } = state.issues;
   const { filters } = state;
 
-  console.log('filters ::: ', filters);
-
   const fetchData = () => {
     getIssues(dispatch);
   };

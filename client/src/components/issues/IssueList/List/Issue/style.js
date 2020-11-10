@@ -4,6 +4,7 @@ export default {
   IssueWrapper: styled.div`
     display: flex;
     padding: 8px 16px;
+    position : relative;
     border: 1px solid #e1e4e8;
     border-top: 0;
     .issue-checkbox {
@@ -41,7 +42,7 @@ export default {
   LabelList: styled.div`
     display: flex;
   `,
-  Label : styled.div`
+  Label: styled.div`
   padding: 0 7px;
   margin-left: 2px;
   border: 1px solid transparent;
@@ -56,6 +57,18 @@ export default {
     margin-top: 3px;
     font-size: 12px;
     color: #586069;
+  `,
+  AssigneesContainer: styled.div`
+    position : absolute;
+    right : 150px;
+    .pc-AvatarStackBody:hover{
+      .pc-AvatarItem{
+        margin-left: 4px;
+        opacity: 100%;
+        visibility: visible;
+        box-shadow: 0 0 0 0px #fff;
+      }
+    }
   `,
   MilestoneContainer: styled.div`
     display: flex;

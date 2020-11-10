@@ -11,8 +11,9 @@ const checkLabelsItem = (filterLabels, issueLabels) => {
 
 const checkAssigneesItem = (filterAssignees, issueAssignees) => {
   if (JSON.stringify(filterAssignees) === '[]') return false;
+  const issueAssigneesIds = issueAssignees.map((assignee) => assignee.userId);
   for (let i = 0; i < filterAssignees.length; i += 1) {
-    if (!issueAssignees.includes(filterAssignees[i])) {
+    if (!issueAssigneesIds.includes(filterAssignees[i])) {
       return false;
     }
   }
@@ -25,7 +26,7 @@ const filterIssue = (issue, filters) => {
     (author === '*' || issue.author.userId === author) &&
     (milestone === '*' || issue.milestone === milestone) &&
     (status === '*' || issue.status === status) &&
-    (assignees === '*' || checkAssigneesItem([...assignees], issue.assignees.userId)) &&
+    (assignees === '*' || checkAssigneesItem([...assignees], issue.assignees)) &&
     (labels === '*' || checkLabelsItem([...labels], issue.labels))
   ) {
     return true;
