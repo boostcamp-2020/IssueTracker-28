@@ -5,4 +5,15 @@ const getMilestones = async () => {
   return response.data;
 };
 
-export { getMilestones };
+const createMilestone = async ({ status, title, due_date, desc }) => {
+  let params = {};
+  if (due_date.length === 0 && desc.length === 0) params = { status, title };
+  else if (due_date.length === 0) params = { status, title, desc };
+  else if (desc.length === 0) params = { status, title, due_date };
+  else params = { status, title, due_date, desc };
+
+  const response = await axios.post('/api/milestone', params);
+  return response.data;
+};
+
+export { getMilestones, createMilestone };

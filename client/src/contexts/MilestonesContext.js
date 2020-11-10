@@ -1,7 +1,6 @@
 import React, { useReducer, createContext, useContext } from 'react';
 import * as api from '@api/milestone';
 
-// MilestonesContext에서 사용할 기본 상태
 const initialState = {
   milestones: {
     loading: false,
@@ -10,21 +9,18 @@ const initialState = {
   },
 };
 
-// 로딩중일 때 바뀔 상태 객체
 const loadingState = {
   loading: true,
   data: null,
   error: null,
 };
 
-// 성공했을 때의 상태를 만들어주는 함수
 const success = (data) => ({
   loading: false,
   data,
   error: null,
 });
 
-// 실패했을 때의 상태를 만들어주는 함수
 const error = (err) => ({
   loading: true,
   data: null,
@@ -53,12 +49,10 @@ function milestoneReducer(state, action) {
   }
 }
 
-// state용 context와 dispatch용 context 따로 만들어주기
 const MilestonesStateContext = createContext(null);
 const MilestonesDispatchContext = createContext(null);
 
-// 위에서 선언한 두가지 context들의 provider로 감싸주는 컴포넌트
-export function MilestonesProvider({ children }) {
+function MilestonesProvider({ children }) {
   const [state, dispatch] = useReducer(milestoneReducer, initialState);
 
   return (
@@ -70,7 +64,7 @@ export function MilestonesProvider({ children }) {
   );
 }
 
-export function useMilestonesState() {
+function useMilestonesState() {
   const state = useContext(MilestonesStateContext);
 
   if (!state) {
@@ -79,7 +73,7 @@ export function useMilestonesState() {
   return state;
 }
 
-export function useMilestonesDispatch() {
+function useMilestonesDispatch() {
   const dispatch = useContext(MilestonesDispatchContext);
   if (!dispatch) {
     throw new Error('Cannot find MilestonesProvider!');
@@ -87,7 +81,7 @@ export function useMilestonesDispatch() {
   return dispatch;
 }
 
-export async function getMilestones(dispatch) {
+async function getMilestones(dispatch) {
   dispatch({ type: 'GET_MILESTONES' });
   try {
     const response = await api.getMilestones();
@@ -99,3 +93,19 @@ export async function getMilestones(dispatch) {
     dispatch({ type: 'GET_MILESTONES_ERROR', error: e });
   }
 }
+
+async function createMilestone(dispatch, params) {
+  try {
+    await api.createMilestone(params);
+  } catch (e) {
+    dispatch({ type: 'POST_MILESTONE_ERROR', error: e });
+  }
+}
+
+export {
+  MilestonesProvider,
+  useMilestonesState,
+  useMilestonesDispatch,
+  getMilestones,
+  createMilestone,
+};

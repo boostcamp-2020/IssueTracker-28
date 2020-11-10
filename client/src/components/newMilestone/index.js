@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { useMilestonesDispatch } from '@contexts/MilestonesContext';
+import { useHistory } from 'react-router-dom';
+import { useMilestonesDispatch, createMilestone } from '@contexts/MilestonesContext';
 import BS from '@components/issues/header/buttons/style';
 import Input from './input';
 import S from './style';
 
 function NewMilestone() {
+  const history = useHistory();
   const dispatch = useMilestonesDispatch();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -18,7 +20,18 @@ function NewMilestone() {
   };
 
   const handleClick = () => {
-    /** @todo POST milestone */
+    const inputDate = document.querySelector('.input-date').value;
+
+    if (title.length === 0) return;
+
+    createMilestone(dispatch, {
+      status: 0,
+      title,
+      due_date: inputDate,
+      desc: description
+    });
+
+    history.push('/milestone');
   };
 
   return (
