@@ -4,8 +4,9 @@ exports.getMilestones = async () => {
   const results = await db.selectMilestone();
   let milestoneCnt = [0, 0];
   const milestones = [];
+
   for (let result of results) {
-    let status = result.status === 0 ? 'open' : 'closed';
+    const status = result.status === 0 ? 'open' : 'closed';
     milestoneCnt[result.status] += 1;
     milestones.push({ ...result.dataValues, status });
   }
@@ -13,21 +14,21 @@ exports.getMilestones = async () => {
 };
 
 exports.findMilestone = async (title) => {
-  const results = await db.selectMilestoneID(title);
-  return results;
+  const result = await db.selectMilestoneID(title);
+  return result;
 };
 
 exports.createMilestone = async (params) => {
-  const results = await db.insertMilestone(params);
-  return results;
+  const result = await db.insertMilestone(params);
+  return result;
 };
 
 exports.updateMilestone = async (params) => {
-  const results = await db.updateMilestone(params);
-  return results;
+  const result = await db.updateMilestone(params);
+  return result;
 };
 
 exports.deleteMilestone = async (params) => {
-  const results = await db.deleteMilestone(params);
-  return results;
+  const result = await db.deleteMilestone(params);
+  return result;
 };

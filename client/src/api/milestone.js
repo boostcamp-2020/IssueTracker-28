@@ -27,4 +27,14 @@ const updateMilestone = async ({ id, title, due_date, desc }) => {
   return response.data;
 };
 
-export { getMilestones, createMilestone, updateMilestone };
+const updateMilestoneStatus = async (params) => {
+  const response = await axios.put(`/api/milestone/${params.id}`, params);
+  return response.data;
+};
+
+export {
+  getMilestones,
+  createMilestone,
+  updateMilestone,
+  updateMilestoneStatus
+};

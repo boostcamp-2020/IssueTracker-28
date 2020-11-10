@@ -110,6 +110,14 @@ async function updateMilestone(dispatch, params) {
   }
 }
 
+async function updateMilestoneStatus(dispatch, params) {
+  try {
+    await api.updateMilestoneStatus(params);
+  } catch (e) {
+    dispatch({ type: 'PUT_MILESTONE_STATUS_ERROR', error: e });
+  }
+}
+
 export {
   MilestonesProvider,
   useMilestonesState,
@@ -117,4 +125,5 @@ export {
   getMilestones,
   createMilestone,
   updateMilestone,
+  updateMilestoneStatus,
 };

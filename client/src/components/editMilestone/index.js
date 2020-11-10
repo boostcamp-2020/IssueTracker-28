@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import { useMilestonesDispatch, updateMilestone } from '@contexts/MilestonesContext';
+import {
+  useMilestonesDispatch,
+  updateMilestone,
+  updateMilestoneStatus
+} from '@contexts/MilestonesContext';
 import { TagIcon, MilestoneIcon } from '@primer/octicons-react';
 import BS from '@components/issues/header/buttons/style';
 import IS from '@components/newMilestone/input/style';
@@ -25,7 +29,14 @@ function EditMilestone() {
   };
 
   const handleCloseClick = () => {
-    /** @todo close버튼 클릭하면 마일스톤 status를 close로 업데이트 */
+    if (milestone.status === 'closed') return;
+
+    updateMilestoneStatus(dispatch, {
+      id: milestone.id,
+      status: 1
+    });
+
+    history.push('/milestone');
   };
 
   const handleSaveClick = () => {
