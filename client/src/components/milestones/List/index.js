@@ -14,7 +14,6 @@ function List() {
   const state = useMilestonesState();
   const dispatch = useMilestonesDispatch();
   const { data, loading, error } = state.milestones;
-  console.log('data :>> ', data);
 
   const fetchData = () => {
     getMilestones(dispatch);

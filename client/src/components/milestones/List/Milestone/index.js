@@ -1,11 +1,20 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import Date from '@utils/date';
 import { CalendarIcon } from '@primer/octicons-react';
 import S from './style';
 
 function Milestone({ milestone }) {
+  const history = useHistory();
   const openIssueCnt = milestone.issues.filter(issue => issue.status === 0).length;
   const closeIssueCnt = milestone.issues.filter(issue => issue.status === 1).length;
+
+  const handleEditClick = () => {
+    history.push({
+      pathname: `/milestone/edit/${milestone.id}`,
+      state: { milestone }
+    });
+  };
 
   return (
     <S.MilestoneWrapper>
@@ -25,7 +34,7 @@ function Milestone({ milestone }) {
           <S.State>{closeIssueCnt} closed</S.State>
         </S.ProgressState>
         <S.ButtonWrapper>
-          <S.Button>Edit</S.Button>
+          <S.Button onClick={handleEditClick}>Edit</S.Button>
           <S.Button>Close</S.Button>
           <S.Button className='delete-btn'>Delete</S.Button>
         </S.ButtonWrapper>
