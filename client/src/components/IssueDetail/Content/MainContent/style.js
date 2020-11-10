@@ -24,7 +24,7 @@ export default {
     border: 1px solid #e1e4e8;
     border-radius: 4px;
     padding: 5px 15px;
-    color: rgb(215, 58, 73);
+    color: black;
     margin-right: 10px;
     cursor: pointer;
   `,

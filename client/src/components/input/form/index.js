@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import S from './style';
 import * as api from '@api/upload';
+import Preview from '../preview';
 
 const InputForm = ({ formHeight, color, buttonState, comment, setComment }) => {
   let timer;
-
   const [isDelay, setIsDelay] = useState(false);
   const [isSelected, setIsSelected] = useState(true);
   const commentHandler = ({ target }) => {
@@ -34,6 +34,8 @@ const InputForm = ({ formHeight, color, buttonState, comment, setComment }) => {
       }, 2000);
     }
   };
+  console.log('ise: ', isSelected);
+
   return (
     <S.WriteWrapper>
       <S.TitleBackground color={color}>
@@ -45,19 +47,32 @@ const InputForm = ({ formHeight, color, buttonState, comment, setComment }) => {
         </S.WritePreview>
       </S.TitleBackground>
       <S.Line />
-      <S.InputDiv formHeight={formHeight}>
-        <S.InputComment
-          placeholder="Leave a comment"
-          value={comment}
-          onChange={commentHandler}
-          onKeyUp={keyUpEvent}
-        />
-      </S.InputDiv>
-      <S.AttachWrapper>
-        <S.LabelPicture htmlFor={buttonState}>Attach files by selecting here</S.LabelPicture>
-        <S.InputPicture type="file" id={buttonState} accept="image/png" onChange={imageHandler} />
-        <S.CountComments>{isDelay && `${comment.length} 자`} </S.CountComments>
-      </S.AttachWrapper>
+      {isSelected === true ? (
+        <>
+          <S.InputDiv formHeight={formHeight}>
+            <S.InputComment
+              placeholder="Leave a comment"
+              value={comment}
+              onChange={commentHandler}
+              onKeyUp={keyUpEvent}
+            />
+          </S.InputDiv>
+          <S.AttachWrapper>
+            <S.LabelPicture htmlFor={buttonState}>Attach files by selecting here</S.LabelPicture>
+            <S.InputPicture
+              type="file"
+              id={buttonState}
+              accept="image/png"
+              onChange={imageHandler}
+            />
+            <S.CountComments>{isDelay && `${comment.length} 자`} </S.CountComments>
+          </S.AttachWrapper>
+        </>
+      ) : (
+        <S.PreviewWrapper>
+          <Preview comment={comment} />
+        </S.PreviewWrapper>
+      )}
     </S.WriteWrapper>
   );
 };

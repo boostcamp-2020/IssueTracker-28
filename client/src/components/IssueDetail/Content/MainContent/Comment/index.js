@@ -3,6 +3,8 @@ import { SmileyIcon } from '@primer/octicons-react';
 import InputForm from '@components/input/form';
 import S from './style';
 import Button from '@components/issues/header/Buttons/style';
+import Preview from '@components/input/preview';
+import getElapsedTime from '@utils/getElapsedTime';
 import {
   useIssueDetailDispatch,
   updateComment,
@@ -39,7 +41,7 @@ const Comment = ({ isIssue, issueAuthor, issue, issueID }) => {
             >
               <S.AuthorInfo>
                 <S.TitleAuthor>{issue.author}</S.TitleAuthor>
-                <S.TitleTime>commented {issue.createdAt}</S.TitleTime>
+                <S.TitleTime>commented {getElapsedTime(issue.time)} ago</S.TitleTime>
               </S.AuthorInfo>
               <S.WriterInfo>
                 {isCommentAuthor && (
@@ -50,18 +52,7 @@ const Comment = ({ isIssue, issueAuthor, issue, issueID }) => {
               </S.WriterInfo>
             </S.TitleWrapper>
             <S.CommentsContent>
-              {issue.content.split('!').map((cur, i) => {
-                if (re.test(cur)) {
-                  let [imgName, imgPath] = cur.split('^');
-                  imgName = imgName.replace(/\[|\]|\s*/gi, '');
-                  imgPath = imgPath.replace(/\(|\)|\s*/gi, '');
-                  return <S.ImgLink href={imgPath}>{imgName}</S.ImgLink>;
-                } else if (cur === '') {
-                  return ``;
-                } else {
-                  return <span>{cur}</span>;
-                }
-              })}
+              <Preview comment={issue.content} />
             </S.CommentsContent>
           </S.CommentsWrapper>
         ) : (

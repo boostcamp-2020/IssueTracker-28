@@ -23,6 +23,7 @@ function Input({ selectedAssignees, selectedLabels, selectedMilestone }) {
       user: localStorage.getItem('user_id'),
       status: 0,
     };
+
     axios
       .post(`/api/issue`, body)
       .then((res) => {

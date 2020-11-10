@@ -3,7 +3,7 @@ import InputForm from '@components/input/form';
 import Comment from './Comment';
 import S from './style';
 import BS from '@components/issues/header/Buttons/style';
-import { IssueOpenedIcon, IssueClosedIcon } from '@primer/octicons-react';
+import { IssueClosedIcon } from '@primer/octicons-react';
 import {
   useIssueDetailDispatch,
   updateIssueStatus,
@@ -49,17 +49,15 @@ const MainContent = ({ issue, comments }) => {
           <S.ButtonWrapper justifyContent="flex-end">
             <S.EditCancelButton onClick={statusHandler}>
               {issue.status === 'opened' ? (
-                <div>
-                  <IssueOpenedIcon size={16} />
-                  <span>Open Issue</span>
-                </div>
+                <span>Reopen Issue</span>
               ) : (
-                <div>
+                <>
                   <IssueClosedIcon size={16} />
                   <span>Closed Issue</span>
-                </div>
+                </>
               )}
             </S.EditCancelButton>
+
             <BS.NewIssueButton onClick={createHandler}>Comment</BS.NewIssueButton>
           </S.ButtonWrapper>
         </S.InputFormWrapper>

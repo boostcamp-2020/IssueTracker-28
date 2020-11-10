@@ -28,7 +28,6 @@ const Header = ({ issue, commentsCount }) => {
       Edit
     </Button>
   );
-
   return (
     <S.HeaderWrapper>
       {isEditClicked ? (

@@ -4,11 +4,11 @@ export default {
   WriteWrapper: styled.div`
     height: 200px;
   `,
-    Line: styled.div `
+  Line: styled.div`
     width: 100%;
     border-bottom: 1px solid #e1e4e8;
   `,
-    TitleBackground: styled.div `
+  TitleBackground: styled.div`
     background-color: ${(props) => props.color};
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
@@ -23,7 +23,7 @@ export default {
       z-index: 10;
     }
   `,
-    WriteTitle: styled.div `
+  WriteTitle: styled.div`
     margin: 10px 6px 0px 8px;
     ${(props) =>
       props.isSelected &&
@@ -100,8 +100,8 @@ export default {
     background: none;
     color: #586069;
     cursor: pointer;
-    &:hover{
-      color : #303030;
+    &:hover {
+      color: #303030;
     }
   `,
   EditCancelButton: styled.button`
@@ -113,5 +113,19 @@ export default {
     color: rgb(215, 58, 73);
     margin-right: 10px;
     cursor: pointer;
+  `,
+  PreviewWrapper: styled.div`
+    width: 97.5%;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    height: 73%;
+    margin: 8px;
+    padding: 10px;
+    box-sizing: border-box;
+    background: #fafbfc;
+  `,
+  ImgLink: styled.a`
+    padding-right: 5px;
+    font-weight: bold;
   `,
 };
