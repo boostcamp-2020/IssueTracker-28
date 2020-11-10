@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StateLabel, Button, TextInput } from '@primer/components';
+import getElapsedTime from '@utils/getElapsedTime';
 import S from './style';
 
 const Header = ({ issue, commentsCount }) => {
@@ -33,24 +34,24 @@ const Header = ({ issue, commentsCount }) => {
           <span className="cancle-button">Cancel</span>
         </S.EditWrapper>
       ) : (
-        <S.TitleWrapper>
-          <S.IssueTitle>{issue.title}</S.IssueTitle>&nbsp;&nbsp;&nbsp;
-          <S.IssueId>#{issue.id}</S.IssueId>
-        </S.TitleWrapper>
-      )}
+          <S.TitleWrapper>
+            <S.IssueTitle>{issue.title}</S.IssueTitle>&nbsp;&nbsp;&nbsp;
+            <S.IssueId>#{issue.id}</S.IssueId>
+          </S.TitleWrapper>
+        )}
       <S.ContentWrapper>
         {issue.status === 'opened' ? (
           <StateLabel status="issueOpened" variant="small">
             Open
           </StateLabel>
         ) : (
-          <StateLabel status="issueClosed" variant="small">
-            Closed
-          </StateLabel>
-        )}
+            <StateLabel status="issueClosed" variant="small">
+              Closed
+            </StateLabel>
+          )}
         <S.Content>
           <span className="detail-author">{issue.author}</span>&nbsp;
-          {issue.status} this issue 3 days ago · {commentsCount} comment
+          {issue.status} this issue {issue.time ? getElapsedTime(issue.time) : null} ago · {commentsCount} comment
         </S.Content>
       </S.ContentWrapper>
       {editButton}

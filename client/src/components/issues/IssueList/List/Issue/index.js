@@ -3,6 +3,8 @@ import { IssueOpenedIcon, MilestoneIcon, IssueClosedIcon } from '@primer/octicon
 import { useCheckedItemState, useCheckedItemDispatch } from '@contexts/CheckedItemContext';
 import { CHECKED_UPDATE } from '@constants/actionTypes';
 import { useHistory } from 'react-router-dom';
+import ColorHandler from '@utils/colorHandler';
+import getElapsedTime from '@utils/getElapsedTime';
 import S from './style';
 
 function Issue({ issue }) {
@@ -62,15 +64,19 @@ function Issue({ issue }) {
           <S.LabelList>
             {issue.labels &&
               issue.labels.map((label) => (
-                <div style={{ background: label.color }} className="label">
+                <S.Label
+                  style={{ 
+                    background: label.color,
+                    color : ColorHandler.getContrastColor(label.color)
+                  }}>
                   {label.name}
-                </div>
+                </S.Label>
               ))}
           </S.LabelList>
         </div>
         <S.OtherContainer>
           <div className="author">
-            #{issue.id} {issue.status} 12 hours ago by {issue.author}
+            #{issue.id} {issue.status} {getElapsedTime(issue.time)} ago by {issue.author}
           </div>
           {issue.milestone && (
             <S.MilestoneContainer>

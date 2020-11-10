@@ -5,22 +5,21 @@ module.exports = {
   entry: ['babel-polyfill', './src/index.js'],
   mode: 'development',
   module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader',
-        options: { presets: ['@babel/env'] },
-      },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /\.(eot|ttf|woff2?|otf|svg|png|gif)$/,
-        loader: 'file-loader',
-        options: { name: '[name].[ext]' },
-      },
+    rules: [{
+      test: /\.(js|jsx)$/,
+      exclude: /(node_modules|bower_components)/,
+      loader: 'babel-loader',
+      options: { presets: ['@babel/env'] },
+    },
+    {
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader'],
+    },
+    {
+      test: /\.(eot|ttf|woff2?|otf|svg|png|gif)$/,
+      loader: 'file-loader',
+      options: { name: '[name].[ext]' },
+    },
     ],
   },
   resolve: {
@@ -39,6 +38,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist/'),
     filename: 'bundle.js',
+    publicPath: '/',
   },
   devServer: {
     host: '127.0.0.1',
