@@ -5,7 +5,7 @@ const UserServices = require('../services/user');
 const githubConfig = {
   clientID: process.env.GITHUB_CLIENT_ID,
   clientSecret: process.env.GITHUB_CLIENT_SECRET,
-  callbackURL: process.env.GITHUB_CALLBACK_URL,
+  // callbackURL: process.env.GITHUB_CALLBACK_URL,
 };
 
 const githubLoginVerify = async (accessToken, refreshToken, profile, done) => {
