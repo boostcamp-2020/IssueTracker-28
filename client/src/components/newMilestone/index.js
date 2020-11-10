@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Input from './input';
 import { useMilestonesDispatch } from '@contexts/MilestonesContext';
-import BS from '@components/issues/IssueHeader/Buttons/style';
+import BS from '@components/issues/header/buttons/style';
+import Input from './input';
 import S from './style';
 
 function NewMilestone() {
@@ -25,7 +25,10 @@ function NewMilestone() {
     <S.NewMilestoneWrapper>
       <S.Header>
         <S.HeaderTitle>New milestone</S.HeaderTitle>
-        <S.HeaderContent>Create a new milestone to help organize your issues and pull requests. Learn more about <a href='https://guides.github.com/features/issues/'>milestones and issues.</a></S.HeaderContent>
+        <S.HeaderContent>
+          Create a new milestone to help organize your issues and pull requests. Learn more about{' '}
+          <a href="https://guides.github.com/features/issues/">milestones and issues.</a>
+        </S.HeaderContent>
       </S.Header>
       <Input handleTitle={handleTitle} handleDescription={handleDescription} />
       <S.ButtonWrapper>
@@ -33,6 +36,6 @@ function NewMilestone() {
       </S.ButtonWrapper>
     </S.NewMilestoneWrapper>
   );
-};
+}
 
 export default NewMilestone;

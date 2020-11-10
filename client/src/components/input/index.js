@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import S from './style';
-import Button from '@components/issues/IssueHeader/Buttons/style';
+import Button from '@components/issues/header/buttons/style';
 import { useHistory } from 'react-router-dom';
-import InputForm from './form';
 import axios from 'axios';
-import EmptyUserPic from '@images/empty-user.png'
+import EmptyUserPic from '@images/empty-user.png';
+import InputForm from './form';
+import S from './style';
 
 function Input({ selectedAssignees, selectedLabels, selectedMilestone }) {
   const [title, setTitle] = useState('');
@@ -38,8 +38,8 @@ function Input({ selectedAssignees, selectedLabels, selectedMilestone }) {
   };
   return (
     <S.InputWrapper>
-      <S.AuthorPic src={EmptyUserPic}/>
-      <S.InputTriangle/>
+      <S.AuthorPic src={EmptyUserPic} />
+      <S.InputTriangle />
       <S.InputTitle placeholder="Title" value={title} onChange={titleHandler} />
       <S.InputFormWrapper wrapperHeight="80%">
         <InputForm

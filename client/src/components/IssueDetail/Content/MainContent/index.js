@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import InputForm from '@components/input/form';
-import Comment from './Comment';
-import S from './style';
-import Button from '@components/issues/IssueHeader/Buttons/style';
+import Button from '@components/issues/header/buttons/style';
 import { IssueOpenedIcon, IssueClosedIcon } from '@primer/octicons-react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import S from './style';
+import Comment from './Comment';
 
 const MainContent = ({ issue, comments }) => {
   const [newComment, setNewComment] = useState('');
@@ -49,7 +49,7 @@ const MainContent = ({ issue, comments }) => {
   };
   return (
     <>
-      <Comment isIssue={true} issue={issue} />
+      <Comment isIssue issue={issue} />
       {comments.map((comment, index) => {
         return (
           <Comment key={index} issueAuthor={issue.issueAuthor} isIssue={false} issue={comment} />
