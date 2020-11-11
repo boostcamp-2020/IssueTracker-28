@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import MainContent from '@components/issueDetail/content/mainContent';
+import MainContent from '@components/issueDetail/content/main';
 import Sidebar from '@components/sidebar';
 import S from './style';
 
