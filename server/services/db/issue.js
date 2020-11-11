@@ -14,7 +14,7 @@ exports.selectIssues = async () => {
     include: [
       {
         model: User,
-        attributes: ['id', 'user_id'],
+        attributes: ['id', 'user_id', 'profile_img'],
       },
       {
         model: Milestone,
@@ -34,7 +34,7 @@ exports.selectIssue = async (id) => {
     include: [
       {
         model: User,
-        attributes: ['id', 'user_id'],
+        attributes: ['id', 'user_id', 'profile_img'],
       },
       {
         model: Milestone,
@@ -130,16 +130,67 @@ exports.selectComments = async (issueId) => {
 
 exports.updateIssueTitle = async (id, title) => {
   try {
-    await Issue.update(
-      {
-        title,
-      },
-      {
-        where: {
-          id,
-        },
-      }
-    );
+    await Issue.update({ title }, { where: { id } });
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+
+exports.addIssueAssignee = async (issueId, userId) => {
+  try {
+    await IssueAssignee.create({ issueId, userId });
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+
+exports.addIssueLabel = async (issueId, labelId) => {
+  try {
+    await IssueLabel.create({ issueId, labelId });
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+
+exports.addIssueMilestone = async (id, milestoneId) => {
+  try {
+    await Issue.update({ milestoneId }, { where: { id } });
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+
+exports.deleteIssueAssignee = async (issueId, userId) => {
+  try {
+    await IssueAssignee.destroy({ where: { issueId, userId } });
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+
+exports.deleteIssueLabel = async (issueId, labelId) => {
+  try {
+    await IssueLabel.destroy({ where: { issueId, labelId } });
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+
+exports.deleteIssueMilestone = async (id) => {
+  try {
+    await Issue.update({ milestoneId: null }, { where: { id } });
     return true;
   } catch (error) {
     console.log(error);

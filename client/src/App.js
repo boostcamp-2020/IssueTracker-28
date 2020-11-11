@@ -21,7 +21,6 @@ const App = () => {
               exact
               path="/"
               render={() => {
-                return <IssuePage />;
                 if (localStorage.getItem('auth_token')) return <IssuePage />;
                 return <UserPage />;
               }}
