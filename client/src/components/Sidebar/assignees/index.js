@@ -60,7 +60,7 @@ function Assignees({ selectedAssignees, handleAssigneeClick }) {
                     onClick={() => handleAssigneeClick(item)}
                   >
                     <LS.TitleContainer>
-                      <LS.LabelPic src={EmptyUserPic} />
+                      <LS.LabelPic src={item.profileImg ? item.profileImg : EmptyUserPic} />
                       <div>{item.userId}</div>
                     </LS.TitleContainer>
                   </Dropdown.Item>
@@ -76,13 +76,13 @@ function Assignees({ selectedAssignees, handleAssigneeClick }) {
           <S.AssignSelf onClick={() => handleSelfClick()}>No one-assign yourself</S.AssignSelf>
         )
       ) : (
-        Array.from(selectedAssignees).map((assignee) => (
-          <S.SelectedAssigneeWrapper>
-            <LS.LabelPic src={EmptyUserPic} />
-            <S.SelectedItem>{assignee}</S.SelectedItem>
-          </S.SelectedAssigneeWrapper>
-        ))
-      )}
+          Array.from(selectedAssignees).map((assignee) => (
+            <S.SelectedAssigneeWrapper>
+              <LS.LabelPic src={assignee.profileImg ? assignee.profileImg : EmptyUserPic} />
+              <S.SelectedItem>{assignee.userId}</S.SelectedItem>
+            </S.SelectedAssigneeWrapper>
+          ))
+        )}
     </LS.LabelContainer>
   );
 }

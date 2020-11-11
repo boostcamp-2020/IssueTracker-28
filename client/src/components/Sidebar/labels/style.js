@@ -29,7 +29,6 @@ export default {
   `,
   TitleContainer: styled.div`
     display: flex;
-    padding-bottom: 0.5rem;
     color: #586069;
     align-items: center;
   `,
@@ -53,6 +52,12 @@ export default {
     border-radius: 4px;
     margin-right: 8px;
   `,
+  LabelPic: styled.img`
+    width : 23px;
+    height : 23px;
+    border-radius : 4px;
+    margin-right : 8px;
+    `,
   SelectedItem: styled.div`
     color: white;
     font-weight: 800;

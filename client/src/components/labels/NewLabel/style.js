@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 export default {
-    NewLabelWrapper: styled.div `
+  NewLabelWrapper: styled.div`
     ${(props) => props.isEdit ?
-            `border: 1px solid #e0e0e0;
+      `border: 1px solid #e0e0e0;
         border-top : none;`
-            :
-            `margin-top: 24px;
+      :
+      `margin-top: 24px;
         border-radius : 6px;
         background : #F5F8FA;;
         border: 1px solid #e0e0e0;
@@ -19,7 +19,7 @@ export default {
         border-bottom-right-radius: 6px;
       }
   `,
-    NewLabelItem: styled.div`
+  NewLabelItem: styled.div`
     background : ${(props) => props.color || "#EDEDED"};
     padding : 3px 10px;
     border-radius : 2rem;
@@ -28,21 +28,21 @@ export default {
     color : ${(props) => props.fontColor};
     margin-bottom : 25px;
     `,
-    CreateLabelWrapper: styled.div`
+  CreateLabelWrapper: styled.div`
     width : 100%;
     display : flex;
     justify-content : space-between;
     `,
-    NameWrapper: styled.div`
+  NameWrapper: styled.div`
     width : 22%;
     `,
-    DescWrapper: styled.div`
+  DescWrapper: styled.div`
     width : 36%;
     `,
-    ColorWrapper: styled.div`
+  ColorWrapper: styled.div`
     width : 15%;
     `,
-    ButtonsWrapper: styled.div`
+  ButtonsWrapper: styled.div`
     width : 22%;
     display : flex;
     align-items : flex-end;
@@ -59,10 +59,10 @@ export default {
         filter : brightness(95%);
     }
     `,
-    NewColorWrapper: styled.div`
+  NewColorWrapper: styled.div`
     display : flex;
     `,
-    NewColorButton: styled.button`
+  NewColorButton: styled.button`
     background : ${(props) => props.color || "#EDEDED"};
     width : 40px;
     border-radius : 4px;
@@ -71,12 +71,12 @@ export default {
     cursor : pointer;
     color : ${(props) => props.iconColor};
     `,
-    Title: styled.p`
+  Title: styled.p`
     margin-bottom : 6px;
     color : #24292E;
     font-weight : 600;
     `,
-    Input: styled.input`
+  Input: styled.input`
     height : 35px;
     padding-left : 6px;
     background : #FAFBFC;
@@ -86,13 +86,13 @@ export default {
     color : #24292E;
     font-size : 15px;
     `,
-    CancelButton: styled.button`
+  CancelButton: styled.button`
     border: 1px solid #e0e0e0;
     background: linear-gradient( to bottom, white, #eaeaea );
     color : #5E656E;
     margin-right : 8px;
     `,
-    CreateLabelButton: styled.button`
+  CreateLabelButton: styled.button`
     border: 1px solid #329246;
     background: linear-gradient( to bottom, #32CD56, #27A844 );
     color: #ffffff;
@@ -100,7 +100,7 @@ export default {
     opacity : ${(props) => props.isValid ? '100%' : '60%'};
     ${(props) => !props.isValid && 'pointer-events: none;'} 
     `,
-    DeleteLabelButton: styled.button`
+  DeleteLabelButton: styled.button`
     position : absolute;
     right : 15px;
     top : 15px;

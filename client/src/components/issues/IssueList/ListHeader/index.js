@@ -121,7 +121,7 @@ function ListHeader() {
                         >
                           <S.ItemContainer>
                             <CheckIcon size={16} className="check-icon" />
-                            <LS.LabelPic src={EmptyUserPic} />
+                            <LS.LabelPic src={item.profileImg ? item.profileImg : EmptyUserPic} />
                             <div>{item.userId}</div>
                           </S.ItemContainer>
                         </Dropdown.Item>
@@ -240,11 +240,7 @@ function ListHeader() {
                         >
                           <S.ItemContainer>
                             <CheckIcon size={16} className="check-icon" />
-                            <img
-                              alt="profile"
-                              src={EmptyUserPic}
-                              style={{ width: '20px', borderRadius: '4px' }}
-                            />
+                            <img src={item.profileImg ? item.profileImg : EmptyUserPic} style={{ width: '20px', borderRadius: '4px' }} />
                             <LS.LabelName>{item.userId}</LS.LabelName>
                           </S.ItemContainer>
                         </Dropdown.Item>
@@ -255,22 +251,22 @@ function ListHeader() {
             </S.FilterDropdown>
           </>
         ) : (
-          <S.FilterDropdown>
-            <Dropdown className="mark-as-dropdown dropdown" text="Mark as">
-              <Dropdown.Menu className="dropdown-menu" direction="left">
-                <Dropdown.Header className="dropdown-header" content="Actions" />
-                <hr className="dropdown-divider" />
-                <Dropdown.Item className="dropdown-item" text="Open" onClick={markAsOpenHandler} />
-                <hr className="dropdown-divider" />
-                <Dropdown.Item
-                  className="dropdown-item"
-                  text="Closed"
-                  onClick={markAsCloseHandler}
-                />
-              </Dropdown.Menu>
-            </Dropdown>
-          </S.FilterDropdown>
-        )}
+            <S.FilterDropdown>
+              <Dropdown className="mark-as-dropdown dropdown" text="Mark as">
+                <Dropdown.Menu className="dropdown-menu" direction="left">
+                  <Dropdown.Header className="dropdown-header" content="Actions" />
+                  <hr className="dropdown-divider" />
+                  <Dropdown.Item className="dropdown-item" text="Open" onClick={markAsOpenHandler} />
+                  <hr className="dropdown-divider" />
+                  <Dropdown.Item
+                    className="dropdown-item"
+                    text="Closed"
+                    onClick={markAsCloseHandler}
+                  />
+                </Dropdown.Menu>
+              </Dropdown>
+            </S.FilterDropdown>
+          )}
       </S.ListFilters>
     </S.ListWrapper>
   );

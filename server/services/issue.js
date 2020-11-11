@@ -18,7 +18,10 @@ const getAssignees = async (data) => {
   const result = [];
 
   assignees.forEach((assignee) => {
-    result.push(assignee.userId);
+    const user = {};
+    user.userId = assignee.userId;
+    user.profileImg = assignee.profileImg;
+    result.push(user);
   });
   return result;
 };

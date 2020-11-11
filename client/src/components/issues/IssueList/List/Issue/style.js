@@ -4,6 +4,7 @@ export default {
   IssueWrapper: styled.div`
     display: flex;
     padding: 8px 16px;
+    position : relative;
     border: 1px solid #e1e4e8;
     border-top: 0;
     .issue-checkbox {
@@ -42,20 +43,32 @@ export default {
     display: flex;
   `,
   Label: styled.div`
-    padding: 0 7px;
-    margin-left: 2px;
-    border: 1px solid transparent;
-    color: #fff;
-    border-radius: 2rem;
-    background-color: #6b6bce;
-    font-size: 12px;
-    font-weight: 500;
+  padding: 0 7px;
+  margin-left: 2px;
+  border: 1px solid transparent;
+  color: #fff;
+  border-radius: 2rem;
+  background-color: #6b6bce;
+  font-size: 12px;
+  font-weight: 500;
   `,
   OtherContainer: styled.div`
     display: flex;
     margin-top: 3px;
     font-size: 12px;
     color: #586069;
+  `,
+  AssigneesContainer: styled.div`
+    position : absolute;
+    right : 150px;
+    .pc-AvatarStackBody:hover{
+      .pc-AvatarItem{
+        margin-left: 4px;
+        opacity: 100%;
+        visibility: visible;
+        box-shadow: 0 0 0 0px #fff;
+      }
+    }
   `,
   MilestoneContainer: styled.div`
     display: flex;

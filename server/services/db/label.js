@@ -1,9 +1,10 @@
-const { Label } = require('../../models');
+const { Label, sequelize } = require('../../models');
 
 exports.selectLabel = async () => {
   const labels = await Label.findAll({
     attributes: ['id', 'name', 'desc', 'color'],
     raw: true,
+    order: sequelize.literal('name'),
   });
 
   return labels;

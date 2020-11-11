@@ -13,7 +13,7 @@ exports.selectUser = async (userId) => {
 
 exports.selectUsers = async () => {
   const results = await User.findAll({
-    attributes: ['id', 'userId'],
+    attributes: ['id', 'userId', 'profileImg'],
     raw: true,
   });
 
@@ -25,6 +25,7 @@ exports.insertUser = async (params) => {
     raw: true,
     userId: params.userId,
     password: params.password,
+    profileImg: params.profileImg
   });
   return results;
 };

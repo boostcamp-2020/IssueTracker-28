@@ -11,8 +11,8 @@ exports.findUser = async (userId) => {
 /*
  * User DB에 유저정보 저장
  */
-exports.insertUser = async (userId) => {
-  const user = await db.insertUser({ userId, password: '' });
+exports.insertUser = async (userId, profileImg) => {
+  const user = await db.insertUser({ userId, password: '', profileImg });
   return user;
 };
 

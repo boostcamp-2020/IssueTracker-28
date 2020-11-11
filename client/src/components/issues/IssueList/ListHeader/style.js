@@ -10,6 +10,7 @@ export default {
     border-top-right-radius: 6px;
     background-color: #f6f8fa;
     padding: 16px;
+    padding-right : 28px;
     position: relative;
     .checked-item-count {
       position: absolute;
@@ -29,10 +30,9 @@ export default {
     }
   `,
   FilterDropdown: styled.div`
-    padding-left: 16px;
+    padding-left: 20px;
     .dropdown {
       .dropdown-item {
-        color: red;
         font-weight: 500;
         font-size: 13.5px;
         background: white;
