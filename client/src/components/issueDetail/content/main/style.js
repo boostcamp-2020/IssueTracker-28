@@ -27,6 +27,9 @@ export default {
     color: rgb(215, 58, 73);
     margin-right: 10px;
     cursor: pointer;
+    display : flex;
+    align-items : center;
+    justify-content : center;
     &:hover{
       filter : brightness(95%);
     }
