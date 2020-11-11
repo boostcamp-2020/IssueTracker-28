@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import InputForm from '@components/input/form';
-import Comment from './Comment';
-import S from './style';
-import BS from '@components/issues/header/Buttons/style';
+import BS from '@components/issues/header/buttons/style';
 import { IssueClosedIcon } from '@primer/octicons-react';
 import {
   useIssueDetailDispatch,
   updateIssueStatus,
   createComment,
 } from '@contexts/IssueDetailContext';
+import S from './style';
+import Comment from './comment';
 
 const MainContent = ({ issue, comments }) => {
   const [newComment, setNewComment] = useState('');
@@ -23,7 +23,7 @@ const MainContent = ({ issue, comments }) => {
   };
   return (
     <S.MainContentWrapper>
-      <Comment isIssue={true} issue={issue} />
+      <Comment isIssue issue={issue} />
       {comments.map((comment, index) => {
         return (
           <Comment

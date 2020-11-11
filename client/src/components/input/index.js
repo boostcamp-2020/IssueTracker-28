@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import Button from '@components/issues/header/buttons/style';
 import { useHistory } from 'react-router-dom';
 import EmptyUserPic from '@images/empty-user.png';
+import * as api from '@api/issue';
 import InputForm from './form';
 import S from './style';
-import * as api from '@api/issue';
 
 function Input({ selectedAssignees, selectedLabels, selectedMilestone }) {
   const [title, setTitle] = useState('');
