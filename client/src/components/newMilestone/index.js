@@ -27,7 +27,7 @@ function NewMilestone() {
       status: 0,
       title,
       due_date: inputDate,
-      desc: description
+      desc: description,
     });
 
     history.push('/milestone');
@@ -45,10 +45,9 @@ function NewMilestone() {
       <Input handleTitle={handleTitle} handleDescription={handleDescription} />
       <S.ButtonWrapper>
         <S.CancelButton onClick={() => history.push('/milestone')}>Cancel</S.CancelButton>
-        <S.SubmitButton
-          isValid={title.length > 0 ? true : false}
-          onClick={handleClick}
-        >Create milestone</S.SubmitButton>
+        <S.SubmitButton isValid={title.length > 0} onClick={handleClick}>
+          Create milestone
+        </S.SubmitButton>
       </S.ButtonWrapper>
     </S.NewMilestoneWrapper>
   );

@@ -2,14 +2,15 @@ const db = require('./db/milestone');
 
 exports.getMilestones = async () => {
   const results = await db.selectMilestone();
-  let milestoneCnt = [0, 0];
+  const milestoneCnt = [0, 0];
   const milestones = [];
 
-  for (let result of results) {
+  for (const result of results) {
     const status = result.status === 0 ? 'open' : 'closed';
     milestoneCnt[result.status] += 1;
     milestones.push({ ...result.dataValues, status });
   }
+
   return { milestoneCnt, milestones };
 };
 

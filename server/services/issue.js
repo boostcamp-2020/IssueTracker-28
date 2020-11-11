@@ -6,6 +6,7 @@ const getLabels = async (data) => {
 
   labels.forEach((label) => {
     const temp = {};
+    temp.id = label.id;
     temp.name = label.name;
     temp.color = label.color;
     result.push(temp);
@@ -36,7 +37,9 @@ const makeData = async (issue) => {
   data.author.id = issue.userId;
   data.author.userId = issue.user.dataValues.user_id;
   data.author.profileImg = issue.user.dataValues.profile_img;
-  data.milestone = issue.milestone ? issue.milestone.dataValues.title : null;
+  data.milestone = {};
+  data.milestone.id = issue.milestone ? issue.milestone.dataValues.id : null;
+  data.milestone.title = issue.milestone ? issue.milestone.dataValues.title : null;
   data.status = issue.status === 0 ? 'opened' : 'closed';
   data.labels = await getLabels(issue);
   data.assignees = await getAssignees(issue);

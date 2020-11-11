@@ -7,6 +7,7 @@ const initialState = {
     data: null,
     error: null,
   },
+  selectedMilestone: null,
 };
 
 const loadingState = {
@@ -43,6 +44,11 @@ function milestoneReducer(state, action) {
       return {
         ...state,
         milestones: error(action.error),
+      };
+    case 'UPDATE_SELECTED_MILESTONE':
+      return {
+        ...state,
+        selectedMilestone: action.data,
       };
     default:
       return state;
@@ -133,5 +139,5 @@ export {
   createMilestone,
   updateMilestone,
   updateMilestoneStatus,
-  deleteMilestone
+  deleteMilestone,
 };

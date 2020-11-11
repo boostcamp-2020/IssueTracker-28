@@ -156,8 +156,8 @@ exports.updateIssueAssignee = async (req, res, next) => {
     const { assignee, flag } = req.body;
 
     const result = flag
-      ? await issueServices.deleteIssueAssignee(id, assignee)
-      : await issueServices.addIssueAssignee(id, assignee);
+      ? await issueServices.addIssueAssignee(id, assignee)
+      : await issueServices.deleteIssueAssignee(id, assignee);
 
     if (result) {
       res.status(200).json({
@@ -187,8 +187,8 @@ exports.updateIssueLabel = async (req, res, next) => {
     const { label, flag } = req.body;
 
     const result = flag
-      ? await issueServices.deleteIssueLabel(id, label)
-      : await issueServices.addIssueLabel(id, label);
+      ? await issueServices.addIssueLabel(id, label)
+      : await issueServices.deleteIssueLabel(id, label);
 
     if (result) {
       res.status(200).json({
@@ -218,8 +218,8 @@ exports.updateIssueMilestone = async (req, res, next) => {
     const { milestone, flag } = req.body;
 
     const result = flag
-      ? await issueServices.deleteIssueMilestone(id)
-      : await issueServices.addIssueMilestone(id, milestone);
+      ? await issueServices.addIssueMilestone(id, milestone)
+      : await issueServices.deleteIssueMilestone(id);
 
     if (result) {
       res.status(200).json({

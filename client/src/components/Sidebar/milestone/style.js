@@ -4,9 +4,12 @@ export default {
   TitleContainer: styled.div`
     color: #586069;
   `,
+  ItemWrapper: styled.div`
+    display: flex;
+  `,
   ItemTitle: styled.div`
     font-weight: 700;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   `,
   ItemDate: styled.div`
     font-size: 13px;

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useUsersState, useUsersDispatch } from '@contexts/UsersContext';
-import { GearIcon } from '@primer/octicons-react';
+import { GearIcon, CheckIcon } from '@primer/octicons-react';
 import { Dropdown } from 'semantic-ui-react';
 import LS from '@sidebar/labels/style';
 import DS from '@components/issues/issueList/listHeader/style';
 import EmptyUserPic from '@images/empty-user.png';
+import * as api from '@api/issue';
 import S from './style';
 
 const trigger = (
@@ -14,7 +15,7 @@ const trigger = (
   </LS.LabelHeader>
 );
 
-function Assignees() {
+function Assignees({ id = null }) {
   const [isAssignSelf, setIsAssignSelf] = useState(false);
   const state = useUsersState();
   const dispatch = useUsersDispatch();
@@ -22,17 +23,9 @@ function Assignees() {
   const { data: users } = state.users;
   const { selectedUsers } = state;
 
-  const handleSelfClick = () => {
-    handleAssigneeClick({
-      id: parseInt(localStorage.getItem('id')),
-      userId: localStorage.getItem('user_id'),
-    });
-    setIsAssignSelf(true);
-  };
-
   useEffect(() => {}, [dispatch]);
 
-  const clickHandler = (item) => {
+  const clickHandler = async (item) => {
     let flag = true;
     const newAssignees = new Set();
     for (const assignee of Array.from(selectedUsers)) {
@@ -41,6 +34,16 @@ function Assignees() {
     }
     if (flag) newAssignees.add(item);
     dispatch({ type: 'UPDATE_SELECTED_USERS', data: newAssignees });
+    if (id) await api.updateIssueAssignee(id, item.id, flag);
+  };
+
+  const handleSelfClick = () => {
+    clickHandler({
+      id: +localStorage.getItem('id'),
+      userId: localStorage.getItem('user_id'),
+      profileImg: localStorage.getItem('profile_img'),
+    });
+    setIsAssignSelf(true);
   };
 
   return (
@@ -62,6 +65,11 @@ function Assignees() {
                     onClick={() => clickHandler(item)}
                   >
                     <LS.TitleContainer>
+                      {Array.from(selectedUsers).some((user) => user.id === item.id) ? (
+                        <CheckIcon size={16} className="sidebar-check-icon show" />
+                      ) : (
+                        <CheckIcon size={16} className="sidebar-check-icon" />
+                      )}
                       <LS.LabelPic src={item.profileImg ? item.profileImg : EmptyUserPic} />
                       <div>{item.userId}</div>
                     </LS.TitleContainer>

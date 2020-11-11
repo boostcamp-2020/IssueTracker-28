@@ -4,7 +4,7 @@ import { AvatarStack, Avatar } from '@primer/components';
 import { useCheckedItemState, useCheckedItemDispatch } from '@contexts/CheckedItemContext';
 import { CHECKED_UPDATE } from '@constants/actionTypes';
 import { useHistory } from 'react-router-dom';
-import EmptyUserPic from '@images/empty-user.png'
+import EmptyUserPic from '@images/empty-user.png';
 import ColorHandler from '@utils/colorHandler';
 import getElapsedTime from '@utils/getElapsedTime';
 import S from './style';
@@ -51,8 +51,8 @@ function Issue({ issue }) {
       {issue.status === 'opened' ? (
         <IssueOpenedIcon className="issue-open-icon" size={16} />
       ) : (
-          <IssueClosedIcon className="issue-closed-icon" size={15} />
-        )}
+        <IssueClosedIcon className="issue-closed-icon" size={15} />
+      )}
       <S.IssueContainer>
         <div className="title-container">
           <div
@@ -69,8 +69,9 @@ function Issue({ issue }) {
                 <S.Label
                   style={{
                     background: label.color,
-                    color: ColorHandler.getContrastColor(label.color)
-                  }}>
+                    color: ColorHandler.getContrastColor(label.color),
+                  }}
+                >
                   {label.name}
                 </S.Label>
               ))}
@@ -79,7 +80,11 @@ function Issue({ issue }) {
         <S.AssigneesContainer>
           <AvatarStack alignRight>
             {issue.assignees.map((assignee) => (
-              <Avatar style={{ backgroundColor: 'transparent' }} alt={assignee.userId} src={assignee.profileImg ? assignee.profileImg : EmptyUserPic} />
+              <Avatar
+                style={{ backgroundColor: 'transparent' }}
+                alt={assignee.userId}
+                src={assignee.profileImg ? assignee.profileImg : EmptyUserPic}
+              />
             ))}
           </AvatarStack>
         </S.AssigneesContainer>
@@ -87,10 +92,10 @@ function Issue({ issue }) {
           <div className="author">
             #{issue.id} {issue.status} {getElapsedTime(issue.time)} ago by {issue.author.userId}
           </div>
-          {issue.milestone && (
+          {issue.milestone.title && (
             <S.MilestoneContainer>
               <MilestoneIcon className="milestone-icon" size={14} />
-              <div className="milestone">{issue.milestone}</div>
+              <div className="milestone">{issue.milestone.title}</div>
             </S.MilestoneContainer>
           )}
         </S.OtherContainer>
