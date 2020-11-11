@@ -9,7 +9,7 @@ const Header = ({ issue, commentsCount }) => {
   const [title, setTitle] = useState('');
 
   const dispatch = useIssueDetailDispatch();
-
+  console.log('파일 디렉토리 수정');
   useEffect(() => {
     setTitle(issue.title);
   }, [issue]);
