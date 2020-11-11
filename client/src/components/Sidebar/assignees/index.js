@@ -73,8 +73,8 @@ function Assignees({ selectedAssignees, handleAssigneeClick }) {
         isAssignSelf ? (
           <S.SelectedItem>{localStorage.getItem('user_id')}</S.SelectedItem>
         ) : (
-          <S.AssignSelf onClick={() => handleSelfClick()}>No one-assign yourself</S.AssignSelf>
-        )
+            <S.AssignSelf onClick={() => handleSelfClick()}>No one-assign yourself</S.AssignSelf>
+          )
       ) : (
           Array.from(selectedAssignees).map((assignee) => (
             <S.SelectedAssigneeWrapper>

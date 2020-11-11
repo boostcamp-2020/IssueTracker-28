@@ -10,6 +10,7 @@ import getElapsedTime from '@utils/getElapsedTime';
 import S from './style';
 
 function Issue({ issue }) {
+  console.log(issue.id, 'issue.time', issue.time);
   const [checkState, setCheckState] = useState(false);
   const state = useCheckedItemState();
   const dispatch = useCheckedItemDispatch();
@@ -49,9 +50,9 @@ function Issue({ issue }) {
         className="issue-checkbox"
       />
       {issue.status === 'opened' ? (
-        <IssueOpenedIcon className="issue-open-icon" size={16} />
+        <IssueOpenedIcon className="issue-open-icon issue-icon" size={16} />
       ) : (
-          <IssueClosedIcon className="issue-closed-icon" size={15} />
+          <IssueClosedIcon className="issue-closed-icon issue-icon" size={15} />
         )}
       <S.IssueContainer>
         <div className="title-container">

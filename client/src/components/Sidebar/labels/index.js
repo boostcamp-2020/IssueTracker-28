@@ -58,12 +58,12 @@ function Labels({ selectedLabels, handleLabelClick }) {
       {selectedLabels.size === 0 ? (
         <div>None yet</div>
       ) : (
-        Array.from(selectedLabels).map((label, index) => (
-          <S.SelectedItem key={index} background={label.color}>
-            {label.name}
-          </S.SelectedItem>
-        ))
-      )}
+          Array.from(selectedLabels).map((label, index) => (
+            <S.SelectedItem key={index} background={label.color}>
+              {label.name}
+            </S.SelectedItem>
+          ))
+        )}
     </S.LabelContainer>
   );
 }
