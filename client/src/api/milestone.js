@@ -18,23 +18,22 @@ const createMilestone = async ({ status, title, due_date, desc }) => {
 
 const updateMilestone = async ({ id, title, due_date, desc }) => {
   let params = {};
-  if (due_date.length === 0 && desc.length === 0) params = { title };
-  else if (due_date.length === 0) params = { title, desc };
-  else if (desc.length === 0) params = { title, due_date };
+  if (due_date.length === 0 && desc.length === 0) params = { title, due_date: null, desc: null };
+  else if (due_date.length === 0) params = { title, due_date: null, desc };
+  else if (desc.length === 0) params = { title, due_date, desc: null };
   else params = { title, due_date, desc };
 
   const response = await axios.put(`/api/milestone/${id}`, params);
   return response.data;
 };
 
-const updateMilestoneStatus = async (params) => {
-  const response = await axios.put(`/api/milestone/${params.id}`, params);
+const updateMilestoneStatus = async ({ id, status }) => {
+  const response = await axios.put(`/api/milestone/${id}`, { status });
   return response.data;
 };
 
 const deleteMilestone = async ({ id }) => {
   const response = await axios.delete(`/api/milestone/${id}`);
-  console.log('response :>> ', response);
   return response.data;
 };
 

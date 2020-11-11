@@ -16,8 +16,8 @@ function EditMilestone() {
   const { milestone } = location.state;
   const dispatch = useMilestonesDispatch();
 
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [title, setTitle] = useState(milestone.title);
+  const [description, setDescription] = useState(milestone.desc);
 
   const handleTitle = ({ target }) => {
     setTitle(target.value);
