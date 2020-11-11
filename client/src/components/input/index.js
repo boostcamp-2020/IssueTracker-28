@@ -36,6 +36,7 @@ function Input({ selectedAssignees, selectedLabels, selectedMilestone }) {
           buttonState="NEW_ISSUE"
           comment={content}
           setComment={setContent}
+          previewWrapper="340px"
         />
       </S.InputFormWrapper>
       <S.ButtonWrapper justifyContent="space-between">

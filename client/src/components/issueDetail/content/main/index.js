@@ -45,6 +45,7 @@ const MainContent = ({ issue, comments }) => {
             buttonState="NEW_COMMENT"
             comment={newComment}
             setComment={setNewComment}
+            previewWrapper="149px"
           />
           <S.ButtonWrapper justifyContent="flex-end">
             <S.EditCancelButton onClick={statusHandler}>

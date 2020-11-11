@@ -25,9 +25,8 @@ const Comment = ({ isIssue, issueAuthor, issue, issueID }) => {
   const updateIssueHandler = async () => {
     await updateIssueContent(dispatch, issue.id, comment);
   };
-
-  const isIssueAuthor = isIssue || issueAuthor === issue.author.userId;
-  const isCommentAuthor = issue.author.userId === localStorage.getItem('user_id');
+  const isIssueAuthor = isIssue || issueAuthor === issue.author?.userId;
+  const isCommentAuthor = issue.author?.userId === localStorage.getItem('user_id');
   return (
     <>
       <S.FlexWrapper>
@@ -62,6 +61,7 @@ const Comment = ({ isIssue, issueAuthor, issue, issueID }) => {
               comment={comment}
               setComment={setComment}
               buttonState={isIssue === true ? 'Update Issue' : 'Update comment'}
+              previewWrapper="73%"
             />
             {isIssue === true ? (
               <S.ButtonWrapper justifyContent="flex-end">

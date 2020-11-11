@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import {
   useIssueDetailState,
   useIssueDetailDispatch,
@@ -11,13 +11,12 @@ import S from './style';
 
 const IssueDetail = () => {
   const { id } = useParams();
+  const { issue } = useLocation().state;
   const state = useIssueDetailState();
   const dispatch = useIssueDetailDispatch();
 
-  const { data, loading, error } = state.issue;
-  const issue = data?.issueDetail;
-  const comments = data?.comments;
-
+  const { data: comments, loading, error } = state.issue;
+  // const issue = data?.issueDetail;
   const fetchData = () => {
     getIssue(dispatch, id);
   };
@@ -25,10 +24,10 @@ const IssueDetail = () => {
   useEffect(() => {
     fetchData();
   }, [dispatch]);
-
   if (loading) return <div> 로딩중.. </div>;
   if (error) return <div> 에러가 발생했습니다 </div>;
-  if (!data) return <button onClick={fetchData}> 불러오기 </button>;
+  if (!comments) return <button onClick={fetchData}> 불러오기 </button>;
+
   return (
     <S.IssueDetailWrapper>
       <Header issue={issue} commentsCount={comments.length} />
