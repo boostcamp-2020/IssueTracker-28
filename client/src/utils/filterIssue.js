@@ -1,4 +1,5 @@
 const checkLabelsItem = (filterLabels, issueLabels) => {
+  if (JSON.stringify(filterLabels) === JSON.stringify(issueLabels)) return true;
   if (JSON.stringify(filterLabels) === '[]') return false;
   const issueLabelNames = issueLabels.map((i) => i.name);
   for (let i = 0; i < filterLabels.length; i += 1) {
@@ -10,6 +11,7 @@ const checkLabelsItem = (filterLabels, issueLabels) => {
 };
 
 const checkAssigneesItem = (filterAssignees, issueAssignees) => {
+  if (JSON.stringify(filterAssignees) === JSON.stringify(issueAssignees)) return true;
   if (JSON.stringify(filterAssignees) === '[]') return false;
   const issueAssigneesIds = issueAssignees.map((assignee) => assignee.userId);
   for (let i = 0; i < filterAssignees.length; i += 1) {
