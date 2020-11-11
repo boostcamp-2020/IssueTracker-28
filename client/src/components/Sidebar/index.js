@@ -1,19 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Assignees from '@sidebar/assignees';
 import Labels from '@sidebar/labels';
 import Milestone from '@sidebar/milestone';
 import styled from 'styled-components';
 import * as api from '@api/issue';
+import { useUsersState, useUsersDispatch, getUsers } from '@contexts/UsersContext';
 
-const Sidebar = ({
-  selectedAssignees,
-  setSelectedAssignees,
-  selectedLabels,
-  setSelectedLabels,
-  selectedMilestone,
-  setSelectedMilestone,
-  id = null,
-}) => {
+const Sidebar = ({ id = null }) => {
+  const state = useUsersState();
+  const dispatch = useUsersDispatch();
+
+  const fetchData = () => {
+    getUsers(dispatch);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   const handleAssigneeClick = async (assignee) => {
     const assignees = new Set();
     let flag = false;
@@ -61,12 +65,9 @@ const Sidebar = ({
 
   return (
     <SidebarWrapper>
-      <Assignees selectedAssignees={selectedAssignees} handleAssigneeClick={handleAssigneeClick} />
-      <Labels selectedLabels={selectedLabels} handleLabelClick={handleLabelClick} />
-      <Milestone
-        selectedMilestone={selectedMilestone}
-        handleMilestoneClick={handleMilestoneClick}
-      />
+      <Assignees />
+      {/* <Labels handleLabelClick={handleLabelClick} />
+      <Milestone handleMilestoneClick={handleMilestoneClick} /> */}
     </SidebarWrapper>
   );
 };

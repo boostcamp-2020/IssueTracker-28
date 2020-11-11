@@ -7,11 +7,7 @@ const initialState = {
     data: null,
     error: null,
   },
-  selectedUsers: {
-    loading: false,
-    data: null,
-    error: null,
-  },
+  selectedUsers: new Set(),
 };
 
 const loadingState = {
@@ -49,20 +45,10 @@ function usersReducer(state, action) {
         ...state,
         users: error(action.error),
       };
-    case 'GET_SELECTED_USERS':
+    case 'UPDATE_SELECTED_USERS':
       return {
         ...state,
-        selectedUsers: loadingState,
-      };
-    case 'GET_SELECTED_USERS_SUCCESS':
-      return {
-        ...state,
-        selectedUsers: success(action.data),
-      };
-    case 'GET_SELECTED_USERS_ERROR':
-      return {
-        ...state,
-        selectedUsers: error(action.error),
+        selectedUsers: action.data,
       };
     default:
       throw new Error(`Unhanded action type: ${action.type}`);

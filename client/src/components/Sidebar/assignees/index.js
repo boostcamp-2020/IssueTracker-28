@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useUsersState, useUsersDispatch, getUsers } from '@contexts/UsersContext';
+import { useUsersState, useUsersDispatch } from '@contexts/UsersContext';
 import { GearIcon } from '@primer/octicons-react';
 import { Dropdown } from 'semantic-ui-react';
 import LS from '@sidebar/labels/style';
@@ -14,25 +14,13 @@ const trigger = (
   </LS.LabelHeader>
 );
 
-function Assignees({ selectedAssignees, handleAssigneeClick }) {
+function Assignees() {
   const [isAssignSelf, setIsAssignSelf] = useState(false);
   const state = useUsersState();
   const dispatch = useUsersDispatch();
-  const [selected, setSelected] = useState(selectedAssignees);
 
-  const { data: users, loading, error } = state.users;
-
-  const fetchData = () => {
-    getUsers(dispatch);
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, [dispatch]);
-
-  if (loading) return <div> 로딩중.. </div>;
-  if (error) return <div> 에러가 발생했습니다 </div>;
-  if (!users) return <input type="button" onClick={fetchData} value="불러오기" />;
+  const { data: users } = state.users;
+  const { selectedUsers } = state;
 
   const handleSelfClick = () => {
     handleAssigneeClick({
@@ -40,6 +28,19 @@ function Assignees({ selectedAssignees, handleAssigneeClick }) {
       userId: localStorage.getItem('user_id'),
     });
     setIsAssignSelf(true);
+  };
+
+  useEffect(() => {}, [dispatch]);
+
+  const clickHandler = (item) => {
+    let flag = true;
+    const newAssignees = new Set();
+    for (const assignee of Array.from(selectedUsers)) {
+      if (item.id !== assignee.id) newAssignees.add(assignee);
+      else flag = false;
+    }
+    if (flag) newAssignees.add(item);
+    dispatch({ type: 'UPDATE_SELECTED_USERS', data: newAssignees });
   };
 
   return (
@@ -58,7 +59,7 @@ function Assignees({ selectedAssignees, handleAssigneeClick }) {
                   <Dropdown.Item
                     className="dropdown-item"
                     key={item.id}
-                    onClick={() => handleAssigneeClick(item)}
+                    onClick={() => clickHandler(item)}
                   >
                     <LS.TitleContainer>
                       <LS.LabelPic src={item.profileImg ? item.profileImg : EmptyUserPic} />
@@ -70,17 +71,17 @@ function Assignees({ selectedAssignees, handleAssigneeClick }) {
           </Dropdown.Menu>
         </Dropdown>
       </DS.FilterDropdown>
-      {selected.size === 0 || selected.length === 0 ? (
+      {selectedUsers.size === 0 || selectedUsers.length === 0 ? (
         isAssignSelf ? (
           <S.SelectedItem>{localStorage.getItem('user_id')}</S.SelectedItem>
         ) : (
           <S.AssignSelf onClick={() => handleSelfClick()}>No one-assign yourself</S.AssignSelf>
         )
       ) : (
-        Array.from(selectedAssignees).map((assignee) => (
+        Array.from(selectedUsers).map((user) => (
           <S.SelectedAssigneeWrapper>
-            <LS.LabelPic src={assignee.profileImg ? assignee.profileImg : EmptyUserPic} />
-            <S.SelectedItem>{assignee.userId}</S.SelectedItem>
+            <LS.LabelPic src={user.profileImg ? user.profileImg : EmptyUserPic} />
+            <S.SelectedItem>{user.userId}</S.SelectedItem>
           </S.SelectedAssigneeWrapper>
         ))
       )}
