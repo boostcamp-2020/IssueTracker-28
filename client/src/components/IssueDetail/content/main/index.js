@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import InputForm from '@components/input/form';
-import Comment from './Comment';
+import Comment from './comment';
 import S from './style';
 import BS from '@components/issues/header/Buttons/style';
 import { IssueClosedIcon } from '@primer/octicons-react';
