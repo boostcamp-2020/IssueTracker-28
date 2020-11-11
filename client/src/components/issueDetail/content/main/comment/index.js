@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { SmileyIcon } from '@primer/octicons-react';
 import InputForm from '@components/input/form';
-import S from './style';
-import Button from '@components/issues/header/Buttons/style';
+import Button from '@components/issues/header/buttons/style';
 import Preview from '@components/input/preview';
 import getElapsedTime from '@utils/getElapsedTime';
 import {
@@ -10,6 +9,7 @@ import {
   updateComment,
   updateIssueContent,
 } from '@contexts/IssueDetailContext';
+import S from './style';
 
 const Comment = ({ isIssue, issueAuthor, issue, issueID }) => {
   const [isEditClicked, setIsEditClicked] = useState(false);

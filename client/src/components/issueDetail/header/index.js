@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { StateLabel, Button, TextInput } from '@primer/components';
 import getElapsedTime from '@utils/getElapsedTime';
-import S from './style';
 import { useIssueDetailDispatch, saveIssueTitle } from '@contexts/IssueDetailContext';
+import S from './style';
 
 const Header = ({ issue, commentsCount }) => {
   const [isEditClicked, setIsEditClicked] = useState(false);

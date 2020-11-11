@@ -26,7 +26,7 @@ const App = () => {
                 return <UserPage />;
               }}
             />
-            <Route path="/newIssue" component={NewIssuePage} />
+            <Route path="/issue/new" component={NewIssuePage} />
             <Route path="/label" component={LabelPage} />
             <Route path="/milestone/edit/:id" component={EditMilestonePage} />
             <Route path="/milestone/new" component={NewMilestonePage} />

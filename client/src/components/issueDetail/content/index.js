@@ -16,7 +16,7 @@ const Content = ({ issue, comments }) => {
 
   return (
     <S.ContentWrapper>
-      {/* <MainContent issue={issue} comments={comments} /> */}
+      <MainContent issue={issue} comments={comments} />
       <Sidebar
         selectedAssignees={selectedAssignees}
         setSelectedAssignees={setSelectedAssignees}
