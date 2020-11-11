@@ -40,6 +40,7 @@ const makeData = async (issue) => {
   data.labels = await getLabels(issue);
   data.assignees = await getAssignees(issue);
   data.time = issue.dataValues.updated_at;
+  data.commentAuthors = issue.comments ? issue.comments.map((comment) => comment.dataValues.user_id) : [];
   return data;
 };
 

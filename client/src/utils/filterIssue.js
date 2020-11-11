@@ -21,13 +21,15 @@ const checkAssigneesItem = (filterAssignees, issueAssignees) => {
 };
 
 const filterIssue = (issue, filters) => {
-  const { author, milestone, status, assignees, labels } = filters;
+  const { author, milestone, status, assignees, labels, mentions } = filters;
+
   if (
     (author === '*' || issue.author.userId === author) &&
     (milestone === '*' || issue.milestone === milestone) &&
     (status === '*' || issue.status === status) &&
     (assignees === '*' || checkAssigneesItem([...assignees], issue.assignees)) &&
-    (labels === '*' || checkLabelsItem([...labels], issue.labels))
+    (labels === '*' || checkLabelsItem([...labels], issue.labels)) &&
+    (mentions === '*' || issue.commentAuthors.includes(parseInt(localStorage.getItem('id'))))
   ) {
     return true;
   }
