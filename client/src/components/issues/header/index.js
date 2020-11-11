@@ -14,6 +14,7 @@ function IssueHeader() {
   const { filters } = state;
   const resetHandler = () => {
     dispatch({ type: UPDATE_FILTER, filters: initialFilters });
+    dispatch({ type: 'UPDATE_SEARCH_KEYWORD', data: [] });
     uncheckAllFilters();
   };
 

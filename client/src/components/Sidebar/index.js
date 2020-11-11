@@ -44,7 +44,6 @@ const Sidebar = ({
   };
 
   const handleMilestoneClick = (milestone) => {
-    console.log(milestone, selectedMilestone);
     if (JSON.stringify(selectedMilestone) === JSON.stringify(milestone)) setSelectedMilestone(null);
     else setSelectedMilestone(milestone);
   };

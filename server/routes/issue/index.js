@@ -7,5 +7,8 @@ router.post('/', controller.createIssue);
 router.put('/status', controller.updateIssueStatus);
 router.put('/content', controller.updateIssueContent);
 router.put('/title/:id', controller.updateIssueTitle);
+router.put('/assignee/:id', controller.updateIssueAssignee);
+router.put('/label/:id', controller.updateIssueLabel);
+router.put('/milestone/:id', controller.updateIssueMilestone);
 
 module.exports = router;

@@ -131,13 +131,103 @@ exports.updateIssueTitle = async (req, res, next) => {
     if (result) {
       res.status(200).json({
         message: '이슈 제목 수정 성공',
-        data: {
-          historyId: id,
-        },
       });
     } else {
       res.status(400).json({
         message: '이슈 제목 수정 실패',
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+/*
+    PUT /api/issue/assignee/:id
+    {
+      assignee: 1
+      flag: 0 or 1 -> 0이면 삭제, 1이면 추가
+    }
+    * 이슈 Assignee 수정 API
+*/
+exports.updateIssueAssignee = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { assignee, flag } = req.body;
+
+    const result = flag
+      ? await issueServices.addIssueAssignee(id, assignee)
+      : await issueServices.deleteIssueAssignee(id, assignee);
+
+    if (result) {
+      res.status(200).json({
+        message: '이슈 Assignees 수정 성공',
+      });
+    } else {
+      res.status(400).json({
+        message: '이슈 Assignees 수정 실패',
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+/*
+    PUT /api/issue/label/:id
+    {
+      label: 1
+      flag: 0 or 1 -> 0이면 삭제, 1이면 추가
+    }
+    * 이슈 Label 수정 API
+*/
+exports.updateIssueLabel = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { label, flag } = req.body;
+
+    const result = flag
+      ? await issueServices.addIssueLabel(id, label)
+      : await issueServices.deleteIssueLabel(id, label);
+
+    if (result) {
+      res.status(200).json({
+        message: '이슈 Labels 수정 성공',
+      });
+    } else {
+      res.status(400).json({
+        message: '이슈 Labels 수정 실패',
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+/*
+    PUT /api/issue/milestone/:id
+    {
+      milestone: 1
+      flag: 0 or 1 -> 0이면 삭제, 1이면 추가
+    }
+    * 이슈 Milestone 수정 API
+*/
+exports.updateIssueMilestone = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { milestone, flag } = req.body;
+
+    const result = flag
+      ? await issueServices.addIssueMilestone(id, milestone)
+      : await issueServices.deleteIssueMilestone(id);
+
+    if (result) {
+      res.status(200).json({
+        message: '이슈 Milestone 수정 성공',
+      });
+    } else {
+      res.status(400).json({
+        message: '이슈 Milestone 수정 실패',
       });
     }
   } catch (error) {

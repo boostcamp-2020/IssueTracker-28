@@ -19,6 +19,7 @@ const initialState = {
   },
   filters: initialFilters,
   filterMessage: getFilterMessage(initialFilters),
+  searchKeywords: [],
 };
 
 // 로딩중일 때 바뀔 상태 객체
@@ -48,7 +49,13 @@ function issuesReducer(state, action) {
       return {
         ...state,
         filters: action.filters,
-        filterMessage: getFilterMessage(action.filters),
+        filterMessage: getFilterMessage(action.filters, state.searchKeywords),
+      };
+    case 'UPDATE_SEARCH_KEYWORD':
+      return {
+        ...state,
+        searchKeywords: action.data,
+        filterMessage: getFilterMessage(state.filters, action.data),
       };
     case 'GET_ISSUES':
       return {
@@ -112,12 +119,12 @@ export async function getIssues(dispatch) {
   }
 }
 
-export async function updateIssueStatus(dispatch, issueIDs, status){
+export async function updateIssueStatus(dispatch, issueIDs, status) {
   console.log(status);
-  try{
+  try {
     await api.updateIssueStatus(issueIDs, status);
     getIssues(dispatch);
-  }catch(e){
+  } catch (e) {
     dispatch({ type: 'GET_ISSUES_ERROR', error: e });
   }
 }
