@@ -10,7 +10,6 @@ import getElapsedTime from '@utils/getElapsedTime';
 import S from './style';
 
 function Issue({ issue }) {
-  console.log(issue.id, 'issue.time', issue.time);
   const [checkState, setCheckState] = useState(false);
   const state = useCheckedItemState();
   const dispatch = useCheckedItemDispatch();
