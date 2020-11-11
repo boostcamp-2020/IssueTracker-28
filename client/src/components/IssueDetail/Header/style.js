@@ -65,6 +65,5 @@ export default {
     width: 99%;
     border: 0px;
     margin-top: 20px;
-    border-top: 1px solid #cccccc;
   `,
 };

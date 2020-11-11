@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import Button from '@components/issues/header/buttons/style';
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
 import EmptyUserPic from '@images/empty-user.png';
 import InputForm from './form';
 import S from './style';
+import * as api from '@api/issue';
 
 function Input({ selectedAssignees, selectedLabels, selectedMilestone }) {
   const [title, setTitle] = useState('');
@@ -13,28 +13,16 @@ function Input({ selectedAssignees, selectedLabels, selectedMilestone }) {
   const titleHandler = ({ target }) => {
     setTitle(target.value);
   };
-  const submitHandler = () => {
-    console.log(selectedAssignees, selectedLabels, selectedMilestone);
-    console.log(title, content);
-    const body = {
+  const submitHandler = async () => {
+    const { data } = await api.createIssue(
       title,
       content,
-      milestone: selectedMilestone,
-      assignees: selectedAssignees,
-      labels: selectedLabels,
-      user: localStorage.getItem('user_id'),
-      status: 0,
-    };
-    axios
-      .post(`/api/issue`, body)
-      .then((res) => {
-        if (res.status === 200) {
-          history.push(`/detail/${res.data.data}`);
-        }
-      })
-      .catch((error) => {
-        console.log(error.response);
-      });
+      selectedMilestone,
+      selectedAssignees,
+      selectedLabels,
+      localStorage.getItem('user_id')
+    );
+    history.push(`/detail/${data.data}`);
   };
   return (
     <S.InputWrapper>
@@ -52,7 +40,9 @@ function Input({ selectedAssignees, selectedLabels, selectedMilestone }) {
       </S.InputFormWrapper>
       <S.ButtonWrapper justifyContent="space-between">
         <S.CancelButton onClick={() => history.push('/')}>Cancel</S.CancelButton>
-        <Button.NewIssueButton onClick={submitHandler}>Submit new issue</Button.NewIssueButton>
+        <Button.IssueDetailButton isValid={title && true} onClick={submitHandler}>
+          Submit new issue
+        </Button.IssueDetailButton>
       </S.ButtonWrapper>
     </S.InputWrapper>
   );

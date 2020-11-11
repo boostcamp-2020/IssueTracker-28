@@ -120,7 +120,6 @@ export async function getIssues(dispatch) {
 }
 
 export async function updateIssueStatus(dispatch, issueIDs, status) {
-  console.log(status);
   try {
     await api.updateIssueStatus(issueIDs, status);
     getIssues(dispatch);
