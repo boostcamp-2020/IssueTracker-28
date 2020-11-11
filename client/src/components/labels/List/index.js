@@ -1,13 +1,13 @@
-import React, {useEffect} from 'react';
-import Label from './label';
+import React, { useState, useEffect } from 'react';
 import {
   useLabelState,
   useLabelDispatch,
   getLabels,
 } from '@contexts/LabelContext';
+import Label from './label';
 import S from './style';
 
-function List() {
+function List({ isUpdated, setIsUpdated }) {
   const state = useLabelState();
   const dispatch = useLabelDispatch();
   const { data, loading, error } = state.labels;
@@ -18,7 +18,8 @@ function List() {
 
   useEffect(() => {
     fetchData();
-  }, [dispatch]);
+    setIsUpdated(false);
+  }, [dispatch, isUpdated]);
 
   if (loading) return <div> 로딩중.. </div>;
   if (error) return <div> 에러가 발생했습니다 </div>;
@@ -32,8 +33,8 @@ function List() {
         </S.CountWrapper>
       </S.ListHeader>
       <S.List>
-        {data.map((label)=>
-          <Label key={label.id} label={label}/>
+        {data.map((label) =>
+          <Label key={label.id} label={label} setIsUpdated={setIsUpdated} />
         )}
       </S.List>
     </S.ListWrapper>

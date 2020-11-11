@@ -23,7 +23,7 @@ function Labels({ selectedLabels, handleLabelClick }) {
 
   useEffect(() => {
     fetchData();
-  }, [dispatch]);
+  }, [dispatch, state]);
 
   if (loading) return <div> 로딩중.. </div>;
   if (error) return <div> 에러가 발생했습니다 </div>;
@@ -58,12 +58,12 @@ function Labels({ selectedLabels, handleLabelClick }) {
       {selectedLabels.size === 0 ? (
         <div>None yet</div>
       ) : (
-        Array.from(selectedLabels).map((label, index) => (
-          <S.SelectedItem key={index} background={label.color}>
-            {label.name}
-          </S.SelectedItem>
-        ))
-      )}
+          Array.from(selectedLabels).map((label, index) => (
+            <S.SelectedItem key={index} background={label.color}>
+              {label.name}
+            </S.SelectedItem>
+          ))
+        )}
     </S.LabelContainer>
   );
 }
