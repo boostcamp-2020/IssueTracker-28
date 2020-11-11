@@ -4,8 +4,8 @@ import { GearIcon } from '@primer/octicons-react';
 import { Dropdown } from 'semantic-ui-react';
 import LS from '@sidebar/labels/style';
 import DS from '@components/issues/issueList/listHeader/style';
+import EmptyUserPic from '@images/empty-user.png';
 import S from './style';
-import EmptyUserPic from '@images/empty-user.png'
 
 const trigger = (
   <LS.LabelHeader>
@@ -41,10 +41,6 @@ function Assignees({ selectedAssignees, handleAssigneeClick }) {
     setIsAssignSelf(true);
   };
 
-  const clickHandler = (e, item) => {
-    handleAssigneeClick(item);
-  };
-
   return (
     <LS.LabelContainer>
       <DS.FilterDropdown className="label-dropdown">
@@ -61,7 +57,7 @@ function Assignees({ selectedAssignees, handleAssigneeClick }) {
                   <Dropdown.Item
                     className="dropdown-item"
                     key={item.id}
-                    onClick={(e) => clickHandler(e, item)}
+                    onClick={() => handleAssigneeClick(item)}
                   >
                     <LS.TitleContainer>
                       <LS.LabelPic src={item.profileImg ? item.profileImg : EmptyUserPic} />
@@ -77,8 +73,8 @@ function Assignees({ selectedAssignees, handleAssigneeClick }) {
         isAssignSelf ? (
           <S.SelectedItem>{localStorage.getItem('user_id')}</S.SelectedItem>
         ) : (
-            <S.AssignSelf onClick={() => handleSelfClick()}>No one-assign yourself</S.AssignSelf>
-          )
+          <S.AssignSelf onClick={() => handleSelfClick()}>No one-assign yourself</S.AssignSelf>
+        )
       ) : (
           Array.from(selectedAssignees).map((assignee) => (
             <S.SelectedAssigneeWrapper>

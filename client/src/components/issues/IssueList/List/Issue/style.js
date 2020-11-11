@@ -26,7 +26,7 @@ export default {
       background: #f7f8fa;
     }
     .title {
-      margin-right : 2px;
+      margin-right: 2px;
       cursor: pointer;
     }
   `,

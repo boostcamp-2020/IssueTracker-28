@@ -1,49 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { SmileyIcon } from '@primer/octicons-react';
 import InputForm from '@components/input/form';
-import EmptyUserPic from '@images/empty-user.png';
-import Button from '@components/issues/header/buttons/style';
-import axios from 'axios';
 import S from './style';
+import Button from '@components/issues/header/Buttons/style';
+import Preview from '@components/input/preview';
+import getElapsedTime from '@utils/getElapsedTime';
+import {
+  useIssueDetailDispatch,
+  updateComment,
+  updateIssueContent,
+} from '@contexts/IssueDetailContext';
 
-const Comment = ({ isIssue, issueAuthor, issue }) => {
+const Comment = ({ isIssue, issueAuthor, issue, issueID }) => {
   const [isEditClicked, setIsEditClicked] = useState(false);
   const [comment, setComment] = useState(issue.content);
-  const re = /\[.*\]\^\(.*\)/i;
+  const dispatch = useIssueDetailDispatch();
   const editHandler = () => {
     setIsEditClicked(!isEditClicked);
   };
-  const updateCommentHandler = () => {
-    const body = {
-      content: comment,
-      id: issue.id,
-    };
-    axios
-      .put(`/api/comment`, body)
-      .then((res) => {
-        console.log('res: ', res);
-        // Todo : 새로고침 구현
-        // history.push(`/detail/${issue.id}`);
-      })
-      .catch((error) => {
-        console.log(error.response);
-      });
+  const updateCommentHandler = async () => {
+    await updateComment(dispatch, issue.id, issueID, comment);
   };
-  const updateIssueHandler = () => {
-    const body = {
-      content: comment,
-      ids: issue.id,
-    };
-    axios
-      .put(`/api/issue/content`, body)
-      .then((res) => {
-        console.log('res: ', res);
-        // Todo : 새로고침 구현
-        // history.push(`/detail/${issue.id}`);
-      })
-      .catch((error) => {
-        console.log(error.response);
-      });
+  const updateIssueHandler = async () => {
+    await updateIssueContent(dispatch, issue.id, comment);
   };
 
   const isIssueAuthor = isIssue || issueAuthor === issue.author;
@@ -56,13 +35,12 @@ const Comment = ({ isIssue, issueAuthor, issue }) => {
 
         {isEditClicked !== true ? (
           <S.CommentsWrapper>
-            <S.CommentAuthorPic src={EmptyUserPic} />
             <S.TitleWrapper
               backgroundColor={isIssueAuthor ? 'rgb(241,248,255)' : 'rgb(250,251,252)'}
             >
               <S.AuthorInfo>
                 <S.TitleAuthor>{issue.author}</S.TitleAuthor>
-                <S.TitleTime>commented {issue.createdAt}</S.TitleTime>
+                <S.TitleTime>commented {getElapsedTime(issue.time)} ago</S.TitleTime>
               </S.AuthorInfo>
               <S.WriterInfo>
                 {isCommentAuthor && (
@@ -73,20 +51,7 @@ const Comment = ({ isIssue, issueAuthor, issue }) => {
               </S.WriterInfo>
             </S.TitleWrapper>
             <S.CommentsContent>
-              {issue.content.split('!').map((cur, i) => {
-                console.log('cur: ', cur);
-                console.log('cur: ', re.test(cur));
-                if (re.test(cur)) {
-                  let [imgName, imgPath] = cur.split('^');
-                  imgName = imgName.replace(/\[|\]|\s*/gi, '');
-                  imgPath = imgPath.replace(/\(|\)|\s*/gi, '');
-                  return <S.ImgLink href={imgPath}>{imgName}</S.ImgLink>;
-                }
-                if (cur === '') {
-                  return ``;
-                }
-                return <span>{cur}</span>;
-              })}
+              <Preview comment={issue.content} />
             </S.CommentsContent>
           </S.CommentsWrapper>
         ) : (
@@ -101,16 +66,16 @@ const Comment = ({ isIssue, issueAuthor, issue }) => {
             {isIssue === true ? (
               <S.ButtonWrapper justifyContent="flex-end">
                 <S.EditCancelButton onClick={editHandler}>Cancel</S.EditCancelButton>
-                <Button.NewIssueButton onClick={updateIssueHandler}>
+                <Button.IssueDetailButton isValid={comment && true} onClick={updateIssueHandler}>
                   Update Issue
-                </Button.NewIssueButton>
+                </Button.IssueDetailButton>
               </S.ButtonWrapper>
             ) : (
               <S.ButtonWrapper justifyContent="flex-end">
                 <S.EditCancelButton onClick={editHandler}>Cancel</S.EditCancelButton>
-                <Button.NewIssueButton onClick={updateCommentHandler}>
+                <Button.IssueDetailButton isValid={comment && true} onClick={updateCommentHandler}>
                   Update Comment
-                </Button.NewIssueButton>
+                </Button.IssueDetailButton>
               </S.ButtonWrapper>
             )}
           </S.InputWrappers>

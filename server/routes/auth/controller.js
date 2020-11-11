@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 
 const githubLogin = async (req, res, next) => {
-  console.log('****** ', req.user)
   try {
     const { id, userId } = req.user;
     const token = jwt.sign({ id, userId }, process.env.JWT_SECRET, {

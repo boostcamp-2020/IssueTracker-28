@@ -10,7 +10,7 @@ function List() {
   const state = useIssuesState();
   const dispatch = useIssuesDispatch();
   const { data: issues, loading, error } = state.issues;
-  const { filters } = state;
+  const { filters, searchKeywords } = state;
 
   const fetchData = () => {
     getIssues(dispatch);
@@ -28,10 +28,21 @@ function List() {
     return filterIssue(issue, filters);
   });
 
+  const searchIssues = filteredIssues.filter((issue) => {
+    let isMatch = true;
+    for (const keyword of searchKeywords) {
+      if (!issue.title.includes(keyword) && !issue.content.includes(keyword)) {
+        isMatch = false;
+        break;
+      }
+    }
+    if (isMatch) return true;
+  });
+
   return (
     <div className="list-wrapper">
-      {filteredIssues.length > 0 ? (
-        filteredIssues.map((issue) => <Issue key={issue.id} issue={issue} />)
+      {searchIssues.length > 0 ? (
+        searchIssues.map((issue) => <Issue key={issue.id} issue={issue} />)
       ) : (
           <S.NoResultsBox>
             <IssueOpenedIcon size={35} className="issue-opened-icon" />

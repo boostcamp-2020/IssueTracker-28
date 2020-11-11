@@ -7,9 +7,6 @@ const getElapsedTime = (time) => {
   const currentTime = new Date();
   const elapsedSecond = (currentTime.getTime() - (createdTime.getTime() + (9 * 60 * 60 * 1000))) / 1000;
 
-  console.log(time);
-
-
   let result;
   if (elapsedSecond < 60) {
     result = `${parseInt(elapsedSecond)} seconds`
@@ -22,6 +19,5 @@ const getElapsedTime = (time) => {
   }
   return result;
 };
-
 
 export default getElapsedTime;

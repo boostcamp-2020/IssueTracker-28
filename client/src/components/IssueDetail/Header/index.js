@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { StateLabel, Button, TextInput } from '@primer/components';
-import * as api from '@api/issue';
 import getElapsedTime from '@utils/getElapsedTime';
 import S from './style';
+import { useIssueDetailDispatch, saveIssueTitle } from '@contexts/IssueDetailContext';
 
 const Header = ({ issue, commentsCount }) => {
   const [isEditClicked, setIsEditClicked] = useState(false);
   const [title, setTitle] = useState('');
+
+  const dispatch = useIssueDetailDispatch();
 
   useEffect(() => {
     setTitle(issue.title);
   }, [issue]);
 
   const saveHandler = async () => {
-    await api.updateIssueTitle(issue.id, title);
+    await saveIssueTitle(dispatch, issue.id, title);
     setIsEditClicked(false);
   };
 
@@ -26,7 +28,6 @@ const Header = ({ issue, commentsCount }) => {
       Edit
     </Button>
   );
-
   return (
     <S.HeaderWrapper>
       {isEditClicked ? (
@@ -63,13 +64,14 @@ const Header = ({ issue, commentsCount }) => {
             Open
           </StateLabel>
         ) : (
-            <StateLabel status="issueClosed" variant="small">
-              Closed
-            </StateLabel>
-          )}
+          <StateLabel status="issueClosed" variant="small">
+            Closed
+          </StateLabel>
+        )}
         <S.Content>
           <span className="detail-author">{issue.author}</span>&nbsp;
-          {issue.status} this issue {issue.time ? getElapsedTime(issue.time) : null} ago · {commentsCount} comment
+          {issue.status} this issue {issue.time ? getElapsedTime(issue.time) : null} ago ·{' '}
+          {commentsCount} comment
         </S.Content>
       </S.ContentWrapper>
       <S.HrLine />

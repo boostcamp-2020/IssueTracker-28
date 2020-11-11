@@ -20,8 +20,8 @@ export default {
     justify-content: space-between;
     padding: 4px 0 12px 0;
     font-weight: 700;
-    &:hover{
-      color : #0266D6;
+    &:hover {
+      color: #0266d6;
     }
     .gear-icon {
       cursor: pointer;
@@ -30,7 +30,7 @@ export default {
   TitleContainer: styled.div`
     display: flex;
     color: #586069;
-    align-items : center;
+    align-items: center;
   `,
   BoxColor: styled.div`
     width: 16px;
@@ -43,8 +43,14 @@ export default {
   `,
   LabelDesc: styled.div`
     color: #586069;
-    margin-top : 0.5rem;
-    font-size : 13px;
+    margin-top: 0.5rem;
+    font-size: 13px;
+  `,
+  LabelPic: styled.img`
+    width: 23px;
+    height: 23px;
+    border-radius: 4px;
+    margin-right: 8px;
   `,
   LabelPic: styled.img`
     width : 23px;

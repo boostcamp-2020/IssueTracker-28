@@ -27,14 +27,20 @@ exports.createComment = async (req, res, next) => {
 */
 exports.updateComment = async (req, res, next) => {
   try {
-    const { content, id } = req.body;
-    const { id: issueId } = await commentServices.updateComment({
+    const { content } = req.body;
+    const { id } = req.params;
+    const result = await commentServices.updateComment({
       content,
       id,
     });
-    res.status(200).json({
-      message: '댓글 수정 성공',
-      data: issueId,
+    if (result) {
+      return res.status(200).json({
+        message: '댓글 수정 성공',
+        data: result.issueId,
+      });
+    }
+    return res.status(400).json({
+      message: '댓글 수정 실패',
     });
   } catch (error) {
     next(error);

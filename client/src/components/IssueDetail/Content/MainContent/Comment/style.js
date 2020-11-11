@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export default {
-    FlexWrapper: styled.div`
+  FlexWrapper: styled.div`
     display: flex;
   `,
   Triangle: styled.div`
@@ -13,20 +13,12 @@ export default {
     border-right: 10px solid ${(props) => props.backgroundColor};
   `,
   CommentsWrapper: styled.div`
-    width: 70%;
+    width: 80%;
     height: 150px;
     border: 1px solid rgb(225, 228, 232);
     border-radius: 6px;
-    position : relative;
   `,
-    CommentAuthorPic: styled.img`
-    width : 45px;
-    height : 45px;
-    position : absolute;
-    left : -65px;
-    border-radius : 6px;
-    `,
-    TitleWrapper: styled.div`
+  TitleWrapper: styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -37,38 +29,39 @@ export default {
     border-top-right-radius: 6px;
     background-color: ${(props) => props.backgroundColor};
   `,
-    AuthorInfo: styled.div`
+  AuthorInfo: styled.div`
     display: flex;
   `,
-    WriterInfo: styled.div`
+  WriterInfo: styled.div`
     display: flex;
     align-items: center;
   `,
-    TitleAuthor: styled.div`
+  TitleAuthor: styled.div`
     margin-right: 5px;
     font-weight: bold;
   `,
-    TitleTime: styled.div``,
-    WriterAuthor: styled.div`
+  TitleTime: styled.div``,
+  WriterAuthor: styled.div`
     margin-right: 10px;
     border: 1px solid rgb(225, 228, 232);
     padding: 3px 8px;
     font-weight: bold;
   `,
-    EditButton: styled.div`
+  EditButton: styled.div`
     margin-left: 10px;
     cursor: pointer;
   `,
-    CommentsContent: styled.div`
+  CommentsContent: styled.div`
     height: 80px;
     padding: 10px;
   `,
-    InputWrappers: styled.div`
-    width: 70%;
+  InputWrappers: styled.div`
+    width: 80%;
     height: ${(props) => props.wrapperHeight};
     border: 1px solid rgb(225, 228, 232);
     border-radius: 6px;
   `,
+
   ButtonWrapper: styled.div`
     display: flex;
     justify-content: ${(props) => props.justifyContent};
@@ -95,9 +88,5 @@ export default {
     margin-right: 20px;
     border: 1px solid black;
     border-radius: 1.5em;
-  `,
-  ImgLink: styled.a`
-    padding-right: 5px;
-    font-weight: bold;
   `,
 };

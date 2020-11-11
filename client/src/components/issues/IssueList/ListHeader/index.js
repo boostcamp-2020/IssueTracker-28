@@ -12,9 +12,9 @@ import {
   getMilestones,
 } from '@contexts/MilestonesContext';
 import LS from '@sidebar/labels/style';
+import EmptyUserPic from '@images/empty-user.png';
 import S from './style';
 import handler from './handler';
-import EmptyUserPic from '@images/empty-user.png'
 
 const NO_FILTER_ITEM = ['Unlabeled', 'Issues with no milestone', 'Assigend to nobody'];
 
