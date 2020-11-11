@@ -9,7 +9,7 @@ const Content = ({ issue, comments }) => {
   const [selectedMilestone, setSelectedMilestone] = useState(null);
 
   useEffect(() => {
-    setSelectedAssignees(issue.assignees); // 형태가 달라지면 다시 적용
+    setSelectedAssignees(issue.assignees);
     setSelectedLabels(issue.labels);
     setSelectedMilestone(issue.milestone);
   }, []);
@@ -24,6 +24,7 @@ const Content = ({ issue, comments }) => {
         setSelectedLabels={setSelectedLabels}
         selectedMilestone={selectedMilestone}
         setSelectedMilestone={setSelectedMilestone}
+        id={issue.id}
       />
     </S.ContentWrapper>
   );

@@ -146,7 +146,7 @@ exports.updateIssueTitle = async (req, res, next) => {
     PUT /api/issue/assignee/:id
     {
       assignee: 1
-      flag: 0 or 1 -> 0이면 삭제, 1이면 추가
+      flag: true / false
     }
     * 이슈 Assignee 수정 API
 */
@@ -156,8 +156,8 @@ exports.updateIssueAssignee = async (req, res, next) => {
     const { assignee, flag } = req.body;
 
     const result = flag
-      ? await issueServices.addIssueAssignee(id, assignee)
-      : await issueServices.deleteIssueAssignee(id, assignee);
+      ? await issueServices.deleteIssueAssignee(id, assignee)
+      : await issueServices.addIssueAssignee(id, assignee);
 
     if (result) {
       res.status(200).json({
@@ -177,7 +177,7 @@ exports.updateIssueAssignee = async (req, res, next) => {
     PUT /api/issue/label/:id
     {
       label: 1
-      flag: 0 or 1 -> 0이면 삭제, 1이면 추가
+      flag: true / false
     }
     * 이슈 Label 수정 API
 */
@@ -187,8 +187,8 @@ exports.updateIssueLabel = async (req, res, next) => {
     const { label, flag } = req.body;
 
     const result = flag
-      ? await issueServices.addIssueLabel(id, label)
-      : await issueServices.deleteIssueLabel(id, label);
+      ? await issueServices.deleteIssueLabel(id, label)
+      : await issueServices.addIssueLabel(id, label);
 
     if (result) {
       res.status(200).json({
@@ -208,7 +208,7 @@ exports.updateIssueLabel = async (req, res, next) => {
     PUT /api/issue/milestone/:id
     {
       milestone: 1
-      flag: 0 or 1 -> 0이면 삭제, 1이면 추가
+      flag: true / false
     }
     * 이슈 Milestone 수정 API
 */
@@ -218,8 +218,8 @@ exports.updateIssueMilestone = async (req, res, next) => {
     const { milestone, flag } = req.body;
 
     const result = flag
-      ? await issueServices.addIssueMilestone(id, milestone)
-      : await issueServices.deleteIssueMilestone(id);
+      ? await issueServices.deleteIssueMilestone(id)
+      : await issueServices.addIssueMilestone(id, milestone);
 
     if (result) {
       res.status(200).json({

@@ -18,6 +18,7 @@ function Assignees({ selectedAssignees, handleAssigneeClick }) {
   const [isAssignSelf, setIsAssignSelf] = useState(false);
   const state = useUsersState();
   const dispatch = useUsersDispatch();
+  const [selected, setSelected] = useState(selectedAssignees);
 
   const { data: users, loading, error } = state.users;
 
@@ -69,20 +70,20 @@ function Assignees({ selectedAssignees, handleAssigneeClick }) {
           </Dropdown.Menu>
         </Dropdown>
       </DS.FilterDropdown>
-      {selectedAssignees.size === 0 ? (
+      {selected.length === 0 ? (
         isAssignSelf ? (
           <S.SelectedItem>{localStorage.getItem('user_id')}</S.SelectedItem>
         ) : (
           <S.AssignSelf onClick={() => handleSelfClick()}>No one-assign yourself</S.AssignSelf>
         )
       ) : (
-          Array.from(selectedAssignees).map((assignee) => (
-            <S.SelectedAssigneeWrapper>
-              <LS.LabelPic src={assignee.profileImg ? assignee.profileImg : EmptyUserPic} />
-              <S.SelectedItem>{assignee.userId}</S.SelectedItem>
-            </S.SelectedAssigneeWrapper>
-          ))
-        )}
+        Array.from(selectedAssignees).map((assignee) => (
+          <S.SelectedAssigneeWrapper>
+            <LS.LabelPic src={assignee.profileImg ? assignee.profileImg : EmptyUserPic} />
+            <S.SelectedItem>{assignee.userId}</S.SelectedItem>
+          </S.SelectedAssigneeWrapper>
+        ))
+      )}
     </LS.LabelContainer>
   );
 }

@@ -3,6 +3,7 @@ import Assignees from '@sidebar/assignees';
 import Labels from '@sidebar/labels';
 import Milestone from '@sidebar/milestone';
 import styled from 'styled-components';
+import * as api from '@api/issue';
 
 const Sidebar = ({
   selectedAssignees,
@@ -11,8 +12,9 @@ const Sidebar = ({
   setSelectedLabels,
   selectedMilestone,
   setSelectedMilestone,
+  id = null,
 }) => {
-  const handleAssigneeClick = (assignee) => {
+  const handleAssigneeClick = async (assignee) => {
     const assignees = new Set();
     let flag = false;
     for (const user of Array.from(selectedAssignees)) {
@@ -26,9 +28,10 @@ const Sidebar = ({
       newAssignees.add(assignee);
       setSelectedAssignees(newAssignees);
     }
+    await api.updateIssueAssignee(id, assignee.id, flag);
   };
 
-  const handleLabelClick = (label) => {
+  const handleLabelClick = async (label) => {
     const labels = new Set();
     let flag = false;
     for (const selectedLabel of Array.from(selectedLabels)) {
@@ -41,11 +44,17 @@ const Sidebar = ({
       newLabels.add(label);
       setSelectedLabels(newLabels);
     }
+    await api.updateIssueLabel(id, label.id, flag);
   };
 
-  const handleMilestoneClick = (milestone) => {
+  const handleMilestoneClick = async (milestone) => {
+    let flag = true;
     if (JSON.stringify(selectedMilestone) === JSON.stringify(milestone)) setSelectedMilestone(null);
-    else setSelectedMilestone(milestone);
+    else {
+      flag = false;
+      setSelectedMilestone(milestone);
+    }
+    await api.updateIssueMilestone(id, milestone.id, flag);
   };
 
   const SidebarWrapper = styled.div``;
