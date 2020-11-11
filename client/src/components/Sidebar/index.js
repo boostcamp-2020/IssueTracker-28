@@ -28,7 +28,7 @@ const Sidebar = ({
       newAssignees.add(assignee);
       setSelectedAssignees(newAssignees);
     }
-    await api.updateIssueAssignee(id, assignee.id, flag);
+    if (id) await api.updateIssueAssignee(id, assignee.id, flag);
   };
 
   const handleLabelClick = async (label) => {
@@ -44,7 +44,7 @@ const Sidebar = ({
       newLabels.add(label);
       setSelectedLabels(newLabels);
     }
-    await api.updateIssueLabel(id, label.id, flag);
+    if (id) await api.updateIssueLabel(id, label.id, flag);
   };
 
   const handleMilestoneClick = async (milestone) => {
@@ -54,7 +54,7 @@ const Sidebar = ({
       flag = false;
       setSelectedMilestone(milestone);
     }
-    await api.updateIssueMilestone(id, milestone.id, flag);
+    if (id) await api.updateIssueMilestone(id, milestone.id, flag);
   };
 
   const SidebarWrapper = styled.div``;

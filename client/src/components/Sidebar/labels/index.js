@@ -55,7 +55,7 @@ function Labels({ selectedLabels, handleLabelClick }) {
           </Dropdown.Menu>
         </Dropdown>
       </DS.FilterDropdown>
-      {selectedLabels.length === 0 ? (
+      {selectedLabels.length === 0 || selectedLabels.size === 0 ? (
         <div>None yet</div>
       ) : (
         Array.from(selectedLabels).map((label, index) => (

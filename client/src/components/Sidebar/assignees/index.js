@@ -70,7 +70,7 @@ function Assignees({ selectedAssignees, handleAssigneeClick }) {
           </Dropdown.Menu>
         </Dropdown>
       </DS.FilterDropdown>
-      {selected.length === 0 ? (
+      {selected.size === 0 || selected.length === 0 ? (
         isAssignSelf ? (
           <S.SelectedItem>{localStorage.getItem('user_id')}</S.SelectedItem>
         ) : (
