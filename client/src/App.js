@@ -7,6 +7,7 @@ import UserPage from '@pages/UserPage';
 import LabelPage from '@pages/LabelPage';
 import MilestonePage from '@pages/MilestonePage';
 import NewMilestonePage from '@pages/NewMilestonePage';
+import EditMilestonePage from '@pages/EditMilestonePage';
 import IssueDetailPage from '@pages/IssueDetailPage';
 import { LabelProvider } from '@contexts/LabelContext';
 import { MilestonesProvider } from '@contexts/MilestonesContext';
@@ -27,8 +28,9 @@ const App = () => {
             />
             <Route path="/newIssue" component={NewIssuePage} />
             <Route path="/label" component={LabelPage} />
+            <Route path="/milestone/edit/:id" component={EditMilestonePage} />
+            <Route path="/milestone/new" component={NewMilestonePage} />
             <Route path="/milestone" component={MilestonePage} />
-            <Route path="/newMilestone" component={NewMilestonePage} />
             <Route path="/detail/:id" component={IssueDetailPage} />
             <Route
               render={({ location }) => (

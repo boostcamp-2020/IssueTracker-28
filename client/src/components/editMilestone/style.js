@@ -1,23 +1,24 @@
 import styled from 'styled-components';
 
 export default {
-  NewMilestoneWrapper: styled.div`
+  EditMilestoneWrapper: styled.div`
     margin: 24px auto;
     max-width: 950px;
   `,
-  Header: styled.header`
+  Header: styled.div`
     border-bottom: 1px solid #eaecef;
   `,
-  HeaderTitle: styled.h2`
-    margin-bottom: 8px;
-  `,
-  HeaderContent: styled.div`
-    margin-bottom: 16px;
+  LabelMilestone: styled.div`
+    display: flex;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    width: fit-content;
+    margin-bottom: 15px;
   `,
   ButtonWrapper: styled.div`
     display: flex;
-    margin-top: 15px;
     float: right;
+    margin-top: 15px;
     button {
       height : 35px;
       padding : 0 18px;

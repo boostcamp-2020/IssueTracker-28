@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { useMilestonesDispatch } from '@contexts/MilestonesContext';
-import BS from '@components/issues/header/buttons/style';
+import { useHistory } from 'react-router-dom';
+import { useMilestonesDispatch, createMilestone } from '@contexts/MilestonesContext';
 import Input from './input';
 import S from './style';
 
 function NewMilestone() {
+  const history = useHistory();
   const dispatch = useMilestonesDispatch();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -18,7 +19,18 @@ function NewMilestone() {
   };
 
   const handleClick = () => {
-    /** @todo POST milestone */
+    const inputDate = document.querySelector('.input-date').value;
+
+    if (title.length === 0) return;
+
+    createMilestone(dispatch, {
+      status: 0,
+      title,
+      due_date: inputDate,
+      desc: description
+    });
+
+    history.push('/milestone');
   };
 
   return (
@@ -32,7 +44,11 @@ function NewMilestone() {
       </S.Header>
       <Input handleTitle={handleTitle} handleDescription={handleDescription} />
       <S.ButtonWrapper>
-        <BS.NewIssueButton onClick={handleClick}>Create milestone</BS.NewIssueButton>
+        <S.CancelButton onClick={() => history.push('/milestone')}>Cancel</S.CancelButton>
+        <S.SubmitButton
+          isValid={title.length > 0 ? true : false}
+          onClick={handleClick}
+        >Create milestone</S.SubmitButton>
       </S.ButtonWrapper>
     </S.NewMilestoneWrapper>
   );
