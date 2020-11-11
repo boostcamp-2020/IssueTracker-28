@@ -28,7 +28,7 @@ const MainContent = ({ issue, comments }) => {
         return (
           <Comment
             key={index}
-            issueAuthor={issue.issueAuthor}
+            issueAuthor={issue.author.userId}
             isIssue={false}
             issue={comment}
             issueID={issue.id}

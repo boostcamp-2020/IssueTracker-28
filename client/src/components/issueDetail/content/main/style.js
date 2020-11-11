@@ -32,8 +32,8 @@ export default {
     width: 50px;
     height: 50px;
     margin-right: 20px;
-    border: 1px solid black;
-    border-radius: 1.5em;
+    border: 1px solid rgb(241, 248, 255);
+    border-radius: 50%;
   `,
   FlexWrapper: styled.div`
     display: flex;

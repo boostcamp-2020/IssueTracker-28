@@ -4,6 +4,7 @@ import InputForm from '@components/input/form';
 import Button from '@components/issues/header/buttons/style';
 import Preview from '@components/input/preview';
 import getElapsedTime from '@utils/getElapsedTime';
+import EmptyUserPic from '@images/empty-user.png';
 import {
   useIssueDetailDispatch,
   updateComment,
@@ -25,21 +26,20 @@ const Comment = ({ isIssue, issueAuthor, issue, issueID }) => {
     await updateIssueContent(dispatch, issue.id, comment);
   };
 
-  const isIssueAuthor = isIssue || issueAuthor === issue.author;
-  const isCommentAuthor = issue.author === localStorage.getItem('user_id');
+  const isIssueAuthor = isIssue || issueAuthor === issue.author.userId;
+  const isCommentAuthor = issue.author.userId === localStorage.getItem('user_id');
   return (
     <>
       <S.FlexWrapper>
-        <S.Profile src="https://issue.kr.object.ncloudstorage.com/1604932511555.png" />
+        <S.Profile src={issue.author.profileImg ? issue.author.profileImg : EmptyUserPic} />
         <S.Triangle backgroundColor={isIssueAuthor ? 'rgb(241,248,255)' : 'rgb(250,251,252)'} />
-
         {isEditClicked !== true ? (
           <S.CommentsWrapper>
             <S.TitleWrapper
               backgroundColor={isIssueAuthor ? 'rgb(241,248,255)' : 'rgb(250,251,252)'}
             >
               <S.AuthorInfo>
-                <S.TitleAuthor>{issue.author}</S.TitleAuthor>
+                <S.TitleAuthor>{issue.author.userId}</S.TitleAuthor>
                 <S.TitleTime>commented {getElapsedTime(issue.time)} ago</S.TitleTime>
               </S.AuthorInfo>
               <S.WriterInfo>

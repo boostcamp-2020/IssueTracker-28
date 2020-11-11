@@ -9,7 +9,6 @@ const Header = ({ issue, commentsCount }) => {
   const [title, setTitle] = useState('');
 
   const dispatch = useIssueDetailDispatch();
-  console.log('파일 디렉토리 수정');
   useEffect(() => {
     setTitle(issue.title);
   }, [issue]);
@@ -69,7 +68,7 @@ const Header = ({ issue, commentsCount }) => {
           </StateLabel>
         )}
         <S.Content>
-          <span className="detail-author">{issue.author}</span>&nbsp;
+          <span className="detail-author">{issue.author.userId}</span>&nbsp;
           {issue.status} this issue {issue.time ? getElapsedTime(issue.time) : null} ago ·{' '}
           {commentsCount} comment
         </S.Content>
