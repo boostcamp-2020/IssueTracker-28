@@ -23,3 +23,11 @@ exports.getUsers = async () => {
   const users = await db.selectUsers();
   return users;
 };
+
+/*
+ * 유저 조회
+ */
+exports.getUser = async () => {
+  const user = await db.selectUser();
+  return user;
+};

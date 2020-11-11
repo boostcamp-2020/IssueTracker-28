@@ -113,6 +113,9 @@ export default {
     color: rgb(215, 58, 73);
     margin-right: 10px;
     cursor: pointer;
+    &:hover {
+      filter: brightness(95%);
+    }
   `,
   PreviewWrapper: styled.div`
     width: 97.5%;

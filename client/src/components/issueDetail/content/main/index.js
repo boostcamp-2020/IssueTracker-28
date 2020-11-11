@@ -7,6 +7,7 @@ import {
   updateIssueStatus,
   createComment,
 } from '@contexts/IssueDetailContext';
+import EmptyUserPic from '@images/empty-user.png';
 import S from './style';
 import Comment from './comment';
 
@@ -21,6 +22,11 @@ const MainContent = ({ issue, comments }) => {
   const createHandler = async () => {
     await createComment(dispatch, issue.id, newComment);
   };
+  // const getUserPic = async () => {
+  //   const user = await api.getUser();
+  //   return user.profileImg;
+  // }
+
   return (
     <S.MainContentWrapper>
       <Comment isIssue issue={issue} />
@@ -36,7 +42,7 @@ const MainContent = ({ issue, comments }) => {
         );
       })}
       <S.FlexWrapper>
-        <S.Profile src="https://issue.kr.object.ncloudstorage.com/1604932511555.png" />
+        <S.Profile src={EmptyUserPic} />
         <S.Triangle backgroundColor="rgb(250,251,252)" />
         <S.InputFormWrapper>
           <InputForm
@@ -51,11 +57,11 @@ const MainContent = ({ issue, comments }) => {
               {issue.status === 'opened' ? (
                 <>
                   <IssueClosedIcon size={16} />
-                  <span>Closed Issue</span>
+                  <span style={{ marginLeft: '4px', color: 'black' }}>Closed Issue</span>
                 </>
               ) : (
-                <span>Reopen Issue</span>
-              )}
+                  <span style={{ color: 'black' }}>Reopen Issue</span>
+                )}
             </S.EditCancelButton>
 
             <BS.IssueDetailButton isValid={newComment && true} onClick={createHandler}>

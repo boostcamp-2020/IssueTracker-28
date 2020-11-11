@@ -61,7 +61,6 @@ export default {
     border: 1px solid rgb(225, 228, 232);
     border-radius: 6px;
   `,
-
   ButtonWrapper: styled.div`
     display: flex;
     justify-content: ${(props) => props.justifyContent};
