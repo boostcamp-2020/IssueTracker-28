@@ -26,10 +26,7 @@ function Issue({ issue }) {
   };
 
   const handleDetailClick = () => {
-    history.push({
-      pathname: `/detail/${issue.id}`,
-      state: { issue },
-    });
+    history.push(`/detail/${issue.id}`);
   };
   // 전체 선택 상태 변경시, 해당상태 반영
   useEffect(() => {

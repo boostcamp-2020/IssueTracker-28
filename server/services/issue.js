@@ -142,3 +142,15 @@ exports.deleteIssueMilestone = async (id) => {
   const result = await db.deleteIssueMilestone(id);
   return result;
 };
+exports.deleteIssue = async (id) => {
+  const result = await db.deleteIssue(id);
+  return result;
+};
+exports.deleteIssueAssigneeWithID = async (id) => {
+  const result = await db.deleteIssueAssigneeWithID(id);
+  return result;
+};
+exports.deleteIssueLabelWithID = async (id) => {
+  const result = await db.deleteIssueLabelWithID(id);
+  return result;
+};

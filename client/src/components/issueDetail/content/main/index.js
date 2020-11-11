@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import InputForm from '@components/input/form';
 import BS from '@components/issues/header/buttons/style';
 import { IssueClosedIcon } from '@primer/octicons-react';
+import EmptyUserPic from '@images/empty-user.png';
 import {
   useIssueDetailDispatch,
   updateIssueStatus,
@@ -36,7 +37,7 @@ const MainContent = ({ issue, comments }) => {
         );
       })}
       <S.FlexWrapper>
-        <S.Profile src="https://issue.kr.object.ncloudstorage.com/1604932511555.png" />
+        <S.Profile src={EmptyUserPic} />
         <S.Triangle backgroundColor="rgb(250,251,252)" />
         <S.InputFormWrapper>
           <InputForm

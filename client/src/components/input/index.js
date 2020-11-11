@@ -14,7 +14,7 @@ function Input({ selectedAssignees, selectedLabels, selectedMilestone }) {
     setTitle(target.value);
   };
   const submitHandler = async () => {
-    const { data } = await api.createIssue(
+    const response = await api.createIssue(
       title,
       content,
       selectedMilestone,
@@ -22,7 +22,9 @@ function Input({ selectedAssignees, selectedLabels, selectedMilestone }) {
       selectedLabels,
       localStorage.getItem('user_id')
     );
-    history.push(`/detail/${data.data}`);
+    if (response.status === 200) {
+      history.push(`/detail/${response.data.data}`);
+    }
   };
   return (
     <S.InputWrapper>

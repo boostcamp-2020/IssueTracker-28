@@ -45,6 +45,11 @@ const updateIssueTitle = async (id, title) => {
   return response;
 };
 
+const deleteIssue = async (id) => {
+  const response = await API.delete(`/issue/${id}`);
+  return response.data;
+};
+
 export {
   createIssue,
   getIssues,
@@ -52,4 +57,5 @@ export {
   updateIssueStatus,
   updateIssueTitle,
   updateIssueContent,
+  deleteIssue,
 };

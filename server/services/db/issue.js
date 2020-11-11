@@ -197,3 +197,31 @@ exports.deleteIssueMilestone = async (id) => {
     return false;
   }
 };
+
+exports.deleteIssue = async (id) => {
+  try {
+    await Issue.destroy({ where: { id } });
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+exports.deleteIssueAssigneeWithID = async (issueId) => {
+  try {
+    await IssueAssignee.destroy({ where: { issueId } });
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+exports.deleteIssueLabelWithID = async (issueId) => {
+  try {
+    await IssueLabel.destroy({ where: { issueId } });
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};

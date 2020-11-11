@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { SmileyIcon } from '@primer/octicons-react';
 import InputForm from '@components/input/form';
 import Button from '@components/issues/header/buttons/style';
 import Preview from '@components/input/preview';
 import getElapsedTime from '@utils/getElapsedTime';
 import EmptyUserPic from '@images/empty-user.png';
+import { Dropdown } from 'semantic-ui-react';
+import * as issueAPI from '@api/issue';
+import * as commentAPI from '@api/comment';
 import {
   useIssueDetailDispatch,
   updateComment,
@@ -13,11 +17,19 @@ import {
 import S from './style';
 
 const Comment = ({ isIssue, issueAuthor, issue, issueID }) => {
+  const history = useHistory();
   const [isEditClicked, setIsEditClicked] = useState(false);
   const [comment, setComment] = useState(issue.content);
   const dispatch = useIssueDetailDispatch();
   const editHandler = () => {
     setIsEditClicked(!isEditClicked);
+  };
+  const deleteHandler = () => {
+    const deleteFlag = confirm('Are you sure you want to delete this?');
+    if (deleteFlag) {
+      isIssue ? issueAPI.deleteIssue(issue.id) : commentAPI.deleteComment(issue.id);
+      history.push(`/`);
+    }
   };
   const updateCommentHandler = async () => {
     await updateComment(dispatch, issue.id, issueID, comment);
@@ -46,7 +58,14 @@ const Comment = ({ isIssue, issueAuthor, issue, issueID }) => {
                   <S.WriterAuthor>{isIssueAuthor === true ? 'Owner' : 'Author'}</S.WriterAuthor>
                 )}
                 <SmileyIcon size={14} />
-                {isCommentAuthor && <S.EditButton onClick={editHandler}>Edit</S.EditButton>}
+                {isCommentAuthor && (
+                  <Dropdown text="Edit">
+                    <Dropdown.Menu direction="left">
+                      <Dropdown.Item text="Edit" onClick={editHandler} />
+                      <Dropdown.Item text="Delete" onClick={deleteHandler} />
+                    </Dropdown.Menu>
+                  </Dropdown>
+                )}
               </S.WriterInfo>
             </S.TitleWrapper>
             <S.CommentsContent>

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import {
   useIssueDetailState,
   useIssueDetailDispatch,
@@ -11,17 +11,17 @@ import S from './style';
 
 const IssueDetail = () => {
   const { id } = useParams();
-  const { issue } = useLocation().state;
   const state = useIssueDetailState();
   const dispatch = useIssueDetailDispatch();
 
-  const { data: comments, loading, error } = state.issue;
-  // const issue = data?.issueDetail;
+  const { data, loading, error } = state.issue;
+  const issue = data?.issueDetail;
+  const comments = data?.comments;
   const fetchData = () => {
     getIssue(dispatch, id);
   };
 
-  useEffect(() => {
+  useEffect(async () => {
     fetchData();
   }, [dispatch]);
   if (loading) return <div> 로딩중.. </div>;
