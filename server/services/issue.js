@@ -29,9 +29,9 @@ const makeData = async (issue) => {
   data.title = issue.title;
   data.content = issue.content;
   data.author = issue.user.dataValues.user_id;
-  // data.author = {};
-  // data.author.userId = issue.user.dataValues.user_id;
-  // data.author.profileImg = issue.user.dataValues.profile_img;
+  data.author = {};
+  data.author.userId = issue.user.dataValues.user_id;
+  data.author.profileImg = issue.user.dataValues.profile_img;
   data.milestone = issue.milestone ? issue.milestone.dataValues.title : null;
   data.status = issue.status === 0 ? 'opened' : 'closed';
   data.labels = await getLabels(issue);
