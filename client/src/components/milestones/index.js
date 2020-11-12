@@ -4,7 +4,6 @@ import List from './list';
 import S from './style';
 
 function Milestone() {
-  console.log('test')
   return (
     <S.MilestoneWrapper>
       <Header />
