@@ -8,7 +8,6 @@ import {
   updateIssueStatus,
   createComment,
 } from '@contexts/IssueDetailContext';
-import EmptyUserPic from '@images/empty-user.png';
 import S from './style';
 import Comment from './comment';
 
@@ -58,8 +57,8 @@ const MainContent = ({ issue, comments }) => {
                   <span style={{ marginLeft: '4px', color: 'black' }}>Closed Issue</span>
                 </>
               ) : (
-                  <span style={{ color: 'black' }}>Reopen Issue</span>
-                )}
+                <span style={{ color: 'black' }}>Reopen Issue</span>
+              )}
             </S.EditCancelButton>
 
             <BS.IssueDetailButton isValid={newComment && true} onClick={createHandler}>

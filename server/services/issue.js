@@ -44,7 +44,9 @@ const makeData = async (issue) => {
   data.labels = await getLabels(issue);
   data.assignees = await getAssignees(issue);
   data.time = issue.dataValues.updated_at;
-  data.commentAuthors = issue.comments ? issue.comments.map((comment) => comment.dataValues.user_id) : [];
+  data.commentAuthors = issue.comments
+    ? issue.comments.map((comment) => comment.dataValues.user_id)
+    : [];
   return data;
 };
 
@@ -99,7 +101,10 @@ const getComments = async (issueId) => {
     temp.id = comment.id;
     temp.content = comment.content;
     temp.time = comment.updated_at;
-    temp.author = comment['user.user_id'];
+    temp.author = {
+      userId: comment['user.user_id'],
+      profileImg: comment['user.profile_img'],
+    };
     return temp;
   });
   return data;
