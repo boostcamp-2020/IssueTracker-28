@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import { useLabelState, useLabelDispatch, getLabels } from '@contexts/LabelContext';
-import { GearIcon } from '@primer/octicons-react';
+import { useLabelState, useLabelDispatch } from '@contexts/LabelContext';
+import { GearIcon, CheckIcon } from '@primer/octicons-react';
 import { Dropdown } from 'semantic-ui-react';
+import * as api from '@api/issue';
 import S from './style';
 import DS from '../../issues/issueList/listHeader/style';
 
@@ -12,22 +13,26 @@ const trigger = (
   </S.LabelHeader>
 );
 
-function Labels({ selectedLabels, handleLabelClick }) {
+function Labels({ id = null }) {
   const state = useLabelState();
   const dispatch = useLabelDispatch();
 
-  const { data: labels, loading, error } = state.labels;
-  const fetchData = () => {
-    getLabels(dispatch);
+  const { data: labels } = state.labels;
+  const { selectedLabels } = state;
+
+  useEffect(() => {}, [dispatch]);
+
+  const clickHandler = async (item) => {
+    let flag = true;
+    const newLabels = new Set();
+    for (const label of Array.from(selectedLabels)) {
+      if (item.id !== label.id) newLabels.add(label);
+      else flag = false;
+    }
+    if (flag) newLabels.add(item);
+    dispatch({ type: 'UPDATE_SELECTED_LABELS', data: newLabels });
+    if (id) await api.updateIssueLabel(id, item.id, flag);
   };
-
-  useEffect(() => {
-    fetchData();
-  }, [dispatch]);
-
-  if (loading) return <div> 로딩중.. </div>;
-  if (error) return <div> 에러가 발생했습니다 </div>;
-  if (!labels) return <button onClick={fetchData}> 불러오기 </button>;
 
   return (
     <S.LabelContainer>
@@ -42,9 +47,14 @@ function Labels({ selectedLabels, handleLabelClick }) {
                   <Dropdown.Item
                     className="dropdown-item"
                     key={item.id}
-                    onClick={() => handleLabelClick(item)}
+                    onClick={() => clickHandler(item)}
                   >
                     <S.TitleContainer>
+                      {Array.from(selectedLabels).some((label) => label.id === item.id) ? (
+                        <CheckIcon size={16} className="sidebar-check-icon show" />
+                      ) : (
+                        <CheckIcon size={16} className="sidebar-check-icon" />
+                      )}
                       <S.BoxColor background={item.color} />
                       <S.LabelName>{item.name}</S.LabelName>
                     </S.TitleContainer>
@@ -55,7 +65,7 @@ function Labels({ selectedLabels, handleLabelClick }) {
           </Dropdown.Menu>
         </Dropdown>
       </DS.FilterDropdown>
-      {selectedLabels.size === 0 ? (
+      {selectedLabels.size === 0 || selectedLabels.length === 0 ? (
         <div>None yet</div>
       ) : (
           Array.from(selectedLabels).map((label, index) => (

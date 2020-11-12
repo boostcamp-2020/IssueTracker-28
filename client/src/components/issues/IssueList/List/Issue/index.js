@@ -4,7 +4,7 @@ import { AvatarStack, Avatar } from '@primer/components';
 import { useCheckedItemState, useCheckedItemDispatch } from '@contexts/CheckedItemContext';
 import { CHECKED_UPDATE } from '@constants/actionTypes';
 import { useHistory } from 'react-router-dom';
-import EmptyUserPic from '@images/empty-user.png'
+import EmptyUserPic from '@images/empty-user.png';
 import ColorHandler from '@utils/colorHandler';
 import getElapsedTime from '@utils/getElapsedTime';
 import S from './style';
@@ -25,6 +25,9 @@ function Issue({ issue }) {
     }
   };
 
+  const handleDetailClick = () => {
+    history.push(`/detail/${issue.id}`);
+  };
   // 전체 선택 상태 변경시, 해당상태 반영
   useEffect(() => {
     setCheckState(isAllChecked);
@@ -55,12 +58,7 @@ function Issue({ issue }) {
         )}
       <S.IssueContainer>
         <div className="title-container">
-          <div
-            className="title"
-            onClick={() => {
-              history.push(`detail/${issue.id}`);
-            }}
-          >
+          <div className="title" onClick={handleDetailClick}>
             {issue.title}
           </div>
           <S.LabelList>
@@ -69,8 +67,9 @@ function Issue({ issue }) {
                 <S.Label
                   style={{
                     background: label.color,
-                    color: ColorHandler.getContrastColor(label.color)
-                  }}>
+                    color: ColorHandler.getContrastColor(label.color),
+                  }}
+                >
                   {label.name}
                 </S.Label>
               ))}
@@ -79,7 +78,11 @@ function Issue({ issue }) {
         <S.AssigneesContainer>
           <AvatarStack alignRight>
             {issue.assignees.map((assignee) => (
-              <Avatar style={{ backgroundColor: 'transparent' }} alt={assignee.userId} src={assignee.profileImg ? assignee.profileImg : EmptyUserPic} />
+              <Avatar
+                style={{ backgroundColor: 'transparent' }}
+                alt={assignee.userId}
+                src={assignee.profileImg ? assignee.profileImg : EmptyUserPic}
+              />
             ))}
           </AvatarStack>
         </S.AssigneesContainer>
@@ -87,10 +90,10 @@ function Issue({ issue }) {
           <div className="author">
             #{issue.id} {issue.status} {getElapsedTime(issue.time)} ago by {issue.author.userId}
           </div>
-          {issue.milestone && (
+          {issue.milestone.title && (
             <S.MilestoneContainer>
               <MilestoneIcon className="milestone-icon" size={14} />
-              <div className="milestone">{issue.milestone}</div>
+              <div className="milestone">{issue.milestone.title}</div>
             </S.MilestoneContainer>
           )}
         </S.OtherContainer>

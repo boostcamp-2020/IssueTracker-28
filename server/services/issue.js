@@ -6,6 +6,7 @@ const getLabels = async (data) => {
 
   labels.forEach((label) => {
     const temp = {};
+    temp.id = label.id;
     temp.name = label.name;
     temp.color = label.color;
     result.push(temp);
@@ -19,6 +20,7 @@ const getAssignees = async (data) => {
 
   assignees.forEach((assignee) => {
     const user = {};
+    user.id = assignee.id;
     user.userId = assignee.userId;
     user.profileImg = assignee.profileImg;
     result.push(user);
@@ -31,15 +33,18 @@ const makeData = async (issue) => {
   data.id = issue.id;
   data.title = issue.title;
   data.content = issue.content;
-  data.author = issue.user.dataValues.user_id;
   data.author = {};
+  data.author.id = issue.userId;
   data.author.userId = issue.user.dataValues.user_id;
   data.author.profileImg = issue.user.dataValues.profile_img;
-  data.milestone = issue.milestone ? issue.milestone.dataValues.title : null;
+  data.milestone = {};
+  data.milestone.id = issue.milestone ? issue.milestone.dataValues.id : null;
+  data.milestone.title = issue.milestone ? issue.milestone.dataValues.title : null;
   data.status = issue.status === 0 ? 'opened' : 'closed';
   data.labels = await getLabels(issue);
   data.assignees = await getAssignees(issue);
   data.time = issue.dataValues.updated_at;
+  data.commentAuthors = issue.comments ? issue.comments.map((comment) => comment.dataValues.user_id) : [];
   return data;
 };
 
@@ -140,5 +145,17 @@ exports.deleteIssueLabel = async (id, label) => {
 
 exports.deleteIssueMilestone = async (id) => {
   const result = await db.deleteIssueMilestone(id);
+  return result;
+};
+exports.deleteIssue = async (id) => {
+  const result = await db.deleteIssue(id);
+  return result;
+};
+exports.deleteIssueAssigneeWithID = async (id) => {
+  const result = await db.deleteIssueAssigneeWithID(id);
+  return result;
+};
+exports.deleteIssueLabelWithID = async (id) => {
+  const result = await db.deleteIssueLabelWithID(id);
   return result;
 };

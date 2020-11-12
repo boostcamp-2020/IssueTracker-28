@@ -7,6 +7,7 @@ const initialState = {
     data: null,
     error: null,
   },
+  selectedUsers: new Set(),
 };
 
 const loadingState = {
@@ -43,6 +44,11 @@ function usersReducer(state, action) {
       return {
         ...state,
         users: error(action.error),
+      };
+    case 'UPDATE_SELECTED_USERS':
+      return {
+        ...state,
+        selectedUsers: action.data,
       };
     default:
       throw new Error(`Unhanded action type: ${action.type}`);

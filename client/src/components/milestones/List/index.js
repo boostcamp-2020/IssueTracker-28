@@ -7,6 +7,7 @@ import {
   deleteMilestone
 } from '@contexts/MilestonesContext';
 import Milestone from './Milestone';
+import { OPEN, CLOSE } from '@constants/status';
 import { MilestoneIcon, CheckIcon } from '@primer/octicons-react';
 import Spinner from '@images/spinner3.gif';
 import S from './style';
@@ -15,7 +16,7 @@ function List() {
   const state = useMilestonesState();
   const dispatch = useMilestonesDispatch();
   const { data, loading, error } = state.milestones;
-  const [status, setStatus] = useState(0); // open: 0, close: 1
+  const [status, setStatus] = useState(OPEN); // open: 0, close: 1
 
   useEffect(() => {
     toggleStatus();
@@ -23,7 +24,9 @@ function List() {
 
   useEffect(() => {
     fetchData();
-  }, [dispatch]);
+  }, []);
+
+  useEffect(() => { }, [dispatch]);
 
   const fetchData = () => {
     getMilestones(dispatch);
@@ -48,7 +51,7 @@ function List() {
   const handleStatusClick = (id, status) => {
     updateMilestoneStatus(dispatch, {
       id,
-      status: status === 'open' ? 1 : 0
+      status: status === 'open' ? CLOSE : OPEN
     });
 
     fetchData();
@@ -69,18 +72,18 @@ function List() {
   return (
     <S.ListWrapper>
       <S.ListHeader>
-        <S.CountWrapper className='count-wrapper open' onClick={() => handleStatus(0)}>
+        <S.CountWrapper className='count-wrapper open' onClick={() => handleStatus(OPEN)}>
           <MilestoneIcon />
           <S.Count>{openCnt} Open</S.Count>
         </S.CountWrapper>
-        <S.CountWrapper className='count-wrapper close' onClick={() => handleStatus(1)}>
+        <S.CountWrapper className='count-wrapper close' onClick={() => handleStatus(CLOSE)}>
           <CheckIcon />
           <S.Count>{closedCnt} Closed</S.Count>
         </S.CountWrapper>
       </S.ListHeader>
       <S.List>
         {milestones && milestones.map(milestone => {
-          const milestoneStatus = milestone.status === 'open' ? 0 : 1;
+          const milestoneStatus = milestone.status === 'open' ? OPEN : CLOSE;
           if (milestoneStatus === status) {
             return <Milestone
               key={milestone.id}

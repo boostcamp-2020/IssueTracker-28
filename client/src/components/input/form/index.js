@@ -3,7 +3,7 @@ import S from './style';
 import * as api from '@api/upload';
 import Preview from '../preview';
 
-const InputForm = ({ formHeight, color, buttonState, comment, setComment }) => {
+const InputForm = ({ previewWrapper, formHeight, color, buttonState, comment, setComment }) => {
   let timer;
   const [isDelay, setIsDelay] = useState(false);
   const [isSelected, setIsSelected] = useState(true);
@@ -68,7 +68,7 @@ const InputForm = ({ formHeight, color, buttonState, comment, setComment }) => {
           </S.AttachWrapper>
         </>
       ) : (
-        <S.PreviewWrapper>
+        <S.PreviewWrapper previewWrapper={previewWrapper}>
           <Preview comment={comment} />
         </S.PreviewWrapper>
       )}
