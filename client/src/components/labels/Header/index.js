@@ -4,11 +4,11 @@ import { TagIcon, MilestoneIcon } from '@primer/octicons-react';
 import S from './style';
 
 function Header({ isVisible, setIsVisible }) {
-  console.log('-------header가 렌더링되는 순간입니다-------')
   const history = useHistory();
   const handleIsVisible = () => {
     setIsVisible(!isVisible);
-  }
+  };
+
   return (
     <S.LabelHeader>
       <S.LabelMilestone>

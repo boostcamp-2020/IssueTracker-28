@@ -18,22 +18,14 @@ function List() {
   const { data, loading, error } = state.milestones;
   const [status, setStatus] = useState(OPEN); // open: 0, close: 1
 
-  useEffect(() => {
-    toggleStatus();
-  });
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   useEffect(() => {}, [dispatch]);
 
   const fetchData = () => {
     getMilestones(dispatch);
   };
 
-  const handleStatus = (status) => {
-    setStatus(status);
+  const handleStatus = (statusCode) => {
+    setStatus(statusCode);
   };
 
   const toggleStatus = () => {
@@ -47,6 +39,14 @@ function List() {
 
     status === 0 ? $open.classList.add('show') : $close.classList.add('show');
   };
+
+  useEffect(() => {
+    toggleStatus();
+  });
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handleStatusClick = (id, status) => {
     updateMilestoneStatus(dispatch, {

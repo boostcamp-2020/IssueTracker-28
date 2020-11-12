@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Button from '@components/issues/header/buttons/style';
 import { useHistory } from 'react-router-dom';
-import EmptyUserPic from '@images/empty-user.png';
 import * as api from '@api/issue';
 import { useUsersState, useUsersDispatch } from '@contexts/UsersContext';
 import { useLabelState, useLabelDispatch } from '@contexts/LabelContext';
@@ -52,8 +51,7 @@ function Input() {
       content,
       milestone,
       getAssigneesId(),
-      getLabelsId(),
-      localStorage.getItem('user_id')
+      getLabelsId()
     );
     if (response.status === 200) {
       history.push(`/detail/${response.data.data}`);
