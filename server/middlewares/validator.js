@@ -1,18 +1,40 @@
-exports.check = (req, res, next) => {
-  req.check('title').exists();
-  req.check('content').exists();
-  req.check('assignees').exists();
-  req.check('labels').exists();
-  req.check('milestone').exists();
-
-  req.check('title', 'Invalid title').isString();
-  // 빈배열이라도 들어와야함
-  req.check('assignees', 'Invalid assignees').isArray();
-  req.check('labels', 'Invalid labels').isArray();
+exports.createIssue = (req, res, next) => {
+  req.check('title').isString();
+  req.check('content').isString();
+  req.check('assignees').isArray();
+  req.check('labels').isArray();
+  req.check('milestone').isInt();
 
   const error = req.validationErrors();
   if (error) {
-    res.status(400).send(`Bad Request : ${error}`);
+    res.status(400).send(`Validator Result: Bad Request`);
+  } else {
+    next();
+  }
+};
+
+exports.createLabel = (req, res, next) => {
+  req.check('name').isString();
+  if (req.body.desc) req.check('desc').isString();
+  req.check('color').isHexColor();
+
+  const error = req.validationErrors();
+  if (error) {
+    res.status(400).send(`Validator Result: Bad Request`);
+  } else {
+    next();
+  }
+};
+
+exports.createMilestone = (req, res, next) => {
+  req.check('status').isInt();
+  req.check('title').isString();
+  if (req.body.dueDate) req.check('dueDate').isDate();
+  if (req.body.desc) req.check('desc').isString();
+
+  const error = req.validationErrors();
+  if (error) {
+    res.status(400).send(`Validator Result: Bad Request`);
   } else {
     next();
   }

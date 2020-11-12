@@ -14,11 +14,6 @@ exports.getMilestones = async () => {
   return { milestoneCnt, milestones };
 };
 
-exports.findMilestone = async (title) => {
-  const result = await db.selectMilestoneID(title);
-  return result;
-};
-
 exports.createMilestone = async (params) => {
   const result = await db.insertMilestone(params);
   return result;

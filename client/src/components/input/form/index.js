@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import S from './style';
 import * as api from '@api/upload';
+import S from './style';
 import Preview from '../preview';
 
 const InputForm = ({ previewWrapper, formHeight, color, buttonState, comment, setComment }) => {
@@ -22,7 +22,7 @@ const InputForm = ({ previewWrapper, formHeight, color, buttonState, comment, se
     }
   };
 
-  const tabHandler = (e) => {
+  const tabHandler = () => {
     setIsSelected(!isSelected);
   };
 

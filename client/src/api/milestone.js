@@ -5,23 +5,24 @@ const getMilestones = async () => {
   return response.data;
 };
 
-const createMilestone = async ({ status, title, due_date, desc }) => {
+const createMilestone = async ({ status, title, dueDate, desc }) => {
   let params = {};
-  if (due_date.length === 0 && desc.length === 0) params = { status, title };
-  else if (due_date.length === 0) params = { status, title, desc };
-  else if (desc.length === 0) params = { status, title, due_date };
-  else params = { status, title, due_date, desc };
+  if (dueDate.length === 0 && desc.length === 0)
+    params = { status, title, dueDate: null, desc: null };
+  else if (dueDate.length === 0) params = { status, title, dueDate: null, desc };
+  else if (desc.length === 0) params = { status, title, dueDate, desc: null };
+  else params = { status, title, dueDate, desc };
 
   const response = await API.post('/milestone', params);
   return response.data;
 };
 
-const updateMilestone = async ({ id, title, due_date, desc }) => {
+const updateMilestone = async ({ id, title, dueDate, desc }) => {
   let params = {};
-  if (due_date.length === 0 && desc.length === 0) params = { title, due_date: null, desc: null };
-  else if (due_date.length === 0) params = { title, due_date: null, desc };
-  else if (desc.length === 0) params = { title, due_date, desc: null };
-  else params = { title, due_date, desc };
+  if (dueDate.length === 0 && desc.length === 0) params = { title, dueDate: null, desc: null };
+  else if (dueDate.length === 0) params = { title, dueDate: null, desc };
+  else if (desc.length === 0) params = { title, dueDate, desc: null };
+  else params = { title, dueDate, desc };
 
   const response = await API.put(`/milestone/${id}`, params);
   return response.data;

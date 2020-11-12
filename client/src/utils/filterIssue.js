@@ -27,11 +27,11 @@ const filterIssue = (issue, filters) => {
 
   if (
     (author === '*' || issue.author.userId === author) &&
-    (milestone === '*' || issue.milestone === milestone) &&
+    (milestone === '*' || issue.milestone.title === milestone) &&
     (status === '*' || issue.status === status) &&
     (assignees === '*' || checkAssigneesItem([...assignees], issue.assignees)) &&
     (labels === '*' || checkLabelsItem([...labels], issue.labels)) &&
-    (mentions === '*' || issue.commentAuthors.includes(parseInt(localStorage.getItem('id'))))
+    (mentions === '*' || issue.commentAuthors.includes(+localStorage.getItem('id')))
   ) {
     return true;
   }
