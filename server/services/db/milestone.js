@@ -2,7 +2,7 @@ const { Milestone, Issue } = require('../../models');
 
 exports.selectMilestone = async () => {
   const milestones = await Milestone.findAll({
-    attributes: ['id', 'status', 'title', 'due_date', 'desc'],
+    attributes: ['id', 'status', 'title', 'dueDate', 'desc'],
     include: [
       {
         model: Issue,
@@ -14,52 +14,17 @@ exports.selectMilestone = async () => {
   return milestones;
 };
 
-exports.selectMilestoneID = async (title) => {
-  const milestones = await Milestone.findOne({
-    raw: true,
-    where: {
-      title,
-    },
-  });
-  return milestones;
-};
-
-exports.insertMilestone = async ({ status, title, due_date, desc }) => {
-  const milestone = await Milestone.create({
-    status,
-    title,
-    dueDate: due_date,
-    desc,
-    raw: true,
-  });
-
+exports.insertMilestone = async ({ status, title, dueDate, desc }) => {
+  const milestone = await Milestone.create({ status, title, dueDate, desc });
   return milestone;
 };
 
-exports.updateMilestone = async ({ id, status, title, due_date, desc }) => {
-  const result = await Milestone.update(
-    {
-      status,
-      title,
-      dueDate: due_date,
-      desc,
-    },
-    {
-      where: {
-        id,
-      },
-    }
-  );
-
+exports.updateMilestone = async ({ id, status, title, dueDate, desc }) => {
+  const result = await Milestone.update({ status, title, dueDate, desc }, { where: { id } });
   return result;
 };
 
 exports.deleteMilestone = async ({ id }) => {
-  const result = await Milestone.destroy({
-    where: {
-      id,
-    },
-  });
-
+  const result = await Milestone.destroy({ where: { id } });
   return result;
 };

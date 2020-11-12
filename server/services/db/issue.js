@@ -57,8 +57,8 @@ exports.insertIssue = async (params) => {
     title: params.title,
     content: params.content,
     milestoneId: params.milestone,
-    userId: params.userId,
-    status: params.status,
+    userId: params.id,
+    status: 0,
   });
 
   return issues;

@@ -23,14 +23,13 @@ exports.getIssues = async (req, res, next) => {
 */
 exports.createIssue = async (req, res, next) => {
   try {
-    const { title, content, milestone, assignees, labels, user, status } = req.body;
-    const { id: userId } = await userServices.findUser(user);
+    const { title, content, milestone, assignees, labels } = req.body;
+    const { id } = req.user;
     const { id: issueId } = await issueServices.createIssue({
       title,
       content,
       milestone,
-      userId,
-      status,
+      id,
     });
     Promise.all([
       await issueServices.createIssueAssignees({

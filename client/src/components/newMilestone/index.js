@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useMilestonesDispatch, createMilestone } from '@contexts/MilestonesContext';
+import {
+  useMilestonesState,
+  useMilestonesDispatch,
+  createMilestone,
+} from '@contexts/MilestonesContext';
 import Input from './input';
 import S from './style';
 
 function NewMilestone() {
   const history = useHistory();
+  const state = useMilestonesState();
   const dispatch = useMilestonesDispatch();
+
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const { data } = state.milestones;
+  const milestones = data?.milestones;
 
   const handleTitle = ({ target }) => {
     setTitle(target.value);
@@ -22,15 +30,23 @@ function NewMilestone() {
     const inputDate = document.querySelector('.input-date').value;
 
     if (title.length === 0) return;
+    if (milestones) {
+      let flag = true;
+      milestones.forEach((milestone) => {
+        if (milestone.title === title) flag = false;
+      });
+      if (!flag) alert('중복된 title입니다.');
+      else {
+        createMilestone(dispatch, {
+          status: 0,
+          title,
+          dueDate: inputDate,
+          desc: description,
+        });
 
-    createMilestone(dispatch, {
-      status: 0,
-      title,
-      due_date: inputDate,
-      desc: description,
-    });
-
-    history.push('/milestone');
+        history.push('/milestone');
+      }
+    }
   };
 
   return (

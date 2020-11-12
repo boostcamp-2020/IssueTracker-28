@@ -28,10 +28,12 @@
     "@primer/components": "^20.3.0",
     "@primer/octicons-react": "^11.0.0",
     "axios": "^0.21.0",
+    "jest-dom": "^4.0.0",
     "module-alias": "^2.2.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
+    "react-testing-library": "^8.0.1",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.1",
     "styled-components": "^5.2.0"
