@@ -90,10 +90,10 @@ function Issue({ issue }) {
           <div className="author">
             #{issue.id} {issue.status} {getElapsedTime(issue.time)} ago by {issue.author.userId}
           </div>
-          {issue.milestone && (
+          {issue.milestone.title && (
             <S.MilestoneContainer>
               <MilestoneIcon className="milestone-icon" size={14} />
-              <div className="milestone">{issue.milestone}</div>
+              <div className="milestone">{issue.milestone.title}</div>
             </S.MilestoneContainer>
           )}
         </S.OtherContainer>

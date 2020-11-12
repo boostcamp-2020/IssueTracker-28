@@ -9,6 +9,7 @@ const Header = ({ issue, commentsCount }) => {
   const [title, setTitle] = useState('');
 
   const dispatch = useIssueDetailDispatch();
+
   useEffect(() => {
     setTitle(issue.title);
   }, [issue]);
@@ -39,7 +40,7 @@ const Header = ({ issue, commentsCount }) => {
             className="issue-title"
             onChange={changeHandler}
           />
-          <Button className="save-button" variant="small" onClick={() => saveHandler()}>
+          <Button className="save-button" variant="small" onClick={saveHandler}>
             Save
           </Button>
           <input

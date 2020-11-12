@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 const githubLogin = async (req, res, next) => {
   try {
-    const { id, userId } = req.user;
+    const { id, userId, profileImg } = req.user;
     const token = jwt.sign({ id, userId }, process.env.JWT_SECRET, {
       expiresIn: '1d',
     });
@@ -10,12 +10,17 @@ const githubLogin = async (req, res, next) => {
       maxAge: 1000 * 60 * 60 * 24 * 1,
       httpOnly: false,
     });
-    res.cookie('user_id', req.user.userId, {
+    res.cookie('user_id', userId, {
       maxAge: 1000 * 60 * 60 * 24 * 1,
       httpOnly: false,
     });
-    res.cookie('id', req.user.id, {
+    res.cookie('id', id, {
       maxAge: 1000 * 60 * 60 * 24 * 1,
+      httpOnly: false,
+    });
+    res.cookie('profile_img', profileImg, {
+      maxAge: 1000 * 60 * 60 * 24 * 1,
+      encode: String,
       httpOnly: false,
     });
     next();

@@ -48,6 +48,29 @@ const updateIssueTitle = async (id, title) => {
 const deleteIssue = async (id) => {
   const response = await API.delete(`/issue/${id}`);
   return response.data;
+
+const updateIssueAssignee = async (id, assignee, flag) => {
+  const response = await API.put(`/issue/assignee/${id}`, {
+    assignee,
+    flag,
+  });
+  return response;
+};
+
+const updateIssueLabel = async (id, label, flag) => {
+  const response = await API.put(`/issue/label/${id}`, {
+    label,
+    flag,
+  });
+  return response;
+};
+
+const updateIssueMilestone = async (id, milestone, flag) => {
+  const response = await API.put(`/issue/milestone/${id}`, {
+    milestone,
+    flag,
+  });
+  return response;
 };
 
 export {
@@ -58,4 +81,7 @@ export {
   updateIssueTitle,
   updateIssueContent,
   deleteIssue,
+  updateIssueAssignee,
+  updateIssueLabel,
+  updateIssueMilestone,
 };

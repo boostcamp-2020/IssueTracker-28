@@ -26,6 +26,7 @@
         "react/prop-types": "off",
         "react/jsx-one-expression-per-line": "off",
         "import/no-unresolved": "off",
-        "react/no-array-index-key": "off"
+        "react/no-array-index-key": "off",
+        "no-nested-ternary": "off"
     }
 }
