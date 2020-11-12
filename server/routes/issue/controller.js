@@ -234,3 +234,26 @@ exports.updateIssueMilestone = async (req, res, next) => {
     next(error);
   }
 };
+/*
+    DELETE /api/issue/:id
+    * 이슈 삭제 API
+*/
+exports.deleteIssue = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const deleteIssueResult = await issueServices.deleteIssue(id);
+    const deleteIssueAssigneeResult = await issueServices.deleteIssueAssigneeWithID(id);
+    const deleteIssueLabelResult = await issueServices.deleteIssueLabelWithID(id);
+    if (deleteIssueResult && deleteIssueAssigneeResult && deleteIssueLabelResult) {
+      res.status(200).json({
+        message: '이슈 삭제 성공',
+      });
+    } else {
+      res.status(400).json({
+        message: '이슈 삭제 실패',
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};

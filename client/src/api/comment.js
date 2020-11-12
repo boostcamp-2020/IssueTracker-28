@@ -1,5 +1,10 @@
 import API from './common';
 
+const getComments = async (id) => {
+  const response = await API.get(`/comment/${id}`);
+  return response;
+};
+
 const createComment = async (content, issueId) => {
   const response = await API.post('/comment', {
     content,
@@ -16,4 +21,8 @@ const updateComment = async (id, content) => {
   return response;
 };
 
-export { createComment, updateComment };
+const deleteComment = async (id) => {
+  const response = await API.delete(`/comment/${id}`);
+  return response;
+};
+export { getComments, createComment, updateComment, deleteComment };

@@ -25,6 +25,9 @@ function Issue({ issue }) {
     }
   };
 
+  const handleDetailClick = () => {
+    history.push(`/detail/${issue.id}`);
+  };
   // 전체 선택 상태 변경시, 해당상태 반영
   useEffect(() => {
     setCheckState(isAllChecked);
@@ -55,12 +58,7 @@ function Issue({ issue }) {
       )}
       <S.IssueContainer>
         <div className="title-container">
-          <div
-            className="title"
-            onClick={() => {
-              history.push(`detail/${issue.id}`);
-            }}
-          >
+          <div className="title" onClick={handleDetailClick}>
             {issue.title}
           </div>
           <S.LabelList>

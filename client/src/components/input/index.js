@@ -55,7 +55,9 @@ function Input() {
       getLabelsId(),
       localStorage.getItem('user_id')
     );
-    history.push(`/detail/${data.data}`);
+    if (response.status === 200) {
+      history.push(`/detail/${data.data}`);
+    }
   };
 
   return (
@@ -70,6 +72,7 @@ function Input() {
           buttonState="NEW_ISSUE"
           comment={content}
           setComment={setContent}
+          previewWrapper="340px"
         />
       </S.InputFormWrapper>
       <S.ButtonWrapper justifyContent="space-between">
