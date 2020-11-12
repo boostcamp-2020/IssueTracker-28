@@ -7,6 +7,7 @@ import {
 } from '@contexts/IssueDetailContext';
 import Header from '@components/issueDetail/header';
 import Content from '@components/issueDetail/content';
+import Spinner from '@images/spinner3.gif';
 import S from './style';
 
 const IssueDetail = () => {
@@ -24,7 +25,23 @@ const IssueDetail = () => {
   useEffect(async () => {
     fetchData();
   }, [dispatch]);
-  if (loading) return <div> 로딩중.. </div>;
+
+  if (loading)
+    return (
+      <img
+        alt="로딩중"
+        src={Spinner}
+        style={{
+          width: '250px',
+          position: 'absolute',
+          top: '0',
+          bottom: '0',
+          left: '0',
+          right: '0',
+          margin: 'auto',
+        }}
+      />
+    );
   if (error) return <div> 에러가 발생했습니다 </div>;
   if (!data) return <button onClick={fetchData}> 불러오기 </button>;
 

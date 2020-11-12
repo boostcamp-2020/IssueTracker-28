@@ -5,10 +5,10 @@ import InputForm from '@components/input/form';
 import Button from '@components/issues/header/buttons/style';
 import Preview from '@components/input/preview';
 import getElapsedTime from '@utils/getElapsedTime';
-import EmptyUserPic from '@images/empty-user.png';
 import { Dropdown } from 'semantic-ui-react';
 import * as issueAPI from '@api/issue';
 import * as commentAPI from '@api/comment';
+import EmptyUserPic from '@images/empty-user.png';
 import {
   useIssueDetailDispatch,
   updateComment,

@@ -9,7 +9,7 @@ async function createLabel({ name, desc, color }) {
   const response = await API.post('/label', {
     name,
     desc,
-    color
+    color,
   });
   return response;
 }
@@ -18,7 +18,7 @@ async function updateLabel(id, params) {
   const response = await API.put(`/label/${id}`, {
     name: params.name,
     desc: params.desc,
-    color: params.color
+    color: params.color,
   });
   return response;
 }

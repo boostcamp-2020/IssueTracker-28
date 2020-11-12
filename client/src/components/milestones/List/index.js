@@ -4,12 +4,12 @@ import {
   useMilestonesDispatch,
   getMilestones,
   updateMilestoneStatus,
-  deleteMilestone
+  deleteMilestone,
 } from '@contexts/MilestonesContext';
-import Milestone from './Milestone';
 import { OPEN, CLOSE } from '@constants/status';
 import { MilestoneIcon, CheckIcon } from '@primer/octicons-react';
 import Spinner from '@images/spinner3.gif';
+import Milestone from './Milestone';
 import S from './style';
 
 function List() {
@@ -26,7 +26,7 @@ function List() {
     fetchData();
   }, []);
 
-  useEffect(() => { }, [dispatch]);
+  useEffect(() => {}, [dispatch]);
 
   const fetchData = () => {
     getMilestones(dispatch);
@@ -51,7 +51,7 @@ function List() {
   const handleStatusClick = (id, status) => {
     updateMilestoneStatus(dispatch, {
       id,
-      status: status === 'open' ? CLOSE : OPEN
+      status: status === 'open' ? CLOSE : OPEN,
     });
 
     fetchData();
@@ -72,27 +72,30 @@ function List() {
   return (
     <S.ListWrapper>
       <S.ListHeader>
-        <S.CountWrapper className='count-wrapper open' onClick={() => handleStatus(OPEN)}>
+        <S.CountWrapper className="count-wrapper open" onClick={() => handleStatus(OPEN)}>
           <MilestoneIcon />
           <S.Count>{openCnt} Open</S.Count>
         </S.CountWrapper>
-        <S.CountWrapper className='count-wrapper close' onClick={() => handleStatus(CLOSE)}>
+        <S.CountWrapper className="count-wrapper close" onClick={() => handleStatus(CLOSE)}>
           <CheckIcon />
           <S.Count>{closedCnt} Closed</S.Count>
         </S.CountWrapper>
       </S.ListHeader>
       <S.List>
-        {milestones && milestones.map(milestone => {
-          const milestoneStatus = milestone.status === 'open' ? OPEN : CLOSE;
-          if (milestoneStatus === status) {
-            return <Milestone
-              key={milestone.id}
-              milestone={milestone}
-              handleStatusClick={handleStatusClick}
-              handleDeleteClick={handleDeleteClick}
-            />
-          }
-        })}
+        {milestones &&
+          milestones.map((milestone) => {
+            const milestoneStatus = milestone.status === 'open' ? OPEN : CLOSE;
+            if (milestoneStatus === status) {
+              return (
+                <Milestone
+                  key={milestone.id}
+                  milestone={milestone}
+                  handleStatusClick={handleStatusClick}
+                  handleDeleteClick={handleDeleteClick}
+                />
+              );
+            }
+          })}
       </S.List>
     </S.ListWrapper>
   );
