@@ -3,7 +3,7 @@ import { useIssuesState, useIssuesDispatch, getIssues } from '@contexts/IssuesCo
 import { IssueOpenedIcon } from '@primer/octicons-react';
 import filterIssue from '@utils/filterIssue';
 import Spinner from '@images/spinner3.gif';
-import Issue from './Issue';
+import Issue from './issue';
 import S from './style';
 
 function List() {
