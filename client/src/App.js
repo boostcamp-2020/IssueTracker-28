@@ -15,28 +15,30 @@ import { MilestonesProvider } from '@contexts/MilestonesContext';
 
 const App = () => {
   const history = useHistory();
-
-  const checkToken = () => {
-    if (!localStorage.getItem('auth_token')) {
-      history.push('/login');
-    }
-  };
-
+  let checkUser;
+  if (localStorage.getItem('auth_token')) {
+    checkUser = true;
+  } else {
+    checkUser = false;
+    history.push('/');
+  }
   return (
     <LabelProvider>
       <MilestonesProvider>
         <UsersProvider>
-          {console.log(localStorage.getItem('auth_token'))}
           <Switch>
-            <Route exact path="/" component={IssuePage} />
+            {checkUser ? (
+              <Route exact path="/" component={IssuePage} />
+            ) : (
+              <Route path="/" component={UserPage} />
+            )}
             <Route path="/issue/new" component={NewIssuePage} />
             <Route path="/label" component={LabelPage} />
             <Route path="/milestone/edit/:id" component={EditMilestonePage} />
             <Route path="/milestone/new" component={NewMilestonePage} />
             <Route path="/milestone" component={MilestonePage} />
             <Route path="/detail/:id" component={IssueDetailPage} />
-            <Route path="/login" component={UserPage} />
-            <Route render={() => <ErrorPage />} />
+            <Route path="*" component={ErrorPage} />
           </Switch>
         </UsersProvider>
       </MilestonesProvider>
