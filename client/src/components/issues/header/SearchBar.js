@@ -9,7 +9,7 @@ function SearchBar() {
   const dispatch = useIssuesDispatch();
   const { filters, filterMessage } = state;
 
-  const placeholderMessage = 'ᑫ Search all issues';
+  const placeholderMessage = '🔍Search all issues';
   const [searchValue, setSearchValue] = useState(filterMessage);
 
   useEffect(() => {

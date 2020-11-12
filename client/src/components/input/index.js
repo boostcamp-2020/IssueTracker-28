@@ -47,7 +47,7 @@ function Input() {
 
   const submitHandler = async () => {
     const milestone = selectedMilestone ? selectedMilestone.id : null;
-    const { data } = await api.createIssue(
+    const response = await api.createIssue(
       title,
       content,
       milestone,
@@ -56,13 +56,13 @@ function Input() {
       localStorage.getItem('user_id')
     );
     if (response.status === 200) {
-      history.push(`/detail/${data.data}`);
+      history.push(`/detail/${response.data.data}`);
     }
   };
 
   return (
     <S.InputWrapper>
-      <S.AuthorPic src={EmptyUserPic} />
+      <S.AuthorPic src={localStorage.getItem('profile_img')} />
       <S.InputTriangle />
       <S.InputTitle placeholder="Title" value={title} onChange={titleHandler} />
       <S.InputFormWrapper wrapperHeight="80%">

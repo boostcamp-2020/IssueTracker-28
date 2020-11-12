@@ -1,7 +1,7 @@
-import axios from 'axios';
+import API from './common';
 
 const getUsers = async () => {
-  const response = await axios.get('/api/user/list');
+  const response = await API.get('/user/list');
   return response.data;
 };
 

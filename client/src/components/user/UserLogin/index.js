@@ -5,11 +5,6 @@ import Cookie from '@utils/cookie';
 import S from './style';
 
 function UserLogin() {
-  const logoutHandler = () => {
-    localStorage.clear();
-    window.location.href = '/';
-  };
-
   return (
     <>
       <S.LoginWrapper>
@@ -20,7 +15,6 @@ function UserLogin() {
             <MarkGithubIcon size={20} className="githubIcon" />
           </S.LoginButton>
         </a>
-        {/* <S.LogoutButton onClick={logoutHandler}>Logout</S.LogoutButton>  */}
       </S.LoginWrapper>
     </>
   );
