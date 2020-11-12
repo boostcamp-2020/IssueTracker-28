@@ -48,7 +48,7 @@ const updateIssueTitle = async (id, title) => {
 const deleteIssue = async (id) => {
   const response = await API.delete(`/issue/${id}`);
   return response.data;
-
+};
 const updateIssueAssignee = async (id, assignee, flag) => {
   const response = await API.put(`/issue/assignee/${id}`, {
     assignee,

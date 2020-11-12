@@ -124,7 +124,7 @@ exports.selectComments = async (issueId) => {
     include: [
       {
         model: User,
-        attributes: ['id', 'user_id'],
+        attributes: ['id', 'user_id', 'profile_img'],
       },
     ],
     raw: true,
