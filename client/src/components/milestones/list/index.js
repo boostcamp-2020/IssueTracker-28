@@ -9,7 +9,7 @@ import {
 import { OPEN, CLOSE } from '@constants/status';
 import { MilestoneIcon, CheckIcon } from '@primer/octicons-react';
 import Spinner from '@images/spinner3.gif';
-import Milestone from './Milestone';
+import Milestone from './milestone';
 import S from './style';
 
 function List() {
