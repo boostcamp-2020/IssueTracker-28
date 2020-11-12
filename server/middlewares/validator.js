@@ -29,7 +29,7 @@ exports.createLabel = (req, res, next) => {
 exports.createMilestone = (req, res, next) => {
   req.check('status').isInt();
   req.check('title').isString();
-  if (req.body.dueDate) req.check('dueDate').isDate();
+  if (req.body.dueDate) req.check('dueDate').isString();
   if (req.body.desc) req.check('desc').isString();
 
   const error = req.validationErrors();
