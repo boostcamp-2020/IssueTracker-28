@@ -1,29 +1,65 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@components/issues/header/buttons/style';
 import { useHistory } from 'react-router-dom';
 import EmptyUserPic from '@images/empty-user.png';
 import * as api from '@api/issue';
-import InputForm from './form';
+import { useUsersState, useUsersDispatch } from '@contexts/UsersContext';
+import { useLabelState, useLabelDispatch } from '@contexts/LabelContext';
+import { useMilestonesState, useMilestonesDispatch } from '@contexts/MilestonesContext';
 import S from './style';
+import InputForm from './form';
 
-function Input({ selectedAssignees, selectedLabels, selectedMilestone }) {
+function Input() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const { selectedUsers } = useUsersState();
+  const { selectedLabels } = useLabelState();
+  const { selectedMilestone } = useMilestonesState();
+  const usersDispatch = useUsersDispatch();
+  const labelsDispatch = useLabelDispatch();
+  const milestoneDispatch = useMilestonesDispatch();
+
+  const getAssigneesId = () => {
+    return Array.from(selectedUsers).reduce((acc, cur) => {
+      acc.push(cur.id);
+      return acc;
+    }, []);
+  };
+
+  const getLabelsId = () => {
+    return Array.from(selectedLabels).reduce((acc, cur) => {
+      acc.push(cur.id);
+      return acc;
+    }, []);
+  };
+
   const history = useHistory();
+
   const titleHandler = ({ target }) => {
     setTitle(target.value);
   };
+
+  useEffect(() => {
+    usersDispatch({ type: 'UPDATE_SELECTED_USERS', data: new Set() });
+    labelsDispatch({ type: 'UPDATE_SELECTED_LABELS', data: new Set() });
+    milestoneDispatch({ type: 'UPDATE_SELECTED_MILESTONE', data: null });
+  }, []);
+
   const submitHandler = async () => {
+    const milestone = selectedMilestone ? selectedMilestone.id : null;
     const { data } = await api.createIssue(
       title,
       content,
-      selectedMilestone,
-      selectedAssignees,
-      selectedLabels,
+      milestone,
+      getAssigneesId(),
+      getLabelsId(),
       localStorage.getItem('user_id')
     );
-    history.push(`/detail/${data.data}`);
+    if (response.status === 200) {
+      history.push(`/detail/${data.data}`);
+    }
   };
+
   return (
     <S.InputWrapper>
       <S.AuthorPic src={EmptyUserPic} />
@@ -36,6 +72,7 @@ function Input({ selectedAssignees, selectedLabels, selectedMilestone }) {
           buttonState="NEW_ISSUE"
           comment={content}
           setComment={setContent}
+          previewWrapper="340px"
         />
       </S.InputFormWrapper>
       <S.ButtonWrapper justifyContent="space-between">

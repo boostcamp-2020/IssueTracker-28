@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import InputForm from '@components/input/form';
 import BS from '@components/issues/header/buttons/style';
 import { IssueClosedIcon } from '@primer/octicons-react';
+import EmptyUserPic from '@images/empty-user.png';
 import {
   useIssueDetailDispatch,
   updateIssueStatus,
@@ -21,6 +22,7 @@ const MainContent = ({ issue, comments }) => {
   const createHandler = async () => {
     await createComment(dispatch, issue.id, newComment);
   };
+
   return (
     <S.MainContentWrapper>
       <Comment isIssue issue={issue} />
@@ -36,7 +38,7 @@ const MainContent = ({ issue, comments }) => {
         );
       })}
       <S.FlexWrapper>
-        <S.Profile src="https://issue.kr.object.ncloudstorage.com/1604932511555.png" />
+        <S.Profile src={EmptyUserPic} />
         <S.Triangle backgroundColor="rgb(250,251,252)" />
         <S.InputFormWrapper>
           <InputForm
@@ -45,16 +47,17 @@ const MainContent = ({ issue, comments }) => {
             buttonState="NEW_COMMENT"
             comment={newComment}
             setComment={setNewComment}
+            previewWrapper="149px"
           />
           <S.ButtonWrapper justifyContent="flex-end">
             <S.EditCancelButton onClick={statusHandler}>
               {issue.status === 'opened' ? (
                 <>
                   <IssueClosedIcon size={16} />
-                  <span>Closed Issue</span>
+                  <span style={{ marginLeft: '4px', color: 'black' }}>Closed Issue</span>
                 </>
               ) : (
-                <span>Reopen Issue</span>
+                <span style={{ color: 'black' }}>Reopen Issue</span>
               )}
             </S.EditCancelButton>
 

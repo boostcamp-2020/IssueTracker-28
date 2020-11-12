@@ -20,6 +20,10 @@ exports.selectIssues = async () => {
         model: Milestone,
         attributes: ['id', 'title'],
       },
+      {
+        model: Comment,
+        attributes: ['user_id'],
+      },
     ],
     order: sequelize.literal('id DESC'),
   });
@@ -120,7 +124,7 @@ exports.selectComments = async (issueId) => {
     include: [
       {
         model: User,
-        attributes: ['id', 'user_id'],
+        attributes: ['id', 'user_id', 'profile_img'],
       },
     ],
     raw: true,
@@ -191,6 +195,34 @@ exports.deleteIssueLabel = async (issueId, labelId) => {
 exports.deleteIssueMilestone = async (id) => {
   try {
     await Issue.update({ milestoneId: null }, { where: { id } });
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+
+exports.deleteIssue = async (id) => {
+  try {
+    await Issue.destroy({ where: { id } });
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+exports.deleteIssueAssigneeWithID = async (issueId) => {
+  try {
+    await IssueAssignee.destroy({ where: { issueId } });
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+exports.deleteIssueLabelWithID = async (issueId) => {
+  try {
+    await IssueLabel.destroy({ where: { issueId } });
     return true;
   } catch (error) {
     console.log(error);

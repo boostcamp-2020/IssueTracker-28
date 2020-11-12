@@ -146,7 +146,7 @@ exports.updateIssueTitle = async (req, res, next) => {
     PUT /api/issue/assignee/:id
     {
       assignee: 1
-      flag: 0 or 1 -> 0이면 삭제, 1이면 추가
+      flag: true / false
     }
     * 이슈 Assignee 수정 API
 */
@@ -177,7 +177,7 @@ exports.updateIssueAssignee = async (req, res, next) => {
     PUT /api/issue/label/:id
     {
       label: 1
-      flag: 0 or 1 -> 0이면 삭제, 1이면 추가
+      flag: true / false
     }
     * 이슈 Label 수정 API
 */
@@ -208,7 +208,7 @@ exports.updateIssueLabel = async (req, res, next) => {
     PUT /api/issue/milestone/:id
     {
       milestone: 1
-      flag: 0 or 1 -> 0이면 삭제, 1이면 추가
+      flag: true / false
     }
     * 이슈 Milestone 수정 API
 */
@@ -228,6 +228,29 @@ exports.updateIssueMilestone = async (req, res, next) => {
     } else {
       res.status(400).json({
         message: '이슈 Milestone 수정 실패',
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+/*
+    DELETE /api/issue/:id
+    * 이슈 삭제 API
+*/
+exports.deleteIssue = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const deleteIssueResult = await issueServices.deleteIssue(id);
+    const deleteIssueAssigneeResult = await issueServices.deleteIssueAssigneeWithID(id);
+    const deleteIssueLabelResult = await issueServices.deleteIssueLabelWithID(id);
+    if (deleteIssueResult && deleteIssueAssigneeResult && deleteIssueLabelResult) {
+      res.status(200).json({
+        message: '이슈 삭제 성공',
+      });
+    } else {
+      res.status(400).json({
+        message: '이슈 삭제 실패',
       });
     }
   } catch (error) {

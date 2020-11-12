@@ -113,12 +113,15 @@ export default {
     color: rgb(215, 58, 73);
     margin-right: 10px;
     cursor: pointer;
+    &:hover {
+      filter: brightness(95%);
+    }
   `,
   PreviewWrapper: styled.div`
     width: 97.5%;
     border: 1px solid #e1e4e8;
     border-radius: 6px;
-    height: 73%;
+    height: ${(props) => props.previewWrapper};
     margin: 8px;
     padding: 10px;
     box-sizing: border-box;

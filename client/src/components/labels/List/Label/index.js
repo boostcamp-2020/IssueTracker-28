@@ -48,4 +48,4 @@ function Label({ label, isEditState, setIsUpdated }) {
   );
 }
 
-export default Label;
+export default React.memo(Label);

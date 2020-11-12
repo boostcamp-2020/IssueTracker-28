@@ -93,7 +93,7 @@ export async function getIssue(dispatch, id) {
 export async function saveIssueTitle(dispatch, id, title) {
   try {
     await issueAPI.updateIssueTitle(id, title);
-    getIssue(dispatch, id);
+    // getIssue(dispatch, id);
   } catch (e) {
     dispatch({ type: 'GET_ISSUE_ERROR', error: e });
   }

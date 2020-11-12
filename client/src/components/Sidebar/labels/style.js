@@ -12,6 +12,13 @@ export default {
     .ui.multiple.dropdown {
       padding: 0;
     }
+    .sidebar-check-icon {
+      display: none !important;
+      margin-right: 8px;
+    }
+    .show {
+      display: inline-block !important;
+    }
   `,
   LabelHeader: styled.div`
     width: 280px;
@@ -52,12 +59,6 @@ export default {
     border-radius: 4px;
     margin-right: 8px;
   `,
-  LabelPic: styled.img`
-    width : 23px;
-    height : 23px;
-    border-radius : 4px;
-    margin-right : 8px;
-    `,
   SelectedItem: styled.div`
     color: white;
     font-weight: 800;

@@ -7,6 +7,7 @@ const initialState = {
     data: null,
     error: null,
   },
+  selectedLabels: new Set(),
 };
 
 const loadingState = {
@@ -58,6 +59,11 @@ function labelReducer(state, action) {
       return {
         ...state,
         labels: error(action.error),
+      };
+    case 'UPDATE_SELECTED_LABELS':
+      return {
+        ...state,
+        selectedLabels: action.data,
       };
     default:
       return state;

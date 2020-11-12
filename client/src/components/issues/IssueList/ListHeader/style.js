@@ -23,7 +23,7 @@ export default {
     display: flex;
     .check-icon {
       display: none !important;
-      margin-right: 5px;
+      margin-right: 8px;
     }
     .show {
       display: inline-block !important;

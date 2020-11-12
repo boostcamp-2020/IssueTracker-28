@@ -7,9 +7,6 @@ import S from './style';
 function UserLogin() {
   const logoutHandler = () => {
     localStorage.clear();
-    Cookie.deleteCookie('auth_token');
-    Cookie.deleteCookie('user_id');
-    Cookie.deleteCookie('id');
     window.location.href = '/';
   };
 

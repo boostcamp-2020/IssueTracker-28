@@ -24,9 +24,15 @@ export default {
     border: 1px solid #e1e4e8;
     border-radius: 4px;
     padding: 5px 15px;
-    color: black;
+    color: rgb(215, 58, 73);
     margin-right: 10px;
     cursor: pointer;
+    display : flex;
+    align-items : center;
+    justify-content : center;
+    &:hover{
+      filter : brightness(95%);
+    }
   `,
   Profile: styled.img`
     width: 50px;

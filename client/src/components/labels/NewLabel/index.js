@@ -9,7 +9,11 @@ import {
 } from '@contexts/LabelContext';
 import S from './style';
 
+<<<<<<< HEAD
 function NewLabel({ setIsVisible, setIsEditState, setIsUpdated, label }) {
+=======
+function NewLabel({ setIsVisible, setIsEditState, label }) {
+>>>>>>> 697df88ddbe373b0f9170a6f80f6f1e7d9e5ffc9
   const dispatch = useLabelDispatch();
   const isEdit = label ? true : false;
   const [newLabelName, setNewLabelName] = isEdit ? useState(label.name) : useState(null);
@@ -41,7 +45,10 @@ function NewLabel({ setIsVisible, setIsEditState, setIsUpdated, label }) {
   const deleteLabelHandler = async () => {
     if (confirm('Are you sure? Deleting a label will remove it from all issues and pull requests.')) {
       await deleteLabel(dispatch, label.id);
+<<<<<<< HEAD
       setIsUpdated(true);
+=======
+>>>>>>> 697df88ddbe373b0f9170a6f80f6f1e7d9e5ffc9
     } else {
       return false;
     }

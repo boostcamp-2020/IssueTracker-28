@@ -201,7 +201,6 @@ function ListHeader() {
                           <LS.TitleContainer>
                             <CheckIcon size={16} className="check-icon" />
                             <div>{item.title}</div>
-                            <div>{item.due_date}</div>
                           </LS.TitleContainer>
                         </Dropdown.Item>
                       </>
