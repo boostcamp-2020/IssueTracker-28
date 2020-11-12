@@ -1,7 +1,7 @@
-import axios from 'axios';
+import API from './common';
 
 const getMilestones = async () => {
-  const response = await axios.get('/api/milestone/list');
+  const response = await API.get('/milestone/list');
   return response.data;
 };
 
@@ -12,7 +12,7 @@ const createMilestone = async ({ status, title, due_date, desc }) => {
   else if (desc.length === 0) params = { status, title, due_date };
   else params = { status, title, due_date, desc };
 
-  const response = await axios.post('/api/milestone', params);
+  const response = await API.post('/milestone', params);
   return response.data;
 };
 
@@ -23,24 +23,18 @@ const updateMilestone = async ({ id, title, due_date, desc }) => {
   else if (desc.length === 0) params = { title, due_date, desc: null };
   else params = { title, due_date, desc };
 
-  const response = await axios.put(`/api/milestone/${id}`, params);
+  const response = await API.put(`/milestone/${id}`, params);
   return response.data;
 };
 
 const updateMilestoneStatus = async ({ id, status }) => {
-  const response = await axios.put(`/api/milestone/${id}`, { status });
+  const response = await API.put(`/milestone/${id}`, { status });
   return response.data;
 };
 
 const deleteMilestone = async ({ id }) => {
-  const response = await axios.delete(`/api/milestone/${id}`);
+  const response = await API.delete(`/milestone/${id}`);
   return response.data;
 };
 
-export {
-  getMilestones,
-  createMilestone,
-  updateMilestone,
-  updateMilestoneStatus,
-  deleteMilestone
-};
+export { getMilestones, createMilestone, updateMilestone, updateMilestoneStatus, deleteMilestone };

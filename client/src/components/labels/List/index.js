@@ -1,10 +1,7 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
+import { useLabelState, useLabelDispatch, getLabels } from '@contexts/LabelContext';
+import Spinner from '@images/spinner3.gif';
 import Label from './label';
-import {
-  useLabelState,
-  useLabelDispatch,
-  getLabels,
-} from '@contexts/LabelContext';
 import S from './style';
 
 function List() {
@@ -20,7 +17,22 @@ function List() {
     fetchData();
   }, [dispatch]);
 
-  if (loading) return <div> 로딩중.. </div>;
+  if (loading)
+    return (
+      <img
+        alt="로딩중"
+        src={Spinner}
+        style={{
+          width: '250px',
+          position: 'absolute',
+          top: '0',
+          bottom: '0',
+          left: '0',
+          right: '0',
+          margin: 'auto',
+        }}
+      />
+    );
   if (error) return <div> 에러가 발생했습니다 </div>;
   if (!data) return <button onClick={fetchData}>불러오기</button>;
 
@@ -32,9 +44,9 @@ function List() {
         </S.CountWrapper>
       </S.ListHeader>
       <S.List>
-        {data.map((label)=>
-          <Label key={label.id} label={label}/>
-        )}
+        {data.map((label) => (
+          <Label key={label.id} label={label} />
+        ))}
       </S.List>
     </S.ListWrapper>
   );

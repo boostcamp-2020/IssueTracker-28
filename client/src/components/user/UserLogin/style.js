@@ -30,19 +30,6 @@ export default {
       margin-left: 8px;
     }
   `,
-  LogoutButton: styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    width: 325px;
-    color: black;
-    height: 45px;
-    border-radius: 4px;
-    font-size: 16px;
-    background: white;
-    border: 1px solid #d9d9d9;
-  `,
   LoginImage: styled.img`
     width: 70%;
   `,

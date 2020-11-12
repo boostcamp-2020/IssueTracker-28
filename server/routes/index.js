@@ -11,12 +11,11 @@ const comment = require('./comment');
 const passportJWT = passport.authenticate('jwt', { session: false });
 
 router.use('/auth', auth);
-// router.use('/issue', passportJWT, issue);
-router.use('/issue', issue);
-router.use('/label', label);
-router.use('/milestone', milestone);
-router.use('/user', user);
+router.use('/issue', passportJWT, issue);
+router.use('/label', passportJWT, label);
+router.use('/milestone', passportJWT, milestone);
+router.use('/user', passportJWT, user);
 router.use('/upload', upload);
-router.use('/comment', comment);
+router.use('/comment', passportJWT, comment);
 
 module.exports = router;
