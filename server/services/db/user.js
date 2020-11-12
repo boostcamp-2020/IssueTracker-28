@@ -1,11 +1,10 @@
 const { User } = require('../../models');
 
-exports.selectUser = async (id) => {
+exports.selectUser = async (userId) => {
   const results = await User.findOne({
-    attributes: ['id', 'userId', 'profileImg'],
     raw: true,
     where: {
-      id,
+      userId,
     },
   });
 

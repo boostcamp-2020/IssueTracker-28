@@ -22,10 +22,6 @@ const MainContent = ({ issue, comments }) => {
   const createHandler = async () => {
     await createComment(dispatch, issue.id, newComment);
   };
-  // const getUserPic = async () => {
-  //   const user = await api.getUser();
-  //   return user.profileImg;
-  // }
 
   return (
     <S.MainContentWrapper>
