@@ -20,6 +20,10 @@ exports.selectIssues = async () => {
         model: Milestone,
         attributes: ['id', 'title'],
       },
+      {
+        model: Comment,
+        attributes: ['user_id'],
+      },
     ],
     order: sequelize.literal('id DESC'),
   });

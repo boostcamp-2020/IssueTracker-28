@@ -8,6 +8,7 @@ export const initialFilters = {
   labels: '*', // new Set()
   milestone: '*', // null
   assignees: '*', // new Set()
+  mentions: '*' // null
 };
 
 // IssuesContext에서 사용할 기본 상태
