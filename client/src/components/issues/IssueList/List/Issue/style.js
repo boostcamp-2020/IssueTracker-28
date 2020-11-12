@@ -10,12 +10,15 @@ export default {
     .issue-checkbox {
       margin-top: 5px;
     }
-    .issue-open-icon {
+    .issue-icon{
+      position : relative;
+      top : 2px;
       margin-left: 16px;
+    }
+    .issue-open-icon {
       color: #28a745;
     }
     .issue-closed-icon {
-      margin-left: 16px;
       color: #dd2100;
     }
     &:last-of-type {

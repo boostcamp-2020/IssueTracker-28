@@ -61,7 +61,6 @@ export default {
     border: 1px solid rgb(225, 228, 232);
     border-radius: 6px;
   `,
-
   ButtonWrapper: styled.div`
     display: flex;
     justify-content: ${(props) => props.justifyContent};
@@ -76,6 +75,9 @@ export default {
     color: rgb(215, 58, 73);
     margin-right: 10px;
     cursor: pointer;
+    &:hover{
+      filter : brightness(95%);
+    }
   `,
   VerticalLine: styled.div`
     border-left: 2px solid rgb(225, 228, 232);
