@@ -29,6 +29,7 @@ const IssueDetail = () => {
   if (loading) return <div> 로딩중.. </div>;
   if (error) return <div> 에러가 발생했습니다 </div>;
   if (!data) return <button onClick={fetchData}> 불러오기 </button>;
+
   return (
     <S.IssueDetailWrapper>
       <Header issue={issue} commentsCount={comments.length} />

@@ -45,6 +45,30 @@ const updateIssueTitle = async (id, title) => {
   return response;
 };
 
+const updateIssueAssignee = async (id, assignee, flag) => {
+  const response = await API.put(`/issue/assignee/${id}`, {
+    assignee,
+    flag,
+  });
+  return response;
+};
+
+const updateIssueLabel = async (id, label, flag) => {
+  const response = await API.put(`/issue/label/${id}`, {
+    label,
+    flag,
+  });
+  return response;
+};
+
+const updateIssueMilestone = async (id, milestone, flag) => {
+  const response = await API.put(`/issue/milestone/${id}`, {
+    milestone,
+    flag,
+  });
+  return response;
+};
+
 export {
   createIssue,
   getIssues,
@@ -52,4 +76,7 @@ export {
   updateIssueStatus,
   updateIssueTitle,
   updateIssueContent,
+  updateIssueAssignee,
+  updateIssueLabel,
+  updateIssueMilestone,
 };

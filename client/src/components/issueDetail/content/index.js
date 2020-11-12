@@ -1,30 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import MainContent from '@components/issueDetail/content/main';
 import Sidebar from '@components/sidebar';
+import { useUsersDispatch } from '@contexts/UsersContext';
+import { useLabelDispatch } from '@contexts/LabelContext';
+import { useMilestonesDispatch } from '@contexts/MilestonesContext';
 import S from './style';
 
 const Content = ({ issue, comments }) => {
-  const [selectedAssignees, setSelectedAssignees] = useState(new Set());
-  const [selectedLabels, setSelectedLabels] = useState(new Set());
-  const [selectedMilestone, setSelectedMilestone] = useState(null);
+  const usersDispatch = useUsersDispatch();
+  const labelsDispatch = useLabelDispatch();
+  const milestoneDispatch = useMilestonesDispatch();
 
   useEffect(() => {
-    setSelectedAssignees(issue.assignees); // 형태가 달라지면 다시 적용
-    setSelectedLabels(issue.labels);
-    setSelectedMilestone(issue.milestone);
+    usersDispatch({ type: 'UPDATE_SELECTED_USERS', data: issue.assignees });
+    labelsDispatch({ type: 'UPDATE_SELECTED_LABELS', data: issue.labels });
+    const milestone = issue.milestone.title ? issue.milestone : null;
+    milestoneDispatch({ type: 'UPDATE_SELECTED_MILESTONE', data: milestone });
   }, []);
 
   return (
     <S.ContentWrapper>
       <MainContent issue={issue} comments={comments} />
-      <Sidebar
-        selectedAssignees={selectedAssignees}
-        setSelectedAssignees={setSelectedAssignees}
-        selectedLabels={selectedLabels}
-        setSelectedLabels={setSelectedLabels}
-        selectedMilestone={selectedMilestone}
-        setSelectedMilestone={setSelectedMilestone}
-      />
+      <Sidebar id={issue.id} />
     </S.ContentWrapper>
   );
 };

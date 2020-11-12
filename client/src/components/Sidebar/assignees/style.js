@@ -12,12 +12,12 @@ export default {
       padding-bottom: 0px;
     }
   `,
-  SelectedAssigneeWrapper : styled.div`
-    display : flex;
-    align-items : center;
-    padding-bottom : 5px;
+  SelectedAssigneeWrapper: styled.div`
+    display: flex;
+    align-items: center;
+    padding-bottom: 5px;
     &:last-child {
       padding-bottom: 0px;
     }
-  `
+  `,
 };

@@ -21,7 +21,6 @@ const hasCookie = (cookie) => {
   return false;
 };
 
-// 일단 사용X
 const getUser = (userObj, cookie) => {
   let user = userObj;
   if (hasCookie(cookie)) {
@@ -49,10 +48,12 @@ const saveUserInfo = () => {
     const token = getToken('auth_token');
     const userId = getToken('user_id');
     const id = getToken('id');
+    const profileImg = getToken('profile_img');
     localStorage.setItem('auth_token', token);
     localStorage.setItem('user_id', userId);
     localStorage.setItem('id', id);
-    deleteAllCookie(['id', 'auth_token', 'user_id']);
+    localStorage.setItem('profile_img', profileImg);
+    deleteAllCookie(['id', 'auth_token', 'user_id', 'profile_img']);
     window.location.href = '/';
   }
 };
