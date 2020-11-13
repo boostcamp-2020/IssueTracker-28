@@ -31,10 +31,14 @@ app.use(cors());
 
 app.use('/api', apiRouter);
 
+app.use('*', (req, res, next) => {
+  res.sendFile('index.html');
+});
+
 app.use((req, res, next) => {
   const err = new Error('Not Found');
   err.status = 404;
-  res.sendFile('index.html');
+  next(err);
 });
 
 app.use((err, req, res) => {
