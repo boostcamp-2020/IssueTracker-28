@@ -14,7 +14,6 @@
 http://www.issue-tracker28.kro.kr
 
 ## 📹 Demo Video
-<a align="center" href="https://www.youtube.com/watch?v=7um8wpus3wU" target="_blank">Demo Video</a>
 [![](https://user-images.githubusercontent.com/60457112/99021811-d696bf80-25a4-11eb-9257-9dc758de39c1.png)](https://www.youtube.com/watch?v=7um8wpus3wU)
 
 
