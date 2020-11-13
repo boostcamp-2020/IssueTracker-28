@@ -7,7 +7,8 @@ import {
 import ColorHandler from '@utils/colorHandler'
 import S from './style';
 
-function Label({ label, isEditState }) {
+function Label({ label }) {
+  const [isEditState, setIsEditState] = useState(false);
   const dispatch = useLabelDispatch();
   const handleEditLabel = () => {
     setIsEditState(!isEditState);

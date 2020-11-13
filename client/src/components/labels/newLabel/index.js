@@ -35,6 +35,7 @@ function NewLabel({ setIsVisible, setIsEditState, label }) {
   const UpdateLabelHandler = async () => {
     const newLabelInfo = { name: newLabelName, desc: newLabelDesc, color: newLabelColor }
     isEdit ? await updateLabel(dispatch, label.id, newLabelInfo) : await createLabel(dispatch, newLabelInfo)
+    if (!isEdit) setIsVisible(false);
   }
   // Label 삭제 API 요청
   const deleteLabelHandler = async () => {
