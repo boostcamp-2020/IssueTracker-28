@@ -9,19 +9,12 @@
   <img src="https://img.shields.io/badge/mysql-v5.7.32-blue?logo=mysql" />
 </p>
 
-## 🍎 Service URL
-
-http://www.issue-tracker28.kro.kr
+### 🍎 [28조의 큐티뽀짝한 Service URL](http://www.issue-tracker28.kro.kr)
+### 📹 [API 명세서](https://documenter.getpostman.com/view/8483132/TVenfU7k)
+### ✍ [저희 팀이 더 궁금하시다면 Wiki 보러가기](https://github.com/boostcamp-2020/IssueTracker-28/wiki)
 
 ## 📹 Demo Video
 [![](https://user-images.githubusercontent.com/60457112/99021811-d696bf80-25a4-11eb-9257-9dc758de39c1.png)](https://www.youtube.com/watch?v=7um8wpus3wU)
-
-
-## 📹 API 명세서
-https://documenter.getpostman.com/view/8483132/TVenfU7k
-
-## ✍ Wiki 링크
-[28조 위키](https://github.com/boostcamp-2020/IssueTracker-28/wiki)
 
 ## 🛠 Tech Stack
 <p align="center"><img width="800" alt="기술 스택" src="https://user-images.githubusercontent.com/60457112/99019839-9c2b2380-25a0-11eb-9ece-338bfc291d36.png"></p>
@@ -85,10 +78,10 @@ https://documenter.getpostman.com/view/8483132/TVenfU7k
 
 ## 👩‍👩‍👧‍👦Members
 
-- [J032\_김동현](https://github.com/dooking)
-- [J046\_김예진](https://github.com/johnyejin)
-- [J139\_이상경](https://github.com/sang-gyeong)
-- [J216\_한예지](https://github.com/yeji9175)
+|  [J032\_김동현](https://github.com/dooking)  |  [J046\_김예진](https://github.com/johnyejin)  |  [J139\_이상경](https://github.com/sang-gyeong)  |  [J216\_한예지](https://github.com/yeji9175)  |
+| :----------: |  :--------:  |  :---------: |  :---------: |
+| <img src="https://avatars2.githubusercontent.com/u/60457112?s=400&u=abe6c14e6a1ed9c7822c607260d04eced3656a17&v=4" width=400px alt="_"/> | <img src="https://avatars3.githubusercontent.com/u/26537048?s=400&u=c6107e0b653eee1fc662dc8e1ec87f1f12c5489f&v=4" width=400px alt="_"/> | <img src="https://avatars3.githubusercontent.com/u/60839959?v=4" width=400px alt="_"/> | <img src="https://avatars2.githubusercontent.com/u/39231606?s=400&u=cf3abd7e53b9ce634fffe6dc8d13ff10935ae183&v=4" width=400px alt="_"> |
+| | I'm a night🦉 | 박수치기 담당 👏👏 | |
 
 ## Show your support
 
