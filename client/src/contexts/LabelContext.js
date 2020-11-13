@@ -112,7 +112,7 @@ export async function getLabels(dispatch) {
 export async function createLabel(dispatch, params) {
   try {
     await api.createLabel(params);
-    // getLabels(dispatch);
+    getLabels(dispatch);
   } catch (e) {
     dispatch({ type: 'CREATE_LABELS_ERROR', error: e });
   }
@@ -121,7 +121,7 @@ export async function createLabel(dispatch, params) {
 export async function updateLabel(dispatch, id, params) {
   try {
     await api.updateLabel(id, params);
-    // getLabels(dispatch);
+    getLabels(dispatch);
   } catch (e) {
     dispatch({ type: 'UPDATE_LABELS_ERROR', error: e });
   }
@@ -130,7 +130,7 @@ export async function updateLabel(dispatch, id, params) {
 export async function deleteLabel(dispatch, id) {
   try {
     await api.deleteLabel(id);
-    // getLabels(dispatch);
+    getLabels(dispatch);
   } catch (e) {
     dispatch({ type: 'DELETE_LABELS_ERROR', error: e });
   }
