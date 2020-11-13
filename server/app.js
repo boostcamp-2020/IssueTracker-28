@@ -32,7 +32,7 @@ app.use(cors());
 app.use('/api', apiRouter);
 
 app.use('*', (req, res, next) => {
-  res.sendFile('index.html');
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 });
 
 app.use((req, res, next) => {
