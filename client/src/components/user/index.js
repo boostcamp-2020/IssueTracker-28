@@ -1,5 +1,5 @@
 import React from 'react';
-import UserLogin from './UserLogin';
+import UserLogin from './userLogin';
 import S from './style';
 
 function User() {

@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const controller = require('./controller');
+const validator = require('../../middlewares/validator');
 
 router.get('/list', controller.getIssues);
 router.get('/detail/:id', controller.getIssueDetail);
-router.post('/', controller.createIssue);
+router.post('/', validator.createIssue, controller.createIssue);
 router.put('/status', controller.updateIssueStatus);
 router.put('/content/:id', controller.updateIssueContent);
 router.put('/title/:id', controller.updateIssueTitle);
