@@ -21,52 +21,6 @@
 ## 🛠 Tech Stack
 <p align="center"><img width="800" alt="기술 스택" src="https://user-images.githubusercontent.com/60457112/99019839-9c2b2380-25a0-11eb-9ece-338bfc291d36.png"></p>
 
-## 🏃‍♂️ Install & Run
-
-<details>
-<summary>install & run</summary>
-  <div markdown="1">
-    
-### install
-```
-git clone -b master --single-branch https://github.com/boostcamp-2020/IssueTracker-28.git
-```
-
-### backend .env 파일 생성
-```
-NODE_ENV=development
-USER_NAME=db_username
-PASSWORD=db_password
-DATABASE=database_name
-HOST=server_url
-
-GITHUB_CLIENT_ID=github_client_id
-GITHUB_CLIENT_SECRET=github_client_secret_key
-
-JWT_SECRET=jwt_secret_key
-ACCESS_KEY=ncloud_access_key
-SECRET_KEY=ncloud_secret_key
-```
-
-### frontend 실행
-```
-cd client
-npm i
-npm run dev
-```
-   
-### backend 실행
-```
-cd server
-npm i
-npm run dev
-```
-
-### http://127.0.0.1:8080/ 으로 접속!
-
-  </div>
-</details>
-    
 
 ## 📊 DB Model
 
@@ -125,6 +79,52 @@ npm run dev
   </div>
 </details>
 
+## 🏃‍♂️ Install & Run
+
+<details>
+<summary>install & run</summary>
+  <div markdown="1">
+    
+### install
+```
+git clone -b master --single-branch https://github.com/boostcamp-2020/IssueTracker-28.git
+```
+
+### backend .env 파일 생성
+```
+NODE_ENV=development
+USER_NAME=db_username
+PASSWORD=db_password
+DATABASE=database_name
+HOST=server_url
+
+GITHUB_CLIENT_ID=github_client_id
+GITHUB_CLIENT_SECRET=github_client_secret_key
+
+JWT_SECRET=jwt_secret_key
+ACCESS_KEY=ncloud_access_key
+SECRET_KEY=ncloud_secret_key
+```
+
+### frontend 실행
+```
+cd client
+npm i
+npm run dev
+```
+   
+### backend 실행
+```
+cd server
+npm i
+npm run dev
+```
+
+### http://127.0.0.1:8080/ 으로 접속!
+
+  </div>
+</details>
+    
 ## 👩‍👩‍👧‍👦Members
 
 |  [J032\_김동현](https://github.com/dooking)  |  [J046\_김예진](https://github.com/johnyejin)  |  [J139\_이상경](https://github.com/sang-gyeong)  |  [J216\_한예지](https://github.com/yeji9175)  |
