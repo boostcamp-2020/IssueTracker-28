@@ -17,6 +17,56 @@
 [<img width="400" src="https://user-images.githubusercontent.com/60457112/99021811-d696bf80-25a4-11eb-9257-9dc758de39c1.png"/>](https://youtu.be/-zdDoQeR3D4)
 > 클릭하시면 youtube로 이동합니다💨
 
+## 🛠 Tech Stack
+<p align="center"><img width="800" alt="기술 스택" src="https://user-images.githubusercontent.com/60457112/99019839-9c2b2380-25a0-11eb-9ece-338bfc291d36.png"></p>
+
+## 🏃‍♂️ Install & Run
+
+<details>
+<summary>install & run</summary>
+  <div markdown="1">
+    
+### install
+```
+git clone -b master --single-branch https://github.com/boostcamp-2020/IssueTracker-28.git
+```
+
+### backend .env 파일 생성
+```
+NODE_ENV=development
+USER_NAME=db_username
+PASSWORD=db_password
+DATABASE=database_name
+HOST=server_url
+
+GITHUB_CLIENT_ID=github_client_id
+GITHUB_CLIENT_SECRET=github_client_secret_key
+
+JWT_SECRET=jwt_secret_key
+ACCESS_KEY=ncloud_access_key
+SECRET_KEY=ncloud_secret_key
+```
+
+### frontend 실행
+```
+cd client
+npm i
+npm run dev
+```
+   
+### backend 실행
+```
+cd server
+npm i
+npm run dev
+```
+
+### http://127.0.0.1:8080/ 으로 접속!
+
+  </div>
+</details>
+    
+
 ## 📷 Screen Shots
 <img width="750" alt="스크린샷 2020-11-13 오후 12 30 12" src="https://user-images.githubusercontent.com/60839959/99025853-27121b00-25ad-11eb-9293-96a469d74cc3.png">
 <img width="750" alt="스크린샷 2020-11-13 오후 12 30 32" src="https://user-images.githubusercontent.com/60839959/99025856-29747500-25ad-11eb-9d8f-1fac6317adb1.png">
@@ -25,9 +75,6 @@
 <img width="750" alt="스크린샷 2020-11-13 오후 12 34 22" src="https://user-images.githubusercontent.com/60839959/99025883-32fddd00-25ad-11eb-8473-3f346a37ae6b.png">
 <img width="750" alt="스크린샷 2020-11-13 오후 12 35 03" src="https://user-images.githubusercontent.com/60839959/99025894-3abd8180-25ad-11eb-9ae7-080c3805e93b.png">
 <img width="750" alt="스크린샷 2020-11-13 오후 12 35 19" src="https://user-images.githubusercontent.com/60839959/99025900-3d1fdb80-25ad-11eb-81fa-e5ff40ef86b5.png">
-
-## 🛠 Tech Stack
-<p align="center"><img width="800" alt="기술 스택" src="https://user-images.githubusercontent.com/60457112/99019839-9c2b2380-25a0-11eb-9ece-338bfc291d36.png"></p>
 
 ## 📊 DB Model
 
