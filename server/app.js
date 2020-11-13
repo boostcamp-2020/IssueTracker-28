@@ -34,7 +34,8 @@ app.use('/api', apiRouter);
 app.use((req, res, next) => {
   const err = new Error('Not Found');
   err.status = 404;
-  next(err);
+  res.sendFile("index.html");
+  // next(err);
 });
 app.use((err, req, res) => {
   res.locals.message = err.message;
