@@ -20,7 +20,7 @@ function Labels({ id = null }) {
   const { data: labels } = state.labels;
   const { selectedLabels } = state;
 
-  useEffect(() => {}, [dispatch]);
+  useEffect(() => { }, [dispatch]);
 
   const clickHandler = async (item) => {
     let flag = true;
@@ -53,8 +53,8 @@ function Labels({ id = null }) {
                       {Array.from(selectedLabels).some((label) => label.id === item.id) ? (
                         <CheckIcon size={16} className="sidebar-check-icon show" />
                       ) : (
-                        <CheckIcon size={16} className="sidebar-check-icon" />
-                      )}
+                          <CheckIcon size={16} className="sidebar-check-icon" />
+                        )}
                       <S.BoxColor background={item.color} />
                       <S.LabelName>{item.name}</S.LabelName>
                     </S.TitleContainer>

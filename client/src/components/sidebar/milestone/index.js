@@ -25,7 +25,7 @@ function Milestone({ id = null }) {
   const openCnt = data?.milestoneCnt[0];
   const closeCnt = data?.milestoneCnt[1];
 
-  useEffect(() => {}, [dispatch]);
+  useEffect(() => { }, [dispatch]);
 
   const clickHandler = async (item) => {
     let flag = true;
@@ -58,14 +58,14 @@ function Milestone({ id = null }) {
                         selectedMilestone.id === item.id ? (
                           <CheckIcon size={16} className="sidebar-check-icon show" />
                         ) : (
-                          <CheckIcon size={16} className="sidebar-check-icon" />
-                        )
+                            <CheckIcon size={16} className="sidebar-check-icon" />
+                          )
                       ) : null}
                       <S.TitleContainer>
                         <S.ItemTitle>{item.title}</S.ItemTitle>
                         <S.ItemDate>
                           Due by{' '}
-                          {Date.getDate(item.due_date, {
+                          {Date.getDate(item.dueDate, {
                             day: 'numeric',
                             year: 'numeric',
                             month: 'long',
@@ -85,8 +85,8 @@ function Milestone({ id = null }) {
           <S.SelectedItem>{selectedMilestone.title}</S.SelectedItem>
         </>
       ) : (
-        <div>No Milestone</div>
-      )}
+          <div>No Milestone</div>
+        )}
     </LS.LabelContainer>
   );
 }

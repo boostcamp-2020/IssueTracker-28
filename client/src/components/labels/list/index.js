@@ -4,7 +4,7 @@ import Spinner from '@images/spinner3.gif';
 import Label from './label';
 import S from './style';
 
-function List() {
+function List({ isUpdated, setIsUpdated }) {
   const state = useLabelState();
   const dispatch = useLabelDispatch();
   const { data, loading, error } = state.labels;
@@ -15,7 +15,8 @@ function List() {
 
   useEffect(() => {
     fetchData();
-  }, [dispatch]);
+    setIsUpdated(false);
+  }, [dispatch, isUpdated]);
 
   if (loading)
     return (

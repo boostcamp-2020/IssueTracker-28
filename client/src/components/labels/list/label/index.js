@@ -7,8 +7,7 @@ import {
 import ColorHandler from '@utils/colorHandler'
 import S from './style';
 
-function Label({ label }) {
-  const [isEditState, setIsEditState] = useState(false);
+function Label({ label, isEditState, setIsUpdated }) {
   const dispatch = useLabelDispatch();
   const handleEditLabel = () => {
     setIsEditState(!isEditState);
@@ -16,6 +15,7 @@ function Label({ label }) {
   const handleDeleteLabel = () => {
     if (confirm('Are you sure? Deleting a label will remove it from all issues and pull requests.')) {
       deleteLabel(dispatch, label.id);
+      setIsUpdated(true);
     } else {
       return false;
     }
