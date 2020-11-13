@@ -28,7 +28,7 @@ https://documenter.getpostman.com/view/8483132/TVenfU7k
 
 ## 📊 DB Model
 
-<img width="800" alt="스크린샷 2020-10-27 오후 1 11 59" src="https://user-images.githubusercontent.com/39231606/97652541-f658be80-1aa1-11eb-8427-35950cfd07ef.png">
+<img width="800" alt="스크린샷 2020-10-27 오후 1 11 59" src="https://user-images.githubusercontent.com/39231606/99022631-70ab3780-25a6-11eb-9fd3-d02e9c2eb34c.png">
 
 ## 🗂 Directory
 
