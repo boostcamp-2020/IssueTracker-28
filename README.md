@@ -14,7 +14,7 @@
 ### ✍ [저희 팀이 더 궁금하시다면 Wiki 보러가기](https://github.com/boostcamp-2020/IssueTracker-28/wiki)
 
 ## 📹 Demo Video
-[<img width="400" src="https://user-images.githubusercontent.com/60457112/99021811-d696bf80-25a4-11eb-9257-9dc758de39c1.png"/>](https://youtu.be/mRyLkaubVGE)
+[<img width="400" src="https://user-images.githubusercontent.com/60457112/99021811-d696bf80-25a4-11eb-9257-9dc758de39c1.png"/>](https://youtu.be/-zdDoQeR3D4)
 > 클릭하시면 youtube로 이동합니다💨
 
 ## 📷 Screen Shots
