@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   width: 500px;
   margin: auto;
-  margin-top: 150px;
+  margin-top: 130px;
   text-align: center;
   img {
     width: 500px;
