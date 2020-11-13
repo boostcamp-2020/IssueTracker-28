@@ -17,21 +17,68 @@ http://www.issue-tracker28.kro.kr
 
 https://www.youtube.com/watch?v=7um8wpus3wU
 
+## ✍ Wiki 링크
+
+[28조 위키](https://github.com/boostcamp-2020/IssueTracker-28/wiki)
+
+## 🛠 Teck Stack
+<p align="center"><img width="800" alt="기술 스택" src="https://user-images.githubusercontent.com/60457112/99019839-9c2b2380-25a0-11eb-9ece-338bfc291d36.png"></p>
 
 ## 📊 DB Model
 
-<img width="800" alt="스크린샷 2020-10-27 오후 1 11 59" src="https://user-images.githubusercontent.com/39231606/99016247-0a201c80-259a-11eb-827d-de36122c483e.png">
+<img width="800" alt="스크린샷 2020-10-27 오후 1 11 59" src="https://user-images.githubusercontent.com/39231606/97652541-f658be80-1aa1-11eb-8427-35950cfd07ef.png">
 
 ## 🗂 Directory
 
 <details>
-<summary>frontend</summary>
-<img width="339" alt="스크린샷 2020-10-27 오후 8 25 59" src="https://user-images.githubusercontent.com/60839959/97295537-c2f41500-1892-11eb-9fc2-f366ae011e1e.png">
+<summary>backend</summary>
+  <div markdown="1">
+    
+```
+🗃 Project Folder  
+📁backend  
+├── app  
+├── 📁bin  
+│   └── www  
+├── 📁config  
+├── 📁middlewares  
+├── 📁models  
+├── 📁passport  
+├── 📁routes
+│   ├── 📁auth
+│   ├── 📁comment
+│   ├── 📁issue 
+│   ├── 📁label 
+│   ├── 📁milestone
+│   ├── 📁upload 
+│   └── 📁user
+└── 📁services
+    └── 📁db 
+```
+
+  </div>
 </details>
 
 <details>
-<summary>backend</summary>
-<img width="340" alt="스크린샷 2020-10-27 오후 8 26 19" src="https://user-images.githubusercontent.com/60839959/97295524-be2f6100-1892-11eb-9ecc-2ac9de7f8f0e.png">
+<summary>frontend</summary>
+  <div markdown="1">
+    
+  ```
+  📁frontend  
+  ├── 📁public
+  │   └── 📁images
+  │   └── index.html
+  └── 📁src
+      ├── App
+      ├── 📁api
+      ├── 📁components  
+      ├── 📁constants
+      ├── 📁contexts
+      ├── 📁pages
+      └── 📁utile
+  ```
+  
+  </div>
 </details>
 
 ## 👩‍👩‍👧‍👦Members
