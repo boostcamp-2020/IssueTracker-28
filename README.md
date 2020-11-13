@@ -29,12 +29,12 @@
 ## 🗂 Directory
 
 <details>
-<summary>backend</summary>
+<summary>server</summary>
   <div markdown="1">
     
 ```
 🗃 Project Folder  
-📁backend  
+📁server  
 ├── app  
 ├── 📁bin  
 │   └── www  
@@ -58,11 +58,11 @@
 </details>
 
 <details>
-<summary>frontend</summary>
+<summary>client</summary>
   <div markdown="1">
     
   ```
-  📁frontend  
+  📁client  
   ├── 📁public
   │   └── 📁images
   │   └── index.html
