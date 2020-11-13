@@ -16,7 +16,7 @@ const Wrapper = styled.div`
 const ErrorPage = () => {
   return (
     <Wrapper>
-      <img src="images/404Image.png" alt="404" />
+      <img src="https://kr.object.ncloudstorage.com/issue/1605231073618.png" alt="404" />
       <a href="/">돌아가기</a>
     </Wrapper>
   );
