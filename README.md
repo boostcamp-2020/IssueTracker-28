@@ -15,7 +15,8 @@ http://www.issue-tracker28.kro.kr
 
 ## 📹 Demo Video
 <a align="center" href="https://www.youtube.com/watch?v=7um8wpus3wU" target="_blank">Demo Video</a>
-<p align="center"><a align="center" href="https://www.youtube.com/watch?v=7um8wpus3wU" target="_blank"><img width="800" alt="링크" src="https://user-images.githubusercontent.com/60457112/99021811-d696bf80-25a4-11eb-9257-9dc758de39c1.png"></a></p>
+[![](https://user-images.githubusercontent.com/60457112/99021811-d696bf80-25a4-11eb-9257-9dc758de39c1.png)](https://www.youtube.com/watch?v=7um8wpus3wU)
+
 
 ## 📹 API 명세서
 https://documenter.getpostman.com/view/8483132/TVenfU7k
