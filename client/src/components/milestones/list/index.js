@@ -18,7 +18,7 @@ function List() {
   const { data, loading, error } = state.milestones;
   const [status, setStatus] = useState(OPEN); // open: 0, close: 1
 
-  useEffect(() => { }, [dispatch]);
+  useEffect(() => {}, [dispatch]);
 
   const fetchData = () => {
     getMilestones(dispatch);
