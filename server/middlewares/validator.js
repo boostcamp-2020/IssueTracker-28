@@ -1,9 +1,9 @@
 exports.createIssue = (req, res, next) => {
   req.check('title').isString();
   req.check('content').isString();
-  req.check('assignees').isArray();
-  req.check('labels').isArray();
-  req.check('milestone').isInt();
+  if (req.body.assignees.length === 0) req.check('assignees').isArray();
+  if (req.body.labels.length === 0) req.check('labels').isArray();
+  if (req.body.content) req.check('milestone').isInt();
 
   const error = req.validationErrors();
   if (error) {
