@@ -31,11 +31,16 @@ app.use(cors());
 
 app.use('/api', apiRouter);
 
+app.use('*', (req, res, next) => {
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+});
+
 app.use((req, res, next) => {
   const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
+
 app.use((err, req, res) => {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

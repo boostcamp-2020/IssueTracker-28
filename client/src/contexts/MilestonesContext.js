@@ -102,6 +102,7 @@ async function getMilestones(dispatch) {
 async function createMilestone(dispatch, params) {
   try {
     await api.createMilestone(params);
+    getMilestones(dispatch);
   } catch (e) {
     dispatch({ type: 'POST_MILESTONE_ERROR', error: e });
   }
@@ -110,6 +111,7 @@ async function createMilestone(dispatch, params) {
 async function updateMilestone(dispatch, params) {
   try {
     await api.updateMilestone(params);
+    getMilestones(dispatch);
   } catch (e) {
     dispatch({ type: 'PUT_MILESTONE_ERROR', error: e });
   }
@@ -118,6 +120,7 @@ async function updateMilestone(dispatch, params) {
 async function updateMilestoneStatus(dispatch, params) {
   try {
     await api.updateMilestoneStatus(params);
+    getMilestones(dispatch);
   } catch (e) {
     dispatch({ type: 'PUT_MILESTONE_STATUS_ERROR', error: e });
   }
@@ -126,6 +129,7 @@ async function updateMilestoneStatus(dispatch, params) {
 async function deleteMilestone(dispatch, params) {
   try {
     await api.deleteMilestone(params);
+    getMilestones(dispatch);
   } catch (e) {
     dispatch({ type: 'PUT_MILESTONE_STATUS_ERROR', error: e });
   }

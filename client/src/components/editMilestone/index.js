@@ -44,7 +44,7 @@ function EditMilestone() {
     updateMilestone(dispatch, {
       id: milestone.id,
       title,
-      due_date: date,
+      dueDate: date,
       desc: description
     });
 
@@ -78,7 +78,7 @@ function EditMilestone() {
         <IS.InputDate
           className='form-control edit-date'
           type='date'
-          defaultValue={milestone.due_date}
+          defaultValue={milestone.dueDate}
         />
         <IS.Title>Description (optional)</IS.Title>
         <IS.InputDescription
