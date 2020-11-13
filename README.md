@@ -11,7 +11,7 @@
 
 ### 🍎 [28조의 큐티뽀짝한 Service URL](http://www.issue-tracker28.kro.kr)
 ### 📹 [API 명세서](https://documenter.getpostman.com/view/8483132/TVenfU7k)
-### ✍ [저희 팀이 더 궁금하시다면 Wiki](https://github.com/boostcamp-2020/IssueTracker-28/wiki)
+### ✍ [저희 팀이 더 궁금하시다면 Wiki 보러가기](https://github.com/boostcamp-2020/IssueTracker-28/wiki)
 
 ## 📹 Demo Video
 [![](https://user-images.githubusercontent.com/60457112/99021811-d696bf80-25a4-11eb-9257-9dc758de39c1.png)](https://www.youtube.com/watch?v=7um8wpus3wU)
