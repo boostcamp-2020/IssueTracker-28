@@ -17,8 +17,8 @@ http://www.issue-tracker28.kro.kr
 
 https://www.youtube.com/watch?v=7um8wpus3wU
 
-## 📹 API 명세서
-https://documenter.getpostman.com/view/8483132/TVenfU7k
+## 🛠 Teck Stack
+<p align="center"><img width="800" alt="기술 스택" src="https://user-images.githubusercontent.com/60457112/99019839-9c2b2380-25a0-11eb-9ece-338bfc291d36.png"></p>
 
 
 ## 📊 DB Model
