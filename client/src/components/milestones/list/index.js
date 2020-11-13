@@ -19,7 +19,6 @@ function List() {
   const [status, setStatus] = useState(OPEN); // open: 0, close: 1
 
   useEffect(() => { }, [dispatch]);
-  useEffect(() => { }, [data]);
 
   const fetchData = () => {
     getMilestones(dispatch);
