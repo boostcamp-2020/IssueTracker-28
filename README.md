@@ -10,6 +10,7 @@
 </p>
 
 ### 🍎 [28조의 큐티뽀짝한 Service URL](http://www.issue-tracker28.kro.kr)
+### 📷 [프로젝트 실행 화면](https://github.com/boostcamp-2020/IssueTracker-28/wiki/%EC%8B%A4%ED%96%89-%ED%99%94%EB%A9%B4)
 ### 📹 [API 명세서](https://documenter.getpostman.com/view/8483132/TVenfU7k)
 ### ✍ [저희 팀이 더 궁금하시다면 Wiki 보러가기](https://github.com/boostcamp-2020/IssueTracker-28/wiki)
 
@@ -66,15 +67,6 @@ npm run dev
   </div>
 </details>
     
-
-## 📷 Screen Shots
-<img width="750" alt="스크린샷 2020-11-13 오후 12 30 12" src="https://user-images.githubusercontent.com/60839959/99025853-27121b00-25ad-11eb-9293-96a469d74cc3.png">
-<img width="750" alt="스크린샷 2020-11-13 오후 12 30 32" src="https://user-images.githubusercontent.com/60839959/99025856-29747500-25ad-11eb-9d8f-1fac6317adb1.png">
-<img width="750" alt="스크린샷 2020-11-13 오후 12 33 59" src="https://user-images.githubusercontent.com/60839959/99025862-2da09280-25ad-11eb-9660-7e645ec1c929.png">
-<img width="750" alt="스크린샷 2020-11-13 오후 12 34 15" src="https://user-images.githubusercontent.com/60839959/99025870-309b8300-25ad-11eb-89e8-78ad9fa00181.png">
-<img width="750" alt="스크린샷 2020-11-13 오후 12 34 22" src="https://user-images.githubusercontent.com/60839959/99025883-32fddd00-25ad-11eb-8473-3f346a37ae6b.png">
-<img width="750" alt="스크린샷 2020-11-13 오후 12 35 03" src="https://user-images.githubusercontent.com/60839959/99025894-3abd8180-25ad-11eb-9ae7-080c3805e93b.png">
-<img width="750" alt="스크린샷 2020-11-13 오후 12 35 19" src="https://user-images.githubusercontent.com/60839959/99025900-3d1fdb80-25ad-11eb-81fa-e5ff40ef86b5.png">
 
 ## 📊 DB Model
 
