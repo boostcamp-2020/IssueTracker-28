@@ -7,6 +7,7 @@ import S from './style';
 const Header = ({ issue, commentsCount }) => {
   const [isEditClicked, setIsEditClicked] = useState(false);
   const [title, setTitle] = useState('');
+  const [prevTitle, setprevTitle] = useState('');
 
   const dispatch = useIssueDetailDispatch();
 
@@ -19,12 +20,22 @@ const Header = ({ issue, commentsCount }) => {
     setIsEditClicked(false);
   };
 
+  const cancelHandler = () => {
+    setIsEditClicked(false);
+    setTitle(prevTitle);
+  };
+
   const changeHandler = (e) => {
     setTitle(e.target.value);
   };
 
+  const editHandler = () => {
+    setprevTitle(title);
+    setIsEditClicked(true);
+  };
+
   const editButton = isEditClicked ? null : (
-    <Button className="edit-button" variant="small" onClick={() => setIsEditClicked(true)}>
+    <Button className="edit-button" variant="small" onClick={editHandler}>
       Edit
     </Button>
   );
@@ -43,14 +54,7 @@ const Header = ({ issue, commentsCount }) => {
           <Button className="save-button" variant="small" onClick={saveHandler}>
             Save
           </Button>
-          <input
-            type="button"
-            className="cancle-button"
-            onClick={() => {
-              setIsEditClicked(false);
-            }}
-            value="Cancel"
-          />
+          <input type="button" className="cancle-button" onClick={cancelHandler} value="Cancel" />
         </S.EditWrapper>
       ) : (
         <S.TitleWrapper>

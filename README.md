@@ -10,24 +10,17 @@
 </p>
 
 ### 🍎 [28조의 큐티뽀짝한 Service URL](http://www.issue-tracker28.kro.kr)
+### 📷 [프로젝트 실행 화면](https://github.com/boostcamp-2020/IssueTracker-28/wiki/%EC%8B%A4%ED%96%89-%ED%99%94%EB%A9%B4)
 ### 📹 [API 명세서](https://documenter.getpostman.com/view/8483132/TVenfU7k)
 ### ✍ [저희 팀이 더 궁금하시다면 Wiki 보러가기](https://github.com/boostcamp-2020/IssueTracker-28/wiki)
 
 ## 📹 Demo Video
-[<img width="400" src="https://user-images.githubusercontent.com/60457112/99021811-d696bf80-25a4-11eb-9257-9dc758de39c1.png"/>](https://youtu.be/mRyLkaubVGE)
+[<img width="400" src="https://user-images.githubusercontent.com/60457112/99021811-d696bf80-25a4-11eb-9257-9dc758de39c1.png"/>](https://youtu.be/-zdDoQeR3D4)
 > 클릭하시면 youtube로 이동합니다💨
-
-## 📷 Screen Shots
-<img width="750" alt="스크린샷 2020-11-13 오후 12 30 12" src="https://user-images.githubusercontent.com/60839959/99025853-27121b00-25ad-11eb-9293-96a469d74cc3.png">
-<img width="750" alt="스크린샷 2020-11-13 오후 12 30 32" src="https://user-images.githubusercontent.com/60839959/99025856-29747500-25ad-11eb-9d8f-1fac6317adb1.png">
-<img width="750" alt="스크린샷 2020-11-13 오후 12 33 59" src="https://user-images.githubusercontent.com/60839959/99025862-2da09280-25ad-11eb-9660-7e645ec1c929.png">
-<img width="750" alt="스크린샷 2020-11-13 오후 12 34 15" src="https://user-images.githubusercontent.com/60839959/99025870-309b8300-25ad-11eb-89e8-78ad9fa00181.png">
-<img width="750" alt="스크린샷 2020-11-13 오후 12 34 22" src="https://user-images.githubusercontent.com/60839959/99025883-32fddd00-25ad-11eb-8473-3f346a37ae6b.png">
-<img width="750" alt="스크린샷 2020-11-13 오후 12 35 03" src="https://user-images.githubusercontent.com/60839959/99025894-3abd8180-25ad-11eb-9ae7-080c3805e93b.png">
-<img width="750" alt="스크린샷 2020-11-13 오후 12 35 19" src="https://user-images.githubusercontent.com/60839959/99025900-3d1fdb80-25ad-11eb-81fa-e5ff40ef86b5.png">
 
 ## 🛠 Tech Stack
 <p align="center"><img width="800" alt="기술 스택" src="https://user-images.githubusercontent.com/60457112/99019839-9c2b2380-25a0-11eb-9ece-338bfc291d36.png"></p>
+
 
 ## 📊 DB Model
 
@@ -36,12 +29,12 @@
 ## 🗂 Directory
 
 <details>
-<summary>backend</summary>
+<summary>server</summary>
   <div markdown="1">
     
 ```
 🗃 Project Folder  
-📁backend  
+📁server  
 ├── app  
 ├── 📁bin  
 │   └── www  
@@ -65,11 +58,11 @@
 </details>
 
 <details>
-<summary>frontend</summary>
+<summary>client</summary>
   <div markdown="1">
     
   ```
-  📁frontend  
+  📁client  
   ├── 📁public
   │   └── 📁images
   │   └── index.html
@@ -80,18 +73,64 @@
       ├── 📁constants
       ├── 📁contexts
       ├── 📁pages
-      └── 📁utile
+      └── 📁utils
   ```
   
   </div>
 </details>
 
+## 🏃‍♂️ Install & Run
+
+<details>
+<summary>install & run</summary>
+  <div markdown="1">
+    
+### install
+```
+git clone -b master --single-branch https://github.com/boostcamp-2020/IssueTracker-28.git
+```
+
+### backend .env 파일 생성
+```
+NODE_ENV=development
+USER_NAME=db_username
+PASSWORD=db_password
+DATABASE=database_name
+HOST=server_url
+
+GITHUB_CLIENT_ID=github_client_id
+GITHUB_CLIENT_SECRET=github_client_secret_key
+
+JWT_SECRET=jwt_secret_key
+ACCESS_KEY=ncloud_access_key
+SECRET_KEY=ncloud_secret_key
+```
+
+### frontend 실행
+```
+cd client
+npm i
+npm run dev
+```
+   
+### backend 실행
+```
+cd server
+npm i
+npm run dev
+```
+
+### http://127.0.0.1:8080/ 으로 접속!
+
+  </div>
+</details>
+    
 ## 👩‍👩‍👧‍👦Members
 
 |  [J032\_김동현](https://github.com/dooking)  |  [J046\_김예진](https://github.com/johnyejin)  |  [J139\_이상경](https://github.com/sang-gyeong)  |  [J216\_한예지](https://github.com/yeji9175)  |
 | :----------: |  :--------:  |  :---------: |  :---------: |
 | <img src="https://avatars2.githubusercontent.com/u/60457112?s=400&u=abe6c14e6a1ed9c7822c607260d04eced3656a17&v=4" width=400px alt="_"/> | <img src="https://avatars3.githubusercontent.com/u/26537048?s=400&u=c6107e0b653eee1fc662dc8e1ec87f1f12c5489f&v=4" width=400px alt="_"/> | <img src="https://avatars3.githubusercontent.com/u/60839959?v=4" width=400px alt="_"/> | <img src="https://avatars2.githubusercontent.com/u/39231606?s=400&u=cf3abd7e53b9ce634fffe6dc8d13ff10935ae183&v=4" width=400px alt="_"> |
-| | I'm a night🦉 | 박수치기 담당 👏👏 | |
+|스타 홍보 담당⭐| 놀리기 담당😛 | 박수치기 담당 👏👏 |웃음 담당🤣|
 
 ## Show your support
 
