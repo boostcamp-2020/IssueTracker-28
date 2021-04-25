@@ -9,7 +9,6 @@
   <img src="https://img.shields.io/badge/mysql-v5.7.32-blue?logo=mysql" />
 </p>
 
-### 🍎 [28조의 큐티뽀짝한 Service URL](http://www.issue-tracker28.kro.kr)
 ### 📷 [프로젝트 실행 화면](https://github.com/boostcamp-2020/IssueTracker-28/wiki/%EC%8B%A4%ED%96%89-%ED%99%94%EB%A9%B4)
 ### 📹 [API 명세서](https://documenter.getpostman.com/view/8483132/TVenfU7k)
 ### ✍ [저희 팀이 더 궁금하시다면 Wiki 보러가기](https://github.com/boostcamp-2020/IssueTracker-28/wiki)
